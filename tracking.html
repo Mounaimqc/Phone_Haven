@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Track Order - Phone Haven</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- Top Navigation Bar -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-20 py-4 sticky top-0 z-50">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-primary">
+                    <span class="material-symbols-outlined text-3xl">smartphone</span>
+                </a>
+                <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight"><a
+                        href="index.html">Phone Haven</a></h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-8">
+                <div class="hidden md:flex items-center gap-9">
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html">Home</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="search.html">Shop</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                        href="tracking.html">Help</a>
+                </div>
+                <div class="bg-primary/10 rounded-full p-1 border border-primary/20">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8"
+                        data-alt="User profile avatar of a smiling man"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzyaWplGQxkkPTsfd0cJ3fGJ3bGWhngzWGQXEEeN-QgNnr1_SbwyWliLDuvPaQAm-J7eOO6au_yydIznLej8IhHbGFgR7nVy_rwvLNT-FlHfmpoJfuHL9YVaYru8PJ6rfThYotdmMikAWLywqkOgbQCGG4HEXZSa18cs9E4SwMDsFhtHZUXk9lDITj5_cneYl1l_SS1Np6Uw3lKaJG2Uw6Rp4-ijrPA5pjasGs74Qg50iUCpxmfu1rd60mXADSZTzDDG7ETxzwPg");'>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex flex-col items-center px-4 py-10 md:py-16">
+            <div class="w-full max-w-[960px] flex flex-col gap-10">
+                <!-- Track Order Hero & Search -->
+                <section
+                    class="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                    <div class="flex flex-col gap-3 mb-8">
+                        <h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black tracking-tight">Track
+                            Your Order</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-lg">Enter your details to see the latest
+                            status of your purchase.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Order Number</span>
+                            <input
+                                class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-primary h-12"
+                                placeholder="e.g. #ORD-88291" type="text" />
+                        </label>
+                        <label class="flex flex-col gap-2">
+                            <span class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Email Address</span>
+                            <input
+                                class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-primary h-12"
+                                placeholder="alex@example.com" type="email" />
+                        </label>
+                    </div>
+                    <div class="mt-6">
+                        <button
+                            class="w-full md:w-auto min-w-[180px] bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">search</span>
+                            Track Order
+                        </button>
+                    </div>
+                </section>
+                <!-- Order Status Details (Visible after search) -->
+                <div class="flex flex-col gap-8">
+                    <!-- Stepper Section -->
+                    <section
+                        class="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
+                            <div>
+                                <h3 class="text-slate-900 dark:text-white text-xl font-bold">Order #ORD-88291</h3>
+                                <p class="text-slate-500 dark:text-slate-400">Placed on Oct 24, 2023</p>
+                            </div>
+                            <div
+                                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold border border-primary/20">
+                                Estimated Delivery: Oct 28, 2023
+                            </div>
+                        </div>
+                        <!-- Stepper -->
+                        <div class="relative flex flex-col md:flex-row justify-between w-full mt-12 mb-8">
+                            <!-- Background line -->
+                            <div
+                                class="absolute top-5 left-5 right-5 h-1 bg-slate-100 dark:bg-slate-800 hidden md:block">
+                            </div>
+                            <!-- Step 1: Placed -->
+                            <div
+                                class="relative flex md:flex-col items-center gap-4 md:gap-2 group z-10 flex-1 mb-8 md:mb-0">
+                                <div
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30">
+                                    <span class="material-symbols-outlined text-xl">check</span>
+                                </div>
+                                <div class="flex flex-col md:items-center">
+                                    <span class="text-slate-900 dark:text-white font-bold text-sm">Order Placed</span>
+                                    <span class="text-slate-400 text-xs">Oct 24, 10:30 AM</span>
+                                </div>
+                            </div>
+                            <!-- Step 2: Processing -->
+                            <div
+                                class="relative flex md:flex-col items-center gap-4 md:gap-2 group z-10 flex-1 mb-8 md:mb-0">
+                                <div
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30">
+                                    <span class="material-symbols-outlined text-xl">check</span>
+                                </div>
+                                <div class="flex flex-col md:items-center">
+                                    <span class="text-slate-900 dark:text-white font-bold text-sm">Processing</span>
+                                    <span class="text-slate-400 text-xs">Oct 24, 02:15 PM</span>
+                                </div>
+                            </div>
+                            <!-- Step 3: Shipped -->
+                            <div
+                                class="relative flex md:flex-col items-center gap-4 md:gap-2 group z-10 flex-1 mb-8 md:mb-0">
+                                <div
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/30">
+                                    <span class="material-symbols-outlined text-xl">local_shipping</span>
+                                </div>
+                                <div class="flex flex-col md:items-center">
+                                    <span class="text-slate-900 dark:text-white font-bold text-sm">Shipped</span>
+                                    <span class="text-slate-400 text-xs">Oct 25, 09:00 AM</span>
+                                </div>
+                            </div>
+                            <!-- Step 4: Delivered -->
+                            <div class="relative flex md:flex-col items-center gap-4 md:gap-2 group z-10 flex-1">
+                                <div
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 border border-slate-200 dark:border-slate-700">
+                                    <span class="material-symbols-outlined text-xl">inventory_2</span>
+                                </div>
+                                <div class="flex flex-col md:items-center text-slate-400">
+                                    <span class="font-bold text-sm">Delivered</span>
+                                    <span class="text-xs">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Two Column Detail Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Order Summary -->
+                        <section
+                            class="md:col-span-2 bg-white dark:bg-slate-900 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                            <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-6">Order Items</h3>
+                            <div class="space-y-6">
+                                <div class="flex gap-4 items-center">
+                                    <div class="h-20 w-20 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center border border-slate-200 dark:border-slate-700"
+                                        data-alt="Red athletic running sneaker"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBous-2sa-dy-rK0G5c841j2PIIe08hUplApg8TmGi6VI0kAyRADi_7JRcRIkCWXvc9JysiEEeXJOX6raE2mXnIJYUu0vzlJd5lpMpJ8bvcODfj2Vz1pcd8hOIc9nR7jFvrXF6HSUYB5GejZWNZme6b52QExcBZ37lvGqKnkrDu0eqFJr5R7UtVVuY9IDJ5JkzV7DKcr-o9EsBjHwWOtVpMZlTrSVA13o0IcAQn_IPQ-JWy04SU8JsvSK9VglgAkf5ycKl0eip4Tw')">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h4 class="text-slate-900 dark:text-white font-bold">Velocity Runner X1</h4>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Size: 10.5 | Color:
+                                            Crimson</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-slate-900 dark:text-white font-bold">$129.00</p>
+                                        <p class="text-slate-500 text-xs font-medium">Qty: 1</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="h-20 w-20 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center border border-slate-200 dark:border-slate-700"
+                                        data-alt="Modern minimalist white wristwatch"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_Dd3wgtza83uce8jmF-Or5jmcDjOxZU4laSSzaR-2kjwHoVbsV-QY5YA3CnLZAKlACoiXd6WU1-Vzi0oNVN63Jg3D4WcSuhqnAjlXdAWsMianUr_bdN6tFz0iDlJuysgoE9HnBUogVK9JG8RvAp6iHv95n07TdVvYT31cDt4l6vL3tBV6PZzWd6DokfaVS86g34UKaZ-4uzdBMpwFwWMK4-c-pnlB0jSikeJQ-qd9h_Xa_ZFPF32SD26WpHA_OXcbSmhd1p-O3w')">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h4 class="text-slate-900 dark:text-white font-bold">Horizon Watch v2</h4>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Color: Silver Mesh</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-slate-900 dark:text-white font-bold">$85.00</p>
+                                        <p class="text-slate-500 text-xs font-medium">Qty: 1</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                                <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                    <span>Subtotal</span>
+                                    <span>$214.00</span>
+                                </div>
+                                <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                    <span>Shipping</span>
+                                    <span class="text-green-500 font-medium">Free</span>
+                                </div>
+                                <div
+                                    class="flex justify-between text-slate-900 dark:text-white font-black text-xl pt-2">
+                                    <span>Total</span>
+                                    <span>$214.00</span>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Shipping Info -->
+                        <div class="flex flex-col gap-8">
+                            <section
+                                class="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                                <h3
+                                    class="text-slate-900 dark:text-white text-lg font-bold mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
+                                    Shipping Address
+                                </h3>
+                                <div class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    <p class="font-bold text-slate-900 dark:text-white">Johnathan Doe</p>
+                                    <p>1234 Sapphire Lane</p>
+                                    <p>Apt 4B</p>
+                                    <p>San Francisco, CA 94103</p>
+                                    <p>United States</p>
+                                </div>
+                            </section>
+                            <section
+                                class="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+                                <h3
+                                    class="text-slate-900 dark:text-white text-lg font-bold mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">support_agent</span>
+                                    Need Help?
+                                </h3>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Having issues with your order
+                                    or the tracking information?</p>
+                                <button
+                                    class="w-full border border-primary text-primary font-bold py-2 rounded-lg hover:bg-primary/5 transition-colors">
+                                    Contact Support
+                                </button>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-10 px-6">
+            <div class="max-w-[960px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="text-slate-400 size-5">
+                        <svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-slate-500 text-sm">© 2024 Phone Haven. All rights reserved.</span>
+                </div>
+                <div class="flex gap-6 text-sm font-medium text-slate-500">
+                    <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                    <a class="hover:text-primary transition-colors" href="#">Cookies</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

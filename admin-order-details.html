@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Order Details | Admin Dashboard</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+                <div class="flex items-center gap-4 text-primary">
+                    <a href="admin-analytics.html" class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+                        <span class="material-symbols-outlined">dashboard_customize</span>
+                    </a>
+                    <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]"><a href="admin-analytics.html">Admin Panel</a></h2>
+                </div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-500 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-100 dark:bg-slate-800 focus:ring-0 h-full placeholder:text-slate-500 px-4 rounded-r-lg text-base font-normal" placeholder="Search orders..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="bg-primary/20 rounded-full size-10 flex items-center justify-center border border-primary/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Admin user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaXVdr1wUR1W65R9OmfULO0eA1lWQXSoLKYIOVkP-6zNEj1OZHHzKoAx6uCc8QO1SLPG7pMJaUwDcqw44p8ZmLplGJQKbayTxBPbIuXfE8kFt3uOPfpGjOWq6hLH-MiA93D4c7RWliRM1kasKPktC_nMoBjcTCK9XTu-hmsXjTCObMXLnsReMzhuvZsFzNKd3vo4l5E7Y_kc2bKulatmDb7UBoCd4yMFLyBH4Pv7Sy8qD72Oc4zrEeAsBc8-6WSucdnIuIka8dzA"/>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 md:px-10 lg:px-20 py-8 max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 mb-6">
+                <a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="admin-analytics.html">Dashboard</a>
+                <span class="text-slate-400 text-sm">/</span>
+                <a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="admin-orders.html">Orders</a>
+<span class="text-slate-400 text-sm">/</span>
+<span class="text-primary text-sm font-semibold">ORD-8829</span>
+</div>
+<!-- Page Header Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h1 class="text-slate-900 dark:text-white text-3xl font-extrabold tracking-tight">Order #ORD-8829</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Order placed Oct 24, 2023 at 10:45 AM</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg font-bold text-sm hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg">print</span>
+                        Print Invoice
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-lg font-bold text-sm hover:bg-red-100 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+                        Delete
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Content Column -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Order Status Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">sync_alt</span>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Update Order Status</h2>
+</div>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Current Status</label>
+<select class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 focus:border-primary focus:ring-primary h-11">
+<option value="nouveau">Nouveau</option>
+<option selected="" value="accepte">Accepté</option>
+<option value="non_disponible">Non Disponible</option>
+<option value="en_cours">En cours de livraison</option>
+<option value="livre">Livré</option>
+<option value="retourne">Retourné</option>
+<option value="annule">Annulé</option>
+</select>
+</div>
+<div class="flex items-end">
+<button class="h-11 px-8 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                                    Update Status
+                                </button>
+</div>
+</div>
+</div>
+<!-- Order Items Table -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Order Items</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Product</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Price</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Qty</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Subtotal</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Red sports running shoe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtjb4xrKwES8cH1wl82R216YCdOtmOSNZ_PWszOdh-G3JEBViM8bJGadJsPJI-vxqlEGgkOEm-hOCNLAlOnfRpISFFhPx-533RoYCH81VZxxSlonZQDfVLo7ylPAPD5hpZquOfTxp9xkb-X4XIRx2ejOhsgIyWfmFQT9A8A5VFMFACsrA4X7N7cvtVUylIkvo_LVoLmB2uL0988Zq1F7cwJ6Vj7A6wSmNyVzAEI23B4Z55RSMvGrxlhSLotW9aDMQG4dLRYNxZ5Q"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Nike Air Max 270</p>
+<p class="text-xs text-slate-500">Size: 42, Color: Red/Black</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 font-medium">18,500 DZD</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold">1</td>
+<td class="px-6 py-4 text-right text-slate-900 dark:text-white font-bold">18,500 DZD</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist wrist watch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJIJ26PwnrJecmF5VIgnh8bpvqKIngxLo_akxAvlHJwdUVmOtk0kuaF9Q-f6wJ4J76zsLnb9Qy9je6193dbA24Os3rvFgTWVo4Hm4LGd_Ys9pxP1edxWZsGG6ri3tZSg8x9cTvdbGOIImbUjKuOBm3dIuleaz2DkQRvWfsIZO9AO7Bmi24Sj0tmQXKv_HJmj25EDTe0ZoiZX8wdNnsQZOEERgqdI1_gRIjbGB__uS851DB0IOMfzsLC7la121XTaYmuRMW920iDg"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Classic Minimal Watch</p>
+<p class="text-xs text-slate-500">Edition: Silver Mesh</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 font-medium">12,000 DZD</td>
+<td class="px-6 py-4 text-center text-slate-900 dark:text-white font-semibold">2</td>
+<td class="px-6 py-4 text-right text-slate-900 dark:text-white font-bold">24,000 DZD</td>
+</tr>
+</tbody>
+<tfoot class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<td class="px-6 py-3 text-right text-sm font-medium text-slate-500" colspan="3">Shipping</td>
+<td class="px-6 py-3 text-right text-sm font-semibold text-slate-900 dark:text-white">600 DZD</td>
+</tr>
+<tr class="border-t border-slate-200 dark:border-slate-700">
+<td class="px-6 py-4 text-right text-base font-bold text-slate-900 dark:text-white" colspan="3">Total Amount</td>
+<td class="px-6 py-4 text-right text-xl font-black text-primary">43,100 DZD</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Internal Notes Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">sticky_note_2</span>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Internal Admin Notes</h2>
+</div>
+<textarea class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 focus:border-primary focus:ring-primary h-32 p-4 text-sm" placeholder="Add a private note about this order (only visible to admins)..."></textarea>
+<div class="flex justify-end mt-4">
+<button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold rounded-lg text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                Save Note
+                            </button>
+</div>
+</div>
+</div>
+<!-- Sidebar Content Column -->
+<div class="space-y-8">
+<!-- Customer Details Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">person</span>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Customer Profile</h2>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase mb-1">Full Name</span>
+<p class="text-slate-900 dark:text-white font-semibold">John Doe</p>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase mb-1">Phone Number</span>
+<p class="text-slate-900 dark:text-white font-semibold">+213 555 12 34 56</p>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase mb-1">Shipping Address</span>
+<p class="text-slate-900 dark:text-white font-semibold">123 Rue de la Liberté</p>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-400 uppercase mb-1">Wilaya / Commune</span>
+<p class="text-slate-900 dark:text-white font-semibold">Algiers / Hydra</p>
+</div>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<button class="w-full flex items-center justify-center gap-2 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-lg">history</span>
+                                View Customer History
+                            </button>
+</div>
+</div>
+<!-- Order Timeline/History -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">history</span>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Timeline</h2>
+</div>
+<div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-slate-200 before:via-slate-200 before:to-transparent dark:before:from-slate-800">
+<!-- Timeline Item 1 -->
+<div class="relative flex items-start gap-6">
+<div class="absolute left-0 mt-1.5 size-10 rounded-full bg-primary flex items-center justify-center text-white z-10">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<div class="ml-12">
+<p class="text-sm font-bold text-slate-900 dark:text-white leading-none mb-1">Status changed to 'Accepté'</p>
+<time class="text-xs text-slate-500 font-medium">Oct 25, 2023 - 09:15 AM</time>
+<p class="text-xs text-slate-400 mt-1">By: Admin Sarah</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex items-start gap-6">
+<div class="absolute left-0 mt-1.5 size-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 z-10">
+<span class="material-symbols-outlined text-lg">shopping_cart</span>
+</div>
+<div class="ml-12">
+<p class="text-sm font-bold text-slate-900 dark:text-white leading-none mb-1">Order Created</p>
+<time class="text-xs text-slate-500 font-medium">Oct 24, 2023 - 10:45 AM</time>
+<p class="text-xs text-slate-400 mt-1">System Generated</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-center text-slate-500 text-sm">
+<p>© 2023 Admin Dashboard. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</body></html>

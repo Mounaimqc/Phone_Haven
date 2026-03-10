@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Phone Haven | Premium Smartphones & Accessories</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0066FF",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 md:px-20 py-4 sticky top-0 z-50">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-3xl font-bold">smartphone</span>
+                        <h2
+                            class="text-slate-900 dark:text-slate-100 text-xl font-extrabold leading-tight tracking-tight">
+                            Phone Haven</h2>
+                    </div>
+                    <nav class="hidden lg:flex items-center gap-8">
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors"
+                            href="index.html">Shop</a>
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors"
+                            href="search.html">Collections</a>
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors"
+                            href="index.html#new-arrivals">New Arrivals</a>
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors"
+                            href="admin-analytics.html">Admin</a>
+                    </nav>
+                </div>
+                <div class="flex flex-1 justify-end gap-4 md:gap-6">
+                    <label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+                        <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                            <div
+                                class="text-slate-400 flex bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg">
+                                <span class="material-symbols-outlined text-xl">search</span>
+                            </div>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 rounded-lg text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-slate-100 dark:bg-slate-800 placeholder:text-slate-400 px-4 rounded-l-none pl-2 text-sm font-normal"
+                                placeholder="Search products..." value="" />
+                        </div>
+                    </label>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </button>
+                        <a href="admin-analytics.html"
+                            class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">
+                            <span class="material-symbols-outlined">person</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1">
+                <!-- Hero Section -->
+                <div class="px-6 md:px-20 py-12 md:py-20">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+                        <div class="flex flex-col gap-8 order-2 lg:order-1">
+                            <div class="flex flex-col gap-4">
+                                <span class="text-primary font-bold tracking-widest uppercase text-xs">New Collection
+                                    2024</span>
+                                <h1
+                                    class="text-slate-900 dark:text-slate-100 text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                                    The Future of <span class="text-primary">Mobile</span> Is Here
+                                </h1>
+                                <p
+                                    class="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed">
+                                    Discover the latest premium smartphones and high-quality accessories tailored for
+                                    your lifestyle.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="product.html"
+                                    class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                    Shop Now
+                                </a>
+                                <button
+                                    class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-base font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                                    View Lookbook
+                                </button>
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <div
+                                class="w-full aspect-[4/5] md:aspect-square bg-slate-200 dark:bg-slate-800 rounded-3xl overflow-hidden shadow-2xl relative group">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+                                <div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                    data-alt="Latest flagship smartphone with sleek design"
+                                    style='background-image: url("https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&q=80&w=800");'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- New Arrivals Slider Section -->
+                <section class="bg-white dark:bg-slate-900/50 py-20 border-y border-slate-200 dark:border-slate-800">
+                    <div class="max-w-7xl mx-auto px-6 md:px-20">
+                        <div class="flex items-end justify-between mb-12">
+                            <div class="flex flex-col gap-2">
+                                <h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">New
+                                    Arrivals</h2>
+                                <p class="text-slate-500 dark:text-slate-400">The latest pieces from our studio.</p>
+                            </div>
+                            <div class="flex gap-3">
+                                <button
+                                    class="flex items-center justify-center rounded-full h-12 w-12 border border-slate-200 dark:border-slate-700 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all">
+                                    <span class="material-symbols-outlined">chevron_left</span>
+                                </button>
+                                <button
+                                    class="flex items-center justify-center rounded-full h-12 w-12 bg-primary text-white hover:bg-primary/90 transition-all shadow-md">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="new-arrivals-container"
+                            class="flex overflow-x-auto gap-6 no-scrollbar pb-4 -mx-4 px-4 snap-x">
+                            <!-- Dynamic Content -->
+                            <p class="text-slate-500 w-full text-center py-10">Loading smartphones...</p>
+                        </div>
+                        <div class="min-w-[280px] md:min-w-[320px] snap-start flex flex-col group">
+                            <div
+                                class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5xipZPVl2y8VYq9aWpdlOOAkopZFjBeabHiQqHhsqnj90SKYwVDUS1f3pXsYWHx13CMDcFGjxzSQeXcQQDUCtGoUOBW77pSWRIv45lx_2v_qAjxQo0cxGT0bXCI-MC4rLc46U8oGLu31hr_AgmZzof7XuPEt2sYP6iYhJK_yiKbeloRvhoE3KCq3RPvQN1tHSlCb7kmQVu9Be-EluvDSQJfdheO2gy7l1JolFqiagHEYNIxH5uzwbK0jQqjIbmuhDciZrkLFrSg");'>
+                                </div>
+                                <button
+                                    class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div
+                                    class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <button
+                                        class="w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg">Quick
+                                        Add</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <h3
+                                    class="text-slate-900 dark:text-slate-100 font-semibold mb-1 group-hover:text-primary transition-colors">
+                                    Minimalist Wall Clock</h3>
+                                <p class="text-slate-500 dark:text-slate-400 font-medium">$75.00</p>
+                            </div>
+                        </div>
+                        <div class="min-w-[280px] md:min-w-[320px] snap-start flex flex-col group">
+                            <div
+                                class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800">
+                                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvR27Vzhdv0wdDDXtRW4qN3NZtqHja0xW89wzgJ4wEEqVXifrAyi9jgYSg5yUFNT7nhS1GbvmH3_EwZrC60RyU_3dXSArMJLlHPIKXMLOH-_dcZSUzSLlNUDJsloCUdOiMYgiv_VKSW3FPDywnjM-0ji1oRgCXSbI3uiCUfbWnq1T3w9dDQ0QixYCqLM4UAzS88z_9vuLLzyJzie_k80y47qtT8IXGH4L3czrjzu9ycTY_8pZHET8vAY8syfohssd9TrrdDDBFeg");'>
+                                </div>
+                                <button
+                                    class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div
+                                    class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                    <button
+                                        class="w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg">Quick
+                                        Add</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <h3
+                                    class="text-slate-900 dark:text-slate-100 font-semibold mb-1 group-hover:text-primary transition-colors">
+                                    Leather Passport Holder</h3>
+                                <p class="text-slate-500 dark:text-slate-400 font-medium">$65.00</p>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        </section>
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style><!-- Categories Section -->
+        <section class="py-12 px-6 md:px-20 max-w-7xl mx-auto">
+            <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight mb-8 text-center">
+                Shop by Category</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="search.html"
+                    class="group relative h-64 overflow-hidden rounded-2xl cursor-pointer bg-slate-100 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1556656793-062ff9878258?auto=format&fit=crop&q=80&w=600');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Smartphones</h3>
+                    </div>
+                </a>
+                <a href="search.html"
+                    class="group relative h-64 overflow-hidden rounded-2xl cursor-pointer bg-slate-100 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Audio</h3>
+                    </div>
+                </a>
+                <a href="search.html"
+                    class="group relative h-64 overflow-hidden rounded-2xl cursor-pointer bg-slate-100 dark:bg-slate-800">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('https://images.unsplash.com/photo-1601524345197-6a182a6cf7df?auto=format&fit=crop&q=80&w=600');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Accessories</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- Featured Products Section -->
+        <section class="bg-white dark:bg-slate-900/50 py-20 px-6 md:px-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-end justify-between mb-12">
+                    <div class="flex flex-col gap-2">
+                        <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight">
+                            Featured Products</h2>
+                        <p class="text-slate-500 dark:text-slate-400">Our best-selling essentials, hand-picked
+                            for you.</p>
+                    </div>
+                    <a class="text-primary font-bold flex items-center gap-1 group" href="search.html">
+                        View all items
+                        <span
+                            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div id="featured-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Dynamic Content -->
+                    <p class="text-slate-500 col-span-full text-center py-10">Loading featured products...</p>
+                </div>
+            </div>
+    </div>
+    </section><!-- Testimonials Section -->
+    <section class="py-20 bg-slate-50 dark:bg-slate-900/30 px-6 md:px-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight mb-4">What
+                    Our Community Says</h2>
+                <p class="text-slate-500 dark:text-slate-400">Real reviews from people who love our
+                    minimalist approach.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 italic mb-6">"The quality of the Essential
+                        Sneaker is unmatched. It's the perfect daily driver for my minimalist wardrobe."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200"></div>
+                        <div>
+                            <p class="font-bold text-sm">Sarah Jenkins</p>
+                            <p class="text-xs text-slate-500">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 italic mb-6">"I love the transparency about
+                        where their materials come from. Beautiful design with a conscience."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200"></div>
+                        <div>
+                            <p class="font-bold text-sm">Michael Chen</p>
+                            <p class="text-xs text-slate-500">Architect</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="flex gap-1 text-yellow-400 mb-4">
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                        <span class="material-symbols-outlined fill-1">star</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300 italic mb-6">"Fast shipping and the
+                        packaging was entirely plastic-free. This is how modern e-commerce should be."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200"></div>
+                        <div>
+                            <p class="font-bold text-sm">Elena Rodriguez</p>
+                            <p class="text-xs text-slate-500">Creative Director</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Value Props Section -->
+    <section class="py-20 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="flex flex-col items-start gap-4">
+                <div class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">eco</span>
+                </div>
+                <h3 class="text-xl font-bold">Global Shipping</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We prioritize sustainable
+                    sourcing and environmentally responsible manufacturing processes for all our products.
+                </p>
+            </div>
+            <div class="flex flex-col items-start gap-4">
+                <div class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">local_shipping</span>
+                </div>
+                <h3 class="text-xl font-bold">Global Shipping</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Complimentary shipping on all
+                    orders over $100. We ship worldwide with express tracking and delivery in 3-5 days.</p>
+            </div>
+            <div class="flex flex-col items-start gap-4">
+                <div class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">verified</span>
+                </div>
+                <h3 class="text-xl font-bold">Global Shipping</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Every piece in our collection
+                    is meticulously crafted and undergoes rigorous quality checks before reaching you.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter -->
+    <!-- Social Feed Section -->
+    <section class="py-20 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-10">
+            <h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight">Follow Our
+                Journey</h2>
+            <a class="text-primary font-semibold flex items-center gap-2 hover:underline" href="#">@modernstore_co</a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhPhGDLac9oiPLoT1phbZE0_AJrLdi4JoYKQLO0clI264NXY-EijDA9jNT7PlQW6TJ94A90sIf2jieW27DgZmNef79piGu4O6w5zqZocVJTxlSDJo5TA9t4UfDGzNuZwd7FANwewV5avNOStIRUIiFVpLp8oxx3-niT6Pq8AUAxZINWru3p7j4r2uuzMnbWClXQtnz_iuoUG2XoKAItAwQuq1LXroMRzVSmZ4LcwlOUiu4dCuadpEJvnDeadZFTWorB8gaeP-k6w');">
+                </div>
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVr1oKYx5aea9YLQXdnqCS3tnnnaJ08CzJBclt565XKpdoAWfo7_d8EN-7FNAoLjOpXrP9yZrZNmI8VwM_KJr7WadeMVTjZyiNRVu_-4rBfilH7MPwd9KiBvbcb-ZViH4WTcAcprWkgyoKFAVlVzZZQrgqP0wduRFlKyFdPmUxRzk29c0sw6a6dqIgxmC6QlkOrRcGiaQ_uNWZ8ORQxSkGBoxylScrMFm0beSI3EnUZMAmQ8sUkj79hRrK_zKU04GlEj6VDN5BlA');">
+                </div>
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZmbVAusmPkcKB0uQnU9oiUK05ldrGaEVUFYbQ6DtemPOkr4lKdnydlrqXvDA-ug-3nMmOGEJ1IIBUw_ZjhpQchfZq0qKV9tHXvr4l93jF2X-N4wYnfCKgnsRqCRDM5xEPoGAL5Iwj55oFoenFgV4UQXId5vsZ6TppeCoryXmSLaDW52pL9QmVwNcE5T3l0jKWxWs_moPQZybwv_fVJ_kasNIJm_aqg_1HCdAXXQPeOY5eaFOOpP7Wd8N1roXkyk8CenjnSrWXHw');">
+                </div>
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0XUbv4M6huBIeaxXPU4mQwmpJMgAdI4lm2YAt2iW_LY19i2M16j3CSDneCMX109p4VJIvalzAg7HOE7eKqsWy_HntN5YAtQ7zRei3aQr7BMz3sJbvwM5IavUJdmdim44b3fM3Rehr6U5b8kt9IlG7u3GGm99c60yZZ601nrBEHNzoSn15MB8JeGvJYKqwTZHDYgO-SIsQ6FDLC5SqFBW6EfmybdcOdVXA5XsH4aB6powj1BnsLa751ZLgruIYBaMsQ6CMyIQevQ');">
+                </div>
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDIUxRp3xPXGY7ox8C6grIjrJ_FWWQZJs5ur-9jRBILe9pUr58ZDl5x1lLFn-xBao-GmSeiPqI5OYZCskdFZh87zJbTObU5YU5EOR3PWiZ4EK_Ua0q9E7tuUAzQnzh3iBztEh23Dnx-NbFPYL68-4M7S-N_EGS8p6B25GuCJN6RnGEvQ3ILGDmaO7K59-Zjp08xkDJPP1IyMSC_WtqECIY_J9MhTSP6WdQ4_DXacljp028xi6yx1KgdNKO6-dFAPrjFCNyulnM1g');">
+                </div>
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden cursor-pointer">
+                <div class="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-500"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhPhGDLac9oiPLoT1phbZE0_AJrLdi4JoYKQLO0clI264NXY-EijDA9jNT7PlQW6TJ94A90sIf2jieW27DgZmNef79piGu4O6w5zqZocVJTxlSDJo5TA9t4UfDGzNuZwd7FANwewV5avNOStIRUIiFVpLp8oxx3-niT6Pq8AUAxZINWru3p7j4r2uuzMnbWClXQtnz_iuoUG2XoKAItAwQuq1LXroMRzVSmZ4LcwlOUiu4dCuadpEJvnDeadZFTWorB8gaeP-k6w');">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary py-16 px-6 md:px-20 mb-20 md:mx-20 rounded-3xl overflow-hidden relative">
+        <div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="text-white text-3xl md:text-4xl font-extrabold mb-4">Join the Modern Community</h2>
+            <p class="text-white/80 text-lg mb-8 max-w-lg mx-auto">Stay updated with our newest drops and
+                exclusive offers. Subscribe to our newsletter today.</p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input
+                    class="flex-1 h-14 rounded-xl px-6 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    placeholder="Enter your email" required="" type="email" />
+                <button class="h-14 px-8 bg-white text-primary font-bold rounded-xl hover:bg-slate-100 transition-all"
+                    type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    </main>
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8 px-6 md:px-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
+                <div class="col-span-2 lg:col-span-2 flex flex-col gap-6">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-2xl font-bold">smartphone</span>
+                        <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Phone Haven</h2>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-xs leading-relaxed">
+                        Your ultimate destination for the latest premium smartphones and essential accessories.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:border-primary hover:text-primary transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl text-primary">facebook</span>
+                        </a>
+                        <a class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:border-primary hover:text-primary transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">share</span>
+                        </a>
+                        <a class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:border-primary hover:text-primary transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Shop</h4>
+                    <ul class="flex flex-col gap-4 text-slate-500 dark:text-slate-400 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="search.html">All Products</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">New
+                                Arrivals</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="search.html">Best Sellers</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="search.html">Collections</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="search.html">Sale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Company</h4>
+                    <ul class="flex flex-col gap-4 text-slate-500 dark:text-slate-400 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Our Story</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Sustainability</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Ethical Production</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Journal</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6">Support</h4>
+                    <ul class="flex flex-col gap-4 text-slate-500 dark:text-slate-400 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+                        </li>
+                        <li><a class="hover:text-primary transition-colors" href="tracking.html">Order
+                                Tracking</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+                <p>© 2024 Phone Haven. All rights reserved.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                    <a class="hover:text-primary transition-colors" href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <style>
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="seed.js"></script>
+</body>
+
+</html>

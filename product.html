@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>Product Details - Phone Haven</title>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4">
+            <div class="mx-auto flex max-w-7xl items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html"
+                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
+                        <span class="material-symbols-outlined">smartphone</span>
+                    </a>
+                    <h2 class="text-xl font-extrabold tracking-tight"><a href="index.html">Phone<span
+                                class="text-primary">Haven</span></a></h2>
+                </div>
+                <div class="hidden md:flex flex-1 justify-center px-12">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <span class="material-symbols-outlined text-xl">search</span>
+                        </div>
+                        <input
+                            class="w-full rounded-full border-none bg-primary/5 py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20"
+                            placeholder="Search premium electronics..." type="text" />
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined">account_circle</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="mx-auto w-full max-w-7xl flex-1 px-6 py-8 md:px-20">
+            <nav class="flex items-center gap-2 mb-8 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <a class="hover:text-primary transition-colors" href="#">Electronics</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <a class="hover:text-primary transition-colors" href="#">Smart Home</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span id="breadcrumb-product-name" class="text-slate-900 dark:text-white font-medium">Loading...</span>
+            </nav>
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+                <div class="space-y-4">
+                    <div class="overflow-hidden rounded-3xl bg-white dark:bg-slate-800 shadow-xl shadow-primary/5">
+                        <div class="aspect-square w-full bg-primary/5 flex items-center justify-center relative group">
+                            <img id="main-product-image" alt="Product Image"
+                                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                src="https://via.placeholder.com/800?text=Phone+Haven" />
+                            <div class="absolute top-4 right-4">
+                                <span
+                                    class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">New
+                                    Arrival</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div
+                            class="aspect-square cursor-pointer overflow-hidden rounded-xl border-2 border-primary ring-2 ring-primary/20">
+                            <img alt="Thumbnail 1" class="h-full w-full object-cover"
+                                data-alt="Front view of the smart hub"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8QrGhfgWTICq85SwR3x7fFtGMKCtCCZ6unPlk4zq_5L7PzndrGvcYvuaCi4O77doEYck2ZCVGbbOg_pqRcP7nKceDVkm8Fi_mOLOJckNBr83Bjn7_U4DuNbow22vSkHDDY3G5dmTIL8HTUjyCBqx0Eom4dC0aZRPavERw9CBK945hakTwauy-fsCawBK7WpE2A3xsEryC612W8v1IVb_fW88itK-utzrWUSYi_LC-WpAcVjYTBlQUE41wPaNCfHzkNDz46v1S3A" />
+                        </div>
+                        <div
+                            class="aspect-square cursor-pointer overflow-hidden rounded-xl opacity-60 hover:opacity-100 transition-opacity">
+                            <img alt="Thumbnail 2" class="h-full w-full object-cover"
+                                data-alt="Side profile of the device"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbcrBz0coEJCBd044tffvYfwLL5vtcLpibZyvcHsC6Lbw8WYwEQs_kRZiSoSout9dFfltTUULCBN5KVdg8bhLELE__bZKM3zaE5DotQmZviQYAdRlJEGc7vMOrZ6HO9huIZAsFEIYxhsQb5lbq6fUsIGfoHJHEpFugx66dFz9ydj5igHvQ5dE2tkdM0ZC_MxAjjeCygLKr7CeLtEvzdi2Ags7okuQOtob-GJAyNx6vmu7UMKdWZM0MVvhU77rJuwwnqNyeu_2pkQ" />
+                        </div>
+                        <div
+                            class="aspect-square cursor-pointer overflow-hidden rounded-xl opacity-60 hover:opacity-100 transition-opacity">
+                            <img alt="Thumbnail 3" class="h-full w-full object-cover"
+                                data-alt="Close up of the touch interface"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_rajW6Gi0U4tmpqZhKVBj8jyA-0wxVbaxgruKyc2dSrQKUnzFbH8vJhPxuvmmk47Xr4smOphO_vjNgSOFcNqcKNWIWbARVSU5W-I970cPISkCYkM3f_gd2CmhzoINO7n8qvPHO3UGpwnK3tWTiCauAWNDVazbQw5p7zJYHjJA2nInNBC5J6nrgBW3RAAuyv26rVdYWEDFb3IWHEkLVg0uFMVAuqXqgN42EEwZLQVw3cRLRlAxOWZ9gFOPvrGsFtERz0_ixg80Jg" />
+                        </div>
+                        <div
+                            class="aspect-square cursor-pointer overflow-hidden rounded-xl opacity-60 hover:opacity-100 transition-opacity">
+                            <img alt="Thumbnail 4" class="h-full w-full object-cover"
+                                data-alt="Lifestyle shot in a modern living room"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuChkl3fSfBChDy9H9j51WZv79ew6Vy5g2_Oidta0LNpw4xt-wiLFL5MVZC7-pcIgkFOgURR6O0Q_q8NkiV2dGTiVE8SXC74v-vddk4wPEOCYM3Jq0O6IyXhLqYrwCad4r0v7itQJvefI4hetW_aJg4gNHTnnCcef_Bk5d-9y4Trbf4RDXXm_7w98XZnUHK8gzB27DqU5oNcGrbVnI_1-oLtej9WMpBGtAGfI1dziBDQMexMLenaiVHJcgDXBgPjbQm_rBX_XWY0_w" />
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="mb-6">
+                        <div class="flex items-center gap-2 text-primary mb-2">
+                            <span class="material-symbols-outlined text-sm font-bold">verified</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">Premium Quality</span>
+                        </div>
+                        <h1 id="product-name"
+                            class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-2 md:text-5xl">
+                            Loading Product...</h1>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-1 text-amber-400">
+                                <span class="material-symbols-outlined text-xl fill-current">star</span>
+                                <span class="material-symbols-outlined text-xl fill-current">star</span>
+                                <span class="material-symbols-outlined text-xl fill-current">star</span>
+                                <span class="material-symbols-outlined text-xl fill-current">star</span>
+                                <span class="material-symbols-outlined text-xl">star_half</span>
+                                <span class="ml-1 text-sm font-bold text-slate-900 dark:text-white">4.8</span>
+                            </div>
+                            <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+                            <a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors underline underline-offset-4 decoration-primary/30"
+                                href="#">1,240 Reviews</a>
+                        </div>
+                    </div>
+                    <div class="mb-8 p-6 rounded-2xl bg-white dark:bg-slate-800 border border-primary/10 shadow-sm">
+                        <div class="flex items-baseline gap-3 mb-1">
+                            <span id="product-price" class="text-4xl font-black text-primary">$0.00</span>
+                            <span class="text-lg text-slate-400 line-through">$349.00</span>
+                        </div>
+                        <p class="text-xs font-medium text-green-500 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">check_circle</span>
+                            In stock and ready to ship
+                        </p>
+                    </div>
+                    <div class="space-y-6 mb-10">
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">Color</h3>
+                            <div class="flex gap-3">
+                                <button
+                                    class="h-10 w-10 rounded-full bg-slate-900 ring-2 ring-primary ring-offset-4 border border-white/20"></button>
+                                <button
+                                    class="h-10 w-10 rounded-full bg-slate-200 hover:ring-2 hover:ring-primary/40 transition-all"></button>
+                                <button
+                                    class="h-10 w-10 rounded-full bg-primary/20 hover:ring-2 hover:ring-primary/40 transition-all"></button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">Description</h3>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Experience the future of home automation. The Lumos Pro is a unified control center for
+                                all your smart devices. Featuring low-latency Thread support, a stunning 7-inch OLED
+                                touch display, and advanced AI integration that learns your routines to save energy and
+                                enhance comfort.
+                            </p>
+                        </div>
+                        <div class="mt-8 rounded-2xl bg-white dark:bg-slate-800 border border-primary/10 p-6 shadow-sm">
+                            <h3 class="mb-4 text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">bolt</span>
+                                Commande Rapide
+                            </h3>
+                            <form id="order-form" class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Nom et
+                                            Prénom</label>
+                                        <input name="name"
+                                            class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all"
+                                            placeholder="Votre nom complet" required="" type="text" />
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Numéro
+                                            de téléphone</label>
+                                        <input name="phone"
+                                            class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all"
+                                            placeholder="0XXXXXXXXX" required="" type="tel" />
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Type de
+                                        livraison</label>
+                                    <select name="delivery"
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all">
+                                        <option value="stop_desk">Stop Desk (Bureau de poste/Relais)</option>
+                                        <option value="a_domicile">À Domicile</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-1">
+                                        <label
+                                            class="text-xs font-bold uppercase tracking-wider text-slate-500">Wilaya</label>
+                                        <input name="wilaya"
+                                            class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all"
+                                            placeholder="Votre Wilaya" required="" type="text" />
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label
+                                            class="text-xs font-bold uppercase tracking-wider text-slate-500">Commune</label>
+                                        <input name="commune"
+                                            class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all"
+                                            placeholder="Votre Commune" required="" type="text" />
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label
+                                        class="text-xs font-bold uppercase tracking-wider text-slate-500">Adresse</label>
+                                    <input name="address"
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-slate-700/50 px-4 py-3 text-sm focus:ring-2 focus:ring-primary transition-all"
+                                        placeholder="Adresse précise" required="" type="text" />
+                                </div>
+                                <button
+                                    class="w-full mt-2 flex h-14 items-center justify-center gap-3 rounded-xl bg-primary px-8 font-bold text-white shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all active:scale-95"
+                                    type="submit">
+                                    <span class="material-symbols-outlined">shopping_bag</span>
+                                    Confirmer la Commande
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mt-auto space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                                <div class="text-primary">
+                                    <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900 dark:text-white">Free Delivery</p>
+                                    <p class="text-[10px] text-slate-500">Orders over $150</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                                <div class="text-primary">
+                                    <span class="material-symbols-outlined text-3xl">shield</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900 dark:text-white">2-Year Warranty</p>
+                                    <p class="text-[10px] text-slate-500">Protection plan incl.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="mt-20 border-t border-primary/10 pt-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="space-y-4">
+                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">hub</span>
+                        </div>
+                        <h4 class="text-xl font-bold">Universal Control</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">Connects to over 5,000 devices from leading
+                            brands. Matter and Thread ready for the most reliable connection ever built.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">lock</span>
+                        </div>
+                        <h4 class="text-xl font-bold">Privacy First</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">On-device processing ensures your home data
+                            stays in your home. No cloud required for essential voice and automation tasks.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">energy_savings_leaf</span>
+                        </div>
+                        <h4 class="text-xl font-bold">Eco Intelligence</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">Smart energy monitoring helps reduce your
+                            utility bills by up to 20% by optimizing heating and lighting usage.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-white dark:bg-slate-900 border-t border-primary/10 py-12">
+            <div class="mx-auto max-w-7xl px-6 md:px-20">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                    <div>
+                        <h5 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Shop</h5>
+                        <ul class="space-y-4 text-sm font-medium">
+                            <li><a class="hover:text-primary" href="search.html">Smart Home</a></li>
+                            <li><a class="hover:text-primary" href="search.html">Audio</a></li>
+                            <li><a class="hover:text-primary" href="search.html">Cameras</a></li>
+                            <li><a class="hover:text-primary" href="search.html">Lighting</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Support</h5>
+                        <ul class="space-y-4 text-sm font-medium">
+                            <li><a class="hover:text-primary" href="#">Returns</a></li>
+                            <li><a class="hover:text-primary" href="tracking.html">Shipping Info</a></li>
+                            <li><a class="hover:text-primary" href="tracking.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2">
+                        <h5 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Newsletter</h5>
+                        <p class="text-sm mb-4 text-slate-500">Get 10% off your first order when you sign up.</p>
+                        <div class="flex gap-2">
+                            <input
+                                class="flex-1 rounded-xl border-none bg-slate-100 dark:bg-slate-800 px-4 py-3 text-sm focus:ring-2 focus:ring-primary"
+                                placeholder="Email address" type="email" />
+                            <button
+                                class="bg-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors">Join</button>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-400">
+                    <p>© 2024 Phone Haven. All rights reserved.</p>
+                </div>
+        </footer>
+        <script type="module" src="main.js"></script>
+</body>
+
+</html>

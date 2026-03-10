@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>Order Confirmation | Phone Haven</title>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Header -->
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 md:px-10 py-4 bg-white dark:bg-slate-900">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">smartphone</span>
+                    </a>
+                    <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight"><a
+                            href="index.html">Phone Haven</a></h2>
+                </div>
+                <button
+                    class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </header>
+            <main class="flex flex-1 justify-center py-8 px-4 md:px-0">
+                <div
+                    class="layout-content-container flex flex-col max-w-[600px] flex-1 bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden border border-slate-200 dark:border-slate-800">
+                    <!-- Success Icon & Message -->
+                    <div class="flex flex-col items-center pt-10 pb-6 px-4">
+                        <div
+                            class="size-20 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-5xl">check_circle</span>
+                        </div>
+                        <h1
+                            class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold leading-tight text-center">
+                            Merci pour votre commande !</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-lg font-medium mt-2">Votre commande a été
+                            reçue avec succès.</p>
+                    </div>
+                    <!-- Banner Image Component -->
+                    <div class="px-6 py-2">
+                        <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[160px] bg-primary/10"
+                            data-alt="Abstract blue aesthetic interior lighting pattern"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQVS3KHigjs86bR9hNEd9fUtMGq20yFef2aiD6aOxFkqZPqeAf9ecffHpXdUwKobpzOSQq78lgri6N0GceyGedvG65cfYejCNaR5ET6Nn3MDarv7HhwK4G0ixGp0nrgk4uLFiW2m7dJ7-kC5u5zPZt9K66aAvkajV-Gvv0RdojkD7o5JOib7nUW2nLN97HCoXpe99hoUJP3daIJvKKar0kW38qVDVhUIeDXzIwM1y0vVyDNkPKRkd3fMF8tB6wYHxhtznnmVFljg");'>
+                        </div>
+                    </div>
+                    <!-- Order Details Summary -->
+                    <div class="px-6 py-6">
+                        <h3
+                            class="text-slate-900 dark:text-slate-100 text-lg font-bold border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
+                            Order Summary</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-slate-400">person</span>
+                                    <span class="text-slate-500 dark:text-slate-400">Customer Name</span>
+                                </div>
+                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">Alex
+                                    Thompson</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-slate-400">phone</span>
+                                    <span class="text-slate-500 dark:text-slate-400">Phone Number</span>
+                                </div>
+                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">+1 (555)
+                                    012-3456</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-slate-400">local_shipping</span>
+                                    <span class="text-slate-500 dark:text-slate-400">Delivery Type</span>
+                                </div>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">Standard
+                                    Shipping</span>
+                            </div>
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="flex items-center gap-3 shrink-0">
+                                    <span class="material-symbols-outlined text-slate-400">location_on</span>
+                                    <span class="text-slate-500 dark:text-slate-400">Address</span>
+                                </div>
+                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">742 Evergreen
+                                    Terrace, Springfield, OR 97403</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Map Preview Component -->
+                    <div class="px-6 pb-6">
+                        <div class="w-full h-32 rounded-lg bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
+                            <img class="w-full h-full object-cover opacity-60"
+                                data-alt="Map view showing delivery location area" data-location="Springfield"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeArW1aS-uZBeD0kc1repaD4SR2GCyK3qHYpNgvzlYxtDwrttbqC9TT_MJliNoNxHwmh03O0LWnW4sV3Heo-l3YyxnJgBNXCHQTGLLHTPUu5_CY8oBBjZcGxI5c1SjWqfyY_mWzZyga79WKoOd9WgielPYfy4Vlrurke0eKeyywlbMJimzDaBbPOUOvM_XxrzEQ97exOlY0QOZF1Xx2WK27KhITw7JaK7dPKUZnomz3-ZmEy9LXoITbte1NgYY7xSolS-NkHhNfQ" />
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="size-8 bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white">
+                                    <span class="material-symbols-outlined text-white text-sm">push_pin</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CTA Section -->
+                    <div class="px-6 pb-10 flex flex-col gap-3">
+                        <a href="index.html"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center">
+                            Continue Shopping
+                        </a>
+                        <a href="admin-orders.html"
+                            class="w-full bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center">
+                            View Order History
+                        </a>
+                    </div>
+                    <!-- Support Footer -->
+                    <div
+                        class="bg-slate-50 dark:bg-slate-800/50 p-6 flex flex-col items-center gap-2 border-t border-slate-100 dark:border-slate-800">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm text-center">Need help with your order?</p>
+                        <div class="flex gap-4">
+                            <a class="text-primary font-bold text-sm hover:underline" href="#">Contact Support</a>
+                            <span class="text-slate-300 dark:text-slate-700">|</span>
+                            <a class="text-primary font-bold text-sm hover:underline" href="tracking.html">Track
+                                Delivery</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer Info -->
+            <footer class="py-8 px-4 text-center">
+                <p class="text-slate-400 dark:text-slate-600 text-xs">© 2024 Phone Haven. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Phones & Accessories - Phone Haven</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+                <div class="flex items-center gap-2">
+                    <a href="index.html"
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white">
+                        <span class="material-symbols-outlined">smartphone</span>
+                    </a>
+                    <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white"><a
+                            href="index.html">Phone<span class="text-primary">Haven</span></a></h2>
+                </div>
+                <div class="hidden flex-1 justify-center px-8 md:flex">
+                    <div class="relative w-full max-w-lg">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="material-symbols-outlined text-slate-400">search</span>
+                        </div>
+                        <input
+                            class="block w-full rounded-lg border-none bg-slate-100 dark:bg-slate-800 py-2 pl-10 pr-3 text-sm placeholder-slate-500 focus:ring-2 focus:ring-primary dark:text-white"
+                            placeholder="Search for 'minimalist'..." type="text" value="watch" />
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+                    </button>
+                    <a href="admin-analytics.html"
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+                        <span class="material-symbols-outlined text-[22px]">person</span>
+                    </a>
+                    <button
+                        class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="mx-auto flex w-full max-w-7xl grow flex-col px-4 py-6 sm:px-6 lg:px-8">
+            <!-- Breadcrumbs -->
+            <nav class="mb-6 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary" href="index.html">Home</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <a class="hover:text-primary" href="#">Search</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span class="font-medium text-slate-900 dark:text-slate-200">Watches</span>
+            </nav>
+            <!-- Results Header -->
+            <div class="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                <div>
+                    <h1 id="search-title" class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                        Our Selection</h1>
+                    <p id="search-subtitle" class="mt-1 text-slate-500 dark:text-slate-400">Premium smartphones and
+                        accessories</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="hidden text-sm font-medium text-slate-700 dark:text-slate-300 sm:block">Sort
+                        by:</label>
+                    <select
+                        class="rounded-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 py-2 pl-3 pr-10 text-sm focus:border-primary focus:ring-primary dark:text-white">
+                        <option>Newest Arrivals</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Most Popular</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex flex-col gap-8 lg:flex-row">
+                <!-- Sidebar Filters -->
+                <aside class="w-full shrink-0 lg:w-64">
+                    <div
+                        class="space-y-8 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6">
+                        <!-- Category Filter -->
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                                Category</h3>
+                            <div class="mt-4 space-y-3">
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <div
+                                        class="flex h-5 w-5 items-center justify-center rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 group-hover:border-primary">
+                                        <div
+                                            class="h-2.5 w-2.5 rounded-sm bg-primary opacity-0 group-[.active]:opacity-100">
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary">All
+                                        Watches</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group active">
+                                    <div
+                                        class="flex h-5 w-5 items-center justify-center rounded border border-primary bg-primary/10">
+                                        <div class="h-2.5 w-2.5 rounded-sm bg-primary"></div>
+                                    </div>
+                                    <span class="text-sm font-medium text-primary">Men's Watches</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <div
+                                        class="flex h-5 w-5 items-center justify-center rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 group-hover:border-primary">
+                                    </div>
+                                    <span
+                                        class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary">Women's
+                                        Watches</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <div
+                                        class="flex h-5 w-5 items-center justify-center rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 group-hover:border-primary">
+                                    </div>
+                                    <span
+                                        class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-primary">Accessories</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Price Range -->
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Price
+                                Range</h3>
+                            <div class="mt-6 px-2">
+                                <div class="relative h-1 w-full rounded-full bg-slate-200 dark:bg-slate-700">
+                                    <div class="absolute inset-y-0 left-[20%] right-[30%] bg-primary"></div>
+                                    <div
+                                        class="absolute -top-1.5 left-[20%] h-4 w-4 rounded-full border-2 border-primary bg-white shadow">
+                                    </div>
+                                    <div
+                                        class="absolute -top-1.5 right-[30%] h-4 w-4 rounded-full border-2 border-primary bg-white shadow">
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between text-xs font-medium text-slate-500">
+                                    <span>$120</span>
+                                    <span>$850</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Color Filter -->
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Color
+                            </h3>
+                            <div class="mt-4 flex flex-wrap gap-3">
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 bg-slate-900 ring-offset-2 hover:ring-2 hover:ring-primary"></button>
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 bg-slate-400 ring-offset-2 hover:ring-2 hover:ring-primary"></button>
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 bg-amber-700 ring-offset-2 hover:ring-2 hover:ring-primary"></button>
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 bg-slate-100 ring-offset-2 hover:ring-2 hover:ring-primary"></button>
+                                <button
+                                    class="h-8 w-8 rounded-full border border-slate-200 bg-blue-900 ring-offset-2 hover:ring-2 hover:ring-primary"></button>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90">Apply
+                            Filters</button>
+                    </div>
+                </aside>
+                <!-- Product Grid -->
+                <div id="search-results-container"
+                    class="grid grow grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                    <!-- Results will be loaded here -->
+                    <div class="col-span-full py-20 text-center text-slate-500">Loading products...</div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="mt-12 flex items-center justify-center border-t border-slate-200 dark:border-slate-800 py-6">
+                <nav class="flex items-center gap-1">
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary font-bold text-white">1</button>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">2</button>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">3</button>
+                    <span class="px-2 text-slate-400">...</span>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">12</button>
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </nav>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+            <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">shopping_bag</span>
+                        <span class="text-lg font-bold">ModernStore</span>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">© 2024 Phone Haven. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a class="text-slate-400 hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">public</span></a>
+                        <a class="text-slate-400 hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">alternate_email</span></a>
+                        <a class="text-slate-400 hover:text-primary" href="#"><span
+                                class="material-symbols-outlined">hub</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
