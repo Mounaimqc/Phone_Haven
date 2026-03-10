@@ -49,6 +49,65 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Product Fetching & Rendering
  * -----------------------------------------------------------------------------
  */
+// New Arrivals Slider Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('new-arrivals-container');
+    const prevBtn = document.getElementById('arrivals-prev');
+    const nextBtn = document.getElementById('arrivals-next');
+    
+    if (!container || !prevBtn || !nextBtn) return;
+
+    // Scroll amount based on card width + gap
+    const getScrollAmount = () => {
+        const card = container.querySelector('.snap-start');
+        return card ? card.offsetWidth + 24 : 320; // 24px = gap
+    };
+
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: getScrollAmount(),
+            behavior: 'smooth'
+        });
+    });
+
+    // Prev button click
+    prevBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: -getScrollAmount(),
+            behavior: 'smooth'
+        });
+    });
+
+    // Hide/Show arrows based on scroll position
+    const updateArrowVisibility = () => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // Prev arrow
+        prevBtn.style.opacity = container.scrollLeft > 10 ? '1' : '0.5';
+        prevBtn.style.pointerEvents = container.scrollLeft > 10 ? 'auto' : 'none';
+        
+        // Next arrow
+        nextBtn.style.opacity = container.scrollLeft < maxScroll - 10 ? '1' : '0.5';
+        nextBtn.style.pointerEvents = container.scrollLeft < maxScroll - 10 ? 'auto' : 'none';
+    };
+
+    container.addEventListener('scroll', updateArrowVisibility, { passive: true });
+    window.addEventListener('resize', updateArrowVisibility);
+    updateArrowVisibility(); // Initial check
+
+    // Optional: Keyboard navigation
+    container.setAttribute('tabindex', '0');
+    container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextBtn.click();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevBtn.click();
+        }
+    });
+});
 
 async function loadHomePageProducts() {
     // Load New Arrivals
@@ -440,3 +499,4 @@ window.editProduct = async (id) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 };
+
