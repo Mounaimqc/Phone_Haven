@@ -270,6 +270,76 @@ async function loadAdminProducts() {
 
 async function initAdminOrders() {
     loadAdminOrders();
+
+    const createOrderBtn = document.getElementById('create-order-btn');
+    const orderModal = document.getElementById('create-order-modal');
+    const closeOrderModalBtn = document.getElementById('close-order-modal');
+    const cancelOrderModalBtn = document.getElementById('cancel-order-modal');
+    const manualOrderForm = document.getElementById('manual-order-form');
+
+    if (createOrderBtn && orderModal) {
+        createOrderBtn.addEventListener('click', () => {
+            orderModal.classList.remove('hidden');
+            populateProductDropdown();
+        });
+
+        const closeModal = () => orderModal.classList.add('hidden');
+        closeOrderModalBtn?.addEventListener('click', closeModal);
+        cancelOrderModalBtn?.addEventListener('click', closeModal);
+
+        manualOrderForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await saveManualOrder(e);
+            closeModal();
+        });
+    }
+}
+
+async function populateProductDropdown() {
+    const productSelect = document.getElementById('manual-order-product');
+    if (!productSelect) return;
+
+    try {
+        const querySnapshot = await getDocs(collection(db, COLLECTIONS.PRODUCTS));
+        productSelect.innerHTML = '<option value="">Choose a product...</option>';
+        querySnapshot.forEach((docSnap) => {
+            const product = docSnap.data();
+            const option = document.createElement('option');
+            option.value = docSnap.id;
+            option.dataset.name = product.name;
+            option.dataset.price = product.price;
+            option.textContent = `${product.name} - ${formatPrice(product.price)}`;
+            productSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error populating product dropdown:", error);
+    }
+}
+
+async function saveManualOrder(e) {
+    const productSelect = document.getElementById('manual-order-product');
+    const selectedOption = productSelect.options[productSelect.selectedIndex];
+
+    const orderData = {
+        customerName: document.getElementById('manual-customer-name').value,
+        customerPhone: document.getElementById('manual-customer-phone').value,
+        customerAddress: document.getElementById('manual-customer-address').value,
+        productId: productSelect.value,
+        productName: selectedOption.dataset.name,
+        productPrice: parseFloat(selectedOption.dataset.price),
+        quantity: parseInt(document.getElementById('manual-order-qty').value),
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+
+    try {
+        await addDoc(collection(db, COLLECTIONS.ORDERS), orderData);
+        alert("Order created successfully!");
+        loadAdminOrders();
+    } catch (error) {
+        console.error("Error saving manual order:", error);
+        alert("Failed to create order.");
+    }
 }
 
 async function loadAdminOrders() {
