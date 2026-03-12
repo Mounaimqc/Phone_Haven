@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
     <script src="auth-gate.js"></script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>BladiShop / Inventory Node</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Phone Haven / Inventory Node</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -27,30 +31,67 @@
         }
     </script>
     <style>
-        body { background-color: #020617; font-family: 'Inter', sans-serif; color: #f8fafc; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .terminal-border { border: 1px solid rgba(255, 255, 255, 0.08); }
-        .font-display { font-family: 'Outfit', sans-serif; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
-        
-        input, select, textarea {
+        body {
+            background-color: #020617;
+            font-family: 'Inter', sans-serif;
+            color: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .active-nav {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #6366f1;
+            color: white !important;
+        }
+
+        input,
+        select,
+        textarea {
             background: rgba(15, 23, 42, 0.8) !important;
             border-color: rgba(255, 255, 255, 0.1) !important;
             color: white !important;
             transition: all 0.3s ease;
         }
-        input:focus, select:focus, textarea:focus {
+
+        input:focus,
+        select:focus,
+        textarea:focus {
             border-color: #6366f1 !important;
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
         }
     </style>
 </head>
+
 <body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
     <!-- Log Console (Minimal) -->
-    <div id="debug-console" class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+    <div id="debug-console"
+        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
         <div class="flex justify-between items-center mb-2">
             <span class="font-black uppercase tracking-widest">Sys_Log</span>
         </div>
@@ -58,20 +99,20 @@
     </div>
 
     <script>
-        (function() {
-            const logContent = document.getElementById('log-content');
-            const oldLog = console.log;
-            console.log = function(...args) {
-                const div = document.createElement('div');
-                div.className = 'mb-1 opacity-70';
-                div.textContent = `> ${args.join(' ')}`;
-                if (logContent) {
-                    logContent.appendChild(div);
-                    logContent.scrollTop = logContent.scrollHeight;
-                }
-                oldLog.apply(console, args);
-            };
-        })();
+            (function () {
+                const logContent = document.getElementById('log-content');
+                const oldLog = console.log;
+                console.log = function (...args) {
+                    const div = document.createElement('div');
+                    div.className = 'mb-1 opacity-70';
+                    div.textContent = `> ${args.join(' ')}`;
+                    if (logContent) {
+                        logContent.appendChild(div);
+                        logContent.scrollTop = logContent.scrollHeight;
+                    }
+                    oldLog.apply(console, args);
+                };
+            })();
     </script>
 
     <div class="flex h-full w-full">
@@ -79,30 +120,41 @@
         <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
             <div class="p-8">
                 <div class="flex items-center gap-3 mb-10">
-                    <div class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
-                        <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
+                    <div
+                        class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                     </div>
                     <div>
-                        <h1 class="font-display font-black text-white text-lg tracking-tighter">BladiShop<span class="text-primary italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha</p>
+                        <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
+                                class="text-primary italic">.</span>Terminal</h1>
+                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha
+                        </p>
                     </div>
                 </div>
 
                 <nav class="space-y-1">
-                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                    <a href="admin-analytics.html"
+                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
                     </a>
-                    <a href="admin-orders.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
+                    <a href="admin-orders.html"
+                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span class="text-xs font-black uppercase tracking-widest">Orders</span>
                     </a>
-                    <a href="admin-products.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
+                    <a href="admin-products.html"
+                        class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
                         <span class="text-xs font-black uppercase tracking-widest">Collection</span>
                     </a>
-                    <a href="admin-reports.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                    <a href="admin-reports.html"
+                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
                     </a>
                 </nav>
@@ -111,14 +163,16 @@
             <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A" class="w-full h-full object-cover rounded-full">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A"
+                            class="w-full h-full object-cover rounded-full">
                     </div>
                     <div>
                         <p class="text-xs font-black text-white">Administrator</p>
                         <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
                     </div>
                 </div>
-                <a href="index.html" class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                <a href="index.html"
+                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     Lock Session
                 </a>
@@ -127,21 +181,30 @@
 
         <!-- Main Workspace -->
         <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
-            
-            <header class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
+            </div>
+
+            <header
+                class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
                 <div class="flex items-center gap-8">
-                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Inventory</h2>
+                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Inventory
+                    </h2>
                     <div class="relative w-80">
-                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
-                        <input id="product-search" class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600" placeholder="DECRYPT REPOSITORY..." type="text"/>
+                        <span
+                            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+                        <input id="product-search"
+                            class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600"
+                            placeholder="DECRYPT REPOSITORY..." type="text" />
                     </div>
                 </div>
                 <div class="flex items-center gap-6">
-                    <button id="add-product-shortcut" class="h-11 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5">
+                    <button id="add-product-shortcut"
+                        class="h-11 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5">
                         New Entry
                     </button>
-                    <div class="size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border">
+                    <div
+                        class="size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border">
                         <span class="material-symbols-outlined text-lg">settings_input_component</span>
                     </div>
                 </div>
@@ -152,54 +215,79 @@
                     <!-- Form Terminal -->
                     <div class="lg:col-span-4">
                         <div class="bg-black/40 p-8 rounded-[3rem] terminal-border glass sticky top-0">
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-3">
+                            <h4
+                                class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-3">
                                 <span class="size-2 bg-primary rounded-full animate-pulse"></span>
                                 <span id="form-title">Schema Input</span>
                             </h4>
                             <form id="product-form" class="space-y-6">
                                 <input type="hidden" id="editing-id">
                                 <div>
-                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
-                                    <input id="product-name" required class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="UNIT LABEL..." type="text"/>
+                                    <label
+                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
+                                    <input id="product-name" required
+                                        class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold"
+                                        placeholder="UNIT LABEL..." type="text" />
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation (DZD)</label>
-                                        <input id="product-price" required class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="0.00" type="number" step="1"/>
+                                        <label
+                                            class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation
+                                            (DZD)</label>
+                                        <input id="product-price" required
+                                            class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="0.00"
+                                            type="number" step="1" />
                                     </div>
                                     <div>
-                                        <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
-                                        <select id="product-category" class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold appearance-none">
-                                            <option>Electronics</option>
-                                            <option>Accessories</option>
-                                            <option>Wearables</option>
-                                            <option>Apparel</option>
+                                        <label
+                                            class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
+                                        <select id="product-category"
+                                            class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold appearance-none">
+                                            <option value="Téléphone">Téléphone</option>
+                                            <option value="Accessoire">Accessoire</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
-                                    <textarea id="product-description" class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
+                                    <label
+                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
+                                    <textarea id="product-description"
+                                        class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold"
+                                        placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual Asset</label>
-                                    <div class="flex items-center gap-5 p-2 bg-white/5 border terminal-border rounded-2xl">
-                                        <div id="image-preview-container" class="size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
-                                            <span class="material-symbols-outlined text-slate-700" id="preview-placeholder">image</span>
-                                            <img id="image-preview" class="w-full h-full object-cover hidden" alt="Preview"/>
+                                    <label
+                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual
+                                        Asset</label>
+                                    <div
+                                        class="flex items-center gap-5 p-2 bg-white/5 border terminal-border rounded-2xl">
+                                        <div id="image-preview-container"
+                                            class="size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
+                                            <span class="material-symbols-outlined text-slate-700"
+                                                id="preview-placeholder">image</span>
+                                            <img id="image-preview" class="w-full h-full object-cover hidden"
+                                                alt="Preview" />
                                         </div>
                                         <div class="flex-1">
-                                            <input id="product-image-file" class="hidden" type="file" accept="image/*"/>
-                                            <button type="button" onclick="document.getElementById('product-image-file').click()" class="w-full py-2 bg-white/5 text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all">Upload File</button>
+                                            <input id="product-image-file" class="hidden" type="file"
+                                                accept="image/*" />
+                                            <button type="button"
+                                                onclick="document.getElementById('product-image-file').click()"
+                                                class="w-full py-2 bg-white/5 text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all">Upload
+                                                File</button>
                                         </div>
                                     </div>
                                     <input type="hidden" id="product-image-url">
                                 </div>
 
                                 <div class="pt-6 flex gap-3">
-                                    <button id="submit-btn" class="flex-1 h-14 bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all" type="submit">Verify & Save</button>
-                                    <button id="cancel-edit-btn" class="hidden w-14 h-14 bg-white/5 text-slate-400 border terminal-border rounded-2xl hover:text-white transition-all flex items-center justify-center" type="button">
+                                    <button id="submit-btn"
+                                        class="flex-1 h-14 bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all"
+                                        type="submit">Verify & Save</button>
+                                    <button id="cancel-edit-btn"
+                                        class="hidden w-14 h-14 bg-white/5 text-slate-400 border terminal-border rounded-2xl hover:text-white transition-all flex items-center justify-center"
+                                        type="button">
                                         <span class="material-symbols-outlined">close</span>
                                     </button>
                                 </div>
@@ -211,9 +299,12 @@
                     <div class="lg:col-span-8">
                         <div class="bg-black/40 rounded-[3rem] terminal-border overflow-hidden pb-10">
                             <div class="p-10 border-b terminal-border flex justify-between items-center bg-white/5">
-                                <h3 class="font-display text-2xl font-black text-white tracking-tighter">Global Ledger</h3>
-                                <div class="flex items-center px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-xl">
-                                    <span id="product-count" class="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
+                                <h3 class="font-display text-2xl font-black text-white tracking-tighter">Global Ledger
+                                </h3>
+                                <div
+                                    class="flex items-center px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-xl">
+                                    <span id="product-count"
+                                        class="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
                                         <span class="size-1.5 bg-emerald-400 rounded-full"></span>
                                         Node Online
                                     </span>
@@ -223,10 +314,18 @@
                                 <table class="w-full text-left">
                                     <thead>
                                         <tr class="border-b terminal-border">
-                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Asset</th>
-                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Sector</th>
-                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Valuation</th>
-                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Operation</th>
+                                            <th
+                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                                Asset</th>
+                                            <th
+                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                                Sector</th>
+                                            <th
+                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                                Valuation</th>
+                                            <th
+                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">
+                                                Operation</th>
                                         </tr>
                                     </thead>
                                     <tbody id="products-table-body" class="divide-y terminal-border">
@@ -331,8 +430,8 @@
         // Search Implementation
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            const filtered = productsList.filter(p => 
-                p.name.toLowerCase().includes(query) || 
+            const filtered = productsList.filter(p =>
+                p.name.toLowerCase().includes(query) ||
                 p.category.toLowerCase().includes(query) ||
                 p.id.toLowerCase().includes(query)
             );
@@ -364,7 +463,7 @@
             document.getElementById('product-price').value = product.price;
             document.getElementById('product-category').value = product.category;
             document.getElementById('product-description').value = product.description || '';
-            
+
             imageUrlInput.value = product.image || '';
             if (product.image) {
                 imagePreview.src = product.image;
@@ -374,7 +473,7 @@
                 imagePreview.classList.add('hidden');
                 previewPlaceholder.classList.remove('hidden');
             }
-            
+
             formTitle.textContent = 'Modify Data';
             submitBtn.textContent = 'Update Repository';
             cancelEditBtn.classList.remove('hidden');
@@ -403,7 +502,7 @@
             e.preventDefault();
             const editingId = editingIdInput.value;
             const file = imageFileInput.files[0];
-            
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing...';
 
@@ -412,7 +511,7 @@
                 const price = parseFloat(document.getElementById('product-price').value);
                 const category = document.getElementById('product-category').value;
                 const description = document.getElementById('product-description').value;
-                
+
                 let imageUrl = imageUrlInput.value;
 
                 if (file) {
@@ -421,7 +520,7 @@
                 }
 
                 const productData = { name, price, category, description, image: imageUrl };
-                
+
                 if (editingId) {
                     await updateProduct(editingId, productData);
                     alert('ENTRY MODIFIED.');
@@ -443,4 +542,5 @@
         loadProducts();
     </script>
 </body>
+
 </html>

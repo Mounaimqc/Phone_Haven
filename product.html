@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Product Details | BladiShop</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -31,33 +35,53 @@
         }
     </script>
     <style>
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+
+<body
+    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <!-- Premium Navigation -->
-        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
+        <header
+            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
                 <div class="flex items-center gap-10">
                     <a href="index.html" class="flex items-center gap-2 group">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
                         </div>
-                        <h2 class="font-display text-2xl font-black tracking-tighter">BladiShop<span class="text-primary italic">.</span></h2>
+                        <h2 class="font-display text-2xl font-black tracking-tighter">BladiShop<span
+                                class="text-primary italic">.</span></h2>
                     </a>
                     <nav class="hidden lg:flex items-center gap-8">
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all" href="index.html">Collection</a>
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all" href="search.html">Catalogue</a>
+                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
+                            href="index.html">Collection</a>
+                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
+                            href="search.html">Catalogue</a>
                     </nav>
                 </div>
                 <div class="flex items-center gap-4">
-                    <button class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all active:scale-90 shadow-sm">
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all active:scale-90 shadow-sm">
                         <span class="material-symbols-outlined text-[22px]">favorite</span>
                     </button>
-                    <button class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
+                    <button
+                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
                         <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
                     </button>
                 </div>
@@ -69,7 +93,8 @@
             <nav class="flex items-center gap-3 mb-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                 <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
                 <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                <a id="breadcrumb-category" class="hover:text-primary transition-colors" href="search.html">Collection</a>
+                <a id="breadcrumb-category" class="hover:text-primary transition-colors"
+                    href="search.html">Collection</a>
                 <span class="h-1 w-1 rounded-full bg-slate-300"></span>
                 <span id="breadcrumb-title" class="text-primary">Piece No. 001</span>
             </nav>
@@ -77,13 +102,16 @@
             <div class="grid grid-cols-1 gap-20 lg:grid-cols-2">
                 <!-- Gallery Section -->
                 <div class="space-y-6">
-                    <div class="overflow-hidden rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-2xl relative group">
+                    <div
+                        class="overflow-hidden rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-2xl relative group">
                         <div class="aspect-square w-full flex items-center justify-center">
                             <img id="product-image" alt="Piece Preview"
                                 class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                 src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80" />
                             <div class="absolute top-8 left-8">
-                                <span class="bg-primary/90 backdrop-blur-md text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-widest">In Stock</span>
+                                <span
+                                    class="bg-primary/90 backdrop-blur-md text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-widest">In
+                                    Stock</span>
                             </div>
                         </div>
                     </div>
@@ -138,12 +166,17 @@
                         </div>
                     </div>
                     <!-- Pricing & Description Card -->
-                    <div class="mb-12 glass p-8 rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                        <div class="flex items-baseline gap-4 mb-2">
-                            <span id="product-price" class="font-display text-5xl font-black text-primary">00.00 د.ج</span>
+                    <div
+                        class="mb-12 glass p-8 rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
                         </div>
-                        <p class="text-[10px] font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
+                        <div class="flex items-baseline gap-4 mb-2">
+                            <span id="product-price" class="font-display text-5xl font-black text-primary">00.00
+                                د.ج</span>
+                        </div>
+                        <p
+                            class="text-[10px] font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             In Stock • Ready for Delivery
                         </p>
@@ -151,8 +184,10 @@
 
                     <div class="space-y-10 mb-16 px-2">
                         <div>
-                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Manifesto</h3>
-                            <p id="product-description" class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-lg">
+                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Manifesto
+                            </h3>
+                            <p id="product-description"
+                                class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-lg">
                                 Loading the craft's details...
                             </p>
                         </div>
@@ -161,339 +196,356 @@
                     <!-- Modernized Order Form -->
                     <div class="glass border border-primary/20 p-10 rounded-[3rem] shadow-2xl relative">
                         <div class="flex items-center gap-4 mb-10">
-                            <div class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                            <div
+                                class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
                                 <span class="material-symbols-outlined font-bold">shopping_bag</span>
                             </div>
                             <h3 class="font-display text-2xl font-black">Acquire Now</h3>
                         </div>
-                            <form class="space-y-6" id="order-form">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Client Identity</label>
-                                        <input id="customer-name"
-                                            class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                            placeholder="Nom et Prénom" required="" type="text" />
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Direct Contact</label>
-                                        <input id="customer-phone"
-                                            class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                            placeholder="0XXXXXXXXX" required="" type="tel" />
-                                    </div>
+                        <form class="space-y-6" id="order-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Client
+                                        Identity</label>
+                                    <input id="customer-name"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        placeholder="Nom et Prénom" required="" type="text" />
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics Preference</label>
-                                    <select id="shipping-type"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
-                                        <option value="stop_desk">Stop Desk (Relais / Bureau)</option>
-                                        <option value="a_domicile">Direct Delivery (À Domicile)</option>
+                                    <label
+                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Direct
+                                        Contact</label>
+                                    <input id="customer-phone"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        placeholder="0XXXXXXXXX" required="" type="tel" />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics
+                                    Preference</label>
+                                <select id="shipping-type"
+                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
+                                    <option value="stop_desk">Stop Desk (Relais / Bureau)</option>
+                                    <option value="a_domicile">Direct Delivery (À Domicile)</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
+                                    <select id="wilaya"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        required="">
+                                        <option value="">Select Territory</option>
                                     </select>
                                 </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
-                                        <select id="wilaya"
-                                            class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
-                                            required="">
-                                            <option value="">Select Territory</option>
-                                        </select>
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Commune</label>
-                                        <select id="commune"
-                                            class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
-                                            required="">
-                                            <option value="">Select Region</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="space-y-2">
-                                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise Locale</label>
-                                    <input id="address"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                        placeholder="Detailed Address" required="" type="text" />
-                                </div>
-                                <button
-                                    class="w-full mt-6 group relative flex h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95"
-                                    type="submit" id="confirm-btn">
-                                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                    <span class="relative font-display text-base font-black tracking-widest uppercase">Confirm Acquisition</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="mt-auto space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div
-                                class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-                                <div class="text-primary">
-                                    <span class="material-symbols-outlined text-3xl">local_shipping</span>
-                                </div>
-                                <div>
-                                    <p class="text-xs font-bold text-slate-900 dark:text-white">Free Delivery</p>
-                                    <p class="text-[10px] text-slate-500">Orders over 15.000 د.ج</p>
+                                    <label
+                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Commune</label>
+                                    <select id="commune"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        required="">
+                                        <option value="">Select Region</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div
-                                class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-                                <div class="text-primary">
-                                    <span class="material-symbols-outlined text-3xl">shield</span>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise
+                                    Locale</label>
+                                <input id="address"
+                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                    placeholder="Detailed Address" required="" type="text" />
+                            </div>
+                            <button
+                                class="w-full mt-6 group relative flex h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95"
+                                type="submit" id="confirm-btn">
+                                <div
+                                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                                 </div>
-                                <div>
-                                    <p class="text-xs font-bold text-slate-900 dark:text-white">2-Year Warranty</p>
-                                    <p class="text-[10px] text-slate-500">Protection plan incl.</p>
-                                </div>
+                                <span
+                                    class="relative font-display text-base font-black tracking-widest uppercase">Confirm
+                                    Acquisition</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-auto space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                            <div class="text-primary">
+                                <span class="material-symbols-outlined text-3xl">local_shipping</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900 dark:text-white">Free Delivery</p>
+                                <p class="text-[10px] text-slate-500">Orders over 15.000 د.ج</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+                            <div class="text-primary">
+                                <span class="material-symbols-outlined text-3xl">shield</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900 dark:text-white">2-Year Warranty</p>
+                                <p class="text-[10px] text-slate-500">Protection plan incl.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <section class="mt-20 border-t border-primary/10 pt-16">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="space-y-4">
-                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-3xl">hub</span>
-                        </div>
-                        <h4 class="text-xl font-bold">Universal Control</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">Connects to over 5,000 devices from leading
-                            brands. Matter and Thread ready for the most reliable connection ever built.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-3xl">lock</span>
-                        </div>
-                        <h4 class="text-xl font-bold">Privacy First</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">On-device processing ensures your home data
-                            stays in your home. No cloud required for essential voice and automation tasks.</p>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-3xl">energy_savings_leaf</span>
-                        </div>
-                        <h4 class="text-xl font-bold">Eco Intelligence</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">Smart energy monitoring helps reduce your
-                            utility bills by up to 20% by optimizing heating and lighting usage.</p>
-                    </div>
+    </div>
+    <section class="mt-20 border-t border-primary/10 pt-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-3xl">hub</span>
                 </div>
-            </section>
-        </main>
-        <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-20 mt-32">
-            <div class="mx-auto max-w-7xl px-6 md:px-20 text-center">
-                <a href="index.html" class="inline-flex items-center gap-2 group mb-12">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg">
-                        <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
-                    </div>
-                    <h2 class="font-display text-2xl font-black tracking-tighter">BladiShop<span class="text-primary italic">.</span></h2>
-                </a>
-                <div class="flex flex-wrap justify-center gap-10 mb-12 text-sm font-black uppercase tracking-widest text-slate-400">
-                    <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
-                    <a class="hover:text-primary transition-colors" href="search.html">Collection</a>
-                    <a class="hover:text-primary transition-colors" href="tracking.html">Track Parcel</a>
-                    <a class="hover:text-primary transition-colors" href="#">Support</a>
-                </div>
-                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 BladiShop • Algiers</p>
+                <h4 class="text-xl font-bold">Universal Control</h4>
+                <p class="text-sm text-slate-500 leading-relaxed">Connects to over 5,000 devices from leading
+                    brands. Matter and Thread ready for the most reliable connection ever built.</p>
             </div>
-        </footer>
-           <script>
-                const wilayasData = {
-                    "1": { name: "Adrar", nameAr: "أدرار", code: "01", time: "72h à 96h", home: 1500, desk: 1000 },
-                    "2": { name: "Chlef", nameAr: "الشلف", code: "02", time: "24h à 48h", home: 700, desk: 450 },
-                    "3": { name: "Laghouat", nameAr: "الأغواط", code: "03", time: "48h à 72h", home: 900, desk: 600 },
-                    "4": { name: "Oum El Bouaghi", nameAr: "أم البواقي", code: "04", time: "24h à 48h", home: 800, desk: 500 },
-                    "5": { name: "Batna", nameAr: "باتنة", code: "05", time: "24h à 48h", home: 700, desk: 450 },
-                    "6": { name: "Béjaïa", nameAr: "بجاية", code: "06", time: "24h à 48h", home: 700, desk: 450 },
-                    "7": { name: "Biskra", nameAr: "بسكرة", code: "07", time: "48h à 72h", home: 900, desk: 500 },
-                    "8": { name: "Béchar", nameAr: "بشار", code: "08", time: "72h à 96h", home: 1200, desk: 800 },
-                    "9": { name: "Blida", nameAr: "البليدة", code: "09", time: "24h à 48h", home: 700, desk: 450 },
-                    "10": { name: "Bouira", nameAr: "البويرة", code: "10", time: "24h à 48h", home: 700, desk: 450 },
-                    "11": { name: "Tamanrasset", nameAr: "تمنراست", code: "11", time: "72h à 96h", home: 2000, desk: 1500 },
-                    "12": { name: "Tébessa", nameAr: "تبسة", code: "12", time: "48h à 72h", home: 850, desk: 500 },
-                    "13": { name: "Tlemcen", nameAr: "تلمسان", code: "13", time: "24h à 48h", home: 800, desk: 500 },
-                    "14": { name: "Tiaret", nameAr: "تيارت", code: "14", time: "48h à 72h", home: 800, desk: 500 },
-                    "15": { name: "Tizi Ouzou", nameAr: "تيزي وزو", code: "15", time: "24h à 48h", home: 700, desk: 450 },
-                    "16": { name: "Alger", nameAr: "الجزائر", code: "16", time: "24h à 48h", home: 600, desk: 400 },
-                    "17": { name: "Djelfa", nameAr: "الجلفة", code: "17", time: "48h à 72h", home: 900, desk: 600 },
-                    "18": { name: "Jijel", nameAr: "جيجل", code: "18", time: "24h à 48h", home: 700, desk: 450 },
-                    "19": { name: "Sétif", nameAr: "سطيف", code: "19", time: "24h à 48h", home: 550, desk: 300 },
-                    "20": { name: "Saïda", nameAr: "سعيدة", code: "20", time: "48h à 72h", home: 900, desk: 500 },
-                    "21": { name: "Skikda", nameAr: "سكيكدة", code: "21", time: "24h à 48h", home: 800, desk: 500 },
-                    "22": { name: "Sidi Bel Abbès", nameAr: "سيدي بلعباس", code: "22", time: "24h à 48h", home: 800, desk: 500 },
-                    "23": { name: "Annaba", nameAr: "عنابة", code: "23", time: "24h à 48h", home: 700, desk: 450 },
-                    "24": { name: "Guelma", nameAr: "قالمة", code: "24", time: "24h à 48h", home: 850, desk: 500 },
-                    "25": { name: "Constantine", nameAr: "قسنطينة", code: "25", time: "24h à 48h", home: 650, desk: 400 },
-                    "26": { name: "Médéa", nameAr: "المدية", code: "26", time: "48h à 72h", home: 800, desk: 500 },
-                    "27": { name: "Mostaganem", nameAr: "مستغانم", code: "27", time: "24h à 48h", home: 800, desk: 500 },
-                    "28": { name: "M'Sila", nameAr: "المسيلة", code: "28", time: "48h à 72h", home: 700, desk: 450 },
-                    "29": { name: "Mascara", nameAr: "معسكر", code: "29", time: "24h à 48h", home: 800, desk: 500 },
-                    "30": { name: "Ouargla", nameAr: "ورقلة", code: "30", time: "72h à 96h", home: 1000, desk: 600 },
-                    "31": { name: "Oran", nameAr: "وهران", code: "31", time: "24h à 48h", home: 700, desk: 450 },
-                    "32": { name: "El Bayadh", nameAr: "البيض", code: "32", time: "72h à 96h", home: 1200, desk: 800 },
-                    "33": { name: "Illizi", nameAr: "إليزي", code: "33", time: "72h à 96h", home: 1900, desk: 1500 },
-                    "34": { name: "Bordj Bou Arréridj", nameAr: "برج بوعريريج", code: "34", time: "24h à 48h", home: 600, desk: 400 },
-                    "35": { name: "Boumerdès", nameAr: "بومرداس", code: "35", time: "24h à 48h", home: 700, desk: 450 },
-                    "36": { name: "El Tarf", nameAr: "الطارف", code: "36", time: "24h à 48h", home: 850, desk: 500 },
-                    "37": { name: "Tindouf", nameAr: "تندوف", code: "37", time: "72h à 96h", home: 1700, desk: 1000 },
-                    "38": { name: "Tissemsilt", nameAr: "تسمسيلت", code: "38", time: "48h à 72h", home: 850, desk: 500 },
-                    "39": { name: "El Oued", nameAr: "الوادي", code: "39", time: "72h à 96h", home: 1000, desk: 600 },
-                    "40": { name: "Khenchela", nameAr: "خنشلة", code: "40", time: "48h à 72h", home: 600, desk: 500 },
-                    "41": { name: "Souk Ahras", nameAr: "سوق أهراس", code: "41", time: "24h à 48h", home: 850, desk: 500 },
-                    "42": { name: "Tipaza", nameAr: "تيبازة", code: "42", time: "24h à 48h", home: 600, desk: 450 },
-                    "43": { name: "Mila", nameAr: "ميلة", code: "43", time: "24h à 48h", home: 600, desk: 500 },
-                    "44": { name: "Aïn Defla", nameAr: "عين الدفلى", code: "44", time: "48h à 72h", home: 800, desk: 500 },
-                    "45": { name: "Naâma", nameAr: "النعامة", code: "45", time: "72h à 96h", home: 1200, desk: 800 },
-                    "46": { name: "Aïn Témouchent", nameAr: "عين تموشنت", code: "46", time: "24h à 48h", home: 800, desk: 500 },
-                    "47": { name: "Ghardaïa", nameAr: "غرداية", code: "47", time: "72h à 96h", home: 1000, desk: 600 },
-                    "48": { name: "Relizane", nameAr: "غليزان", code: "48", time: "24h à 48h", home: 800, desk: 500 },
-                    "49": { name: "Timimoun", nameAr: "تميمون", code: "49", time: "72h à 96h", home: 1500, desk: 1000 },
-                    "50": { name: "Bordj Badji Mokhtar", nameAr: "برج باجي مختار", code: "50", time: "72h à 96h", home: 1600, desk: 1500 },
-                    "51": { name: "Ouled Djellal", nameAr: "أولاد جلال", code: "51", time: "72h à 96h", home: 900, desk: 500 },
-                    "52": { name: "Béni Abbès", nameAr: "بني عباس", code: "52", time: "72h à 96h", home: 1200, desk: 800 },
-                    "53": { name: "In Salah", nameAr: "عين صالح", code: "53", home: 1800, desk: 1200 },
-                    "54": { name: "In Guezzam", nameAr: "عين قزام", code: "54", home: 2200, desk: 3500 },
-                    "55": { name: "Touggourt", nameAr: "تقرت", code: "55", home: 1000, desk: 600 },
-                    "56": { name: "Djanet", nameAr: "جانت", code: "56", home: 2000, desk: 3500 },
-                    "57": { name: "El M'Ghair", nameAr: "المغير", code: "57", home: 1000, desk: 1800 },
-                    "58": { name: "El Meniaa", nameAr: "المنيعة", code: "58", home: 1000, desk: 600 }
-                };
-            </script>
-            <script type="module">
-                import { getProductById, addOrder } from './db-service.js';
+            <div class="space-y-4">
+                <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-3xl">lock</span>
+                </div>
+                <h4 class="text-xl font-bold">Privacy First</h4>
+                <p class="text-sm text-slate-500 leading-relaxed">On-device processing ensures your home data
+                    stays in your home. No cloud required for essential voice and automation tasks.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-3xl">energy_savings_leaf</span>
+                </div>
+                <h4 class="text-xl font-bold">Eco Intelligence</h4>
+                <p class="text-sm text-slate-500 leading-relaxed">Smart energy monitoring helps reduce your
+                    utility bills by up to 20% by optimizing heating and lighting usage.</p>
+            </div>
+        </div>
+    </section>
+    </main>
+    <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-20 mt-32">
+        <div class="mx-auto max-w-7xl px-6 md:px-20 text-center">
+            <a href="index.html" class="inline-flex items-center gap-2 group mb-12">
+                <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg">
+                    <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
+                </div>
+                <h2 class="font-display text-2xl font-black tracking-tighter">BladiShop<span
+                        class="text-primary italic">.</span></h2>
+            </a>
+            <div
+                class="flex flex-wrap justify-center gap-10 mb-12 text-sm font-black uppercase tracking-widest text-slate-400">
+                <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
+                <a class="hover:text-primary transition-colors" href="search.html">Collection</a>
+                <a class="hover:text-primary transition-colors" href="tracking.html">Track Parcel</a>
+                <a class="hover:text-primary transition-colors" href="#">Support</a>
+            </div>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 BladiShop • Algiers</p>
+        </div>
+    </footer>
+    <script>
+        const wilayasData = {
+            "1": { name: "Adrar", nameAr: "أدرار", code: "01", time: "72h à 96h", home: 1500, desk: 1000 },
+            "2": { name: "Chlef", nameAr: "الشلف", code: "02", time: "24h à 48h", home: 700, desk: 450 },
+            "3": { name: "Laghouat", nameAr: "الأغواط", code: "03", time: "48h à 72h", home: 900, desk: 600 },
+            "4": { name: "Oum El Bouaghi", nameAr: "أم البواقي", code: "04", time: "24h à 48h", home: 800, desk: 500 },
+            "5": { name: "Batna", nameAr: "باتنة", code: "05", time: "24h à 48h", home: 700, desk: 450 },
+            "6": { name: "Béjaïa", nameAr: "بجاية", code: "06", time: "24h à 48h", home: 700, desk: 450 },
+            "7": { name: "Biskra", nameAr: "بسكرة", code: "07", time: "48h à 72h", home: 900, desk: 500 },
+            "8": { name: "Béchar", nameAr: "بشار", code: "08", time: "72h à 96h", home: 1200, desk: 800 },
+            "9": { name: "Blida", nameAr: "البليدة", code: "09", time: "24h à 48h", home: 700, desk: 450 },
+            "10": { name: "Bouira", nameAr: "البويرة", code: "10", time: "24h à 48h", home: 700, desk: 450 },
+            "11": { name: "Tamanrasset", nameAr: "تمنراست", code: "11", time: "72h à 96h", home: 2000, desk: 1500 },
+            "12": { name: "Tébessa", nameAr: "تبسة", code: "12", time: "48h à 72h", home: 850, desk: 500 },
+            "13": { name: "Tlemcen", nameAr: "تلمسان", code: "13", time: "24h à 48h", home: 800, desk: 500 },
+            "14": { name: "Tiaret", nameAr: "تيارت", code: "14", time: "48h à 72h", home: 800, desk: 500 },
+            "15": { name: "Tizi Ouzou", nameAr: "تيزي وزو", code: "15", time: "24h à 48h", home: 700, desk: 450 },
+            "16": { name: "Alger", nameAr: "الجزائر", code: "16", time: "24h à 48h", home: 600, desk: 400 },
+            "17": { name: "Djelfa", nameAr: "الجلفة", code: "17", time: "48h à 72h", home: 900, desk: 600 },
+            "18": { name: "Jijel", nameAr: "جيجل", code: "18", time: "24h à 48h", home: 700, desk: 450 },
+            "19": { name: "Sétif", nameAr: "سطيف", code: "19", time: "24h à 48h", home: 550, desk: 300 },
+            "20": { name: "Saïda", nameAr: "سعيدة", code: "20", time: "48h à 72h", home: 900, desk: 500 },
+            "21": { name: "Skikda", nameAr: "سكيكدة", code: "21", time: "24h à 48h", home: 800, desk: 500 },
+            "22": { name: "Sidi Bel Abbès", nameAr: "سيدي بلعباس", code: "22", time: "24h à 48h", home: 800, desk: 500 },
+            "23": { name: "Annaba", nameAr: "عنابة", code: "23", time: "24h à 48h", home: 700, desk: 450 },
+            "24": { name: "Guelma", nameAr: "قالمة", code: "24", time: "24h à 48h", home: 850, desk: 500 },
+            "25": { name: "Constantine", nameAr: "قسنطينة", code: "25", time: "24h à 48h", home: 650, desk: 400 },
+            "26": { name: "Médéa", nameAr: "المدية", code: "26", time: "48h à 72h", home: 800, desk: 500 },
+            "27": { name: "Mostaganem", nameAr: "مستغانم", code: "27", time: "24h à 48h", home: 800, desk: 500 },
+            "28": { name: "M'Sila", nameAr: "المسيلة", code: "28", time: "48h à 72h", home: 700, desk: 450 },
+            "29": { name: "Mascara", nameAr: "معسكر", code: "29", time: "24h à 48h", home: 800, desk: 500 },
+            "30": { name: "Ouargla", nameAr: "ورقلة", code: "30", time: "72h à 96h", home: 1000, desk: 600 },
+            "31": { name: "Oran", nameAr: "وهران", code: "31", time: "24h à 48h", home: 700, desk: 450 },
+            "32": { name: "El Bayadh", nameAr: "البيض", code: "32", time: "72h à 96h", home: 1200, desk: 800 },
+            "33": { name: "Illizi", nameAr: "إليزي", code: "33", time: "72h à 96h", home: 1900, desk: 1500 },
+            "34": { name: "Bordj Bou Arréridj", nameAr: "برج بوعريريج", code: "34", time: "24h à 48h", home: 600, desk: 400 },
+            "35": { name: "Boumerdès", nameAr: "بومرداس", code: "35", time: "24h à 48h", home: 700, desk: 450 },
+            "36": { name: "El Tarf", nameAr: "الطارف", code: "36", time: "24h à 48h", home: 850, desk: 500 },
+            "37": { name: "Tindouf", nameAr: "تندوف", code: "37", time: "72h à 96h", home: 1700, desk: 1000 },
+            "38": { name: "Tissemsilt", nameAr: "تسمسيلت", code: "38", time: "48h à 72h", home: 850, desk: 500 },
+            "39": { name: "El Oued", nameAr: "الوادي", code: "39", time: "72h à 96h", home: 1000, desk: 600 },
+            "40": { name: "Khenchela", nameAr: "خنشلة", code: "40", time: "48h à 72h", home: 600, desk: 500 },
+            "41": { name: "Souk Ahras", nameAr: "سوق أهراس", code: "41", time: "24h à 48h", home: 850, desk: 500 },
+            "42": { name: "Tipaza", nameAr: "تيبازة", code: "42", time: "24h à 48h", home: 600, desk: 450 },
+            "43": { name: "Mila", nameAr: "ميلة", code: "43", time: "24h à 48h", home: 600, desk: 500 },
+            "44": { name: "Aïn Defla", nameAr: "عين الدفلى", code: "44", time: "48h à 72h", home: 800, desk: 500 },
+            "45": { name: "Naâma", nameAr: "النعامة", code: "45", time: "72h à 96h", home: 1200, desk: 800 },
+            "46": { name: "Aïn Témouchent", nameAr: "عين تموشنت", code: "46", time: "24h à 48h", home: 800, desk: 500 },
+            "47": { name: "Ghardaïa", nameAr: "غرداية", code: "47", time: "72h à 96h", home: 1000, desk: 600 },
+            "48": { name: "Relizane", nameAr: "غليزان", code: "48", time: "24h à 48h", home: 800, desk: 500 },
+            "49": { name: "Timimoun", nameAr: "تميمون", code: "49", time: "72h à 96h", home: 1500, desk: 1000 },
+            "50": { name: "Bordj Badji Mokhtar", nameAr: "برج باجي مختار", code: "50", time: "72h à 96h", home: 1600, desk: 1500 },
+            "51": { name: "Ouled Djellal", nameAr: "أولاد جلال", code: "51", time: "72h à 96h", home: 900, desk: 500 },
+            "52": { name: "Béni Abbès", nameAr: "بني عباس", code: "52", time: "72h à 96h", home: 1200, desk: 800 },
+            "53": { name: "In Salah", nameAr: "عين صالح", code: "53", home: 1800, desk: 1200 },
+            "54": { name: "In Guezzam", nameAr: "عين قزام", code: "54", home: 2200, desk: 3500 },
+            "55": { name: "Touggourt", nameAr: "تقرت", code: "55", home: 1000, desk: 600 },
+            "56": { name: "Djanet", nameAr: "جانت", code: "56", home: 2000, desk: 3500 },
+            "57": { name: "El M'Ghair", nameAr: "المغير", code: "57", home: 1000, desk: 1800 },
+            "58": { name: "El Meniaa", nameAr: "المنيعة", code: "58", home: 1000, desk: 600 }
+        };
+    </script>
+    <script type="module">
+        import { getProductById, addOrder } from './db-service.js';
 
-                const communesData = {
-                    "Alger": ["Alger Centre", "Sidi M'Hamed", "El Biar", "Bab El Oued", "Bordj El Kiffan", "Hussein Dey"],
-                    "Blida": ["Blida", "Boufarik", "Ouled Yaïch", "Beni Mered"],
-                    "Oran": ["Oran", "Es Senia", "Bir El Djir", "Arzew"],
-                    "Constantine": ["Constantine", "El Khroub", "Hamma Bouziane"],
-                    "Sétif": ["Sétif", "El Eulma", "Ain Arnat"],
-                    "Annaba": ["Annaba", "El Bouni", "Sidi Amar"]
-                };
-                function formatPrice(price) {
-                    return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-                }
+        const communesData = {
+            "Alger": ["Alger Centre", "Sidi M'Hamed", "El Biar", "Bab El Oued", "Bordj El Kiffan", "Hussein Dey"],
+            "Blida": ["Blida", "Boufarik", "Ouled Yaïch", "Beni Mered"],
+            "Oran": ["Oran", "Es Senia", "Bir El Djir", "Arzew"],
+            "Constantine": ["Constantine", "El Khroub", "Hamma Bouziane"],
+            "Sétif": ["Sétif", "El Eulma", "Ain Arnat"],
+            "Annaba": ["Annaba", "El Bouni", "Sidi Amar"]
+        };
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
+        }
 
-                const params = new URLSearchParams(window.location.search);
-                const productId = params.get('id');
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
 
-                if (!productId) {
-                    window.location.href = 'index.html';
-                }
+        if (!productId) {
+            window.location.href = 'index.html';
+        }
 
-                const productTitle = document.getElementById('product-title');
-                const productPrice = document.getElementById('product-price');
-                const productDescription = document.getElementById('product-description');
-                const productImage = document.getElementById('product-image');
-                const breadcrumbCategory = document.getElementById('breadcrumb-category');
-                const breadcrumbTitle = document.getElementById('breadcrumb-title');
-                const wilayaSelect = document.getElementById('wilaya');
-                const communeSelect = document.getElementById('commune');
-                const orderForm = document.getElementById('order-form');
-                const confirmBtn = document.getElementById('confirm-btn');
+        const productTitle = document.getElementById('product-title');
+        const productPrice = document.getElementById('product-price');
+        const productDescription = document.getElementById('product-description');
+        const productImage = document.getElementById('product-image');
+        const breadcrumbCategory = document.getElementById('breadcrumb-category');
+        const breadcrumbTitle = document.getElementById('breadcrumb-title');
+        const wilayaSelect = document.getElementById('wilaya');
+        const communeSelect = document.getElementById('commune');
+        const orderForm = document.getElementById('order-form');
+        const confirmBtn = document.getElementById('confirm-btn');
 
-                // Populate Wilayas
-                Object.keys(wilayasData).forEach(id => {
-                    const w = wilayasData[id];
+        // Populate Wilayas
+        Object.keys(wilayasData).forEach(id => {
+            const w = wilayasData[id];
+            const option = document.createElement('option');
+            option.value = w.name;
+            option.textContent = `${w.code} - ${w.name} (${w.nameAr})`;
+            wilayaSelect.appendChild(option);
+        });
+
+        let allCommunes = [];
+
+        async function fetchCommunes() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/S450R1/algeria-cities-2025/main/json/cities.json');
+                const data = await response.json();
+                allCommunes = data.communes;
+            } catch (error) {
+                console.error("Error fetching communes:", error);
+            }
+        }
+
+        // Update Communes on Wilaya Change
+        wilayaSelect.addEventListener('change', () => {
+            const selectedWilayaName = wilayaSelect.value;
+            communeSelect.innerHTML = '<option value="">Select Region</option>';
+
+            if (!selectedWilayaName) return;
+
+            const wilayaId = Object.keys(wilayasData).find(key => wilayasData[key].name === selectedWilayaName);
+
+            if (allCommunes.length > 0 && wilayaId) {
+                const filtered = allCommunes.filter(c => c.wilaya_id == wilayaId);
+                filtered.sort((a, b) => a.commune_name_latin.localeCompare(b.commune_name_latin));
+                filtered.forEach(c => {
                     const option = document.createElement('option');
-                    option.value = w.name;
-                    option.textContent = `${w.code} - ${w.name} (${w.nameAr})`;
-                    wilayaSelect.appendChild(option);
+                    option.value = c.commune_name_latin;
+                    option.textContent = `${c.commune_name_latin} (${c.commune_name_arabic})`;
+                    communeSelect.appendChild(option);
                 });
+            }
+        });
 
-                let allCommunes = [];
+        fetchCommunes();
 
-                async function fetchCommunes() {
-                    try {
-                        const response = await fetch('https://raw.githubusercontent.com/S450R1/algeria-cities-2025/main/json/cities.json');
-                        const data = await response.json();
-                        allCommunes = data.communes;
-                    } catch (error) {
-                        console.error("Error fetching communes:", error);
-                    }
+        let currentProduct = null;
+
+        async function loadProduct() {
+            try {
+                const product = await getProductById(productId);
+                if (!product) {
+                    alert('Product not found!');
+                    window.location.href = 'index.html';
+                    return;
                 }
+                currentProduct = product;
 
-                // Update Communes on Wilaya Change
-                wilayaSelect.addEventListener('change', () => {
-                    const selectedWilayaName = wilayaSelect.value;
-                    communeSelect.innerHTML = '<option value="">Select Region</option>';
+                productTitle.textContent = product.name;
+                productPrice.textContent = formatPrice(product.price);
+                productDescription.textContent = product.description;
+                productImage.src = product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
+                breadcrumbCategory.textContent = product.category;
+                breadcrumbTitle.textContent = product.name;
+                document.title = `${product.name} | BladiShop`;
+            } catch (error) {
+                console.error("Error loading product:", error);
+                alert('Error loading product. Check console.');
+            }
+        }
 
-                    if (!selectedWilayaName) return;
+        orderForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!currentProduct) return;
 
-                    const wilayaId = Object.keys(wilayasData).find(key => wilayasData[key].name === selectedWilayaName);
+            confirmBtn.disabled = true;
+            const btnSpan = confirmBtn.querySelector('span');
+            const originalText = btnSpan.textContent;
+            btnSpan.textContent = "Processing Craft...";
 
-                    if (allCommunes.length > 0 && wilayaId) {
-                        const filtered = allCommunes.filter(c => c.wilaya_id == wilayaId);
-                        filtered.sort((a, b) => a.commune_name_latin.localeCompare(b.commune_name_latin));
-                        filtered.forEach(c => {
-                            const option = document.createElement('option');
-                            option.value = c.commune_name_latin;
-                            option.textContent = `${c.commune_name_latin} (${c.commune_name_arabic})`;
-                            communeSelect.appendChild(option);
-                        });
-                    }
-                });
+            const order = {
+                customerName: document.getElementById('customer-name').value,
+                customerPhone: document.getElementById('customer-phone').value,
+                shippingType: document.getElementById('shipping-type').value,
+                wilaya: document.getElementById('wilaya').value,
+                commune: document.getElementById('commune').value,
+                address: document.getElementById('address').value,
+                productId: currentProduct.id,
+                productName: currentProduct.name,
+                total: currentProduct.price,
+                status: 'Pending',
+                createdAt: new Date()
+            };
 
-                fetchCommunes();
+            try {
+                const docRef = await addOrder(order);
+                window.location.href = `success.html?id=${docRef.id}`;
+            } catch (error) {
+                console.error("Error creating order:", error);
+                alert('Erreur lors de la confirmation. Veuillez réessayer.');
+                confirmBtn.disabled = false;
+                btnSpan.textContent = originalText;
+            }
+        });
 
-                let currentProduct = null;
-
-                async function loadProduct() {
-                    try {
-                        const product = await getProductById(productId);
-                        if (!product) {
-                            alert('Product not found!');
-                            window.location.href = 'index.html';
-                            return;
-                        }
-                        currentProduct = product;
-
-                        productTitle.textContent = product.name;
-                        productPrice.textContent = formatPrice(product.price);
-                        productDescription.textContent = product.description;
-                        productImage.src = product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
-                        breadcrumbCategory.textContent = product.category;
-                        breadcrumbTitle.textContent = product.name;
-                        document.title = `${product.name} | BladiShop`;
-                    } catch (error) {
-                        console.error("Error loading product:", error);
-                        alert('Error loading product. Check console.');
-                    }
-                }
-
-                orderForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    if (!currentProduct) return;
-
-                    confirmBtn.disabled = true;
-                    const btnSpan = confirmBtn.querySelector('span');
-                    const originalText = btnSpan.textContent;
-                    btnSpan.textContent = "Processing Craft...";
-
-                    const order = {
-                        customerName: document.getElementById('customer-name').value,
-                        customerPhone: document.getElementById('customer-phone').value,
-                        shippingType: document.getElementById('shipping-type').value,
-                        wilaya: document.getElementById('wilaya').value,
-                        commune: document.getElementById('commune').value,
-                        address: document.getElementById('address').value,
-                        productId: currentProduct.id,
-                        productName: currentProduct.name,
-                        total: currentProduct.price,
-                        status: 'Pending',
-                        createdAt: new Date()
-                    };
-
-                    try {
-                        const docRef = await addOrder(order);
-                        window.location.href = `success.html?id=${docRef.id}`;
-                    } catch (error) {
-                        console.error("Error creating order:", error);
-                        alert('Erreur lors de la confirmation. Veuillez réessayer.');
-                        confirmBtn.disabled = false;
-                        btnSpan.textContent = originalText;
-                    }
-                });
-
-                loadProduct();
-            </script>
+        loadProduct();
+    </script>
 </body>
 
 </html>
