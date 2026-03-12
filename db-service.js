@@ -1,28 +1,23 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-    getFirestore, 
-    collection, 
-    addDoc, 
-    getDocs, 
-    getDoc, 
-    doc, 
-    updateDoc, 
+import {
+    collection,
+    addDoc,
+    getDocs,
+    getDoc,
+    doc,
+    updateDoc,
     deleteDoc,
     query,
     orderBy,
-    serverTimestamp 
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import firebaseConfig from "./firebase-config.js";
+import { db } from "./firebase-config.js";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // --- Cloudinary Image Upload ---
 
 export async function uploadImage(file) {
     if (!file) return null;
-    
+
     const CLOUD_NAME = "dy7bererc";
     const UPLOAD_PRESET = "BladiShop";
 
