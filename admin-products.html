@@ -1,281 +1,238 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en">
-
+<html class="dark" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Product Management - Phone Haven Admin</title>
+    <script src="auth-gate.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BladiShop / Inventory Node</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#135bec",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
+                        "primary": "#6366f1",
+                        "terminal-black": "#020617",
+                        "terminal-card": "#0f172a",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    }
                 },
             },
         }
     </script>
     <style>
-        body {
-            font-family: 'Manrope', sans-serif;
+        body { background-color: #020617; font-family: 'Inter', sans-serif; color: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .terminal-border { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .font-display { font-family: 'Outfit', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
+        
+        input, select, textarea {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
         }
     </style>
 </head>
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+    <!-- Log Console (Minimal) -->
+    <div id="debug-console" class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+        <div class="flex justify-between items-center mb-2">
+            <span class="font-black uppercase tracking-widest">Sys_Log</span>
+        </div>
+        <div id="log-content" class="overflow-y-auto h-full pr-2"></div>
+    </div>
 
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
-    <div class="flex h-screen overflow-hidden">
+    <script>
+        (function() {
+            const logContent = document.getElementById('log-content');
+            const oldLog = console.log;
+            console.log = function(...args) {
+                const div = document.createElement('div');
+                div.className = 'mb-1 opacity-70';
+                div.textContent = `> ${args.join(' ')}`;
+                if (logContent) {
+                    logContent.appendChild(div);
+                    logContent.scrollTop = logContent.scrollHeight;
+                }
+                oldLog.apply(console, args);
+            };
+        })();
+    </script>
+
+    <div class="flex h-full w-full">
         <!-- Sidebar -->
-        <aside
-            class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 hidden md:flex flex-col">
-            <div class="p-6">
-                <div class="flex items-center gap-3">
-                    <div class="bg-primary rounded-lg p-2 text-white">
-                        <span class="material-symbols-outlined">shopping_cart</span>
+        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
+            <div class="p-8">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
                     </div>
                     <div>
-                        <h1 class="text-slate-900 dark:text-white text-base font-bold leading-none">Phone Haven Admin
-                        </h1>
-                        <p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Manage your shop</p>
+                        <h1 class="font-display font-black text-white text-lg tracking-tighter">BladiShop<span class="text-primary italic">.</span>Terminal</h1>
+                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha</p>
                     </div>
                 </div>
+
+                <nav class="space-y-1">
+                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
+                    </a>
+                    <a href="admin-orders.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Orders</span>
+                    </a>
+                    <a href="admin-products.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Collection</span>
+                    </a>
+                    <a href="admin-reports.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
+                    </a>
+                </nav>
             </div>
-            <nav class="flex-1 px-4 space-y-1">
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-analytics.html">
-                    <span class="material-symbols-outlined text-[22px]">dashboard</span>
-                    <span class="text-sm font-medium">Dashboard</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-orders.html">
-                    <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
-                    <span class="text-sm font-medium">Orders</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 bg-primary text-white rounded-lg transition-colors"
-                    href="admin-products.html">
-                    <span class="material-symbols-outlined text-[22px]">inventory_2</span>
-                    <span class="text-sm font-medium">Products</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-analytics.html">
-                    <span class="material-symbols-outlined text-[22px]">group</span>
-                    <span class="text-sm font-medium">Customers</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-reports.html">
-                    <span class="material-symbols-outlined text-[22px]">analytics</span>
-                    <span class="text-sm font-medium">Reports</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="index.html">
-                    <span class="material-symbols-outlined text-[22px]">storefront</span>
-                    <span class="text-sm font-medium">Back to Store</span>
-                </a>
-            </nav>
-            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="#">
-                    <span class="material-symbols-outlined text-[22px]">settings</span>
-                    <span class="text-sm font-medium">Settings</span>
+
+            <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <div>
+                        <p class="text-xs font-black text-white">Administrator</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                    </div>
+                </div>
+                <a href="index.html" class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                    <span class="material-symbols-outlined text-sm">exit_to_app</span>
+                    Lock Session
                 </a>
             </div>
         </aside>
-        <!-- Main Content -->
-        <main class="flex-1 flex flex-col overflow-hidden">
-            <!-- Header -->
-            <header
-                class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
-                <div class="flex items-center gap-4 flex-1">
-                    <h2 class="text-lg font-bold text-slate-900 dark:text-white">Product Management</h2>
-                    <div class="max-w-md w-full ml-8">
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
-                            <input
-                                class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all"
-                                placeholder="Search products..." type="text" />
-                        </div>
+
+        <!-- Main Workspace -->
+        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
+            
+            <header class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
+                <div class="flex items-center gap-8">
+                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Inventory</h2>
+                    <div class="relative w-80">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+                        <input id="product-search" class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600" placeholder="DECRYPT REPOSITORY..." type="text"/>
                     </div>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
-                        <span class="material-symbols-outlined">notifications</span>
-                        <span
-                            class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                <div class="flex items-center gap-6">
+                    <button id="add-product-shortcut" class="h-11 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5">
+                        New Entry
                     </button>
-                    <div
-                        class="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-xs">
-                        JD
+                    <div class="size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border">
+                        <span class="material-symbols-outlined text-lg">settings_input_component</span>
                     </div>
                 </div>
             </header>
-            <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto p-8 bg-background-light dark:bg-background-dark">
-                <div class="max-w-7xl mx-auto space-y-8">
-                    <!-- Page Title and Quick Stats -->
-                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                            <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Product Inventory</h3>
-                            <p class="text-slate-500 dark:text-slate-400 mt-1">Manage and update your catalog details.
-                            </p>
+
+            <div class="p-10 flex-1 overflow-y-auto space-y-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Form Terminal -->
+                    <div class="lg:col-span-4">
+                        <div class="bg-black/40 p-8 rounded-[3rem] terminal-border glass sticky top-0">
+                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-3">
+                                <span class="size-2 bg-primary rounded-full animate-pulse"></span>
+                                <span id="form-title">Schema Input</span>
+                            </h4>
+                            <form id="product-form" class="space-y-6">
+                                <input type="hidden" id="editing-id">
+                                <div>
+                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
+                                    <input id="product-name" required class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="UNIT LABEL..." type="text"/>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation (DZD)</label>
+                                        <input id="product-price" required class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="0.00" type="number" step="1"/>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
+                                        <select id="product-category" class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold appearance-none">
+                                            <option>Electronics</option>
+                                            <option>Accessories</option>
+                                            <option>Wearables</option>
+                                            <option>Apparel</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
+                                    <textarea id="product-description" class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual Asset</label>
+                                    <div class="flex items-center gap-5 p-2 bg-white/5 border terminal-border rounded-2xl">
+                                        <div id="image-preview-container" class="size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
+                                            <span class="material-symbols-outlined text-slate-700" id="preview-placeholder">image</span>
+                                            <img id="image-preview" class="w-full h-full object-cover hidden" alt="Preview"/>
+                                        </div>
+                                        <div class="flex-1">
+                                            <input id="product-image-file" class="hidden" type="file" accept="image/*"/>
+                                            <button type="button" onclick="document.getElementById('product-image-file').click()" class="w-full py-2 bg-white/5 text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all">Upload File</button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="product-image-url">
+                                </div>
+
+                                <div class="pt-6 flex gap-3">
+                                    <button id="submit-btn" class="flex-1 h-14 bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all" type="submit">Verify & Save</button>
+                                    <button id="cancel-edit-btn" class="hidden w-14 h-14 bg-white/5 text-slate-400 border terminal-border rounded-2xl hover:text-white transition-all flex items-center justify-center" type="button">
+                                        <span class="material-symbols-outlined">close</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <button
-                            class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 transition-all shadow-lg shadow-primary/20">
-                            <span class="material-symbols-outlined text-[18px]">add</span>
-                            List New Product
-                        </button>
                     </div>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <!-- Add New Product Form -->
-                        <div class="lg:col-span-1 space-y-6">
-                            <div
-                                class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                                <h4 class="text-base font-bold mb-6 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary">edit_note</span>
-                                    Add New Product
-                                </h4>
-                                <form id="admin-product-form" class="space-y-4">
-                                    <input type="hidden" id="product-id">
-                                    <div>
-                                        <label
-                                            class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Product
-                                            Name</label>
-                                        <input id="admin-product-name"
-                                            class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                                            placeholder="e.g. iPhone 15 Pro" type="text" required />
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label
-                                                class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Price
-                                                (DZD)</label>
-                                            <input id="admin-product-price"
-                                                class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                                                placeholder="185000" type="number" required />
-                                        </div>
-                                        <div>
-                                            <label
-                                                class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Category</label>
-                                            <select id="admin-product-category"
-                                                class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
-                                                <option value="smartphones">Smartphones</option>
-                                                <option value="audio">Audio</option>
-                                                <option value="accessories">Accessories</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Description</label>
-                                        <textarea id="admin-product-description"
-                                            class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-                                            placeholder="Enter detailed product description..." rows="3"
-                                            required></textarea>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Image
-                                            URL</label>
-                                        <input id="admin-product-image"
-                                            class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                                            placeholder="https://images.unsplash.com/..." type="url" required />
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <input id="admin-product-featured" type="checkbox"
-                                            class="rounded border-slate-300 text-primary focus:ring-primary">
-                                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Featured
-                                            Product</label>
-                                    </div>
-                                    <div class="pt-4">
-                                        <button id="save-product-btn"
-                                            class="w-full bg-slate-900 dark:bg-primary text-white py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity"
-                                            type="submit">Save Product</button>
-                                    </div>
-                                </form>
+
+                    <!-- Ledger Terminal -->
+                    <div class="lg:col-span-8">
+                        <div class="bg-black/40 rounded-[3rem] terminal-border overflow-hidden pb-10">
+                            <div class="p-10 border-b terminal-border flex justify-between items-center bg-white/5">
+                                <h3 class="font-display text-2xl font-black text-white tracking-tighter">Global Ledger</h3>
+                                <div class="flex items-center px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-xl">
+                                    <span id="product-count" class="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
+                                        <span class="size-1.5 bg-emerald-400 rounded-full"></span>
+                                        Node Online
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Product List -->
-                        <div class="lg:col-span-2 space-y-4">
-                            <div
-                                class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-                                <div
-                                    class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                                    <h4 class="text-base font-bold">Existing Products</h4>
-                                    <div class="flex gap-2">
-                                        <button class="p-1.5 text-slate-400 hover:text-primary"><span
-                                                class="material-symbols-outlined text-[20px]">filter_list</span></button>
-                                        <button class="p-1.5 text-slate-400 hover:text-primary"><span
-                                                class="material-symbols-outlined text-[20px]">more_vert</span></button>
-                                    </div>
-                                </div>
-                                <div class="overflow-x-auto">
-                                    <table class="w-full text-left">
-                                        <thead>
-                                            <tr class="bg-slate-50 dark:bg-slate-800/50">
-                                                <th
-                                                    class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                                    Product</th>
-                                                <th
-                                                    class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                                    Category</th>
-                                                <th
-                                                    class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                                    Price</th>
-                                                <th
-                                                    class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                                                    Status</th>
-                                                <th
-                                                    class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">
-                                                    Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="admin-products-body"
-                                            class="divide-y divide-slate-100 dark:divide-slate-800">
-                                            <!-- Products will be loaded here -->
-                                            <tr>
-                                                <td colspan="5" class="px-6 py-10 text-center text-slate-500">Loading
-                                                    products from Firebase...</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div
-                                    class="px-6 py-4 border-t border-slate-100 dark:divide-slate-800 flex items-center justify-between">
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Showing 4 of 128
-                                        products</p>
-                                    <div class="flex gap-1">
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors">
-                                            <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-                                        </button>
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white font-bold text-xs">1</button>
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors font-bold text-xs">2</button>
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors font-bold text-xs">3</button>
-                                        <button
-                                            class="w-8 h-8 flex items-center justify-center rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors">
-                                            <span class="material-symbols-outlined text-[18px]">chevron_right</span>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="border-b terminal-border">
+                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Asset</th>
+                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Sector</th>
+                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">Valuation</th>
+                                            <th class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="products-table-body" class="divide-y terminal-border">
+                                        <!-- Data Injected -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -283,7 +240,207 @@
             </div>
         </main>
     </div>
-    <script type="module" src="main.js"></script>
-</body>
 
+    <script type="module">
+        import { getProducts, addProduct, updateProduct, deleteProduct, uploadImage } from './db-service.js';
+
+        const tableBody = document.getElementById('products-table-body');
+        const productForm = document.getElementById('product-form');
+        const productCount = document.getElementById('product-count');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const formTitle = document.getElementById('form-title');
+        const editingIdInput = document.getElementById('editing-id');
+        const searchInput = document.getElementById('product-search');
+
+        let productsList = [];
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
+        }
+
+        async function loadProducts() {
+            tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">Awaiting Decryption...</td></tr>';
+            try {
+                productsList = await getProducts();
+                renderProducts(productsList);
+            } catch (error) {
+                console.error("Link Failure:", error);
+                tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-red-500 text-[10px] font-black uppercase tracking-widest">Protocol Breach detected.</td></tr>';
+            }
+        }
+
+        function renderProducts(products) {
+            if (products.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">Repository Vacant.</td></tr>';
+                productCount.textContent = 'Node Empty';
+                return;
+            }
+
+            tableBody.innerHTML = '';
+            products.forEach(product => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-white/5 transition-all group';
+                tr.innerHTML = `
+                    <td class="px-10 py-6">
+                        <div class="flex items-center gap-5">
+                            <div class="size-14 rounded-2xl bg-black border terminal-border bg-cover bg-center overflow-hidden rotate-2 group-hover:rotate-0 transition-transform" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
+                            <div>
+                                <p class="text-[11px] font-black text-white uppercase tracking-widest leading-none mb-2">${product.name}</p>
+                                <p class="text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">Hash: ${product.id.substring(0, 8)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">${product.category}</td>
+                    <td class="px-10 py-6 text-[11px] font-black text-emerald-400 tracking-tighter">${formatPrice(product.price)}</td>
+                    <td class="px-10 py-6 text-right">
+                        <div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0">
+                            <button class="size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-primary transition-all edit-btn" data-id="${product.id}">
+                                <span class="material-symbols-outlined text-lg">edit</span>
+                            </button>
+                            <button class="size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-red-500 transition-all delete-btn" data-id="${product.id}">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            productCount.innerHTML = `<span class="size-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Indexing ${products.length} Units`;
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.getAttribute('data-id');
+                    if (confirm('TERMINATE THIS ENTRY?')) {
+                        await deleteProduct(id);
+                        loadProducts();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const product = productsList.find(p => p.id === id);
+                    if (product) startEditing(product);
+                });
+            });
+        }
+
+        // Search Implementation
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = productsList.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.category.toLowerCase().includes(query) ||
+                p.id.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        });
+
+        // Image Preview Handling
+        const imageFileInput = document.getElementById('product-image-file');
+        const imagePreview = document.getElementById('image-preview');
+        const previewPlaceholder = document.getElementById('preview-placeholder');
+        const imageUrlInput = document.getElementById('product-image-url');
+
+        imageFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    previewPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function startEditing(product) {
+            editingIdInput.value = product.id;
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-description').value = product.description || '';
+            
+            imageUrlInput.value = product.image || '';
+            if (product.image) {
+                imagePreview.src = product.image;
+                imagePreview.classList.remove('hidden');
+                previewPlaceholder.classList.add('hidden');
+            } else {
+                imagePreview.classList.add('hidden');
+                previewPlaceholder.classList.remove('hidden');
+            }
+            
+            formTitle.textContent = 'Modify Data';
+            submitBtn.textContent = 'Update Repository';
+            cancelEditBtn.classList.remove('hidden');
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        cancelEditBtn.addEventListener('click', resetForm);
+
+        function resetForm() {
+            productForm.reset();
+            editingIdInput.value = '';
+            imageUrlInput.value = '';
+            imagePreview.classList.add('hidden');
+            previewPlaceholder.classList.remove('hidden');
+            formTitle.textContent = 'Schema Input';
+            submitBtn.textContent = 'Verify & Save';
+            cancelEditBtn.classList.add('hidden');
+        }
+
+        document.getElementById('add-product-shortcut').addEventListener('click', () => {
+            resetForm();
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        productForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const editingId = editingIdInput.value;
+            const file = imageFileInput.files[0];
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            try {
+                const name = document.getElementById('product-name').value;
+                const price = parseFloat(document.getElementById('product-price').value);
+                const category = document.getElementById('product-category').value;
+                const description = document.getElementById('product-description').value;
+                
+                let imageUrl = imageUrlInput.value;
+
+                if (file) {
+                    console.log("Cloudinary: Protocol initiating...");
+                    imageUrl = await uploadImage(file);
+                }
+
+                const productData = { name, price, category, description, image: imageUrl };
+                
+                if (editingId) {
+                    await updateProduct(editingId, productData);
+                    alert('ENTRY MODIFIED.');
+                } else {
+                    await addProduct(productData);
+                    alert('ENTRY LOGGED.');
+                }
+                resetForm();
+                loadProducts();
+            } catch (error) {
+                console.error("Protocol failure:", error);
+                alert(`Error: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = editingId ? 'Update Repository' : 'Verify & Save';
+            }
+        });
+
+        loadProducts();
+    </script>
+</body>
 </html>

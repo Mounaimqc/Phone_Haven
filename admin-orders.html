@@ -1,276 +1,238 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en">
-
+<html class="dark" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Orders Management - Phone Haven Admin</title>
-    <!-- Material Symbols -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <!-- Tailwind CSS -->
+    <script src="auth-gate.js"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BladiShop / Logistics Terminal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Theme Configuration -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#135bec",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
+                        "primary": "#6366f1",
+                        "terminal-black": "#020617",
+                        "terminal-card": "#0f172a",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    }
                 },
             },
         }
     </script>
     <style>
-        body {
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .active-nav {
-            background-color: rgba(19, 91, 236, 0.1);
-            color: #135bec;
-        }
+        body { background-color: #020617; font-family: 'Inter', sans-serif; color: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .terminal-border { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .font-display { font-family: 'Outfit', sans-serif; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
     </style>
 </head>
-
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
-    <div class="flex h-screen overflow-hidden">
-        <!-- Side Navigation -->
-        <aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col">
-            <div class="p-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
-                        <span class="material-symbols-outlined">storefront</span>
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+    <div class="flex h-full w-full">
+        <!-- Sidebar: High Contrast Terminal -->
+        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
+            <div class="p-8">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
                     </div>
                     <div>
-                        <h1 class="font-bold text-slate-900 dark:text-white leading-tight">Phone Haven Admin</h1>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Premium Control</p>
+                        <h1 class="font-display font-black text-white text-lg tracking-tighter">BladiShop<span class="text-primary italic">.</span>Terminal</h1>
+                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha</p>
                     </div>
                 </div>
+
+                <nav class="space-y-1">
+                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
+                    </a>
+                    <a href="admin-orders.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Orders</span>
+                    </a>
+                    <a href="admin-products.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Collection</span>
+                    </a>
+                    <a href="admin-reports.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
+                    </a>
+                </nav>
             </div>
-            <nav class="flex-1 px-4 py-4 space-y-1">
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-analytics.html">
-                    <span class="material-symbols-outlined text-xl">dashboard</span>
-                    <span class="text-sm font-medium">Dashboard</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 active-nav rounded-lg transition-colors"
-                    href="admin-orders.html">
-                    <span class="material-symbols-outlined text-xl">shopping_bag</span>
-                    <span class="text-sm font-medium">Orders</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-products.html">
-                    <span class="material-symbols-outlined text-xl">inventory_2</span>
-                    <span class="text-sm font-medium">Products</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-analytics.html">
-                    <span class="material-symbols-outlined text-xl">group</span>
-                    <span class="text-sm font-medium">Customers</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="admin-reports.html">
-                    <span class="material-symbols-outlined text-xl">bar_chart</span>
-                    <span class="text-sm font-medium">Reports</span>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="index.html">
-                    <span class="material-symbols-outlined text-xl">storefront</span>
-                    <span class="text-sm font-medium">Back to Store</span>
-                </a>
-                <div class="pt-4 pb-2 px-3">
-                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Settings</p>
-                </div>
-                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                    href="#">
-                    <span class="material-symbols-outlined text-xl">settings</span>
-                    <span class="text-sm font-medium">Store Settings</span>
-                </a>
-            </nav>
-            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
-                <div
-                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer">
-                    <img alt="Admin user avatar"
-                        class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700"
-                        data-alt="Profile photo of the store administrator"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBOHA1KDmnNYWlhspgAoy9iDBlC33WWmN2Hii2YVikpWHz1rP8LG2Ppbu5tygofleHcZ4UsvGZifJVV4EO7UoswaQiAfgaOupabg9T1ZdmZx13-du-DJH9BAoqspjThxco2hLaInoRcUsIC_F1NoQ1-gxwtxB4OvRwWoW40ZQ89JE-RRozYipQOue5vRgdhxT5tCI5h4E5Mykk9BMp6L7XTzrJv_wQ2TbZfIA7Me4jbNdKQSztFdKHDLHA3INH0hVOUbE0umSjQ" />
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-slate-900 dark:text-white truncate">James Wilson</p>
-                        <p class="text-xs text-slate-500 truncate">Administrator</p>
+
+            <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBOHA1KDmnNYWlhspgAoy9iDBlC33WWmN2Hii2YVikpWHz1rP8LG2Ppbu5tygofleHcZ4UsvGZifJVV4EO7UoswaQiAfgaOupabg9T1ZdmZx13-du-DJH9BAoqspjThxco2hLaInoRcUsIC_F1NoQ1-gxwtxB4OvRwWoW40ZQ89JE-RRozYipQOue5vRgdhxT5tCI5h4E5Mykk9BMp6L7XTzrJv_wQ2TbZfIA7Me4jbNdKQSztFdKHDLHA3INH0hVOUbE0umSjQ" class="w-full h-full object-cover rounded-full">
                     </div>
-                    <span class="material-symbols-outlined text-slate-400 text-lg">logout</span>
+                    <div>
+                        <p class="text-xs font-black text-white">Administrator</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                    </div>
                 </div>
+                <a href="index.html" class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                    <span class="material-symbols-outlined text-sm">exit_to_app</span>
+                    Lock Session
+                </a>
             </div>
         </aside>
-        <!-- Main Content -->
-        <main class="flex-1 flex flex-col overflow-y-auto">
+
+        <!-- Main Workspace -->
+        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
+            
             <!-- Header -->
-            <header
-                class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between px-8 sticky top-0 z-10">
-                <div class="flex items-center gap-4 flex-1">
-                    <div class="relative w-full max-w-md">
-                        <span
-                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
-                        <input
-                            class="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-slate-400"
-                            placeholder="Search orders, customers, or items..." type="text" />
+            <header class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
+                <div class="flex items-center gap-6">
+                    <div class="relative group">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors">search</span>
+                        <input type="text" placeholder="QUERY LOGISTICS DATA..." class="w-96 bg-white/5 border terminal-border rounded-xl pl-12 pr-4 py-2.5 text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400">
+                <div class="flex items-center gap-6">
+                    <button class="size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative">
                         <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute top-3 right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
                     </button>
-                    <div class="h-6 w-px bg-slate-200 dark:bg-slate-800 mx-2"></div>
-                    <button
-                        class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-primary/90 transition-colors">
-                        <span class="material-symbols-outlined text-lg">add</span>
-                        Create Order
+                    <button class="h-12 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95">
+                        Initiate Order
                     </button>
                 </div>
             </header>
-            <!-- Dashboard Content -->
-            <div class="p-8">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+
+            <!-- Table View -->
+            <div class="p-10 flex-1 flex flex-col overflow-y-auto">
+                <div class="mb-10 flex items-end justify-between">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Orders Management</h2>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm">View and track all store transactions and
-                            shipping statuses.</p>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+                            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time Stream</span>
+                        </div>
+                        <h2 class="font-display text-4xl font-black text-white tracking-tighter">Orders Ledger</h2>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <button
-                            class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
-                            <span class="material-symbols-outlined text-lg text-slate-500">filter_list</span>
-                            Filter
-                        </button>
-                        <button
-                            class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
-                            <span class="material-symbols-outlined text-lg text-slate-500">download</span>
-                            Export
-                        </button>
+                    <div class="flex gap-4">
+                        <button class="h-10 px-4 glass rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all">Filter</button>
+                        <button class="h-10 px-4 glass rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all">Export CVS</button>
                     </div>
                 </div>
-                <!-- Tabs -->
-                <div class="flex border-b border-slate-200 dark:border-slate-800 mb-6">
-                    <button class="px-4 py-3 text-sm font-semibold text-primary border-b-2 border-primary">All
-                        Orders</button>
-                    <button
-                        class="px-4 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Pending</button>
-                    <button
-                        class="px-4 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Processing</button>
-                    <button
-                        class="px-4 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Shipped</button>
-                    <button
-                        class="px-4 py-3 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Delivered</button>
-                </div>
+
                 <!-- Table Container -->
-                <div
-                    class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr
-                                    class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                        Order ID</th>
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                        Customer</th>
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Date
-                                    </th>
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                        Total</th>
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                        Status</th>
-                                    <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-orders-body" class="divide-y divide-slate-200 dark:divide-slate-800">
-                                <!-- Orders will be loaded here -->
-                                <tr>
-                                    <td colspan="6" class="px-6 py-10 text-center text-slate-500">Loading orders from
-                                        Firebase...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Pagination -->
-                    <div
-                        class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Showing 1 to 5 of 248 orders</p>
-                        <div class="flex items-center gap-2">
-                            <button
-                                class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50"
-                                disabled="">
-                                <span class="material-symbols-outlined text-sm">chevron_left</span>
-                            </button>
-                            <button
-                                class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold">1</button>
-                            <button
-                                class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">2</button>
-                            <button
-                                class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">3</button>
-                            <button
-                                class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">
-                                <span class="material-symbols-outlined text-sm">chevron_right</span>
-                            </button>
-                        </div>
-                    </div>
+                <div class="bg-black/40 rounded-3xl terminal-border overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-white/5 border-b terminal-border">
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Signature</th>
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Client</th>
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Timeline</th>
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Value</th>
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">State</th>
+                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body" class="divide-y terminal-border">
+                            <!-- Data injection -->
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Footer/Stats Cards (Simple Row) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <div
-                        class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Daily Revenue</span>
-                            <span class="text-green-500 text-xs font-bold">+12%</span>
-                        </div>
-                        <p class="text-2xl font-bold text-slate-900 dark:text-white">$4,281.00</p>
-                    </div>
-                    <div
-                        class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Shipments</span>
-                            <span class="text-blue-500 text-xs font-bold">84 items</span>
-                        </div>
-                        <p class="text-2xl font-bold text-slate-900 dark:text-white">12 Shipments</p>
-                    </div>
-                    <div
-                        class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium text-slate-500 dark:text-slate-400">Pending Actions</span>
-                            <span class="text-amber-500 text-xs font-bold">Requires attention</span>
-                        </div>
-                        <p class="text-2xl font-bold text-slate-900 dark:text-white">18 Orders</p>
+
+                <div class="mt-8 flex items-center justify-between">
+                    <p id="order-count" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Loading node entries...</p>
+                    <div class="flex gap-2">
+                        <button class="size-8 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">west</span></button>
+                        <button class="size-8 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">east</span></button>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-    <script type="module" src="main.js"></script>
-</body>
 
+    <script type="module">
+        import { getOrders } from './db-service.js';
+
+        const tableBody = document.getElementById('orders-table-body');
+        const orderCount = document.getElementById('order-count');
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
+        }
+
+        async function loadOrders() {
+            tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest pulse">Accessing ledger...</td></tr>';
+            try {
+                const orders = await getOrders();
+                renderOrders(orders);
+            } catch (error) {
+                console.error("Error loading orders:", error);
+                tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-red-500 font-black text-[10px] tracking-[0.3em]">Ledger Access Denied: Check Protocol</td></tr>';
+            }
+        }
+
+        function renderOrders(orders) {
+            if (orders.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">Void: No transaction data detected</td></tr>';
+                orderCount.textContent = 'LEGER EMPTY';
+                return;
+            }
+
+            tableBody.innerHTML = '';
+            orders.forEach(order => {
+                const tr = document.createElement('tr');
+                tr.className = 'group hover:bg-white/5 transition-all cursor-pointer';
+                tr.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
+                
+                const date = order.createdAt?.toDate ? order.createdAt.toDate().toLocaleDateString('fr-DZ') : 'N/A';
+                
+                const statusStyles = {
+                    'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
+                    'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
+                    'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
+                    'Cancelled': 'text-rose-400 border-rose-400/20 bg-rose-400/5'
+                };
+
+                tr.innerHTML = `
+                    <td class="px-8 py-6 text-xs font-black text-white uppercase tracking-widest">
+                        <span class="text-slate-600">ID_</span> ${order.id.substring(0, 8).toUpperCase()}
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="flex items-center gap-3">
+                            <div class="size-8 rounded-lg border terminal-border flex items-center justify-center text-[10px] font-black bg-white/5 text-white">
+                                ${order.customerName ? order.customerName.charAt(0) : '?'}
+                            </div>
+                            <span class="text-xs font-bold text-white tracking-wide">${order.customerName || 'Anonymous'}</span>
+                        </div>
+                    </td>
+                    <td class="px-8 py-6 text-[10px] font-medium text-slate-400 uppercase tracking-widest">${date}</td>
+                    <td class="px-8 py-6 text-xs font-black text-white">${formatPrice(order.total)}</td>
+                    <td class="px-8 py-6">
+                        <span class="px-3 py-1 rounded-md border text-[9px] font-black uppercase tracking-[0.2em] ${statusStyles[order.status] || 'text-slate-400 border-white/10'}">
+                            ${order.status}
+                        </span>
+                    </td>
+                    <td class="px-8 py-6 text-right">
+                        <button class="text-slate-500 group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            orderCount.textContent = `SYSTEM ANALYTICS: ${orders.length} ENTRIES VERIFIED`;
+        }
+
+        loadOrders();
+    </script>
+</body>
 </html>

@@ -1,6 +1,6 @@
 // Phone Haven - Core JavaScript Logic
 import { db } from './firebase-config.js';
-import { collection, getDocs, getDoc, doc, addDoc, query, where, limit, orderBy, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, getDocs, getDoc, doc, addDoc, updateDoc, query, where, limit, orderBy, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 /**
  * Global State & Configuration
@@ -49,65 +49,6 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Product Fetching & Rendering
  * -----------------------------------------------------------------------------
  */
-// New Arrivals Slider Functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('new-arrivals-container');
-    const prevBtn = document.getElementById('arrivals-prev');
-    const nextBtn = document.getElementById('arrivals-next');
-    
-    if (!container || !prevBtn || !nextBtn) return;
-
-    // Scroll amount based on card width + gap
-    const getScrollAmount = () => {
-        const card = container.querySelector('.snap-start');
-        return card ? card.offsetWidth + 24 : 320; // 24px = gap
-    };
-
-    // Next button click
-    nextBtn.addEventListener('click', () => {
-        container.scrollBy({
-            left: getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
-
-    // Prev button click
-    prevBtn.addEventListener('click', () => {
-        container.scrollBy({
-            left: -getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
-
-    // Hide/Show arrows based on scroll position
-    const updateArrowVisibility = () => {
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        
-        // Prev arrow
-        prevBtn.style.opacity = container.scrollLeft > 10 ? '1' : '0.5';
-        prevBtn.style.pointerEvents = container.scrollLeft > 10 ? 'auto' : 'none';
-        
-        // Next arrow
-        nextBtn.style.opacity = container.scrollLeft < maxScroll - 10 ? '1' : '0.5';
-        nextBtn.style.pointerEvents = container.scrollLeft < maxScroll - 10 ? 'auto' : 'none';
-    };
-
-    container.addEventListener('scroll', updateArrowVisibility, { passive: true });
-    window.addEventListener('resize', updateArrowVisibility);
-    updateArrowVisibility(); // Initial check
-
-    // Optional: Keyboard navigation
-    container.setAttribute('tabindex', '0');
-    container.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            nextBtn.click();
-        } else if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            prevBtn.click();
-        }
-    });
-});
 
 async function loadHomePageProducts() {
     // Load New Arrivals
@@ -234,6 +175,65 @@ async function handleOrderSubmit(e, productId, product) {
  * Admin Page Logic (Products & Orders)
  * -----------------------------------------------------------------------------
  */
+// New Arrivals Slider Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('new-arrivals-container');
+    const prevBtn = document.getElementById('arrivals-prev');
+    const nextBtn = document.getElementById('arrivals-next');
+
+    if (!container || !prevBtn || !nextBtn) return;
+
+    // Scroll amount based on card width + gap
+    const getScrollAmount = () => {
+        const card = container.querySelector('.snap-start');
+        return card ? card.offsetWidth + 24 : 320; // 24px = gap
+    };
+
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: getScrollAmount(),
+            behavior: 'smooth'
+        });
+    });
+
+    // Prev button click
+    prevBtn.addEventListener('click', () => {
+        container.scrollBy({
+            left: -getScrollAmount(),
+            behavior: 'smooth'
+        });
+    });
+
+    // Hide/Show arrows based on scroll position
+    const updateArrowVisibility = () => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+
+        // Prev arrow
+        prevBtn.style.opacity = container.scrollLeft > 10 ? '1' : '0.5';
+        prevBtn.style.pointerEvents = container.scrollLeft > 10 ? 'auto' : 'none';
+
+        // Next arrow
+        nextBtn.style.opacity = container.scrollLeft < maxScroll - 10 ? '1' : '0.5';
+        nextBtn.style.pointerEvents = container.scrollLeft < maxScroll - 10 ? 'auto' : 'none';
+    };
+
+    container.addEventListener('scroll', updateArrowVisibility, { passive: true });
+    window.addEventListener('resize', updateArrowVisibility);
+    updateArrowVisibility(); // Initial check
+
+    // Optional: Keyboard navigation
+    container.setAttribute('tabindex', '0');
+    container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextBtn.click();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevBtn.click();
+        }
+    });
+});
 
 async function initAdminProducts() {
     const productsBody = document.getElementById('admin-products-body');
@@ -246,13 +246,12 @@ async function initAdminProducts() {
     if (productForm) {
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(productForm);
             const id = document.getElementById('product-id').value;
 
             const productData = {
                 name: document.getElementById('admin-product-name').value,
                 price: parseFloat(document.getElementById('admin-product-price').value),
-                category: document.getElementById('admin-product-category').value,
+                category: document.getElementById('admin-product-category').value.toLowerCase(),
                 description: document.getElementById('admin-product-description').value,
                 image: document.getElementById('admin-product-image').value,
                 featured: document.getElementById('admin-product-featured').checked,
@@ -262,21 +261,24 @@ async function initAdminProducts() {
             try {
                 if (id) {
                     // Update existing
-                    // Note: updateDoc would be better but we only imported addDoc. 
-                    // Using setDoc with merge for simplicity if we had it, or re-adding for now.
-                    // For a real app, import updateDoc. Let's assume addDoc for new and alert for now.
-                    alert("Update functionality requires updateDoc import. Adding as new for now.");
-                    await addDoc(collection(db, COLLECTIONS.PRODUCTS), productData);
+                    const docRef = doc(db, COLLECTIONS.PRODUCTS, id);
+                    await updateDoc(docRef, productData);
+                    alert("Produit mis à jour avec succès!");
                 } else {
                     // Create new
-                    await addDoc(collection(db, COLLECTIONS.PRODUCTS), { ...productData, createdAt: new Date().toISOString() });
+                    await addDoc(collection(db, COLLECTIONS.PRODUCTS), {
+                        ...productData,
+                        createdAt: new Date().toISOString()
+                    });
+                    alert("Produit ajouté avec succès!");
                 }
                 productForm.reset();
                 document.getElementById('product-id').value = '';
+                document.getElementById('save-product-btn').textContent = 'Save Product';
                 loadAdminProducts();
-                alert("Produit enregistré avec succès!");
             } catch (error) {
                 console.error("Error saving product:", error);
+                alert("Erreur lors de l'enregistrement: " + error.message);
             }
         });
     }
@@ -448,8 +450,50 @@ async function loadAdminOrders() {
     }
 }
 
+function initSliders() {
+    const container = document.getElementById('new-arrivals-container');
+    const prevBtn = document.getElementById('arrivals-prev');
+    const nextBtn = document.getElementById('arrivals-next');
+
+    if (container && prevBtn && nextBtn) {
+        const scrollAmount = 350;
+        prevBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+}
+
+async function initSearchPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryQuery = urlParams.get('category');
+    const searchTerm = urlParams.get('search');
+
+    // Update UI labels
+    const title = document.getElementById('search-title');
+    const subtitle = document.getElementById('search-subtitle');
+
+    let q;
+    if (categoryQuery) {
+        if (title) title.textContent = categoryQuery;
+        if (subtitle) subtitle.textContent = `Browsing all ${categoryQuery.toLowerCase()}`;
+        // Query by category (case-insensitive-ish if stored correctly)
+        // Usually its better to store in lowercase
+        q = query(collection(db, COLLECTIONS.PRODUCTS), where('category', '==', categoryQuery.toLowerCase()));
+    } else if (searchTerm) {
+        if (title) title.textContent = `Search: ${searchTerm}`;
+        q = query(collection(db, COLLECTIONS.PRODUCTS)); // Simple search logic (filter in JS if needed)
+    } else {
+        q = query(collection(db, COLLECTIONS.PRODUCTS));
+    }
+
+    renderProductsToContainer(q, 'search-results-container');
+}
+
 async function initOrderTracking() {
-    // This would fetch based on input in a real app
+    // Basic tracking stub
     console.log("Order tracking initialized");
 }
 
@@ -463,23 +507,21 @@ function getStatusClasses(status) {
     }
 }
 
-/**
- * -----------------------------------------------------------------------------
- * UI Helpers & Utilities
- * -----------------------------------------------------------------------------
- */
-
 function updateDOM(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
 }
 
-function initSliders() {
-    // Basic slider implementation
-}
-
 function initAnimations() {
-    // Basic reveal animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-hidden').forEach(el => observer.observe(el));
 }
 
 // Export for global access in HTML (if needed)
@@ -499,4 +541,3 @@ window.editProduct = async (id) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 };
-

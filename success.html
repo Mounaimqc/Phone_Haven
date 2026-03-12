@@ -1,164 +1,159 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Transaction Verified | BladiShop</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#135bec",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
+                        "primary": "#6366f1",
+                        "accent": "#f59e0b",
+                        "background-light": "#ffffff",
+                        "background-dark": "#020617",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                    borderRadius: {
+                        "3xl": "1.5rem",
+                        "4xl": "2rem",
+                    },
                 },
             },
         }
     </script>
-    <title>Order Confirmation | Phone Haven</title>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
 </head>
-
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
-    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-        <div class="layout-container flex h-full grow flex-col">
-            <!-- Header -->
-            <header
-                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 md:px-10 py-4 bg-white dark:bg-slate-900">
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="text-primary">
-                        <span class="material-symbols-outlined text-3xl">smartphone</span>
-                    </a>
-                    <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight"><a
-                            href="index.html">Phone Haven</a></h2>
-                </div>
-                <button
-                    class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">
-                    <span class="material-symbols-outlined">close</span>
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 min-h-screen">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Premium Navigation -->
+        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
+            <div class="mx-auto flex max-w-7xl items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="BladiShop Logo">
+                    </div>
+                    <h2 class="font-display text-2xl font-black tracking-tighter text-slate-900 dark:text-white">BladiShop<span class="text-primary italic">.</span></h2>
+                </a>
+                <button onclick="window.location.href='index.html'" class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all">
+                    <span class="material-symbols-outlined text-[22px]">close</span>
                 </button>
-            </header>
-            <main class="flex flex-1 justify-center py-8 px-4 md:px-0">
-                <div
-                    class="layout-content-container flex flex-col max-w-[600px] flex-1 bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden border border-slate-200 dark:border-slate-800">
-                    <!-- Success Icon & Message -->
-                    <div class="flex flex-col items-center pt-10 pb-6 px-4">
-                        <div
-                            class="size-20 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mb-6">
-                            <span class="material-symbols-outlined text-5xl">check_circle</span>
+            </div>
+        </header>
+
+        <main class="mx-auto w-full max-w-2xl flex-1 px-6 py-20">
+            <div class="glass border border-white/5 p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden text-center">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="size-24 bg-primary text-white rounded-[2rem] flex items-center justify-center mb-10 shadow-2xl shadow-primary/40 rotate-12 group hover:rotate-0 transition-transform duration-700">
+                        <span class="material-symbols-outlined text-5xl font-bold">task_alt</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-accent mb-4">
+                        <span class="material-symbols-outlined text-sm font-bold fill-1">verified</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Transaction Secure</span>
+                    </div>
+                    <h1 class="font-display text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-4">Acquisition Verified</h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-12">Your selection has been successfully reserved and added to the processing queue.</p>
+                    
+                    <div class="w-full bg-slate-50 dark:bg-white/5 p-6 rounded-3xl mb-12">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">Order Signature</span>
+                        <h4 id="order-id-display" class="font-display text-3xl font-black text-primary tracking-tighter uppercase">#AUTHENTICATING...</h4>
+                    </div>
+                </div>
+                <!-- Order Details Summary -->
+                <div class="px-6 py-12 space-y-8">
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8">Procurement Summary</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Recipient</span>
+                            <p id="customer-name-display" class="font-display text-lg font-black text-slate-900 dark:text-white">Authenticating...</p>
                         </div>
-                        <h1
-                            class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold leading-tight text-center">
-                            Merci pour votre commande !</h1>
-                        <p class="text-slate-500 dark:text-slate-400 text-lg font-medium mt-2">Votre commande a été
-                            reçue avec succès.</p>
-                    </div>
-                    <!-- Banner Image Component -->
-                    <div class="px-6 py-2">
-                        <div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[160px] bg-primary/10"
-                            data-alt="Abstract blue aesthetic interior lighting pattern"
-                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQVS3KHigjs86bR9hNEd9fUtMGq20yFef2aiD6aOxFkqZPqeAf9ecffHpXdUwKobpzOSQq78lgri6N0GceyGedvG65cfYejCNaR5ET6Nn3MDarv7HhwK4G0ixGp0nrgk4uLFiW2m7dJ7-kC5u5zPZt9K66aAvkajV-Gvv0RdojkD7o5JOib7nUW2nLN97HCoXpe99hoUJP3daIJvKKar0kW38qVDVhUIeDXzIwM1y0vVyDNkPKRkd3fMF8tB6wYHxhtznnmVFljg");'>
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Communication</span>
+                            <p id="customer-phone-display" class="font-display text-lg font-black text-slate-900 dark:text-white">Authenticating...</p>
                         </div>
-                    </div>
-                    <!-- Order Details Summary -->
-                    <div class="px-6 py-6">
-                        <h3
-                            class="text-slate-900 dark:text-slate-100 text-lg font-bold border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
-                            Order Summary</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-start gap-4">
-                                <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-slate-400">person</span>
-                                    <span class="text-slate-500 dark:text-slate-400">Customer Name</span>
-                                </div>
-                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">Alex
-                                    Thompson</span>
-                            </div>
-                            <div class="flex justify-between items-start gap-4">
-                                <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-slate-400">phone</span>
-                                    <span class="text-slate-500 dark:text-slate-400">Phone Number</span>
-                                </div>
-                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">+1 (555)
-                                    012-3456</span>
-                            </div>
-                            <div class="flex justify-between items-start gap-4">
-                                <div class="flex items-center gap-3">
-                                    <span class="material-symbols-outlined text-slate-400">local_shipping</span>
-                                    <span class="text-slate-500 dark:text-slate-400">Delivery Type</span>
-                                </div>
-                                <span
-                                    class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">Standard
-                                    Shipping</span>
-                            </div>
-                            <div class="flex justify-between items-start gap-4">
-                                <div class="flex items-center gap-3 shrink-0">
-                                    <span class="material-symbols-outlined text-slate-400">location_on</span>
-                                    <span class="text-slate-500 dark:text-slate-400">Address</span>
-                                </div>
-                                <span class="text-slate-900 dark:text-slate-100 font-semibold text-right">742 Evergreen
-                                    Terrace, Springfield, OR 97403</span>
-                            </div>
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Logistics Node</span>
+                            <p id="shipping-type-display" class="font-display text-lg font-black text-primary">Standard Transit</p>
                         </div>
-                    </div>
-                    <!-- Map Preview Component -->
-                    <div class="px-6 pb-6">
-                        <div class="w-full h-32 rounded-lg bg-slate-100 dark:bg-slate-800 relative overflow-hidden">
-                            <img class="w-full h-full object-cover opacity-60"
-                                data-alt="Map view showing delivery location area" data-location="Springfield"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeArW1aS-uZBeD0kc1repaD4SR2GCyK3qHYpNgvzlYxtDwrttbqC9TT_MJliNoNxHwmh03O0LWnW4sV3Heo-l3YyxnJgBNXCHQTGLLHTPUu5_CY8oBBjZcGxI5c1SjWqfyY_mWzZyga79WKoOd9WgielPYfy4Vlrurke0eKeyywlbMJimzDaBbPOUOvM_XxrzEQ97exOlY0QOZF1Xx2WK27KhITw7JaK7dPKUZnomz3-ZmEy9LXoITbte1NgYY7xSolS-NkHhNfQ" />
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div
-                                    class="size-8 bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                                    <span class="material-symbols-outlined text-white text-sm">push_pin</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- CTA Section -->
-                    <div class="px-6 pb-10 flex flex-col gap-3">
-                        <a href="index.html"
-                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center">
-                            Continue Shopping
-                        </a>
-                        <a href="admin-orders.html"
-                            class="w-full bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center">
-                            View Order History
-                        </a>
-                    </div>
-                    <!-- Support Footer -->
-                    <div
-                        class="bg-slate-50 dark:bg-slate-800/50 p-6 flex flex-col items-center gap-2 border-t border-slate-100 dark:border-slate-800">
-                        <p class="text-slate-500 dark:text-slate-400 text-sm text-center">Need help with your order?</p>
-                        <div class="flex gap-4">
-                            <a class="text-primary font-bold text-sm hover:underline" href="#">Contact Support</a>
-                            <span class="text-slate-300 dark:text-slate-700">|</span>
-                            <a class="text-primary font-bold text-sm hover:underline" href="tracking.html">Track
-                                Delivery</a>
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Destination</span>
+                            <p id="customer-address-display" class="font-display text-lg font-black text-slate-900 dark:text-white">Authenticating...</p>
                         </div>
                     </div>
                 </div>
-            </main>
-            <!-- Footer Info -->
-            <footer class="py-8 px-4 text-center">
-                <p class="text-slate-400 dark:text-slate-600 text-xs">© 2024 Phone Haven. All rights reserved.</p>
-            </footer>
-        </div>
-    </div>
-</body>
 
+                <!-- CTA Section -->
+                <div class="px-6 pb-12 flex flex-col gap-4">
+                    <a href="index.html" class="group relative flex h-16 w-full items-center justify-center overflow-hidden rounded-[2rem] bg-primary text-white shadow-2xl transition-all active:scale-95 hover:brightness-110">
+                        <span class="relative z-10 font-display text-xs font-black tracking-[0.2em] uppercase">Return to Atelier</span>
+                    </a>
+                </div>
+
+                <!-- Support Footer -->
+                <div class="bg-slate-900 dark:bg-white/5 p-8 flex flex-col items-center gap-4 rounded-b-[3.5rem] border-t border-white/5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-500">Logistics Support Required?</p>
+                    <div class="flex gap-8">
+                        <a class="text-xs font-black text-primary uppercase tracking-widest border-b border-primary/30 pb-1 hover:text-white transition-colors" href="#">Contact Bureau</a>
+                        <a class="text-xs font-black text-primary uppercase tracking-widest border-b border-primary/30 pb-1 hover:text-white transition-colors" href="index.html">Collection Help</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="py-12 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 BladiShop • Algiers</p>
+        </footer>
+    </div>
+    <script type="module">
+        import { getOrderById } from './db-service.js';
+
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get('id');
+
+        if (!orderId) {
+            window.location.href = 'index.html';
+        }
+
+        const orderIdDisplay = document.getElementById('order-id-display');
+        const customerNameDisplay = document.getElementById('customer-name-display');
+        const customerPhoneDisplay = document.getElementById('customer-phone-display');
+        const shippingTypeDisplay = document.getElementById('shipping-type-display');
+        const customerAddressDisplay = document.getElementById('customer-address-display');
+
+        async function loadOrderDetails() {
+            try {
+                const order = await getOrderById(orderId);
+                if (!order) {
+                    console.error("Order signature mismatch");
+                    orderIdDisplay.textContent = "#REJECTED";
+                    return;
+                }
+
+                const shortId = order.id.substring(0, 8).toUpperCase();
+                orderIdDisplay.textContent = `#${shortId}`;
+                customerNameDisplay.textContent = order.customerName;
+                customerPhoneDisplay.textContent = order.customerPhone;
+                shippingTypeDisplay.textContent = order.shippingType === 'stop_desk' ? 'Bureau / Stop Desk' : 'Direct / À Domicile';
+                customerAddressDisplay.textContent = `${order.commune}, ${order.wilaya}`;
+
+            } catch (error) {
+                console.error("Evaluation interrupted:", error);
+            }
+        }
+
+        loadOrderDetails();
+    </script>
+</body>
 </html>
