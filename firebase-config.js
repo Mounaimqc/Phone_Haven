@@ -1,13 +1,17 @@
-// Firebase configuration
-// REPLACE these values with your actual Firebase project configuration
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDkLkcz4RNKmcl9N1zmJ-y6lwwXkC92Zqg",
-  authDomain: "bladishop-281da.firebaseapp.com",
-  projectId: "bladishop-281da",
-  storageBucket: "bladishop-281da.firebasestorage.app",
-  messagingSenderId: "668584486392",
-  appId: "1:668584486392:web:15a565ef9ddc4c0e88a20d",
-  measurementId: "G-1627QJRDFG"
+  apiKey: "AIzaSyALRl49n68TQ4wnKU2pLY22D9I7QPkQdK8",
+  authDomain: "phonehaven-ee773.firebaseapp.com",
+  projectId: "phonehaven-ee773",
+  storageBucket: "phonehaven-ee773.firebasestorage.app",
+  messagingSenderId: "518285665801",
+  appId: "1:518285665801:web:8552e4aa270ce1d779bad8"
 };
 
-export default firebaseConfig;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
