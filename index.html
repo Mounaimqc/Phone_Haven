@@ -74,20 +74,16 @@
                 min-width: 44px;
                 touch-action: manipulation;
             }
-            /* Prevent horizontal scroll */
             body { overflow-x: hidden; }
-            /* Better tap targets */
             a, button { -webkit-tap-highlight-color: transparent; }
         }
 
-        /* Small screen optimizations */
         @media (max-width: 375px) {
             .text-responsive { font-size: 0.875rem; }
             .btn-responsive { padding: 0.75rem 1rem; font-size: 0.875rem; }
             .card-responsive { border-radius: 1rem; }
         }
 
-        /* Skeleton loading */
         .skeleton {
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             background-size: 200% 100%;
@@ -99,25 +95,18 @@
             100% { background-position: 200% 0; }
         }
 
-        /* Image lazy load */
         .lazy-image { opacity: 0; transition: opacity 0.4s ease; }
         .lazy-image.loaded { opacity: 1; }
 
-        /* Product card active state for mobile */
         @media (hover: none) {
             .product-card:active { transform: scale(0.98); transition: transform 0.1s; }
         }
 
-        /* Sticky elements safe area for notched phones */
         @supports (padding: max(0px)) {
             .sticky-bottom-bar {
                 padding-bottom: max(12px, env(safe-area-inset-bottom));
             }
         }
-
-        /* Smooth fade for modals */
-        .modal-enter { opacity: 0; transform: translateY(20px); }
-        .modal-enter-active { opacity: 1; transform: translateY(0); transition: all 0.3s ease; }
     </style>
 </head>
 
@@ -144,7 +133,7 @@
                     <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
-                <!-- Right Actions -->
+                <!-- Right Actions - Removed Cart, Keep Only Wishlist -->
                 <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
                     
                     <!-- Desktop Search -->
@@ -153,17 +142,10 @@
                         <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-8 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
                     </div>
 
-                    <!-- Wishlist & Cart -->
-                    <div class="flex items-center bg-slate-100 dark:bg-white/5 rounded-xl xs:rounded-2xl p-0.5 xs:p-1 gap-0.5 xs:gap-1">
-                        <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris">
-                            <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite</span>
-                            <span class="absolute -top-0.5 -right-0.5 xs:-top-1 xs:-right-1 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">3</span>
-                        </button>
-                        <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110 relative" aria-label="Panier">
-                            <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">shopping_bag</span>
-                            <span class="absolute -top-0.5 -right-0.5 xs:-top-1 xs:-right-1 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
-                        </button>
-                    </div>
+                    <!-- Wishlist Button Only (No Cart) -->
+                    <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" onclick="showToast('❤️ Fonctionnalité bientôt disponible', 'info')">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
+                    </button>
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
@@ -219,7 +201,7 @@
 
                 <!-- Mobile Footer Actions -->
                 <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
-                    <button class="w-full flex items-center justify-center gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all text-sm">
+                    <button class="w-full flex items-center justify-center gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all text-sm" onclick="showToast('👤 Connexion bientôt disponible', 'info')">
                         <span class="material-symbols-outlined text-[18px]">account_circle</span> Mon Compte
                     </button>
                     <div class="flex gap-1.5 xs:gap-2">
@@ -438,7 +420,7 @@
                 </div>
             </section>
 
-            <!-- Mobile Sticky Bottom Bar - Quick Actions -->
+            <!-- Mobile Sticky Bottom Bar - Simplified (No Cart) -->
             <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
                 <div class="mx-3 xs:mx-4">
                     <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
@@ -450,12 +432,11 @@
                             <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all relative">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">shopping_bag</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Panier</span>
-                            <span class="absolute -top-0.5 xs:-top-1 right-2 xs:right-3 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('👤 Connexion bientôt disponible', 'info')">
                             <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">person</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Compte</span>
                         </a>
@@ -573,20 +554,6 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]"></div>
 
-    <!-- Quick View Modal -->
-    <div id="quick-view-modal" class="fixed inset-0 z-[150] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-overlay"></div>
-        <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-background-dark rounded-t-[1.5rem] xs:rounded-t-[2rem] p-4 xs:p-6 max-h-[80vh] xs:max-h-[85vh] overflow-y-auto transform transition-transform duration-300 translate-y-full" id="modal-content">
-            <div class="flex items-center justify-between mb-4 xs:mb-6">
-                <h3 class="font-display text-lg xs:text-xl font-black">Aperçu Rapide</h3>
-                <button id="modal-close" class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center transition-all" aria-label="Fermer">
-                    <span class="material-symbols-outlined text-[20px] xs:text-[22px]">close</span>
-                </button>
-            </div>
-            <div id="modal-product-content"></div>
-        </div>
-    </div>
-
     <script type="module">
         import { getProducts } from './db-service.js';
 
@@ -606,19 +573,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-        // Search
-        const desktopSearch = document.getElementById('desktop-search');
-        const mobileSearch = document.getElementById('mobile-search');
-
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
-
-        // Quick View Modal
-        const quickViewModal = document.getElementById('quick-view-modal');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalContent = document.getElementById('modal-content');
-        const modalClose = document.getElementById('modal-close');
-        const modalProductContent = document.getElementById('modal-product-content');
 
         // Toast Container
         const toastContainer = document.getElementById('toast-container');
@@ -708,7 +664,7 @@
                 categoryChips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 const category = chip.textContent.trim().toLowerCase();
-                if (!category.includes('tout') && !category.includes('tendances') && !category.includes('promos')) {
+                if (!category.includes('tout') && !category.includes('tendances')) {
                     window.location.href = `search.html?category=${encodeURIComponent(category.replace(/[📱🤖⚡🎧]/g, '').trim())}`;
                 }
             });
@@ -734,93 +690,49 @@
             }, duration);
         }
 
-        // ==================== Quick View Modal ====================
-        function openQuickView(product) {
-            modalProductContent.innerHTML = `
-                <div class="flex flex-col sm:flex-row gap-4 xs:gap-6">
-                    <div class="sm:w-1/2">
-                        <div class="aspect-square rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 overflow-hidden">
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image" onload="this.classList.add('loaded')" />
-                        </div>
-                    </div>
-                    <div class="sm:w-1/2 flex flex-col">
-                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-primary mb-1 xs:mb-2">${product.category}</p>
-                        <h3 class="font-display text-lg xs:text-xl sm:text-2xl font-black mb-2 xs:mb-3">${product.name}</h3>
-                        <p class="text-xl xs:text-2xl sm:text-3xl font-black text-primary mb-3 xs:mb-4">${formatPrice(product.price)}</p>
-                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm mb-4 xs:mb-6 line-clamp-3">${product.description || 'Description non disponible.'}</p>
-                        <div class="flex gap-2 xs:gap-3 mt-auto">
-                            <button class="flex-1 h-10 xs:h-12 rounded-xl bg-primary text-white font-black text-xs xs:text-sm hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-1.5 xs:gap-2" onclick="addToCart('${product.id}')">
-                                <span class="material-symbols-outlined text-[16px] xs:text-[18px]">shopping_bag</span>
-                                Ajouter
-                            </button>
-                            <a href="product.html?id=${product.id}" class="h-10 xs:h-12 px-4 xs:px-5 rounded-xl border-2 border-slate-200 dark:border-white/20 font-medium text-xs xs:text-sm hover:border-primary hover:text-primary transition-all flex items-center justify-center">
-                                Détails
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            quickViewModal.classList.remove('hidden');
-            setTimeout(() => modalContent.classList.remove('translate-y-full'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeQuickView() {
-            modalContent.classList.add('translate-y-full');
-            setTimeout(() => { quickViewModal.classList.add('hidden'); document.body.style.overflow = ''; }, 300);
-        }
-        modalClose?.addEventListener('click', closeQuickView);
-        modalOverlay?.addEventListener('click', closeQuickView);
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !quickViewModal.classList.contains('hidden')) closeQuickView(); });
-
-        // ==================== Add to Cart ====================
-        function addToCart(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            if (!product) return;
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const existing = cart.find(item => item.id === productId);
-            if (existing) { existing.quantity += 1; } else { cart.push({ ...product, quantity: 1 }); }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            showToast(`✅ ${product.name} ajouté`, 'success');
-            const cartBtn = document.querySelector('button[aria-label="Panier"]');
-            cartBtn?.classList.add('animate-[pulse_0.3s_ease]');
-            setTimeout(() => cartBtn?.classList.remove('animate-[pulse_0.3s_ease]'), 300);
-            const badge = cartBtn?.querySelector('.absolute');
-            if (badge) {
-                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-                badge.textContent = count > 9 ? '9+' : count;
-            }
-        }
-        window.addToCart = addToCart;
-
-        // ==================== Product Rendering ====================
+        // ==================== Product Rendering - DIRECT LINK TO product.html ====================
         function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
 
         function createProductCard(product, variant = 'grid') {
             const isSlider = variant === 'slider';
             const height = isSlider ? 'h-[320px] xs:h-[360px] sm:h-[400px]' : 'aspect-square';
             const radius = isSlider ? 'rounded-[1.5rem]' : 'rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem]';
+            
+            // ✅ Product card now redirects to product.html directly
             return `
-                <div class="product-card group cursor-pointer flex flex-col ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                <a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}">
                     <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
-                        <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10 flex flex-col gap-1.5 xs:gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.stopPropagation(); showToast('❤️ Favoris', 'success')" aria-label="Favoris">
+                        <!-- Wishlist Button -->
+                        <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
+                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')" aria-label="Ajouter aux favoris">
                                 <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                             </button>
                         </div>
+                        
+                        <!-- Product Image -->
                         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" />
+                        
+                        <!-- Hover Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <button class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 h-9 xs:h-10 rounded-lg xs:rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs xs:text-sm shadow-lg opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all active:scale-95 flex items-center justify-center gap-1.5 xs:gap-2" onclick="event.stopPropagation(); addToCart('${product.id}')">
-                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">add_shopping_cart</span>
-                            Ajouter
-                        </button>
+                        
+                        <!-- View Details Button -->
+                        <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
+                            <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg">
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>
+                                Voir détails
+                            </span>
+                        </div>
+                        
+                        <!-- Category Badge -->
                         <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                     </div>
+                    
+                    <!-- Product Info -->
                     <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
                         <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
                         <p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
                     </div>
-                </div>
+                </a>
             `;
         }
 
@@ -856,6 +768,7 @@
             document.querySelectorAll('.lazy-image').forEach(img => { if (img.complete) img.classList.add('loaded'); });
         }
 
+        // Static fallback products
         const staticProducts = [
             { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', description: 'Flagship Samsung avec écran Dynamic AMOLED 2X.' },
             { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', description: 'Puissance A17 Pro et titane aérospatial.' },
