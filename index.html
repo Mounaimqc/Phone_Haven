@@ -117,9 +117,17 @@
             50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
         }
 
-        /* إخفاء صور الـ Hero في الموبايل */
+        /* ✅ إظهار الصور في الموبايل - تعديل الحجم */
         @media (max-width: 1023px) {
-            .hero-image-desktop {
+            .hero-image-mobile {
+                display: block !important;
+                max-height: 250px;
+                margin-top: 20px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-image-mobile {
                 display: none !important;
             }
         }
@@ -240,25 +248,25 @@
                 <div class="absolute -bottom-16 xs:-bottom-20 -left-16 xs:-left-20 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[100px] xs:blur-[120px] pointer-events-none"></div>
 
                 <section class="relative overflow-hidden">
-                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[450px] xs:h-[500px] sm:h-[550px] lg:h-[600px] xl:h-[700px]">
+                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[500px] xs:h-[550px] sm:h-[600px] lg:h-[650px] xl:h-[700px]">
                         
                         <!-- Slide 1: Smartphones -->
                         <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
+                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8 text-center lg:text-left">
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
-                                        <div class="flex items-center gap-1.5 xs:gap-2">
+                                        <div class="flex items-center gap-1.5 xs:gap-2 justify-center lg:justify-start">
                                             <span class="h-px w-4 xs:w-6 sm:w-8 bg-primary"></span>
                                             <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Nouveautés 2024</span>
                                         </div>
                                         <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Les meilleurs <br><span class="text-primary italic">Smartphones</span> ici.
                                         </h1>
-                                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0">
                                             Découvrez notre sélection de smartphones et accessoires au meilleur prix en Algérie. Livraison 58 wilayas.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-2 xs:gap-3">
+                                    <div class="flex flex-wrap gap-2 xs:gap-3 justify-center lg:justify-start">
                                         <a href="search.html" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-primary px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-primary/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                             <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Téléphones</span>
@@ -269,43 +277,56 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="relative hidden lg:block hero-image-desktop">
+                                <!-- ✅ Image Desktop -->
+                                <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
                                 </div>
+                                <!-- ✅ Image Mobile -->
+                                <div class="relative lg:hidden hero-image-mobile w-full">
+                                    <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-slate-100 dark:bg-white/5 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/5">
+                                        <img alt="Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Slide 2: Accessories - ✅ Nouvelle Image Accessoires Smartphones -->
+                        <!-- Slide 2: Accessories -->
                         <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
+                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8 text-center lg:text-left">
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
-                                        <div class="flex items-center gap-1.5 xs:gap-2">
+                                        <div class="flex items-center gap-1.5 xs:gap-2 justify-center lg:justify-start">
                                             <span class="h-px w-4 xs:w-6 sm:w-8 bg-accent"></span>
                                             <span class="text-accent font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Accessoires Premium</span>
                                         </div>
                                         <h1 class="font-display text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Accessoires de <br><span class="text-accent italic">Qualité</span>
                                         </h1>
-                                        <p class="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                        <p class="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0">
                                             Coques, chargeurs, écouteurs et bien plus — tout pour protéger et personnaliser votre smartphone.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-2 xs:gap-3">
+                                    <div class="flex flex-wrap gap-2 xs:gap-3 justify-center lg:justify-start">
                                         <a href="search.html?category=Accessoire" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-accent px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-accent/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                             <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Accessoires</span>
                                         </a>
                                     </div>
                                 </div>
-                                <!-- ✅ NOUVELLE IMAGE - Accessoires Smartphones (Coques, Chargeurs, Écouteurs) -->
-                                <div class="relative hidden lg:block hero-image-desktop">
+                                <!-- ✅ Image Desktop -->
+                                <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10">
                                         <img alt="Accessoires Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                                    </div>
+                                </div>
+                                <!-- ✅ Image Mobile -->
+                                <div class="relative lg:hidden hero-image-mobile w-full">
+                                    <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/10">
+                                        <img alt="Accessoires Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop" />
                                     </div>
                                 </div>
                             </div>
