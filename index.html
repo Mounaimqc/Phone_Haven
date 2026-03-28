@@ -117,7 +117,7 @@
             50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
         }
 
-        /* ✅ إظهار الصور في الموبايل - تعديل الحجم */
+        /* إظهار الصور في الموبايل - تعديل الحجم */
         @media (max-width: 1023px) {
             .hero-image-mobile {
                 display: block !important;
@@ -277,14 +277,14 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Desktop -->
+                                <!-- Image Desktop -->
                                 <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Mobile -->
+                                <!-- Image Mobile -->
                                 <div class="relative lg:hidden hero-image-mobile w-full">
                                     <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-slate-100 dark:bg-white/5 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop" />
@@ -293,7 +293,7 @@
                             </div>
                         </div>
 
-                        <!-- Slide 2: Accessories -->
+                        <!-- Slide 2: Accessories - ✅ NOUVELLE IMAGE Accessoires Téléphone -->
                         <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
                                 <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8 text-center lg:text-left">
@@ -316,17 +316,17 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Desktop -->
+                                <!-- ✅ Image Desktop - Accessoires Téléphone (Coques, Chargeurs, Casques) -->
                                 <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10">
-                                        <img alt="Accessoires Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000&auto=format&fit=crop" />
+                                        <img alt="Accessoires Téléphone - Coques, Chargeurs, Casques" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1572569028738-411a197b83cd?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Mobile -->
+                                <!-- ✅ Image Mobile - Accessoires Téléphone -->
                                 <div class="relative lg:hidden hero-image-mobile w-full">
                                     <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/10">
-                                        <img alt="Accessoires Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop" />
+                                        <img alt="Accessoires Téléphone - Coques, Chargeurs, Casques" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1572569028738-411a197b83cd?q=80&w=800&auto=format&fit=crop" />
                                     </div>
                                 </div>
                             </div>
@@ -760,7 +760,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadStorefrontProducts();
-            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1572569028738-411a197b83cd?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
         });
 
         window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
