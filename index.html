@@ -116,6 +116,13 @@
             0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
             50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
         }
+
+        /* ✅ إخفاء صور الـ Hero في الموبايل */
+        @media (max-width: 1023px) {
+            .hero-image-desktop {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -233,9 +240,9 @@
                 <div class="absolute -bottom-16 xs:-bottom-20 -left-16 xs:-left-20 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[100px] xs:blur-[120px] pointer-events-none"></div>
 
                 <section class="relative overflow-hidden">
-                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[380px] xs:h-[420px] sm:h-[500px] lg:h-[600px] xl:h-[700px]">
+                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[450px] xs:h-[500px] sm:h-[550px] lg:h-[600px] xl:h-[700px]">
                         
-                        <!-- Slide 1 -->
+                        <!-- Slide 1: Smartphones -->
                         <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
                                 <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
@@ -262,17 +269,18 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="relative hidden lg:block">
+                                <!-- ✅ Image Desktop Only -->
+                                <div class="relative hidden lg:block hero-image-desktop">
                                     <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
-                                        <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
+                                        <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
-                        <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center bg-gradient-to-br from-slate-900 to-slate-800">
+                        <!-- Slide 2: Accessories - ✅ Image Fixée -->
+                        <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
                                 <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
@@ -294,9 +302,11 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="relative hidden lg:block">
-                                    <div class="w-full aspect-square bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
-                                        <img alt="Accessoires" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000&auto=format&fit=crop" />
+                                <!-- ✅ Image Desktop Only - Fixed -->
+                                <div class="relative hidden lg:block hero-image-desktop">
+                                    <div class="w-full aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10">
+                                        <img alt="Accessoires" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000&auto=format&fit=crop" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                                     </div>
                                 </div>
                             </div>
@@ -309,8 +319,8 @@
                             <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_left</span>
                         </button>
                         <div class="flex gap-1 xs:gap-1.5">
-                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="0"></button>
-                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-primary" data-slide="1"></button>
+                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-primary" data-slide="0"></button>
+                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="1"></button>
                         </div>
                         <button id="hero-next" class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Suivant">
                             <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_right</span>
@@ -484,7 +494,7 @@
             </section>
         </main>
 
-        <!-- Footer - Social Media Links Only at Bottom -->
+        <!-- Footer -->
         <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
@@ -495,14 +505,12 @@
                             </div>
                             <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                         </a>
-                        <!-- ✅ Texte amélioré - SANS les icônes sociales -->
                         <p class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
                             📍 Basée à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             🚚 Livraison rapide dans les 58 wilayas<br>
                             💵 Paiement à la livraison disponible
                         </p>
-                        <!-- ✅ Icônes sociales SUPPRIMÉES d'ici -->
                     </div>
 
                     <div>
@@ -535,7 +543,6 @@
                     </div>
                 </div>
 
-                <!-- ✅ Icônes sociales UNIQUEMENT en bas du footer -->
                 <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
                     <p>© 2024 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
@@ -563,7 +570,6 @@
     <script type="module">
         import { getProducts } from './db-service.js';
 
-        // DOM Elements
         const newArrivalsContainer = document.getElementById('new-arrivals-container');
         const featuredContainer = document.getElementById('featured-products-container');
         const heroSlider = document.getElementById('hero-slider');
@@ -591,22 +597,12 @@
         const totalSlides = 2;
         let allProducts = [];
 
-        // Mobile Menu
-        function openMobileMenu() {
-            mobileMenu.classList.add('open');
-            mobileMenuOverlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('open');
-            mobileMenuOverlay.style.display = 'none';
-            document.body.style.overflow = '';
-        }
+        function openMobileMenu() { mobileMenu.classList.add('open'); mobileMenuOverlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { mobileMenu.classList.remove('open'); mobileMenuOverlay.style.display = 'none'; document.body.style.overflow = ''; }
         if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
         if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
         if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // Hero Slider
         function updateHero() {
             if (heroSlider) {
                 heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -624,7 +620,6 @@
         heroSlider?.addEventListener('mouseenter', () => clearInterval(heroInterval));
         heroSlider?.addEventListener('mouseleave', () => { heroInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); }, 8000); });
 
-        // New Arrivals Slider
         if (newNext && newArrivalsContainer) {
             newNext.addEventListener('click', () => {
                 const scrollAmount = window.innerWidth < 640 ? (window.innerWidth < 375 ? 220 : 260) : 340;
@@ -638,17 +633,12 @@
             });
         }
 
-        // Voice Search
         function initVoiceSearch(button, input) {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                button.style.display = 'none';
-                return;
-            }
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { button.style.display = 'none'; return; }
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
             recognition.lang = 'fr-FR';
             recognition.interimResults = false;
-
             button.addEventListener('click', () => {
                 if (button.classList.contains('voice-search-active')) { recognition.stop(); return; }
                 button.classList.add('voice-search-active');
@@ -667,12 +657,9 @@
         if (voiceSearchDesktop && desktopSearch) initVoiceSearch(voiceSearchDesktop, desktopSearch);
         if (voiceSearchMobile && mobileSearch) initVoiceSearch(voiceSearchMobile, mobileSearch);
 
-        // Theme Toggle
         function initThemeToggle() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
             themeToggle?.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
@@ -683,7 +670,6 @@
         }
         initThemeToggle();
 
-        // Category Chips
         categoryChips.forEach(chip => {
             chip.addEventListener('click', () => {
                 categoryChips.forEach(c => c.classList.remove('active'));
@@ -695,7 +681,6 @@
             });
         });
 
-        // Toast Notifications
         function showToast(message, type = 'info', duration = 3000) {
             const toast = document.createElement('div');
             const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
@@ -706,7 +691,6 @@
             setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, duration);
         }
 
-        // Product Rendering
         function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
 
         function createProductCard(product, variant = 'grid') {
@@ -756,7 +740,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadStorefrontProducts();
-            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
         });
 
         window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
