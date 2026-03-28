@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Suivi Commande | Phone Haven</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="description" content="Suivi de commande Phone Haven - Suivez votre commande en temps réel en Algérie" />
+    <title>Suivi Commande | Phone Haven Algérie</title>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -21,6 +26,7 @@
                         "accent": "#f59e0b",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
+                        "success": "#10b981",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -30,295 +36,832 @@
                         "3xl": "1.5rem",
                         "4xl": "2rem",
                     },
+                    screens: {
+                        'xs': '320px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                    }
                 },
             },
         }
     </script>
+    
     <style>
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
         .glass {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .mobile-menu.open { transform: translateX(0); }
+
+        html { scroll-behavior: smooth; }
+
+        @media (max-width: 640px) {
+            input, select, textarea { font-size: 16px !important; }
+            button, [role="button"] { 
+                min-height: 44px; 
+                min-width: 44px;
+                touch-action: manipulation;
+            }
+            body { overflow-x: hidden; }
+            a, button { -webkit-tap-highlight-color: transparent; }
+        }
+
+        @media (max-width: 375px) {
+            .text-responsive { font-size: 0.875rem; }
+            .btn-responsive { padding: 0.75rem 1rem; font-size: 0.875rem; }
+            .card-responsive { border-radius: 1rem; }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .lazy-image { opacity: 0; transition: opacity 0.4s ease; }
+        .lazy-image.loaded { opacity: 1; }
+
+        @media (hover: none) {
+            .product-card:active { transform: scale(0.98); transition: transform 0.1s; }
+        }
+
+        @supports (padding: max(0px)) {
+            .sticky-bottom-bar {
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
+            }
+        }
+
+        .voice-search-active {
+            animation: voicePulse 1.5s infinite;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+        }
+        @keyframes voicePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
+
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+        }
+        .category-pulse {
+            animation: softPulse 3.5s infinite;
+        }
+
+        .group-hover\:scale-105 {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-pulse {
+            animation: badgePulse 2s infinite;
+        }
+
+        /* ✅ Stepper Animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .stepper-item {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .stepper-item:nth-child(1) { animation-delay: 0.1s; }
+        .stepper-item:nth-child(2) { animation-delay: 0.2s; }
+        .stepper-item:nth-child(3) { animation-delay: 0.3s; }
+        .stepper-item:nth-child(4) { animation-delay: 0.4s; }
+
+        /* ✅ Status Badge Colors */
+        .status-pending { @apply bg-slate-100 dark:bg-white/5 text-slate-500; }
+        .status-processing { @apply bg-accent/10 text-accent border-accent/20; }
+        .status-shipped { @apply bg-primary/10 text-primary border-primary/20; }
+        .status-delivered { @apply bg-success/10 text-success border-success/20; }
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 min-h-screen">
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
+
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Premium Navigation -->
-        <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
+
+        <!-- Premium Navigation (Same as index.html) -->
+        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                <div class="flex items-center gap-10">
-                    <a href="index.html" class="flex items-center gap-2 group">
-                        <div
-                            class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                        </div>
-                        <h2 class="font-display text-2xl font-black tracking-tighter text-slate-900 dark:text-white">
-                            Phone Haven<span class="text-primary italic">.</span></h2>
-                    </a>
-                </div>
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-xs font-black uppercase tracking-widest hover:text-primary transition-all"
-                        href="index.html">Atelier</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs font-black uppercase tracking-widest hover:text-primary transition-all"
-                        href="search.html">Collection</a>
+                
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
+                    <div class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                    </div>
+                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
+                    
+                    <!-- Desktop Search with Voice -->
+                    <div class="hidden md:flex relative items-center">
+                        <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
+                        <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                        </button>
+                    </div>
+
+                    <!-- Wishlist Button -->
+                    <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" onclick="showToast('❤️ Fonctionnalité bientôt disponible', 'info')">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar with Voice -->
+            <div class="lg:hidden mt-2 xs:mt-3 px-1">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
+                    <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                    </button>
+                </div>
             </div>
         </header>
 
-        <main class="mx-auto w-full max-w-5xl flex-1 px-6 py-20 md:px-20">
-            <!-- Breadcrumbs -->
-            <nav class="flex items-center gap-3 mb-16 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
-                <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                <span class="text-primary font-black">Parcel Locator</span>
-            </nav>
-
-            <section
-                class="glass border border-white/5 p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden mb-12">
-                <div
-                    class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+        <!-- Mobile Menu (Same as index.html) -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden" style="display: none;"></div>
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/5">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                        </div>
+                        <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                    </a>
+                    <button id="mobile-menu-close" class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all" aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
+                    </button>
                 </div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-3 text-accent mb-6">
-                        <span class="material-symbols-outlined text-sm font-bold fill-1">potted_plant</span>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Real-time Logistics</span>
-                    </div>
-                    <h1 class="font-display text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
-                        Parcel Locator</h1>
-                    <p class="text-slate-500 dark:text-slate-400 text-lg font-medium mb-12 max-w-xl">Enter your
-                        procurement credentials to verify the transit status of your selected pieces.</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-                        <div class="space-y-3">
-                            <label
-                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Identifier</label>
-                            <input id="tracking-order-id"
-                                class="w-full bg-slate-50 dark:bg-white/5 border-none rounded-3xl py-5 px-8 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-300"
-                                placeholder="Order ID / UUID" type="text" />
-                        </div>
-                        <div class="space-y-3">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Contact
-                                Phone</label>
-                            <input id="tracking-phone"
-                                class="w-full bg-slate-50 dark:bg-white/5 border-none rounded-3xl py-5 px-8 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-300"
-                                placeholder="0XXXXXXXXX" type="tel" />
+                <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
+                    <ul class="flex flex-col gap-1.5 xs:gap-2">
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span> Téléphones</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span> Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html#new-arrivals"><span class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-bold" href="tracking.html"><span class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi Commande</a></li>
+                    </ul>
+
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Catégories</p>
+                        <div class="flex flex-wrap gap-2 px-2">
+                            <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱 Téléphones</a>
+                            <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧 Accessoires</a>
+                            <a href="search.html?category=Offres" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥 Offres</a>
                         </div>
                     </div>
+                </nav>
 
-                    <div class="mt-12">
-                        <button id="track-btn"
-                            class="group relative flex h-16 w-full md:w-64 items-center justify-center overflow-hidden rounded-[2rem] bg-slate-900 dark:bg-primary text-white shadow-2xl transition-all active:scale-95">
-                            <span
-                                class="relative z-10 font-display text-xs font-black tracking-[0.2em] uppercase flex items-center gap-3">
-                                <span class="material-symbols-outlined text-sm">radar</span>
-                                Initiate Search
-                            </span>
+                <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
+                    <div class="flex gap-1.5 xs:gap-2">
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
+                        <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <main class="flex-1">
+
+            <!-- Page Header -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Breadcrumbs -->
+                    <nav class="flex items-center gap-2 mb-4 xs:mb-6 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                        <a class="hover:text-primary transition-colors" href="index.html">Accueil</a>
+                        <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                        <span class="text-primary font-black">Suivi Commande</span>
+                    </nav>
+
+                    <!-- Title -->
+                    <div class="text-center lg:text-left">
+                        <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight mb-2">
+                            📦 Suivi de Commande
+                        </h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">
+                            Entrez votre numéro de commande pour suivre votre livraison en temps réel
+                        </p>
+                    </div>
+                </div>
             </section>
-            <!-- Order Status Details (Visible after search) -->
-            <div id="tracking-results" class="hidden space-y-12">
-                <!-- Stepper Section -->
-                <section class="glass p-12 rounded-[3.5rem] border border-white/5 relative overflow-hidden">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16">
-                        <div>
-                            <div class="flex items-center gap-2 text-primary mb-2">
-                                <span class="material-symbols-outlined text-sm font-bold">verified</span>
-                                <span id="res-order-id" class="text-[10px] font-black uppercase tracking-widest">Order
-                                    Identifier</span>
+
+            <!-- Tracking Form Card -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+                        <!-- Decorative Background -->
+                        <div class="absolute top-0 right-0 w-48 h-48 xs:w-64 xs:h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="absolute bottom-0 left-0 w-48 h-48 xs:w-64 xs:h-64 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+                        <div class="relative z-10">
+                            <!-- Header -->
+                            <div class="flex items-center gap-2 text-primary mb-6 xs:mb-8">
+                                <span class="material-symbols-outlined text-lg xs:text-xl font-bold">radar</span>
+                                <span class="text-[10px] xs:text-xs font-black uppercase tracking-widest">Localisation en Temps Réel</span>
                             </div>
-                            <h3 id="res-order-date"
-                                class="font-display text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-                                Transit Logistics</h3>
-                        </div>
-                        <div class="px-6 py-3 bg-primary/10 rounded-2xl border border-primary/20">
-                            <span class="text-[10px] font-black uppercase tracking-widest text-primary">Live
-                                Status:</span>
-                            <span id="res-order-status"
-                                class="ml-2 font-black text-xs uppercase tracking-widest text-primary">Analyzing...</span>
+
+                            <!-- Form -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6">
+                                <div class="space-y-2 xs:space-y-3">
+                                    <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+                                        Numéro de Commande
+                                    </label>
+                                    <input id="tracking-order-id"
+                                        class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                        placeholder="Ex: PH-2026-XXXX" type="text" />
+                                </div>
+                                <div class="space-y-2 xs:space-y-3">
+                                    <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+                                        Téléphone (Optionnel)
+                                    </label>
+                                    <input id="tracking-phone"
+                                        class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                        placeholder="05XX XX XX XX" type="tel" />
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="mt-6 xs:mt-8">
+                                <button id="track-btn"
+                                    class="group relative flex h-12 xs:h-14 w-full sm:w-auto items-center justify-center gap-2 xs:gap-3 overflow-hidden rounded-xl xs:rounded-2xl bg-primary text-white shadow-lg shadow-primary/25 transition-all active:scale-95 px-6 xs:px-8">
+                                    <span class="material-symbols-outlined text-[18px] xs:text-[20px]">search</span>
+                                    <span class="font-display text-xs xs:text-sm font-black tracking-wide">Suivre ma commande</span>
+                                </button>
+                            </div>
+
+                            <!-- Helper Text -->
+                            <p class="text-[9px] xs:text-[10px] text-slate-400 mt-4 xs:mt-6 text-center sm:text-left">
+                                💡 Vous trouverez votre numéro de commande dans l'email de confirmation ou le SMS reçu.
+                            </p>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <!-- Stepper -->
-                    <div class="relative flex flex-col md:flex-row justify-between w-full mt-12 mb-8" id="stepper">
-                        <!-- Steps will be dynamically styled -->
-                    </div>
-                </section>
-
-                <!-- Two Column Detail Section -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <!-- Order Summary -->
-                    <section class="lg:col-span-2 glass p-10 rounded-[3rem] border border-white/5">
-                        <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8 ml-2">Procured
-                            Piece</h3>
-                        <div id="res-items-container" class="space-y-8">
-                            <!-- Item details here -->
-                        </div>
-                        <div class="mt-12 pt-8 border-t border-white/5 flex justify-between items-center">
-                            <span
-                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Settlement
-                                Total</span>
-                            <span id="res-total"
-                                class="font-display text-3xl font-black text-slate-900 dark:text-white">0 د.ج</span>
-                        </div>
-                    </section>
-
-                    <!-- Shipping Info -->
-                    <div class="space-y-8">
-                        <section class="glass p-10 rounded-[3rem] border border-white/5">
-                            <div class="flex items-center gap-3 text-primary mb-6">
-                                <span class="material-symbols-outlined text-sm font-bold">location_on</span>
-                                <h3 class="text-[10px] font-black uppercase tracking-[0.2em]">Deployment Destination
+            <!-- Tracking Results (Hidden by default) -->
+            <div id="tracking-results" class="hidden px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8">
+                <div class="max-w-4xl mx-auto space-y-6 xs:space-y-8">
+                    
+                    <!-- Order Header Card -->
+                    <div class="glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                            <div>
+                                <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Commande</p>
+                                <h3 id="res-order-id" class="font-display text-lg xs:text-xl font-black text-slate-900 dark:text-white">
+                                    PH-2026-XXXX
                                 </h3>
                             </div>
-                            <div id="res-address"
-                                class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed space-y-1">
-                                <!-- Address details here -->
+                            <div id="status-badge" class="px-4 py-2 rounded-xl border status-pending">
+                                <span id="res-order-status" class="text-[10px] xs:text-xs font-black uppercase tracking-widest">En attente</span>
                             </div>
-                        </section>
-
-                        <div class="p-8 rounded-[2.5rem] bg-slate-900 dark:bg-white/5 text-center">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Need
-                                Assistance?</p>
-                            <a href="#"
-                                class="text-xs font-black text-primary uppercase tracking-widest border-b border-primary/30 pb-1">Contact
-                                Logistics</a>
                         </div>
+                        <p id="res-order-date" class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm">
+                            Commandé le --/--/----
+                        </p>
+                    </div>
+
+                    <!-- Stepper / Timeline -->
+                    <div class="glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8">
+                        <h4 class="font-display text-sm xs:text-base font-black text-slate-900 dark:text-white mb-6 xs:mb-8">
+                            État de la livraison
+                        </h4>
+                        
+                        <div class="relative" id="stepper">
+                            <!-- Stepper items will be rendered here -->
+                        </div>
+                    </div>
+
+                    <!-- Order Details Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 xs:gap-8">
+                        
+                        <!-- Product Summary -->
+                        <div class="lg:col-span-2 glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8">
+                            <h4 class="font-display text-sm xs:text-base font-black text-slate-900 dark:text-white mb-4 xs:mb-6">
+                                Produit commandé
+                            </h4>
+                            <div id="res-items-container" class="flex flex-col sm:flex-row gap-4 xs:gap-6 items-center">
+                                <!-- Product details will be rendered here -->
+                            </div>
+                            <div class="mt-6 xs:mt-8 pt-6 xs:pt-8 border-t border-white/5 flex justify-between items-center">
+                                <span class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Total</span>
+                                <span id="res-total" class="font-display text-lg xs:text-xl font-black text-primary">0 د.ج</span>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address -->
+                        <div class="glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8">
+                            <div class="flex items-center gap-2 text-primary mb-4 xs:mb-6">
+                                <span class="material-symbols-outlined text-lg">location_on</span>
+                                <h4 class="font-display text-sm xs:text-base font-black">Adresse de livraison</h4>
+                            </div>
+                            <div id="res-address" class="text-slate-600 dark:text-slate-300 text-xs xs:text-sm space-y-1 xs:space-y-2">
+                                <!-- Address will be rendered here -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Help Card -->
+                    <div class="glass rounded-3xl xs:rounded-[2rem] border border-white/5 p-6 xs:p-8 text-center">
+                        <div class="w-12 h-12 xs:w-14 xs:h-14 mx-auto mb-3 xs:mb-4 rounded-2xl bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl xs:text-2xl text-primary">support_agent</span>
+                        </div>
+                        <h4 class="font-display text-sm xs:text-base font-black text-slate-900 dark:text-white mb-2">
+                            Besoin d'aide ?
+                        </h4>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm mb-4 xs:mb-6">
+                            Notre équipe est disponible pour répondre à vos questions concernant votre commande.
+                        </p>
+                        <a href="https://wa.me/213XXXXXXXXX" target="_blank" 
+                           class="inline-flex items-center gap-2 px-5 xs:px-6 py-2.5 xs:py-3 rounded-xl bg-success text-white font-medium text-xs xs:text-sm hover:bg-success/90 transition-all">
+                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">chat</span>
+                            Contacter sur WhatsApp
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Empty State (When no results) -->
+            <div id="empty-state" class="hidden px-3 xs:px-4 sm:px-6 md:px-20 py-12 xs:py-16">
+                <div class="max-w-md mx-auto text-center">
+                    <div class="w-16 h-16 xs:w-20 xs:h-20 mx-auto mb-4 xs:mb-6 rounded-2xl xs:rounded-3xl bg-slate-100 dark:bg-white/5 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl xs:text-3xl text-slate-400">search_off</span>
+                    </div>
+                    <h3 class="font-display text-lg xs:text-xl font-black text-slate-900 dark:text-white mb-2">
+                        Commande non trouvée
+                    </h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm mb-6">
+                        Vérifiez le numéro de commande et réessayez, ou contactez notre support pour assistance.
+                    </p>
+                    <button onclick="resetTracking()" class="inline-flex items-center gap-2 px-5 xs:px-6 py-2.5 xs:py-3 rounded-xl bg-primary text-white font-medium text-xs xs:text-sm hover:bg-primary/90 transition-all">
+                        <span class="material-symbols-outlined text-[14px] xs:text-[16px]">refresh</span>
+                        Réessayer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Sticky Bottom Bar (Same as index.html) -->
+            <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
+                <div class="mx-3 xs:mx-4">
+                    <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
+                        <a href="index.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">home</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Accueil</span>
+                        </a>
+                        <a href="search.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
+                        </a>
+                        <a href="tracking.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl bg-primary/10 transition-all">
+                            <span class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-primary">Suivi</span>
+                        </a>
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
+                        </a>
                     </div>
                 </div>
             </div>
+
         </main>
-        <script type="module">
-            import { getOrderById } from './db-service.js';
 
-            const trackBtn = document.getElementById('track-btn');
-            const orderInput = document.getElementById('tracking-order-id');
-            const phoneInput = document.getElementById('tracking-phone');
-            const resultsContainer = document.getElementById('tracking-results');
+        <!-- Footer (Same as index.html with 2026) -->
+        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
+                    <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
+                        <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
+                            <div class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                                <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                            </div>
+                            <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                        </a>
+                        <p class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                            📍 Basée à Sétif, Algérie<br>
+                            📱 Smartphones & Accessoires 100% originaux<br>
+                            🚚 Livraison rapide dans les 58 wilayas<br>
+                            💵 Paiement à la livraison disponible
+                        </p>
+                    </div>
 
-            const resOrderId = document.getElementById('res-order-id');
-            const resOrderDate = document.getElementById('res-order-date');
-            const resOrderStatus = document.getElementById('res-order-status');
-            const resItemsContainer = document.getElementById('res-items-container');
-            const resTotal = document.getElementById('res-total');
-            const resAddress = document.getElementById('res-address');
-            const stepper = document.getElementById('stepper');
+                    <div>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Navigation</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                            <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">Nouveautés</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone">Téléphones</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Accessoire">Accessoires</a></li>
+                        </ul>
+                    </div>
 
-            function formatPrice(price) {
-                return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
+                    <div>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Assistance</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Légal</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                            <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    <p>© 2026 Phone Haven. Tous droits réservés.</p>
+                    <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://instagram.com" target="_blank" aria-label="Instagram">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Instagram</span>
+                        </a>
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://facebook.com" target="_blank" aria-label="Facebook">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Facebook</span>
+                        </a>
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]"></div>
+
+    <script type="module">
+        import { getOrderById } from './db-service.js';
+
+        // Elements
+        const trackBtn = document.getElementById('track-btn');
+        const orderInput = document.getElementById('tracking-order-id');
+        const phoneInput = document.getElementById('tracking-phone');
+        const resultsContainer = document.getElementById('tracking-results');
+        const emptyState = document.getElementById('empty-state');
+
+        const resOrderId = document.getElementById('res-order-id');
+        const resOrderDate = document.getElementById('res-order-date');
+        const resOrderStatus = document.getElementById('res-order-status');
+        const statusBadge = document.getElementById('status-badge');
+        const resItemsContainer = document.getElementById('res-items-container');
+        const resTotal = document.getElementById('res-total');
+        const resAddress = document.getElementById('res-address');
+        const stepper = document.getElementById('stepper');
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const themeToggle = document.getElementById('theme-toggle');
+        const toastContainer = document.getElementById('toast-container');
+
+        // Mobile Menu Functions
+        function openMobileMenu() { mobileMenu.classList.add('open'); mobileMenuOverlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { mobileMenu.classList.remove('open'); mobileMenuOverlay.style.display = 'none'; document.body.style.overflow = ''; }
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+        if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Toast Notification
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
+            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
+            toast.innerHTML = `<span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span><span class="text-white text-xs xs:text-sm font-medium flex-1">${message}</span><button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">close</span></button>`;
+            toastContainer.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, duration);
+        }
+
+        // Format Price
+        function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
+
+        // Format Date
+        function formatDate(date) {
+            if (!date) return 'Date inconnue';
+            const d = date.toDate ? date.toDate() : new Date(date);
+            return d.toLocaleDateString('fr-DZ', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        // Get Status Class
+        function getStatusClass(status) {
+            const map = {
+                'Pending': 'status-pending',
+                'Processing': 'status-processing',
+                'Shipped': 'status-shipped',
+                'Delivered': 'status-delivered'
+            };
+            return map[status] || 'status-pending';
+        }
+
+        // Get Status Label (French)
+        function getStatusLabel(status) {
+            const map = {
+                'Pending': 'En attente',
+                'Processing': 'En préparation',
+                'Shipped': 'En transit',
+                'Delivered': 'Livrée ✅'
+            };
+            return map[status] || status;
+        }
+
+        // Render Stepper
+        function renderStepper(currentStatus) {
+            const steps = [
+                { key: 'Pending', label: 'Confirmée', icon: 'check_circle', desc: 'Commande reçue' },
+                { key: 'Processing', label: 'Préparation', icon: 'package_2', desc: 'En cours d\'emballage' },
+                { key: 'Shipped', label: 'Expédiée', icon: 'local_shipping', desc: 'En route vers vous' },
+                { key: 'Delivered', label: 'Livrée', icon: 'done_all', desc: 'Commande livrée' }
+            ];
+
+            const statusIndex = steps.findIndex(s => s.key === currentStatus);
+            const progressionLine = statusIndex >= 0 ? (statusIndex / (steps.length - 1)) * 100 : 0;
+
+            stepper.innerHTML = `
+                <div class="absolute top-6 xs:top-7 left-8 xs:left-10 right-8 xs:right-10 h-0.5 xs:h-1 bg-slate-200 dark:bg-white/10 hidden sm:block">
+                    <div class="h-full bg-primary transition-all duration-700 ease-out rounded-full" style="width: ${progressionLine}%"></div>
+                </div>
+            `;
+
+            steps.forEach((step, index) => {
+                const isActive = index <= (statusIndex === -1 ? 0 : statusIndex);
+                const isCurrent = index === statusIndex;
+                
+                const stepDiv = document.createElement('div');
+                stepDiv.className = `stepper-item relative flex items-start sm:items-center gap-3 xs:gap-4 sm:gap-6 pb-6 xs:pb-8 sm:pb-0 ${index < steps.length - 1 ? 'sm:mb-0' : ''}`;
+                
+                stepDiv.innerHTML = `
+                    <div class="flex-shrink-0 flex h-10 w-10 xs:h-12 xs:w-12 items-center justify-center rounded-full transition-all duration-500 ${isActive ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-slate-100 dark:bg-white/5 text-slate-400'}">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]">${step.icon}</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-0.5 xs:mb-1">
+                            <span class="text-[10px] xs:text-xs font-black ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-400'}">${step.label}</span>
+                            ${isCurrent && !isActive ? `<span class="px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[8px] xs:text-[9px] font-black uppercase">Actuel</span>` : ''}
+                        </div>
+                        <p class="text-[9px] xs:text-[10px] ${isActive ? 'text-slate-500 dark:text-slate-400' : 'text-slate-300 dark:text-slate-600'}">${step.desc}</p>
+                    </div>
+                `;
+                stepper.appendChild(stepDiv);
+            });
+        }
+
+        // Render Order Details
+        function renderOrder(order) {
+            const shortId = order.id?.substring(0, 12).toUpperCase() || 'PH-2026-XXXX';
+            resOrderId.textContent = shortId;
+            resOrderDate.textContent = `Commandé le ${formatDate(order.createdAt)}`;
+            resOrderStatus.textContent = getStatusLabel(order.status);
+            statusBadge.className = `px-4 py-2 rounded-xl border ${getStatusClass(order.status)}`;
+            resTotal.textContent = formatPrice(order.total);
+
+            // Address
+            resAddress.innerHTML = `
+                <p class="font-black text-slate-900 dark:text-white uppercase tracking-wider text-xs">${order.customerName || 'Client'}</p>
+                <p class="opacity-80">${order.address || 'Adresse non spécifiée'}</p>
+                <p class="opacity-80">${order.commune ? order.commune + ', ' : ''}${order.wilaya || 'Wilaya'}</p>
+                <p class="text-primary mt-2 font-medium">${order.customerPhone || 'Numéro non spécifié'}</p>
+            `;
+
+            // Product
+            resItemsContainer.innerHTML = `
+                <div class="h-20 xs:h-24 w-20 xs:w-24 bg-slate-100 dark:bg-white/5 rounded-xl xs:rounded-2xl overflow-hidden flex-shrink-0 border border-white/5">
+                    <img src="${order.productImage || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&q=80'}" 
+                         class="h-full w-full object-cover" 
+                         alt="${order.productName || 'Produit'}" />
+                </div>
+                <div class="flex-1 text-center sm:text-left">
+                    <p class="text-[9px] xs:text-[10px] font-black text-primary uppercase tracking-wider mb-1">${order.category || 'Produit'}</p>
+                    <h4 class="font-display text-sm xs:text-base font-black text-slate-900 dark:text-white mb-1">${order.productName || 'Phone Haven Produit'}</h4>
+                    <p class="text-[9px] xs:text-[10px] font-medium text-slate-400">Qté: ${order.quantity || 1}</p>
+                </div>
+                <div class="sm:text-right">
+                    <p class="font-display text-sm xs:text-base font-black text-primary">${formatPrice(order.total)}</p>
+                    <p class="text-[9px] xs:text-[10px] font-medium text-slate-400 mt-1">Paiement à la livraison</p>
+                </div>
+            `;
+
+            // Stepper
+            renderStepper(order.status);
+        }
+
+        // Reset Tracking
+        function resetTracking() {
+            orderInput.value = '';
+            phoneInput.value = '';
+            resultsContainer.classList.add('hidden');
+            emptyState.classList.add('hidden');
+            orderInput.focus();
+        }
+
+        // Track Order
+        async function trackOrder() {
+            let id = orderInput.value.trim().replace('#', '').toUpperCase();
+            const phone = phoneInput.value.trim();
+
+            if (!id) {
+                showToast('⚠️ Veuillez entrer un numéro de commande', 'warning');
+                orderInput.focus();
+                return;
             }
 
-            trackBtn.addEventListener('click', async () => {
-                let id = orderInput.value.trim().replace('#', '');
-                const phone = phoneInput.value.trim();
+            // Loading state
+            trackBtn.disabled = true;
+            const originalBtnContent = trackBtn.innerHTML;
+            trackBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px] xs:text-[20px]">sync</span><span class="font-display text-xs xs:text-sm font-black tracking-wide">Recherche...</span>`;
 
-                if (!id) {
-                    alert('Please provide a valid Identifier.');
+            try {
+                const order = await getOrderById(id);
+
+                if (!order || (phone && order.customerPhone !== phone)) {
+                    showToast('❌ Commande non trouvée', 'error');
+                    resultsContainer.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
                     return;
                 }
 
-                trackBtn.disabled = true;
-                trackBtn.querySelector('span').innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Syncing Archive...';
+                renderOrder(order);
+                resultsContainer.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                showToast('✅ Commande trouvée !', 'success');
 
-                try {
-                    const order = await getOrderById(id);
-
-                    if (!order || (phone && order.customerPhone !== phone)) {
-                        alert('Logistics alert: Order signature not found in archive. Verify Identifier.');
-                        resultsContainer.classList.add('hidden');
-                        return;
-                    }
-
-                    renderOrder(order);
+            } catch (error) {
+                console.error("Tracking error:", error);
+                showToast('⚠️ Erreur de connexion, réessayez', 'error');
+                // Demo mode: show sample order for testing
+                if (id === 'DEMO' || id === 'TEST') {
+                    const demoOrder = {
+                        id: 'PH-DEMO-2026',
+                        status: 'Shipped',
+                        createdAt: new Date(),
+                        total: 45000,
+                        customerName: 'Ahmed Benali',
+                        customerPhone: '0555123456',
+                        address: 'Rue des Frères Bouadou',
+                        commune: 'Sétif',
+                        wilaya: 'Sétif',
+                        productName: 'Samsung Galaxy A54',
+                        productImage: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80',
+                        category: 'Téléphone',
+                        quantity: 1
+                    };
+                    renderOrder(demoOrder);
                     resultsContainer.classList.remove('hidden');
+                    emptyState.classList.add('hidden');
                     resultsContainer.scrollIntoView({ behavior: 'smooth' });
-
-                } catch (error) {
-                    console.error("Tracking error:", error);
-                    alert('System Interrupt: Evaluation failed. Retrying sync...');
-                } finally {
-                    trackBtn.disabled = false;
-                    trackBtn.querySelector('span').innerHTML = '<span class="material-symbols-outlined text-sm">radar</span> Initiate Search';
+                    showToast('🎭 Mode démo activé', 'info');
                 }
+            } finally {
+                trackBtn.disabled = false;
+                trackBtn.innerHTML = originalBtnContent;
+            }
+        }
+
+        // Theme Toggle
+        function initThemeToggle() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) { 
+                document.documentElement.classList.add('dark'); 
+            }
+            themeToggle?.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
+                showToast(isDark ? '🌙 Mode sombre' : '☀️ Mode clair', 'info');
+            });
+        }
+
+        // Voice Search (same as index.html)
+        function initVoiceSearch(button, input) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { 
+                button.style.display = 'none'; return; 
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR';
+            recognition.interimResults = false;
+            
+            button.addEventListener('click', () => {
+                if (button.classList.contains('voice-search-active')) { recognition.stop(); return; }
+                button.classList.add('voice-search-active');
+                showToast('🎤 Dites votre numéro de commande...', 'info', 5000);
+                recognition.start();
+                
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    input.value = transcript.toUpperCase();
+                    showToast(`🔍 Recherche: "${transcript}"`, 'success', 2000);
+                };
+                recognition.onerror = () => { showToast('❌ Erreur de reconnaissance', 'error'); button.classList.remove('voice-search-active'); };
+                recognition.onend = () => { button.classList.remove('voice-search-active'); };
+            });
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Track button
+            if (trackBtn) trackBtn.addEventListener('click', trackOrder);
+            
+            // Enter key on inputs
+            if (orderInput) orderInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') trackOrder(); });
+            if (phoneInput) phoneInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') trackOrder(); });
+
+            // Voice search
+            const voiceBtnDesktop = document.getElementById('voice-search-desktop');
+            const voiceBtnMobile = document.getElementById('voice-search-mobile');
+            const desktopSearch = document.getElementById('desktop-search');
+            const mobileSearch = document.getElementById('mobile-search');
+            
+            if (voiceBtnDesktop && desktopSearch) initVoiceSearch(voiceBtnDesktop, desktopSearch);
+            if (voiceBtnMobile && mobileSearch) initVoiceSearch(voiceBtnMobile, mobileSearch);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initThemeToggle();
+            setupEventListeners();
+            
+            // Preload images
+            ['https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80'].forEach(src => { 
+                const img = new Image(); img.src = src; 
             });
 
-            function renderOrder(order) {
-                const shortId = order.id.substring(0, 8).toUpperCase();
-                resOrderId.textContent = `Signature: ${shortId}`;
-                resOrderDate.textContent = `Procured on ${order.createdAt?.toDate ? order.createdAt.toDate().toLocaleDateString('fr-DZ', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A'}`;
-                resOrderStatus.textContent = order.status;
-                resTotal.textContent = formatPrice(order.total);
-
-                resAddress.innerHTML = `
-                <p class="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs mb-3">${order.customerName}</p>
-                <div class="space-y-0.5 opacity-80 font-bold">
-                    <p>${order.address}</p>
-                    <p>${order.commune}, ${order.wilaya}</p>
-                    <p class="text-primary mt-2">${order.customerPhone}</p>
-                </div>
-            `;
-
-                resItemsContainer.innerHTML = `
-                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start group">
-                    <div class="h-32 w-32 bg-slate-50 dark:bg-white/5 rounded-3xl overflow-hidden flex-shrink-0 border border-white/5">
-                        <img src="${order.productImage || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&q=80'}" class="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
-                    </div>
-                    <div class="flex-grow text-center md:text-left">
-                        <p class="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-2">Authenticated Piece</p>
-                        <h4 class="font-display text-xl font-black text-slate-900 dark:text-white mb-2">${order.productName || 'Phone Haven Piece'}</h4>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Archive ID: ${order.productId || 'INTERNAL-REF'}</p>
-                    </div>
-                    <div class="md:text-right">
-                        <p class="font-display text-xl font-black text-slate-900 dark:text-white">${formatPrice(order.total)}</p>
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Single Allocation</p>
-                    </div>
-                </div>
-            `;
-
-                renderStepper(order.status);
+            // Handle URL params for direct order tracking
+            const urlParams = new URL(window.location.href).searchParams;
+            if (urlParams.has('order')) {
+                orderInput.value = urlParams.get('order');
+                setTimeout(trackOrder, 500);
             }
+        });
 
-            function renderStepper(status) {
-                const steps = [
-                    { key: 'Pending', label: 'Procurement', icon: 'check_circle' },
-                    { key: 'Processing', label: 'Curation', icon: 'settings_input_component' },
-                    { key: 'Shipped', label: 'Transit', icon: 'local_shipping' },
-                    { key: 'Delivered', label: 'Arrival', icon: 'inventory_2' }
-                ];
+        // Expose globally
+        window.resetTracking = resetTracking;
+        window.showToast = showToast;
 
-                const statusIndex = steps.findIndex(s => s.key === status);
-                const progressionLine = (statusIndex / (steps.length - 1)) * 100;
-
-                stepper.innerHTML = `
-                <div class="absolute top-[1.35rem] left-10 right-10 h-[2px] bg-slate-100 dark:bg-white/5 hidden md:block">
-                    <div class="h-full bg-primary transition-all duration-1000 ease-out" style="width: ${progressionLine}%"></div>
-                </div>
-            `;
-
-                steps.forEach((step, index) => {
-                    const isActive = index <= (statusIndex === -1 ? 0 : statusIndex);
-                    const isCurrent = index === statusIndex;
-                    const stepDiv = document.createElement('div');
-                    stepDiv.className = `relative flex md:flex-col items-center gap-6 md:gap-4 group z-10 flex-1 ${index < steps.length - 1 ? 'mb-10 md:mb-0' : ''}`;
-
-                    stepDiv.innerHTML = `
-                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-700 ${isActive ? 'bg-primary text-white shadow-xl shadow-primary/30' : 'bg-slate-50 dark:bg-white/5 text-slate-400'}">
-                        <span class="material-symbols-outlined text-lg ${isActive ? 'fill-0' : 'opacity-40'}">${step.icon}</span>
-                    </div>
-                    <div class="flex flex-col md:items-center text-left md:text-center">
-                        <span class="text-[10px] font-black uppercase tracking-[0.2em] ${isActive ? 'text-primary' : 'text-slate-400'}">${step.label}</span>
-                        <span class="text-[8px] font-black uppercase tracking-widest mt-1 ${isCurrent ? 'text-accent' : 'opacity-30'}">${isActive ? (isCurrent ? 'Ongoing' : 'Verified') : 'Pending'}</span>
-                    </div>
-                `;
-                    stepper.appendChild(stepDiv);
-                });
-            }
-        </script>
+        // Online/Offline
+        window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
+        window.addEventListener('offline', () => showToast('📴 Hors ligne', 'warning', 5000));
+    </script>
 </body>
-
 </html>
