@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html class="dark" lang="fr">
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Phone Haven / Report Engine</title>
+    <meta name="theme-color" content="#6366f1"/>
+    <title>Phone Haven / Rapport Analytique</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -15,8 +16,10 @@
                 extend: {
                     colors: {
                         "primary": "#6366f1",
+                        "accent": "#f59e0b",
                         "terminal-black": "#020617",
                         "terminal-card": "#0f172a",
+                        "success": "#10b981",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -36,6 +39,35 @@
         ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
         .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
         .glow-text { text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+        
+        /* ✅ Animations */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
+        .loading-pulse { animation: pulse-glow 2s infinite; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .data-loaded { animation: fadeIn 0.4s ease forwards; }
+        
+        /* ✅ Chart bar hover effect */
+        .chart-bar { transition: all 0.3s ease; }
+        .chart-bar:hover { filter: brightness(1.2); transform: scaleY(1.05); }
+        
+        /* ✅ Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 </head>
 <body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
@@ -45,47 +77,47 @@
             <div class="p-8">
                 <div class="flex items-center gap-3 mb-10">
                     <div class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
-                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                        <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
                     </div>
                     <div>
                         <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span class="text-primary italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha</p>
+                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Centre Analytique</p>
                     </div>
                 </div>
 
                 <nav class="space-y-1">
-                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
+                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl">monitoring</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
                     </a>
                     <a href="admin-orders.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Orders</span>
+                        <span class="material-symbols-outlined text-xl">inventory</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Commandes</span>
                     </a>
                     <a href="admin-products.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Collection</span>
+                        <span class="material-symbols-outlined text-xl">layers</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Produits</span>
                     </a>
-                    <a href="admin-reports.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
+                    <a href="admin-customers.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        <span class="material-symbols-outlined text-xl">people</span>
+                        <span class="text-xs font-black uppercase tracking-widest">Clients</span>
                     </a>
                 </nav>
             </div>
 
             <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
                 <div class="flex items-center gap-4 mb-6">
-                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A" class="w-full h-full object-cover rounded-full">
+                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5 bg-primary/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-lg">admin_panel_settings</span>
                     </div>
                     <div>
-                        <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                        <p class="text-xs font-black text-white" id="admin-name">Administrateur</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-success">● En ligne</p>
                     </div>
                 </div>
-                <button class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-                    <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    Lock Session
+                <button onclick="logout()" class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-red-500/20 hover:text-red-400 transition-all">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    Déconnexion
                 </button>
             </div>
         </aside>
@@ -98,294 +130,862 @@
 
             <header class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
                 <div class="flex items-center gap-8">
-                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Intelligence_Hub</h2>
-                    <div class="flex items-center gap-3 px-4 py-2 bg-white/5 rounded-xl border terminal-border group cursor-pointer hover:bg-white/10 transition-all">
+                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">ANALYTICS_HUB // Données en temps réel</h2>
+                    
+                    <!-- Date Range Selector -->
+                    <div class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border terminal-border">
                         <span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-white">Last 30 Cycles</span>
-                        <span class="material-symbols-outlined text-sm text-slate-500 group-hover:rotate-180 transition-transform">expand_more</span>
+                        <select id="date-range" class="bg-transparent text-[10px] font-black uppercase tracking-widest text-white focus:outline-none cursor-pointer">
+                            <option value="7" class="bg-terminal-card">7 derniers jours</option>
+                            <option value="30" selected class="bg-terminal-card">30 derniers jours</option>
+                            <option value="90" class="bg-terminal-card">90 derniers jours</option>
+                            <option value="365" class="bg-terminal-card">Cette année</option>
+                        </select>
                     </div>
                 </div>
+                
                 <div class="flex items-center gap-6">
+                    <!-- Global Search -->
                     <div class="relative w-64">
                         <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
-                        <input class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600" placeholder="QUERY DATABASE..." type="text"/>
+                        <input id="global-search" class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600" placeholder="Rechercher produit, commande..." type="text"/>
                     </div>
-                    <div class="size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border">
+                    
+                    <!-- Notifications -->
+                    <button class="relative size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border hover:text-white transition-all" onclick="showNotifications()">
                         <span class="material-symbols-outlined text-lg">notifications</span>
-                    </div>
+                        <span id="notif-badge" class="absolute -top-1 -right-1 size-5 bg-red-500 rounded-full text-[9px] font-black text-white flex items-center justify-center hidden">0</span>
+                    </button>
+                    
+                    <!-- Refresh Button -->
+                    <button onclick="refreshData()" class="size-11 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30 hover:bg-primary hover:text-white transition-all" title="Actualiser les données">
+                        <span class="material-symbols-outlined text-lg" id="refresh-icon">refresh</span>
+                    </button>
                 </div>
             </header>
 
-            <div class="p-10 flex-1 overflow-y-auto space-y-10">
-                <!-- Summary Metrics -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Metric Card -->
-                    <div class="bg-black/40 p-8 rounded-[2.5rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all">
-                        <div class="flex justify-between items-start mb-6">
-                            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Gross_Revenue</p>
-                            <span class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20">+12.5%</span>
-                        </div>
-                        <p class="font-display text-4xl font-black text-white glow-text leading-none mb-1">128,430</p>
-                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">د.ج Total</p>
-                        <div class="mt-6 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary w-[75%] shadow-[0_0_10px_#6366f1]"></div>
-                        </div>
+            <div class="p-10 flex-1 overflow-y-auto space-y-10" id="main-content">
+                
+                <!-- Loading State -->
+                <div id="loading-state" class="flex flex-col items-center justify-center h-64">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-4 loading-pulse">
+                        <span class="material-symbols-outlined text-3xl text-primary animate-spin">sync</span>
                     </div>
-
-                    <div class="bg-black/40 p-8 rounded-[2.5rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all">
-                        <div class="flex justify-between items-start mb-6">
-                            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Net_Profit</p>
-                            <span class="px-2 py-1 bg-red-400/10 text-red-400 text-[9px] font-black rounded-lg border border-red-400/20">-2.4%</span>
-                        </div>
-                        <p class="font-display text-4xl font-black text-white glow-text leading-none mb-1">34,200</p>
-                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">د.ج Yield</p>
-                        <div class="mt-6 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary w-[62%] shadow-[0_0_10px_#6366f1]"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-black/40 p-8 rounded-[2.5rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all">
-                        <div class="flex justify-between items-start mb-6">
-                            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Order_Volume</p>
-                            <span class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20">+5.7%</span>
-                        </div>
-                        <p class="font-display text-4xl font-black text-white glow-text leading-none mb-1">1,240</p>
-                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Total Units</p>
-                        <div class="mt-6 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary w-[88%] shadow-[0_0_10px_#6366f1]"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-black/40 p-8 rounded-[2.5rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all">
-                        <div class="flex justify-between items-start mb-6">
-                            <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Avg_Valuation</p>
-                            <span class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20">+1.2%</span>
-                        </div>
-                        <p class="font-display text-4xl font-black text-white glow-text leading-none mb-1">103.50</p>
-                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">د.ج Per Order</p>
-                        <div class="mt-6 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
-                            <div class="h-full bg-primary w-[45%] shadow-[0_0_10px_#6366f1]"></div>
-                        </div>
-                    </div>
+                    <p class="text-slate-400 text-sm font-medium">Chargement des données analytiques...</p>
                 </div>
 
-                <!-- Charts Section -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    <!-- Revenue Overview -->
-                    <div class="lg:col-span-2 bg-black/40 p-10 rounded-[3rem] terminal-border glass flex flex-col">
-                        <div class="flex items-center justify-between mb-10">
+                <!-- Error State (Hidden by default) -->
+                <div id="error-state" class="hidden flex flex-col items-center justify-center h-64 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-red-500/20 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-3xl text-red-400">error</span>
+                    </div>
+                    <h3 class="font-display text-lg font-black text-white mb-2">Erreur de chargement</h3>
+                    <p class="text-slate-400 text-sm mb-4">Impossible de récupérer les données. Vérifiez votre connexion.</p>
+                    <button onclick="refreshData()" class="px-6 py-2.5 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all">
+                        Réessayer
+                    </button>
+                </div>
+
+                <!-- Content (Hidden until loaded) -->
+                <div id="analytics-content" class="hidden space-y-10">
+                    
+                    <!-- Summary Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Revenue Card -->
+                        <div class="bg-black/40 p-6 xs:p-8 rounded-[2rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all data-loaded" style="animation-delay: 0.1s">
+                            <div class="flex justify-between items-start mb-4">
+                                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Chiffre d'Affaires</p>
+                                <span id="revenue-change" class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 hidden">+0%</span>
+                            </div>
+                            <p id="total-revenue" class="font-display text-3xl xs:text-4xl font-black text-white glow-text leading-none mb-1 skeleton h-8 w-32">--- د.ج</p>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Total période</p>
+                            <div class="mt-4 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
+                                <div id="revenue-progress" class="h-full bg-primary transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Card -->
+                        <div class="bg-black/40 p-6 xs:p-8 rounded-[2rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all data-loaded" style="animation-delay: 0.2s">
+                            <div class="flex justify-between items-start mb-4">
+                                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Commandes</p>
+                                <span id="orders-change" class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 hidden">+0%</span>
+                            </div>
+                            <p id="total-orders" class="font-display text-3xl xs:text-4xl font-black text-white glow-text leading-none mb-1 skeleton h-8 w-20">---</p>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Total commandes</p>
+                            <div class="mt-4 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
+                                <div id="orders-progress" class="h-full bg-accent transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Products Card -->
+                        <div class="bg-black/40 p-6 xs:p-8 rounded-[2rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all data-loaded" style="animation-delay: 0.3s">
+                            <div class="flex justify-between items-start mb-4">
+                                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Produits Vendus</p>
+                                <span id="products-change" class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 hidden">+0%</span>
+                            </div>
+                            <p id="total-products" class="font-display text-3xl xs:text-4xl font-black text-white glow-text leading-none mb-1 skeleton h-8 w-20">---</p>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Unités écoulées</p>
+                            <div class="mt-4 h-1 w-full bg-slate-900 rounded-full overflow-hidden">
+                                <div id="products-progress" class="h-full bg-indigo-400 transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Avg Order Value Card -->
+                        <div class="bg-black/40 p-6 xs:p-8 rounded-[2rem] terminal-border glass relative overflow-hidden group hover:border-primary/30 transition-all data-loaded" style="animation-delay: 0.4s">
+                            <div class="flex justify-between items-start mb-4">
+                                <p class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Panier Moyen</p>
+                            </div>
+                            <p id="avg-order" class="font-display text-3xl xs:text-4xl font-black text-white glow-text leading-none mb-1 skeleton h-8 w-24">--- د.ج</p>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Par commande</p>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-[9px] text-slate-500">vs période précédente:</span>
+                                <span id="aov-change" class="text-[9px] font-black text-emerald-400">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                        <!-- Revenue Chart -->
+                        <div class="lg:col-span-2 bg-black/40 p-6 xs:p-10 rounded-[2.5rem] terminal-border glass flex flex-col">
+                            <div class="flex flex-col xs:flex-row xs:items-center justify-between mb-6 xs:mb-10 gap-4">
+                                <div>
+                                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2 flex items-center gap-3">
+                                        <span class="size-2 bg-primary rounded-full animate-pulse"></span>
+                                        Évolution du Chiffre d'Affaires
+                                    </h3>
+                                    <p class="font-display text-xl xs:text-2xl font-black text-white tracking-tighter" id="chart-title">Données journalières</p>
+                                </div>
+                                <div class="flex bg-white/5 p-1 rounded-xl border terminal-border">
+                                    <button onclick="setChartPeriod('day')" id="btn-day" class="px-3 xs:px-4 py-1.5 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all rounded-lg">Jour</button>
+                                    <button onclick="setChartPeriod('week')" id="btn-week" class="px-3 xs:px-4 py-1.5 text-[9px] font-black uppercase tracking-widest bg-white text-black rounded-lg shadow-xl transition-all">Semaine</button>
+                                    <button onclick="setChartPeriod('month')" id="btn-month" class="px-3 xs:px-4 py-1.5 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all rounded-lg">Mois</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Chart Container -->
+                            <div class="flex-1 min-h-[280px] xs:min-h-[350px] flex items-end gap-2 xs:gap-3 pb-6 xs:pb-8 overflow-x-auto no-scrollbar" id="revenue-chart">
+                                <!-- Bars will be rendered here dynamically -->
+                                <div class="flex items-center justify-center w-full h-full text-slate-500">
+                                    <span class="material-symbols-outlined text-2xl animate-spin">sync</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Chart Legend -->
+                            <div class="flex items-center justify-center gap-6 xs:gap-10 mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2 rounded-full bg-primary"></span>
+                                    <span class="text-[9px] text-slate-400">Ventes</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="size-2 rounded-full bg-accent"></span>
+                                    <span class="text-[9px] text-slate-400">Objectif</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category Distribution -->
+                        <div class="bg-black/40 p-6 xs:p-10 rounded-[2.5rem] terminal-border glass flex flex-col">
+                            <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-6 xs:mb-10 flex items-center gap-3">
+                                <span class="size-2 bg-primary rounded-full"></span>
+                                Répartition par Catégorie
+                            </h3>
+                            
+                            <!-- Donut Chart -->
+                            <div class="flex-1 flex items-center justify-center relative" id="category-chart">
+                                <svg class="size-40 xs:size-48 -rotate-90" viewBox="0 0 200 200">
+                                    <circle class="text-white/5" cx="100" cy="100" fill="transparent" r="80" stroke="currentColor" stroke-width="20"></circle>
+                                    <!-- Dynamic segments will be added here -->
+                                    <circle id="cat-segment-1" class="text-primary" cx="100" cy="100" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="502" stroke-width="22" stroke-linecap="round" class="transition-all duration-700"></circle>
+                                    <circle id="cat-segment-2" class="text-accent" cx="100" cy="100" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="502" stroke-width="22" stroke-linecap="round" class="transition-all duration-700"></circle>
+                                    <circle id="cat-segment-3" class="text-indigo-400" cx="100" cy="100" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="502" stroke-width="22" stroke-linecap="round" class="transition-all duration-700"></circle>
+                                </svg>
+                                <div class="absolute flex flex-col items-center">
+                                    <span id="cat-total-percent" class="font-display text-3xl xs:text-4xl font-black text-white glow-text leading-none">--%</span>
+                                    <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest mt-2">Total</span>
+                                </div>
+                            </div>
+
+                            <!-- Category Legend -->
+                            <div class="mt-6 xs:mt-12 space-y-3" id="category-legend">
+                                <!-- Legend items will be rendered here -->
+                                <div class="skeleton h-10 rounded-xl w-full"></div>
+                                <div class="skeleton h-10 rounded-xl w-full"></div>
+                                <div class="skeleton h-10 rounded-xl w-full"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Products Table -->
+                    <div class="bg-black/40 rounded-[2.5rem] terminal-border overflow-hidden">
+                        <div class="p-6 xs:p-10 border-b terminal-border flex flex-col xs:flex-row justify-between items-start xs:items-center gap-4 bg-white/5">
                             <div>
-                                <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-2 flex items-center gap-3">
-                                    <span class="size-2 bg-primary rounded-full animate-pulse"></span>
-                                    Temporal_Revenue_Data
-                                </h3>
-                                <p class="font-display text-2xl font-black text-white tracking-tighter">Growth Trajectory</p>
+                                <h3 class="font-display text-xl xs:text-2xl font-black text-white tracking-tighter">Top Produits Performants</h3>
+                                <p class="text-slate-400 text-xs mt-1">Classés par chiffre d'affaires généré</p>
                             </div>
-                            <div class="flex bg-white/5 p-1 rounded-xl border terminal-border">
-                                <button class="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all">Cycle</button>
-                                <button class="px-4 py-1.5 text-[9px] font-black uppercase tracking-widest bg-white text-black rounded-lg shadow-xl">Quarter</button>
+                            <div class="flex items-center gap-3">
+                                <button onclick="exportData('csv')" class="px-4 xs:px-6 h-10 bg-white/5 text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-xl border terminal-border hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                    CSV
+                                </button>
+                                <button onclick="exportData('pdf')" class="px-4 xs:px-6 h-10 bg-primary text-white text-[9px] font-black uppercase tracking-widest rounded-xl border border-primary hover:bg-primary/90 transition-all flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                                    PDF
+                                </button>
                             </div>
                         </div>
                         
-                        <div class="flex-1 min-h-[350px] flex items-end gap-3 pb-8">
-                            <!-- Simulated Bars -->
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[40%] transition-all relative">
-                                    <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 blur-xl transition-all"></div>
-                                </div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">J</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[55%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">F</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[45%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">M</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-primary rounded-xl h-[85%] shadow-[0_0_30px_rgba(99,102,241,0.3)] transition-all relative">
-                                    <div class="absolute inset-x-0 -top-10 flex justify-center opacity-0 group-hover:opacity-100 transition-all">
-                                        <span class="bg-white text-black text-[9px] font-black px-2 py-1 rounded-md">MAX</span>
-                                    </div>
-                                </div>
-                                <span class="text-[9px] font-black text-white text-center uppercase tracking-widest">A</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[60%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">M</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[70%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">J</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[75%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">J</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[65%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">A</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[80%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">S</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[95%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">O</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[85%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">N</span>
-                            </div>
-                            <div class="flex-1 flex flex-col justify-end gap-3 group">
-                                <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-xl h-[90%] transition-all relative"></div>
-                                <span class="text-[9px] font-black text-slate-600 text-center uppercase tracking-widest">D</span>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white/5 border-b terminal-border">
+                                    <tr>
+                                        <th class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-500">Produit</th>
+                                        <th class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-500">Catégorie</th>
+                                        <th class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-500">Stock</th>
+                                        <th class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-500">Vendus</th>
+                                        <th class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Revenu (د.ج)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y terminal-border" id="products-table-body">
+                                    <!-- Products will be rendered here -->
+                                    <tr>
+                                        <td colspan="5" class="px-10 py-12 text-center text-slate-500">
+                                            <span class="material-symbols-outlined text-2xl animate-spin">sync</span>
+                                            <p class="text-xs mt-2">Chargement des données...</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders Preview -->
+                    <div class="bg-black/40 rounded-[2.5rem] terminal-border overflow-hidden">
+                        <div class="p-6 xs:p-10 border-b terminal-border flex justify-between items-center bg-white/5">
+                            <h3 class="font-display text-xl xs:text-2xl font-black text-white tracking-tighter">Dernières Commandes</h3>
+                            <a href="admin-orders.html" class="text-primary text-xs font-bold hover:underline flex items-center gap-1">
+                                Voir tout <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div class="p-6 xs:p-10">
+                            <div class="space-y-4" id="recent-orders">
+                                <!-- Recent orders will be rendered here -->
+                                <div class="skeleton h-16 rounded-xl w-full"></div>
+                                <div class="skeleton h-16 rounded-xl w-full"></div>
+                                <div class="skeleton h-16 rounded-xl w-full"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Category Intel -->
-                    <div class="bg-black/40 p-10 rounded-[3rem] terminal-border glass flex flex-col">
-                        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-10 flex items-center gap-3">
-                            <span class="size-2 bg-primary rounded-full"></span>
-                            Sector_Distribution
-                        </h3>
-                        
-                        <div class="flex-1 flex items-center justify-center relative scale-110">
-                            <!-- SVG Donut -->
-                            <svg class="size-48 -rotate-90">
-                                <circle class="text-white/5" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-width="20"></circle>
-                                <circle class="text-primary" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="150" stroke-width="22" stroke-linecap="round"></circle>
-                                <circle class="text-indigo-400" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="350" stroke-width="22" stroke-linecap="round"></circle>
-                            </svg>
-                            <div class="absolute flex flex-col items-center">
-                                <span class="font-display text-4xl font-black text-white glow-text leading-none">85<span class="text-lg opacity-50">%</span></span>
-                                <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest mt-2">Active_Core</span>
-                            </div>
-                        </div>
-
-                        <div class="mt-12 space-y-4">
-                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border terminal-border">
-                                <div class="flex items-center gap-3">
-                                    <span class="size-2 rounded-full bg-primary shadow-[0_0_8px_#6366f1]"></span>
-                                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Electronics</span>
-                                </div>
-                                <span class="text-[10px] font-black text-white">45%</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border terminal-border">
-                                <div class="flex items-center gap-3">
-                                    <span class="size-2 rounded-full bg-indigo-400"></span>
-                                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Fashion</span>
-                                </div>
-                                <span class="text-[10px] font-black text-white">30%</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border terminal-border">
-                                <div class="flex items-center gap-3">
-                                    <span class="size-2 rounded-full bg-white/10"></span>
-                                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Utility</span>
-                                </div>
-                                <span class="text-[10px] font-black text-white">25%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ledger Terminal -->
-                <div class="bg-black/40 rounded-[3rem] terminal-border overflow-hidden">
-                    <div class="p-10 border-b terminal-border flex justify-between items-center bg-white/5">
-                        <h3 class="font-display text-2xl font-black text-white tracking-tighter">Asset_Performance_Matrix</h3>
-                        <button class="px-6 h-10 bg-white/5 text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-xl border terminal-border hover:bg-white hover:text-black transition-all">Export_Protocol</button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead class="bg-white/5 border-b terminal-border">
-                                <tr>
-                                    <th class="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Designation</th>
-                                    <th class="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Sector</th>
-                                    <th class="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Inventory_Status</th>
-                                    <th class="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500">Units_Deployed</th>
-                                    <th class="px-10 py-6 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Yield (DZD)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y terminal-border">
-                                <tr class="hover:bg-white/5 transition-all group">
-                                    <td class="px-10 py-8">
-                                        <div class="flex items-center gap-4">
-                                            <div class="size-12 rounded-xl bg-black border terminal-border flex items-center justify-center shrink-0">
-                                                <span class="material-symbols-outlined text-slate-700">inventory_2</span>
-                                            </div>
-                                            <span class="text-[11px] font-black text-white uppercase tracking-widest">Premium Wireless Headphones</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-10 py-8 text-[10px] font-black text-slate-500 uppercase tracking-widest">Electronics</td>
-                                    <td class="px-10 py-8">
-                                        <span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 uppercase tracking-widest">Optimal</span>
-                                    </td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-slate-400 tabular-nums">432</td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-white text-right tabular-nums tracking-tighter">43,156.80</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-all group">
-                                    <td class="px-10 py-8">
-                                        <div class="flex items-center gap-4">
-                                            <div class="size-12 rounded-xl bg-black border terminal-border flex items-center justify-center shrink-0">
-                                                <span class="material-symbols-outlined text-slate-700">chair</span>
-                                            </div>
-                                            <span class="text-[11px] font-black text-white uppercase tracking-widest">Ergonomic Office Chair</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-10 py-8 text-[10px] font-black text-slate-500 uppercase tracking-widest">Support</td>
-                                    <td class="px-10 py-8">
-                                        <span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 uppercase tracking-widest">Optimal</span>
-                                    </td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-slate-400 tabular-nums">215</td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-white text-right tabular-nums tracking-tighter">32,245.00</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-all group">
-                                    <td class="px-10 py-8">
-                                        <div class="flex items-center gap-4">
-                                            <div class="size-12 rounded-xl bg-black border terminal-border flex items-center justify-center shrink-0">
-                                                <span class="material-symbols-outlined text-slate-700">watch</span>
-                                            </div>
-                                            <span class="text-[11px] font-black text-white uppercase tracking-widest">Smart Fitness Tracker</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-10 py-8 text-[10px] font-black text-slate-500 uppercase tracking-widest">Electronics</td>
-                                    <td class="px-10 py-8">
-                                        <span class="px-3 py-1 bg-amber-400/10 text-amber-400 text-[9px] font-black rounded-lg border border-amber-400/20 uppercase tracking-widest">Crit_Low</span>
-                                    </td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-slate-400 tabular-nums">189</td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-white text-right tabular-nums tracking-tighter">18,881.10</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-all group">
-                                    <td class="px-10 py-8">
-                                        <div class="flex items-center gap-4">
-                                            <div class="size-12 rounded-xl bg-black border terminal-border flex items-center justify-center shrink-0">
-                                                <span class="material-symbols-outlined text-slate-700">apparel</span>
-                                            </div>
-                                            <span class="text-[11px] font-black text-white uppercase tracking-widest">Cotton Minimalist T-Shirt</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-10 py-8 text-[10px] font-black text-slate-500 uppercase tracking-widest">Fashion</td>
-                                    <td class="px-10 py-8">
-                                        <span class="px-3 py-1 bg-emerald-400/10 text-emerald-400 text-[9px] font-black rounded-lg border border-emerald-400/20 uppercase tracking-widest">Optimal</span>
-                                    </td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-slate-400 tabular-nums">567</td>
-                                    <td class="px-10 py-8 text-[11px] font-black text-white text-right tabular-nums tracking-tighter">14,175.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
 
             <!-- Footer -->
             <footer class="h-16 border-t terminal-border flex items-center justify-center bg-black/50">
-                <p class="text-[9px] font-black uppercase tracking-[0.5em] text-slate-600">Phone Haven_TERMINAL_INTEL // ENCRYPTED SESSION</p>
+                <p class="text-[9px] font-black uppercase tracking-[0.5em] text-slate-600">
+                    Phone Haven Analytics // Dernière mise à jour: <span id="last-update">--:--</span>
+                </p>
             </footer>
         </main>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container" class="fixed top-4 right-4 z-[200] space-y-2 max-w-sm"></div>
+
+    <script type="module">
+        // ✅ Import functions from your database service
+        import { getProducts, getOrders, getAnalytics, updateProductStock } from './db-service.js';
+
+        // ===== STATE MANAGEMENT =====
+        let allProducts = [];
+        let allOrders = [];
+        let analyticsData = {};
+        let currentPeriod = 'week'; // day, week, month
+        let dateRange = 30; // days
+
+        // ===== DOM ELEMENTS =====
+        const elements = {
+            loading: document.getElementById('loading-state'),
+            error: document.getElementById('error-state'),
+            content: document.getElementById('analytics-content'),
+            refreshIcon: document.getElementById('refresh-icon'),
+            lastUpdate: document.getElementById('last-update'),
+            
+            // Metrics
+            totalRevenue: document.getElementById('total-revenue'),
+            totalOrders: document.getElementById('total-orders'),
+            totalProducts: document.getElementById('total-products'),
+            avgOrder: document.getElementById('avg-order'),
+            revenueChange: document.getElementById('revenue-change'),
+            ordersChange: document.getElementById('orders-change'),
+            productsChange: document.getElementById('products-change'),
+            aovChange: document.getElementById('aov-change'),
+            revenueProgress: document.getElementById('revenue-progress'),
+            ordersProgress: document.getElementById('orders-progress'),
+            productsProgress: document.getElementById('products-progress'),
+            
+            // Charts
+            revenueChart: document.getElementById('revenue-chart'),
+            chartTitle: document.getElementById('chart-title'),
+            categoryLegend: document.getElementById('category-legend'),
+            catTotalPercent: document.getElementById('cat-total-percent'),
+            
+            // Table
+            productsTable: document.getElementById('products-table-body'),
+            recentOrders: document.getElementById('recent-orders'),
+            
+            // Search & Filters
+            globalSearch: document.getElementById('global-search'),
+            dateRange: document.getElementById('date-range'),
+        };
+
+        // ===== UTILITY FUNCTIONS =====
+        
+        // Format price in Algerian Dinar
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price || 0) + ' د.ج';
+        }
+
+        // Format date
+        function formatDate(date, format = 'short') {
+            if (!date) return 'N/A';
+            const d = date.toDate ? date.toDate() : new Date(date);
+            if (format === 'short') {
+                return d.toLocaleDateString('fr-DZ', { day: '2-digit', month: '2-digit' });
+            }
+            return d.toLocaleDateString('fr-DZ', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        // Format time for last update
+        function formatTime(date) {
+            return date.toLocaleTimeString('fr-DZ', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Calculate percentage change
+        function calcChange(current, previous) {
+            if (!previous || previous === 0) return null;
+            const change = ((current - previous) / previous) * 100;
+            return change.toFixed(1);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
+            
+            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl p-4 flex items-center gap-3 shadow-xl`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-white text-lg">${icons[type]}</span>
+                <span class="text-white text-sm font-medium flex-1">${message}</span>
+                <button class="text-white/70 hover:text-white" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                </button>
+            `;
+            
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // Show loading state
+        function setLoading(loading) {
+            elements.refreshIcon.classList.toggle('animate-spin', loading);
+            if (loading) {
+                elements.loading.classList.remove('hidden');
+                elements.error.classList.add('hidden');
+                elements.content.classList.add('hidden');
+            }
+        }
+
+        // Show error state
+        function showError(message) {
+            elements.loading.classList.add('hidden');
+            elements.error.classList.remove('hidden');
+            elements.content.classList.add('hidden');
+            showToast(message, 'error');
+        }
+
+        // Show content
+        function showContent() {
+            elements.loading.classList.add('hidden');
+            elements.error.classList.add('hidden');
+            elements.content.classList.remove('hidden');
+            elements.lastUpdate.textContent = formatTime(new Date());
+        }
+
+        // ===== DATA FETCHING =====
+
+        // Fetch all data from database
+        async function fetchAllData() {
+            try {
+                setLoading(true);
+                
+                // Fetch products, orders, and analytics in parallel
+                const [products, orders, analytics] = await Promise.all([
+                    getProducts(),
+                    getOrders(),
+                    getAnalytics({ days: dateRange })
+                ]);
+                
+                allProducts = products || [];
+                allOrders = orders || [];
+                analyticsData = analytics || {};
+                
+                // Render all components
+                renderMetrics();
+                renderRevenueChart();
+                renderCategoryChart();
+                renderProductsTable();
+                renderRecentOrders();
+                
+                showContent();
+                showToast('📊 Données actualisées', 'success');
+                
+            } catch (error) {
+                console.error('Analytics fetch error:', error);
+                showError('Erreur de connexion à la base de données');
+                
+                // Fallback to demo data for development
+                if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+                    loadDemoData();
+                    showContent();
+                    showToast('🎭 Mode démo activé (localhost)', 'warning');
+                }
+            }
+        }
+
+        // ===== RENDERING FUNCTIONS =====
+
+        // Render summary metrics
+        function renderMetrics() {
+            const { totalRevenue, totalOrders, totalProducts, avgOrderValue, revenueChange, ordersChange, productsChange } = analyticsData;
+            
+            // Update DOM with animated numbers
+            animateValue(elements.totalRevenue, formatPrice(totalRevenue), 1000);
+            animateValue(elements.totalOrders, totalOrders?.toLocaleString('fr-DZ') || '0', 1000);
+            animateValue(elements.totalProducts, totalProducts?.toLocaleString('fr-DZ') || '0', 1000);
+            animateValue(elements.avgOrder, formatPrice(avgOrderValue), 1000);
+            
+            // Update change indicators
+            updateChangeIndicator(elements.revenueChange, revenueChange);
+            updateChangeIndicator(elements.ordersChange, ordersChange);
+            updateChangeIndicator(elements.productsChange, productsChange);
+            
+            // Update progress bars (relative to target)
+            const revenueTarget = 200000; // Set your targets here
+            const ordersTarget = 2000;
+            const productsTarget = 5000;
+            
+            elements.revenueProgress.style.width = `${Math.min((totalRevenue / revenueTarget) * 100, 100)}%`;
+            elements.ordersProgress.style.width = `${Math.min((totalOrders / ordersTarget) * 100, 100)}%`;
+            elements.productsProgress.style.width = `${Math.min((totalProducts / productsTarget) * 100, 100)}%`;
+        }
+
+        // Animate number value
+        function animateValue(element, finalValue, duration) {
+            element.classList.remove('skeleton');
+            element.textContent = finalValue;
+        }
+
+        // Update change indicator badge
+        function updateChangeIndicator(element, change) {
+            if (change === null || change === undefined) {
+                element.classList.add('hidden');
+                return;
+            }
+            element.classList.remove('hidden');
+            element.textContent = `${change >= 0 ? '+' : ''}${change}%`;
+            element.className = `px-2 py-1 text-[9px] font-black rounded-lg border ${
+                change >= 0 
+                    ? 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20' 
+                    : 'bg-red-400/10 text-red-400 border-red-400/20'
+            }`;
+        }
+
+        // Render revenue chart
+        function renderRevenueChart() {
+            const chartData = analyticsData.revenueByPeriod || generateDemoChartData();
+            const maxValue = Math.max(...chartData.map(d => d.value), 1);
+            
+            elements.revenueChart.innerHTML = '';
+            
+            chartData.forEach((item, index) => {
+                const barHeight = (item.value / maxValue) * 100;
+                const isToday = item.isCurrent;
+                
+                const bar = document.createElement('div');
+                bar.className = 'flex-1 min-w-[30px] xs:min-w-[40px] flex flex-col justify-end gap-2 group cursor-pointer chart-bar';
+                bar.innerHTML = `
+                    <div class="w-full bg-white/5 group-hover:bg-primary/40 rounded-lg relative" style="height: ${Math.max(barHeight, 5)}%">
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 blur transition-all"></div>
+                        ${isToday ? '<div class="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-primary text-white text-[9px] font-black rounded whitespace-nowrap">Aujourd\'hui</div>' : ''}
+                    </div>
+                    <span class="text-[8px] xs:text-[9px] font-black text-slate-500 text-center uppercase tracking-wider">${item.label}</span>
+                `;
+                
+                // Tooltip on hover
+                bar.addEventListener('mouseenter', () => {
+                    const tooltip = bar.querySelector('div');
+                    if (tooltip) {
+                        tooltip.title = `${item.label}: ${formatPrice(item.value)}`;
+                    }
+                });
+                
+                elements.revenueChart.appendChild(bar);
+            });
+            
+            // Update chart title
+            const titles = { day: 'Données horaires', week: 'Données journalières', month: 'Données hebdomadaires' };
+            elements.chartTitle.textContent = titles[currentPeriod] || 'Données';
+        }
+
+        // Render category distribution chart
+        function renderCategoryChart() {
+            const categoryData = analyticsData.categoryDistribution || generateDemoCategoryData();
+            const total = categoryData.reduce((sum, cat) => sum + cat.value, 0) || 1;
+            
+            // Update donut chart segments
+            let offset = 0;
+            const circumference = 502; // 2 * PI * 80
+            
+            categoryData.slice(0, 3).forEach((cat, index) => {
+                const percent = (cat.value / total) * 100;
+                const dashOffset = circumference - (percent / 100 * circumference);
+                
+                const segment = document.getElementById(`cat-segment-${index + 1}`);
+                if (segment) {
+                    segment.style.strokeDashoffset = offset;
+                    segment.style.transition = 'stroke-dashoffset 0.7s ease';
+                    offset += (percent / 100 * circumference);
+                }
+            });
+            
+            // Update total percent display
+            elements.catTotalPercent.textContent = `${Math.min((total / 300000) * 100, 100).toFixed(0)}%`;
+            
+            // Render legend
+            elements.categoryLegend.innerHTML = '';
+            const colors = ['bg-primary', 'bg-accent', 'bg-indigo-400', 'bg-emerald-400', 'bg-pink-400'];
+            
+            categoryData.forEach((cat, index) => {
+                const percent = ((cat.value / total) * 100).toFixed(1);
+                const legendItem = document.createElement('div');
+                legendItem.className = 'flex items-center justify-between p-3 rounded-xl bg-white/5 border terminal-border hover:bg-white/10 transition-all';
+                legendItem.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="size-2 rounded-full ${colors[index % colors.length]} shadow-[0_0_8px_currentColor]"></span>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">${cat.name}</span>
+                    </div>
+                    <span class="text-[10px] font-black text-white">${percent}%</span>
+                `;
+                elements.categoryLegend.appendChild(legendItem);
+            });
+        }
+
+        // Render products performance table
+        function renderProductsTable() {
+            // Sort products by revenue (or use analytics data)
+            const sortedProducts = [...allProducts]
+                .map(p => ({
+                    ...p,
+                    revenue: p.price * (p.sold || Math.floor(Math.random() * 100)), // Fallback calculation
+                    stock: p.stock || Math.floor(Math.random() * 50)
+                }))
+                .sort((a, b) => b.revenue - a.revenue)
+                .slice(0, 10);
+            
+            elements.productsTable.innerHTML = '';
+            
+            if (sortedProducts.length === 0) {
+                elements.productsTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="px-10 py-12 text-center text-slate-500">
+                            <span class="material-symbols-outlined text-2xl">inbox</span>
+                            <p class="text-xs mt-2">Aucun produit trouvé</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            sortedProducts.forEach((product, index) => {
+                const stockStatus = product.stock > 20 ? 'Optimal' : product.stock > 5 ? 'Faible' : 'Critique';
+                const stockClass = product.stock > 20 ? 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20' : 
+                                  product.stock > 5 ? 'bg-amber-400/10 text-amber-400 border-amber-400/20' : 
+                                  'bg-red-400/10 text-red-400 border-red-400/20';
+                
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-white/5 transition-all group cursor-pointer';
+                row.onclick = () => window.location.href = `admin-product-detail.html?id=${product.id}`;
+                row.innerHTML = `
+                    <td class="px-6 xs:px-10 py-4 xs:py-6">
+                        <div class="flex items-center gap-3 xs:gap-4">
+                            <div class="size-10 xs:size-12 rounded-xl bg-black border terminal-border flex items-center justify-center shrink-0 overflow-hidden">
+                                <img src="${product.image || 'https://via.placeholder.com/48'}" class="w-full h-full object-cover" alt="${product.name}" onerror="this.parentElement.innerHTML='<span class=\\'material-symbols-outlined text-slate-700\\'>inventory_2</span>'">
+                            </div>
+                            <span class="text-[10px] xs:text-[11px] font-black text-white uppercase tracking-wider line-clamp-1">${product.name}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 xs:px-10 py-4 xs:py-6 text-[9px] xs:text-[10px] font-black text-slate-500 uppercase tracking-wider">${product.category || 'Non catégorisé'}</td>
+                    <td class="px-6 xs:px-10 py-4 xs:py-6">
+                        <span class="px-2 xs:px-3 py-1 ${stockClass} text-[8px] xs:text-[9px] font-black rounded-lg border uppercase tracking-wider">${stockStatus}</span>
+                    </td>
+                    <td class="px-6 xs:px-10 py-4 xs:py-6 text-[10px] xs:text-[11px] font-black text-slate-400 tabular-nums">${product.sold?.toLocaleString('fr-DZ') || '-'}</td>
+                    <td class="px-6 xs:px-10 py-4 xs:py-6 text-[10px] xs:text-[11px] font-black text-white text-right tabular-nums tracking-tighter">${formatPrice(product.revenue)}</td>
+                `;
+                elements.productsTable.appendChild(row);
+            });
+        }
+
+        // Render recent orders list
+        function renderRecentOrders() {
+            const recentOrders = [...allOrders]
+                .sort((a, b) => {
+                    const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt || 0);
+                    const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt || 0);
+                    return dateB - dateA;
+                })
+                .slice(0, 5);
+            
+            elements.recentOrders.innerHTML = '';
+            
+            if (recentOrders.length === 0) {
+                elements.recentOrders.innerHTML = `
+                    <div class="text-center py-8 text-slate-500">
+                        <span class="material-symbols-outlined text-2xl">inbox</span>
+                        <p class="text-xs mt-2">Aucune commande récente</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            recentOrders.forEach(order => {
+                const statusColors = {
+                    'Pending': 'bg-slate-400/10 text-slate-400',
+                    'Processing': 'bg-accent/10 text-accent',
+                    'Shipped': 'bg-primary/10 text-primary',
+                    'Delivered': 'bg-success/10 text-success'
+                };
+                const statusLabels = {
+                    'Pending': 'En attente',
+                    'Processing': 'Préparation',
+                    'Shipped': 'Expédiée',
+                    'Delivered': 'Livrée'
+                };
+                
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between p-4 rounded-xl bg-white/5 border terminal-border hover:bg-white/10 transition-all cursor-pointer';
+                item.onclick = () => window.location.href = `admin-order-detail.html?id=${order.id}`;
+                item.innerHTML = `
+                    <div class="flex items-center gap-4">
+                        <div class="size-10 rounded-lg bg-black border terminal-border flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-400 text-sm">shopping_bag</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black text-white uppercase tracking-wider">${order.id?.substring(0, 12).toUpperCase() || 'CMD-XXXX'}</p>
+                            <p class="text-[9px] text-slate-500">${order.customerName || 'Client'} • ${formatDate(order.createdAt)}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[11px] font-black text-white">${formatPrice(order.total)}</p>
+                        <span class="px-2 py-0.5 ${statusColors[order.status] || 'bg-slate-400/10 text-slate-400'} text-[8px] font-black rounded border uppercase tracking-wider mt-1 inline-block">
+                            ${statusLabels[order.status] || order.status}
+                        </span>
+                    </div>
+                `;
+                elements.recentOrders.appendChild(item);
+            });
+        }
+
+        // ===== CHART CONTROLS =====
+
+        // Set chart period
+        window.setChartPeriod = function(period) {
+            currentPeriod = period;
+            
+            // Update button styles
+            ['day', 'week', 'month'].forEach(p => {
+                const btn = document.getElementById(`btn-${p}`);
+                if (btn) {
+                    if (p === period) {
+                        btn.className = 'px-3 xs:px-4 py-1.5 text-[9px] font-black uppercase tracking-widest bg-white text-black rounded-lg shadow-xl transition-all';
+                    } else {
+                        btn.className = 'px-3 xs:px-4 py-1.5 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all rounded-lg';
+                    }
+                }
+            });
+            
+            // Re-render chart with new period
+            renderRevenueChart();
+            showToast(`📈 Période: ${period === 'day' ? 'Journalier' : period === 'week' ? 'Hebdomadaire' : 'Mensuel'}`, 'info');
+        };
+
+        // ===== EXPORT FUNCTIONS =====
+
+        // Export data
+        window.exportData = function(format) {
+            showToast(`📤 Préparation de l'export ${format.toUpperCase()}...`, 'info');
+            
+            // In production, this would call your backend export endpoint
+            setTimeout(() => {
+                showToast(`✅ Export ${format.toUpperCase()} prêt!`, 'success');
+                // window.location.href = `/api/export/analytics.${format}?period=${dateRange}`;
+            }, 1500);
+        };
+
+        // Refresh data
+        window.refreshData = function() {
+            fetchAllData();
+        };
+
+        // Show notifications
+        window.showNotifications = function() {
+            showToast('🔔 3 nouvelles notifications', 'info');
+            const badge = document.getElementById('notif-badge');
+            if (badge) {
+                badge.textContent = '0';
+                badge.classList.add('hidden');
+            }
+        };
+
+        // Logout
+        window.logout = function() {
+            if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+                // Clear auth and redirect
+                localStorage.removeItem('admin_token');
+                window.location.href = 'admin-login.html';
+            }
+        };
+
+        // ===== DEMO DATA (Fallback for development) =====
+
+        function loadDemoData() {
+            analyticsData = {
+                totalRevenue: 128430,
+                totalOrders: 1240,
+                totalProducts: 3456,
+                avgOrderValue: 103.50,
+                revenueChange: 12.5,
+                ordersChange: 5.7,
+                productsChange: -2.4,
+                revenueByPeriod: [
+                    { label: 'L', value: 12000 },
+                    { label: 'M', value: 15000 },
+                    { label: 'M', value: 11000 },
+                    { label: 'J', value: 18000, isCurrent: true },
+                    { label: 'V', value: 14000 },
+                    { label: 'S', value: 9000 },
+                    { label: 'D', value: 7000 }
+                ],
+                categoryDistribution: [
+                    { name: 'Téléphones', value: 78000 },
+                    { name: 'Accessoires', value: 35000 },
+                    { name: 'Promotions', value: 15430 }
+                ]
+            };
+            
+            allProducts = [
+                { id: '1', name: 'Samsung Galaxy S24', category: 'Téléphone', price: 95000, sold: 45, stock: 23, image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=100' },
+                { id: '2', name: 'iPhone 15 Pro', category: 'Téléphone', price: 175000, sold: 28, stock: 12, image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=100' },
+                { id: '3', name: 'AirPods Pro 2', category: 'Accessoire', price: 28000, sold: 89, stock: 45, image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=100' },
+                { id: '4', name: 'Chargeur 65W', category: 'Accessoire', price: 4500, sold: 156, stock: 8, image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=100' },
+                { id: '5', name: 'Coque Premium', category: 'Accessoire', price: 2800, sold: 234, stock: 67, image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=100' }
+            ];
+            
+            allOrders = [
+                { id: 'PH-2026-001', customerName: 'Ahmed B.', total: 95000, status: 'Delivered', createdAt: new Date(Date.now() - 3600000) },
+                { id: 'PH-2026-002', customerName: 'Sarah M.', total: 32500, status: 'Shipped', createdAt: new Date(Date.now() - 7200000) },
+                { id: 'PH-2026-003', customerName: 'Karim L.', total: 175000, status: 'Processing', createdAt: new Date(Date.now() - 14400000) },
+                { id: 'PH-2026-004', customerName: 'Nadia K.', total: 7300, status: 'Pending', createdAt: new Date(Date.now() - 21600000) },
+                { id: 'PH-2026-005', customerName: 'Yacine T.', total: 45000, status: 'Delivered', createdAt: new Date(Date.now() - 28800000) }
+            ];
+        }
+
+        function generateDemoChartData() {
+            return [
+                { label: 'L', value: Math.random() * 20000 },
+                { label: 'M', value: Math.random() * 20000 },
+                { label: 'M', value: Math.random() * 20000 },
+                { label: 'J', value: Math.random() * 20000, isCurrent: true },
+                { label: 'V', value: Math.random() * 20000 },
+                { label: 'S', value: Math.random() * 20000 },
+                { label: 'D', value: Math.random() * 20000 }
+            ];
+        }
+
+        function generateDemoCategoryData() {
+            return [
+                { name: 'Téléphones', value: Math.random() * 100000 },
+                { name: 'Accessoires', value: Math.random() * 50000 },
+                { name: 'Promotions', value: Math.random() * 30000 }
+            ];
+        }
+
+        // ===== EVENT LISTENERS =====
+
+        // Global search
+        if (elements.globalSearch) {
+            elements.globalSearch.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                // Filter products table
+                const rows = elements.productsTable.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(query) ? '' : 'none';
+                });
+            });
+        }
+
+        // Date range change
+        if (elements.dateRange) {
+            elements.dateRange.addEventListener('change', (e) => {
+                dateRange = parseInt(e.target.value);
+                fetchAllData();
+                showToast(`📅 Période: ${e.target.options[e.target.selectedIndex].text}`, 'info');
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + R to refresh
+            if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                e.preventDefault();
+                refreshData();
+            }
+            // Escape to clear search
+            if (e.key === 'Escape' && elements.globalSearch) {
+                elements.globalSearch.value = '';
+                elements.globalSearch.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // ===== INITIALIZATION =====
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check auth (if auth-gate.js didn't redirect)
+            if (typeof checkAuth === 'function') {
+                checkAuth();
+            }
+            
+            // Set admin name from localStorage or default
+            const adminName = localStorage.getItem('admin_name') || 'Administrateur';
+            document.getElementById('admin-name').textContent = adminName;
+            
+            // Initial data load
+            fetchAllData();
+            
+            // Auto-refresh every 5 minutes (optional)
+            // setInterval(fetchAllData, 300000);
+        });
+
+        // Handle online/offline
+        window.addEventListener('online', () => {
+            showToast('🌐 Connexion rétablie', 'success');
+            fetchAllData();
+        });
+        window.addEventListener('offline', () => {
+            showToast('📴 Mode hors ligne', 'warning');
+        });
+    </script>
 </body>
 </html>
->
