@@ -107,6 +107,17 @@
                 padding-bottom: max(12px, env(safe-area-inset-bottom));
             }
         }
+
+        /* Voice Search Animation */
+        .voice-search-active {
+            animation: voicePulse 1.5s infinite;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+        }
+        @keyframes voicePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
     </style>
 </head>
 
@@ -133,16 +144,19 @@
                     <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
-                <!-- Right Actions - Removed Cart, Keep Only Wishlist -->
+                <!-- Right Actions -->
                 <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
                     
-                    <!-- Desktop Search -->
+                    <!-- Desktop Search with Voice -->
                     <div class="hidden md:flex relative items-center">
                         <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
-                        <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-8 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                        </button>
                     </div>
 
-                    <!-- Wishlist Button Only (No Cart) -->
+                    <!-- Wishlist Button Only -->
                     <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" onclick="showToast('❤️ Fonctionnalité bientôt disponible', 'info')">
                         <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
                     </button>
@@ -154,11 +168,14 @@
                 </div>
             </div>
 
-            <!-- Mobile Search Bar -->
+            <!-- Mobile Search Bar with Voice -->
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
-                    <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-4 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                    </button>
                 </div>
             </div>
         </header>
@@ -201,9 +218,6 @@
 
                 <!-- Mobile Footer Actions -->
                 <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
-                    <button class="w-full flex items-center justify-center gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all text-sm" onclick="showToast('👤 Connexion bientôt disponible', 'info')">
-                        <span class="material-symbols-outlined text-[18px]">account_circle</span> Mon Compte
-                    </button>
                     <div class="flex gap-1.5 xs:gap-2">
                         <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
                         <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
@@ -420,7 +434,7 @@
                 </div>
             </section>
 
-            <!-- Mobile Sticky Bottom Bar - Simplified (No Cart) -->
+            <!-- Mobile Sticky Bottom Bar - Simplified (No Cart, No Compte) -->
             <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
                 <div class="mx-3 xs:mx-4">
                     <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
@@ -432,13 +446,13 @@
                             <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
                         </a>
+                        <a href="tracking.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Suivi</span>
+                        </a>
                         <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
                             <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
-                        </a>
-                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('👤 Connexion bientôt disponible', 'info')">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">person</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Compte</span>
                         </a>
                     </div>
                 </div>
@@ -501,7 +515,13 @@
                             </div>
                             <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                         </a>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed">Basée à Sétif, Phone Haven est votre destination privilégiée pour les smartphones et accessoires originaux en Algérie.</p>
+                        <!-- ✅ Texte amélioré et plus clair -->
+                        <p class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                            📍 Basée à Sétif, Algérie<br>
+                            📱 Smartphones & Accessoires 100% originaux<br>
+                            🚚 Livraison rapide dans les 58 wilayas<br>
+                            💵 Paiement à la livraison disponible
+                        </p>
                         <div class="flex gap-2 xs:gap-3">
                             <a class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Instagram"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">instagram</span></a>
                             <a class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Facebook"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">facebook</span></a>
@@ -573,6 +593,12 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
+        // Search
+        const desktopSearch = document.getElementById('desktop-search');
+        const mobileSearch = document.getElementById('mobile-search');
+        const voiceSearchDesktop = document.getElementById('voice-search-desktop');
+        const voiceSearchMobile = document.getElementById('voice-search-mobile');
+
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
 
@@ -642,6 +668,58 @@
             });
         }
 
+        // ==================== Voice Search Functionality ====================
+        function initVoiceSearch(button, input) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                button.style.display = 'none';
+                console.log('Voice search not supported');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            button.addEventListener('click', () => {
+                if (button.classList.contains('voice-search-active')) {
+                    recognition.stop();
+                    return;
+                }
+
+                button.classList.add('voice-search-active');
+                showToast('🎤 Écoute en cours... Dites le nom du produit', 'info', 5000);
+                
+                recognition.start();
+                
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    input.value = transcript;
+                    showToast(`🔍 Recherche: "${transcript}"`, 'success', 2000);
+                    
+                    // Redirect to search page
+                    setTimeout(() => {
+                        window.location.href = `search.html?q=${encodeURIComponent(transcript)}`;
+                    }, 1000);
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    showToast('❌ Erreur de reconnaissance. Réessayez.', 'error');
+                    button.classList.remove('voice-search-active');
+                };
+
+                recognition.onend = () => {
+                    button.classList.remove('voice-search-active');
+                };
+            });
+        }
+
+        // Initialize voice search for both desktop and mobile
+        if (voiceSearchDesktop && desktopSearch) initVoiceSearch(voiceSearchDesktop, desktopSearch);
+        if (voiceSearchMobile && mobileSearch) initVoiceSearch(voiceSearchMobile, mobileSearch);
+
         // ==================== Theme Toggle ====================
         function initThemeToggle() {
             const savedTheme = localStorage.getItem('theme');
@@ -653,7 +731,7 @@
                 const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
-                showToast(isDark ? '🌙 Mode sombre' : '☀️ Mode clair', 'info');
+                showToast(isDark ? '🌙 Mode sombre activé' : '☀️ Mode clair activé', 'info');
             });
         }
         initThemeToggle();
@@ -690,7 +768,7 @@
             }, duration);
         }
 
-        // ==================== Product Rendering - DIRECT LINK TO product.html ====================
+        // ==================== Product Rendering ====================
         function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
 
         function createProductCard(product, variant = 'grid') {
@@ -698,36 +776,24 @@
             const height = isSlider ? 'h-[320px] xs:h-[360px] sm:h-[400px]' : 'aspect-square';
             const radius = isSlider ? 'rounded-[1.5rem]' : 'rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem]';
             
-            // ✅ Product card now redirects to product.html directly
             return `
                 <a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}">
                     <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
-                        <!-- Wishlist Button -->
                         <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
                             <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')" aria-label="Ajouter aux favoris">
                                 <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                             </button>
                         </div>
-                        
-                        <!-- Product Image -->
                         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" />
-                        
-                        <!-- Hover Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        <!-- View Details Button -->
                         <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
                             <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg">
                                 <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>
                                 Voir détails
                             </span>
                         </div>
-                        
-                        <!-- Category Badge -->
                         <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                     </div>
-                    
-                    <!-- Product Info -->
                     <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
                         <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
                         <p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
@@ -768,7 +834,6 @@
             document.querySelectorAll('.lazy-image').forEach(img => { if (img.complete) img.classList.add('loaded'); });
         }
 
-        // Static fallback products
         const staticProducts = [
             { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', description: 'Flagship Samsung avec écran Dynamic AMOLED 2X.' },
             { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', description: 'Puissance A17 Pro et titane aérospatial.' },
@@ -781,11 +846,9 @@
         // ==================== Initialize ====================
         document.addEventListener('DOMContentLoaded', () => {
             loadStorefrontProducts();
-            // Preload critical images
             ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
         });
 
-        // Online/Offline status
         window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
         window.addEventListener('offline', () => showToast('📴 Hors ligne', 'warning', 5000));
     </script>
