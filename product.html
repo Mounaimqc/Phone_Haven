@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Product Details | Phone Haven</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
@@ -81,305 +81,327 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            /* Prevent zoom on input focus */
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+            
+            /* Better touch targets */
+            button, [role="button"] {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Smooth scroll for mobile */
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Prevent pull-to-refresh interference */
+            body {
+                overscroll-behavior-y: contain;
+            }
+        }
+
+        /* Sticky submit button on mobile */
+        @media (max-width: 768px) {
+            .sticky-submit {
+                position: sticky;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
+                padding: 16px 20px 24px;
+                margin: 0 -20px -24px;
+                backdrop-filter: blur(10px);
+                z-index: 50;
+            }
+            .sticky-submit button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
 <body
     class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Premium Navigation -->
+        <!-- Premium Navigation - Mobile Optimized -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3 sm:py-4">
+            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                <div class="flex items-center gap-4 sm:gap-6 md:gap-10">
-                    <a href="index.html" class="flex items-center gap-2 group">
-                        <div
-                            class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                        </div>
-                        <h2 class="font-display text-xl sm:text-2xl font-black tracking-tighter">Phone Haven<span
-                                class="text-primary italic">.</span></h2>
-                    </a>
-                    <nav class="hidden lg:flex items-center gap-6 md:gap-8">
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
-                            href="index.html">Collection</a>
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
-                            href="search.html">Catalogue</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <button
-                        class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all active:scale-90 shadow-sm">
-                        <span class="material-symbols-outlined text-[20px] sm:text-[22px]">favorite</span>
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-sm">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                    </div>
+                    <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span
+                            class="text-primary italic">.</span></h2>
+                </a>
+                <div class="flex items-center gap-2">
+                    <button class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">favorite</span>
                     </button>
-                    <button
-                        class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
-                        <span class="material-symbols-outlined text-[20px] sm:text-[22px]">shopping_bag</span>
+                    <button class="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
                     </button>
                 </div>
             </div>
         </header>
 
-        <main class="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6 md:px-20 py-8 sm:py-12">
-            <!-- Breadcrumbs -->
-            <nav class="flex items-center gap-3 mb-8 sm:mb-12 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
-                <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                <a id="breadcrumb-category" class="hover:text-primary transition-colors"
-                    href="search.html">Collection</a>
-                <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                <span id="breadcrumb-title" class="text-primary">Loading...</span>
+        <main class="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6 md:px-20 py-4 sm:py-8">
+            <!-- Breadcrumbs - Mobile Friendly -->
+            <nav class="flex items-center gap-2 mb-4 sm:mb-6 text-[9px] font-black uppercase tracking-[0.15em] text-slate-400 overflow-x-auto no-scrollbar">
+                <a class="hover:text-primary transition-colors whitespace-nowrap" href="index.html">Accueil</a>
+                <span class="h-1 w-1 rounded-full bg-slate-300 flex-shrink-0"></span>
+                <a id="breadcrumb-category" class="hover:text-primary transition-colors whitespace-nowrap" href="search.html">Collection</a>
+                <span class="h-1 w-1 rounded-full bg-slate-300 flex-shrink-0"></span>
+                <span id="breadcrumb-title" class="text-primary whitespace-nowrap">Loading...</span>
             </nav>
 
-            <div class="grid grid-cols-1 gap-8 sm:gap-12 lg:gap-20 lg:grid-cols-2">
-                <!-- Gallery Section -->
-                <div class="space-y-4 sm:space-y-6">
-                    <div
-                        class="overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-2xl relative group">
+            <div class="grid grid-cols-1 gap-6 sm:gap-12 lg:gap-20 lg:grid-cols-2">
+                <!-- Gallery Section - Mobile First -->
+                <div class="space-y-4">
+                    <div class="overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-xl relative group">
                         <!-- Loading Skeleton -->
-                        <div id="image-skeleton" class="aspect-square w-full skeleton"></div>
+                        <div id="image-skeleton" class="aspect-square w-full skeleton rounded-[2rem]"></div>
                         <!-- Real Image (hidden until loaded) -->
-                        <img id="product-image" alt="Piece Preview"
-                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105 hidden"
+                        <img id="product-image" alt="Product Preview"
+                            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 hidden rounded-[2rem]"
                             src="" />
                     </div>
+                    <!-- Mobile: Swipe hint -->
+                    <p class="text-center text-[10px] text-slate-400 sm:hidden flex items-center justify-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">swipe</span>
+                        Swipe pour voir plus
+                    </p>
                 </div>
 
                 <div class="flex flex-col">
-                    <div class="mb-4 sm:mb-6">
+                    <!-- Product Title - Responsive -->
+                    <div class="mb-4">
                         <h1 id="product-title"
-                            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-2">
-                            <span class="skeleton inline-block w-48 h-8 rounded-lg"></span>
+                            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                            <span class="skeleton inline-block w-40 h-6 rounded"></span>
                         </h1>
                     </div>
 
-                    <!-- Pricing & Description Card -->
-                    <div
-                        class="mb-6 sm:mb-8 glass p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
-                        <div
-                            class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                    <!-- Price & Stock Card -->
+                    <div class="mb-4 sm:mb-6 glass p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 shadow-lg">
+                        <div class="flex items-baseline gap-3 mb-2">
+                            <span id="product-price" class="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-primary skeleton w-24 h-8 rounded"></span>
                         </div>
-                        <div class="flex items-baseline gap-4 mb-2">
-                            <span id="product-price" class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-primary skeleton w-32 h-10 rounded-lg"></span>
-                        </div>
-                        <p
-                            class="text-[8px] sm:text-[10px] font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <p class="text-[9px] font-black text-green-500 uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                             <span id="stock-status">Loading...</span>
                         </p>
                     </div>
 
-                    <div class="space-y-6 sm:space-y-10 mb-10 sm:mb-16 px-1 sm:px-2">
-                        <div>
-                            <h3 class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 sm:mb-6">Manifesto</h3>
-                            <p id="product-description"
-                                class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-base sm:text-lg">
-                                <span class="skeleton inline-block w-full h-4 rounded"></span>
-                                <span class="skeleton inline-block w-3/4 h-4 rounded mt-2"></span>
-                            </p>
-                        </div>
+                    <!-- Description - Compact on Mobile -->
+                    <div class="mb-6 sm:mb-8 px-1">
+                        <h3 class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Description</h3>
+                        <p id="product-description"
+                            class="text-slate-600 dark:text-slate-400 leading-relaxed font-medium text-sm sm:text-base line-clamp-4 sm:line-clamp-none">
+                            <span class="skeleton inline-block w-full h-3 rounded mb-2"></span>
+                            <span class="skeleton inline-block w-3/4 h-3 rounded"></span>
+                        </p>
                     </div>
 
-                    <!-- Modernized Order Form with Dynamic Shipping Price -->
-                    <div class="glass border border-primary/20 p-6 sm:p-8 lg:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative">
-                        <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
-                            <div
-                                class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                                <span class="material-symbols-outlined font-bold text-[20px] sm:text-[24px]">shopping_bag</span>
+                    <!-- Order Form - Mobile Optimized -->
+                    <div class="glass border border-primary/20 p-4 sm:p-6 rounded-[2rem] shadow-lg relative">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined font-bold text-[18px] sm:text-[20px]">shopping_bag</span>
                             </div>
-                            <h3 class="font-display text-xl sm:text-2xl font-black">Acquire Now</h3>
+                            <h3 class="font-display text-lg sm:text-xl font-black">Commander Maintenant</h3>
                         </div>
 
-                        <!-- Color Selection -->
-                        <div class="mb-6 sm:mb-10">
-                            <h3 class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 sm:mb-6">Couleurs</h3>
-                            <div class="flex gap-3 sm:gap-4" id="color-options">
-                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-primary ring-4 ring-primary/20 bg-slate-900" title="Black"></button>
-                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-slate-200" title="Silver"></button>
-                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-blue-600" title="Blue"></button>
-                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-rose-200" title="Pink"></button>
-                            </div>
-                        </div>
-
-                        <form class="space-y-4 sm:space-y-6" id="order-form">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <form class="space-y-4" id="order-form">
+                            <!-- Name & Phone - Stacked on Mobile -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Client Identity</label>
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Nom Complet</label>
                                     <input id="customer-name"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                        placeholder="Nom et Prénom" required="" type="text" />
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        placeholder="Votre nom" required="" type="text" autocomplete="name" />
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Direct Contact</label>
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Téléphone</label>
                                     <input id="customer-phone"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                        placeholder="0XXXXXXXXX" required="" type="tel" />
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        placeholder="05/06/07 XXX XX XX" required="" type="tel" inputmode="tel" autocomplete="tel" />
                                 </div>
                             </div>
                             
-                            <!-- Shipping Type Selection -->
+                            <!-- Shipping Type - Large Touch Target -->
                             <div class="space-y-2">
-                                <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics Preference</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Type de Livraison</label>
                                 <select id="shipping-type"
-                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
-                                    <option value="stop_desk">🏢 Stop Desk (Relais / Bureau)</option>
-                                    <option value="a_domicile">🏠 Direct Delivery (À Domicile)</option>
+                                    class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                    <option value="stop_desk">🏢 Stop Desk (Bureau)</option>
+                                    <option value="a_domicile">🏠 À Domicile</option>
                                 </select>
                             </div>
                             
-                            <!-- Wilaya & Commune with Shipping Price Display -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                            <!-- Location Selection -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Wilaya</label>
                                     <select id="wilaya"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10"
                                         required="">
-                                        <option value="">Select Territory</option>
+                                        <option value="">Sélectionner</option>
                                     </select>
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Commune</label>
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Commune</label>
                                     <select id="commune"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10"
                                         required="">
-                                        <option value="">Select Region</option>
+                                        <option value="">Sélectionner</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <!-- ✅ Dynamic Shipping Price Display -->
-                            <div id="shipping-price-card" class="hidden glass border border-accent/30 bg-accent/5 rounded-2xl p-4 sm:p-6">
+                            <!-- ✅ Dynamic Shipping Price Display - Mobile Card -->
+                            <div id="shipping-price-card" class="hidden glass border border-accent/30 bg-accent/5 rounded-xl p-4">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-xl bg-accent/20 text-accent flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                                    <div class="flex items-center gap-2 min-w-0">
+                                        <div class="h-8 w-8 rounded-lg bg-accent/20 text-accent flex items-center justify-center flex-shrink-0">
+                                            <span class="material-symbols-outlined text-[18px]">local_shipping</span>
                                         </div>
-                                        <div>
-                                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Shipping Cost</p>
-                                            <p class="text-slate-700 dark:text-slate-300 font-medium text-sm" id="shipping-details">Calculating...</p>
+                                        <div class="min-w-0">
+                                            <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 truncate">Frais de Livraison</p>
+                                            <p class="text-slate-700 dark:text-slate-300 font-medium text-xs truncate" id="shipping-details">Calcul...</p>
                                         </div>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Delivery</p>
-                                        <p id="shipping-price" class="text-accent font-black text-xl sm:text-2xl">0 د.ج</p>
+                                    <div class="text-right flex-shrink-0 ml-3">
+                                        <p id="shipping-price" class="text-accent font-black text-lg">0 د.ج</p>
                                     </div>
                                 </div>
-                                <p id="shipping-time" class="text-[10px] text-slate-500 dark:text-slate-400 mt-3 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[14px]">schedule</span>
-                                    <span>Estimated: --</span>
+                                <p id="shipping-time" class="text-[9px] text-slate-500 dark:text-slate-400 mt-2 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">schedule</span>
+                                    <span class="truncate">--</span>
                                 </p>
                             </div>
                             
+                            <!-- Address Field -->
                             <div class="space-y-2">
-                                <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise Locale</label>
+                                <label class="text-[9px] font-black uppercase tracking-widest text-slate-400">Adresse Complète</label>
                                 <input id="address"
-                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
-                                    placeholder="Detailed Address" required="" type="text" />
+                                    class="w-full rounded-xl border-none bg-slate-100 dark:bg-white/5 px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                    placeholder="Rue, Numéro, Repère..." required="" type="text" autocomplete="street-address" />
                             </div>
                             
-                            <!-- ✅ Order Summary -->
-                            <div id="order-summary" class="hidden glass border border-primary/30 rounded-2xl p-4 sm:p-6 space-y-3">
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-slate-500">Product Price</span>
+                            <!-- ✅ Order Summary - Compact Mobile Card -->
+                            <div id="order-summary" class="hidden glass border border-primary/30 rounded-xl p-4 space-y-2">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-500">Produit</span>
                                     <span id="summary-product-price" class="font-medium">0 د.ج</span>
                                 </div>
-                                <div class="flex justify-between text-sm">
-                                    <span class="text-slate-500">Shipping</span>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-slate-500">Livraison</span>
                                     <span id="summary-shipping-price" class="font-medium text-accent">0 د.ج</span>
                                 </div>
-                                <div class="border-t border-white/10 pt-3 flex justify-between">
-                                    <span class="font-black text-slate-900 dark:text-white">Total</span>
+                                <div class="border-t border-white/10 pt-2 flex justify-between">
+                                    <span class="font-black text-slate-900 dark:text-white text-sm">Total</span>
                                     <span id="summary-total" class="font-black text-primary text-lg">0 د.ج</span>
                                 </div>
                             </div>
                             
-                            <button
-                                class="w-full mt-4 sm:mt-6 group relative flex h-12 sm:h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                                type="submit" id="confirm-btn" disabled>
-                                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                <span class="relative font-display text-xs sm:text-base font-black tracking-widest uppercase">Select Location First</span>
-                            </button>
+                            <!-- ✅ Sticky Submit Button on Mobile -->
+                            <div class="sticky-submit pt-2">
+                                <button
+                                    class="w-full group relative flex h-12 sm:h-14 items-center justify-center overflow-hidden rounded-xl bg-primary text-white shadow-lg shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
+                                    type="submit" id="confirm-btn" disabled>
+                                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                    <span class="relative font-display text-sm font-black tracking-wide uppercase flex items-center gap-2">
+                                        <span id="btn-text">Sélectionnez la wilaya</span>
+                                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </span>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </main>
 
-        <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-12 sm:py-20 mt-20 sm:mt-32">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-20 text-center">
-                <a href="index.html" class="inline-flex items-center gap-2 group mb-8 sm:mb-12">
-                    <div class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg">
+        <!-- Footer - Mobile Simplified -->
+        <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-8 sm:py-12 mt-12 sm:mt-20">
+            <div class="mx-auto max-w-7xl px-4 text-center">
+                <a href="index.html" class="inline-flex items-center gap-2 justify-center mb-6">
+                    <div class="flex h-7 w-7 items-center justify-center rounded-xl bg-white shadow-sm">
                         <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                     </div>
-                    <h2 class="font-display text-xl sm:text-2xl font-black tracking-tighter">Phone Haven<span
-                            class="text-primary italic">.</span></h2>
+                    <h2 class="font-display text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                 </a>
-                <div
-                    class="flex flex-wrap justify-center gap-6 sm:gap-10 mb-8 sm:mb-12 text-xs sm:text-sm font-black uppercase tracking-widest text-slate-400">
-                    <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
-                    <a class="hover:text-primary transition-colors" href="search.html">Collection</a>
-                    <a class="hover:text-primary transition-colors" href="tracking.html">Track Parcel</a>
-                    <a class="hover:text-primary transition-colors" href="#">Support</a>
+                <div class="flex flex-wrap justify-center gap-4 mb-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="index.html">Accueil</a>
+                    <a class="hover:text-primary transition-colors" href="search.html">Catalogue</a>
+                    <a class="hover:text-primary transition-colors" href="tracking.html">Suivi</a>
                 </div>
-                <p class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 Phone Haven • Algiers</p>
+                <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">© 2024 Phone Haven • Algérie</p>
             </div>
         </footer>
     </div>
 
     <script>
         const wilayasData = {
-            "1": { name: "Adrar", nameAr: "أدرار", code: "01", time: "72h à 96h", home: 1500, desk: 1000 },
-            "2": { name: "Chlef", nameAr: "الشلف", code: "02", time: "24h à 48h", home: 700, desk: 450 },
-            "3": { name: "Laghouat", nameAr: "الأغواط", code: "03", time: "48h à 72h", home: 900, desk: 600 },
-            "4": { name: "Oum El Bouaghi", nameAr: "أم البواقي", code: "04", time: "24h à 48h", home: 800, desk: 500 },
-            "5": { name: "Batna", nameAr: "باتنة", code: "05", time: "24h à 48h", home: 700, desk: 450 },
-            "6": { name: "Béjaïa", nameAr: "بجاية", code: "06", time: "24h à 48h", home: 700, desk: 450 },
-            "7": { name: "Biskra", nameAr: "بسكرة", code: "07", time: "48h à 72h", home: 900, desk: 500 },
-            "8": { name: "Béchar", nameAr: "بشار", code: "08", time: "72h à 96h", home: 1200, desk: 800 },
-            "9": { name: "Blida", nameAr: "البليدة", code: "09", time: "24h à 48h", home: 700, desk: 450 },
-            "10": { name: "Bouira", nameAr: "البويرة", code: "10", time: "24h à 48h", home: 700, desk: 450 },
-            "11": { name: "Tamanrasset", nameAr: "تمنراست", code: "11", time: "72h à 96h", home: 2000, desk: 1500 },
-            "12": { name: "Tébessa", nameAr: "تبسة", code: "12", time: "48h à 72h", home: 850, desk: 500 },
-            "13": { name: "Tlemcen", nameAr: "تلمسان", code: "13", time: "24h à 48h", home: 800, desk: 500 },
-            "14": { name: "Tiaret", nameAr: "تيارت", code: "14", time: "48h à 72h", home: 800, desk: 500 },
-            "15": { name: "Tizi Ouzou", nameAr: "تيزي وزو", code: "15", time: "24h à 48h", home: 700, desk: 450 },
-            "16": { name: "Alger", nameAr: "الجزائر", code: "16", time: "24h à 48h", home: 600, desk: 400 },
-            "17": { name: "Djelfa", nameAr: "الجلفة", code: "17", time: "48h à 72h", home: 900, desk: 600 },
-            "18": { name: "Jijel", nameAr: "جيجل", code: "18", time: "24h à 48h", home: 700, desk: 450 },
-            "19": { name: "Sétif", nameAr: "سطيف", code: "19", time: "24h à 48h", home: 550, desk: 300 },
-            "20": { name: "Saïda", nameAr: "سعيدة", code: "20", time: "48h à 72h", home: 900, desk: 500 },
-            "21": { name: "Skikda", nameAr: "سكيكدة", code: "21", time: "24h à 48h", home: 800, desk: 500 },
-            "22": { name: "Sidi Bel Abbès", nameAr: "سيدي بلعباس", code: "22", time: "24h à 48h", home: 800, desk: 500 },
-            "23": { name: "Annaba", nameAr: "عنابة", code: "23", time: "24h à 48h", home: 700, desk: 450 },
-            "24": { name: "Guelma", nameAr: "قالمة", code: "24", time: "24h à 48h", home: 850, desk: 500 },
-            "25": { name: "Constantine", nameAr: "قسنطينة", code: "25", time: "24h à 48h", home: 650, desk: 400 },
-            "26": { name: "Médéa", nameAr: "المدية", code: "26", time: "48h à 72h", home: 800, desk: 500 },
-            "27": { name: "Mostaganem", nameAr: "مستغانم", code: "27", time: "24h à 48h", home: 800, desk: 500 },
-            "28": { name: "M'Sila", nameAr: "المسيلة", code: "28", time: "48h à 72h", home: 700, desk: 450 },
-            "29": { name: "Mascara", nameAr: "معسكر", code: "29", time: "24h à 48h", home: 800, desk: 500 },
-            "30": { name: "Ouargla", nameAr: "ورقلة", code: "30", time: "72h à 96h", home: 1000, desk: 600 },
-            "31": { name: "Oran", nameAr: "وهران", code: "31", time: "24h à 48h", home: 700, desk: 450 },
-            "32": { name: "El Bayadh", nameAr: "البيض", code: "32", time: "72h à 96h", home: 1200, desk: 800 },
-            "33": { name: "Illizi", nameAr: "إليزي", code: "33", time: "72h à 96h", home: 1900, desk: 1500 },
-            "34": { name: "Bordj Bou Arréridj", nameAr: "برج بوعريريج", code: "34", time: "24h à 48h", home: 600, desk: 400 },
-            "35": { name: "Boumerdès", nameAr: "بومرداس", code: "35", time: "24h à 48h", home: 700, desk: 450 },
-            "36": { name: "El Tarf", nameAr: "الطارف", code: "36", time: "24h à 48h", home: 850, desk: 500 },
-            "37": { name: "Tindouf", nameAr: "تندوف", code: "37", time: "72h à 96h", home: 1700, desk: 1000 },
-            "38": { name: "Tissemsilt", nameAr: "تسمسيلت", code: "38", time: "48h à 72h", home: 850, desk: 500 },
-            "39": { name: "El Oued", nameAr: "الوادي", code: "39", time: "72h à 96h", home: 1000, desk: 600 },
-            "40": { name: "Khenchela", nameAr: "خنشلة", code: "40", time: "48h à 72h", home: 600, desk: 500 },
-            "41": { name: "Souk Ahras", nameAr: "سوق أهراس", code: "41", time: "24h à 48h", home: 850, desk: 500 },
-            "42": { name: "Tipaza", nameAr: "تيبازة", code: "42", time: "24h à 48h", home: 600, desk: 450 },
-            "43": { name: "Mila", nameAr: "ميلة", code: "43", time: "24h à 48h", home: 600, desk: 500 },
-            "44": { name: "Aïn Defla", nameAr: "عين الدفلى", code: "44", time: "48h à 72h", home: 800, desk: 500 },
-            "45": { name: "Naâma", nameAr: "النعامة", code: "45", time: "72h à 96h", home: 1200, desk: 800 },
-            "46": { name: "Aïn Témouchent", nameAr: "عين تموشنت", code: "46", time: "24h à 48h", home: 800, desk: 500 },
-            "47": { name: "Ghardaïa", nameAr: "غرداية", code: "47", time: "72h à 96h", home: 1000, desk: 600 },
-            "48": { name: "Relizane", nameAr: "غليزان", code: "48", time: "24h à 48h", home: 800, desk: 500 },
-            "49": { name: "Timimoun", nameAr: "تميمون", code: "49", time: "72h à 96h", home: 1500, desk: 1000 },
-            "50": { name: "Bordj Badji Mokhtar", nameAr: "برج باجي مختار", code: "50", time: "72h à 96h", home: 1600, desk: 1500 },
-            "51": { name: "Ouled Djellal", nameAr: "أولاد جلال", code: "51", time: "72h à 96h", home: 900, desk: 500 },
-            "52": { name: "Béni Abbès", nameAr: "بني عباس", code: "52", time: "72h à 96h", home: 1200, desk: 800 },
+            "1": { name: "Adrar", nameAr: "أدرار", code: "01", time: "72-96h", home: 1500, desk: 1000 },
+            "2": { name: "Chlef", nameAr: "الشلف", code: "02", time: "24-48h", home: 700, desk: 450 },
+            "3": { name: "Laghouat", nameAr: "الأغواط", code: "03", time: "48-72h", home: 900, desk: 600 },
+            "4": { name: "Oum El Bouaghi", nameAr: "أم البواقي", code: "04", time: "24-48h", home: 800, desk: 500 },
+            "5": { name: "Batna", nameAr: "باتنة", code: "05", time: "24-48h", home: 700, desk: 450 },
+            "6": { name: "Béjaïa", nameAr: "بجاية", code: "06", time: "24-48h", home: 700, desk: 450 },
+            "7": { name: "Biskra", nameAr: "بسكرة", code: "07", time: "48-72h", home: 900, desk: 500 },
+            "8": { name: "Béchar", nameAr: "بشار", code: "08", time: "72-96h", home: 1200, desk: 800 },
+            "9": { name: "Blida", nameAr: "البليدة", code: "09", time: "24-48h", home: 700, desk: 450 },
+            "10": { name: "Bouira", nameAr: "البويرة", code: "10", time: "24-48h", home: 700, desk: 450 },
+            "11": { name: "Tamanrasset", nameAr: "تمنراست", code: "11", time: "72-96h", home: 2000, desk: 1500 },
+            "12": { name: "Tébessa", nameAr: "تبسة", code: "12", time: "48-72h", home: 850, desk: 500 },
+            "13": { name: "Tlemcen", nameAr: "تلمسان", code: "13", time: "24-48h", home: 800, desk: 500 },
+            "14": { name: "Tiaret", nameAr: "تيارت", code: "14", time: "48-72h", home: 800, desk: 500 },
+            "15": { name: "Tizi Ouzou", nameAr: "تيزي وزو", code: "15", time: "24-48h", home: 700, desk: 450 },
+            "16": { name: "Alger", nameAr: "الجزائر", code: "16", time: "24-48h", home: 600, desk: 400 },
+            "17": { name: "Djelfa", nameAr: "الجلفة", code: "17", time: "48-72h", home: 900, desk: 600 },
+            "18": { name: "Jijel", nameAr: "جيجل", code: "18", time: "24-48h", home: 700, desk: 450 },
+            "19": { name: "Sétif", nameAr: "سطيف", code: "19", time: "24-48h", home: 550, desk: 300 },
+            "20": { name: "Saïda", nameAr: "سعيدة", code: "20", time: "48-72h", home: 900, desk: 500 },
+            "21": { name: "Skikda", nameAr: "سكيكدة", code: "21", time: "24-48h", home: 800, desk: 500 },
+            "22": { name: "Sidi Bel Abbès", nameAr: "سيدي بلعباس", code: "22", time: "24-48h", home: 800, desk: 500 },
+            "23": { name: "Annaba", nameAr: "عنابة", code: "23", time: "24-48h", home: 700, desk: 450 },
+            "24": { name: "Guelma", nameAr: "قالمة", code: "24", time: "24-48h", home: 850, desk: 500 },
+            "25": { name: "Constantine", nameAr: "قسنطينة", code: "25", time: "24-48h", home: 650, desk: 400 },
+            "26": { name: "Médéa", nameAr: "المدية", code: "26", time: "48-72h", home: 800, desk: 500 },
+            "27": { name: "Mostaganem", nameAr: "مستغانم", code: "27", time: "24-48h", home: 800, desk: 500 },
+            "28": { name: "M'Sila", nameAr: "المسيلة", code: "28", time: "48-72h", home: 700, desk: 450 },
+            "29": { name: "Mascara", nameAr: "معسكر", code: "29", time: "24-48h", home: 800, desk: 500 },
+            "30": { name: "Ouargla", nameAr: "ورقلة", code: "30", time: "72-96h", home: 1000, desk: 600 },
+            "31": { name: "Oran", nameAr: "وهران", code: "31", time: "24-48h", home: 700, desk: 450 },
+            "32": { name: "El Bayadh", nameAr: "البيض", code: "32", time: "72-96h", home: 1200, desk: 800 },
+            "33": { name: "Illizi", nameAr: "إليزي", code: "33", time: "72-96h", home: 1900, desk: 1500 },
+            "34": { name: "Bordj Bou Arréridj", nameAr: "برج بوعريريج", code: "34", time: "24-48h", home: 600, desk: 400 },
+            "35": { name: "Boumerdès", nameAr: "بومرداس", code: "35", time: "24-48h", home: 700, desk: 450 },
+            "36": { name: "El Tarf", nameAr: "الطارف", code: "36", time: "24-48h", home: 850, desk: 500 },
+            "37": { name: "Tindouf", nameAr: "تندوف", code: "37", time: "72-96h", home: 1700, desk: 1000 },
+            "38": { name: "Tissemsilt", nameAr: "تسمسيلت", code: "38", time: "48-72h", home: 850, desk: 500 },
+            "39": { name: "El Oued", nameAr: "الوادي", code: "39", time: "72-96h", home: 1000, desk: 600 },
+            "40": { name: "Khenchela", nameAr: "خنشلة", code: "40", time: "48-72h", home: 600, desk: 500 },
+            "41": { name: "Souk Ahras", nameAr: "سوق أهراس", code: "41", time: "24-48h", home: 850, desk: 500 },
+            "42": { name: "Tipaza", nameAr: "تيبازة", code: "42", time: "24-48h", home: 600, desk: 450 },
+            "43": { name: "Mila", nameAr: "ميلة", code: "43", time: "24-48h", home: 600, desk: 500 },
+            "44": { name: "Aïn Defla", nameAr: "عين الدفلى", code: "44", time: "48-72h", home: 800, desk: 500 },
+            "45": { name: "Naâma", nameAr: "النعامة", code: "45", time: "72-96h", home: 1200, desk: 800 },
+            "46": { name: "Aïn Témouchent", nameAr: "عين تموشنت", code: "46", time: "24-48h", home: 800, desk: 500 },
+            "47": { name: "Ghardaïa", nameAr: "غرداية", code: "47", time: "72-96h", home: 1000, desk: 600 },
+            "48": { name: "Relizane", nameAr: "غليزان", code: "48", time: "24-48h", home: 800, desk: 500 },
+            "49": { name: "Timimoun", nameAr: "تميمون", code: "49", time: "72-96h", home: 1500, desk: 1000 },
+            "50": { name: "Bordj Badji Mokhtar", nameAr: "برج باجي مختار", code: "50", time: "72-96h", home: 1600, desk: 1500 },
+            "51": { name: "Ouled Djellal", nameAr: "أولاد جلال", code: "51", time: "72-96h", home: 900, desk: 500 },
+            "52": { name: "Béni Abbès", nameAr: "بني عباس", code: "52", time: "72-96h", home: 1200, desk: 800 },
             "53": { name: "In Salah", nameAr: "عين صالح", code: "53", home: 1800, desk: 1200 },
             "54": { name: "In Guezzam", nameAr: "عين قزام", code: "54", home: 2200, desk: 3500 },
             "55": { name: "Touggourt", nameAr: "تقرت", code: "55", home: 1000, desk: 600 },
@@ -392,15 +414,6 @@
     <script type="module">
         import { getProductById, addOrder } from './db-service.js';
 
-        const communesData = {
-            "Alger": ["Alger Centre", "Sidi M'Hamed", "El Biar", "Bab El Oued", "Bordj El Kiffan", "Hussein Dey"],
-            "Blida": ["Blida", "Boufarik", "Ouled Yaïch", "Beni Mered"],
-            "Oran": ["Oran", "Es Senia", "Bir El Djir", "Arzew"],
-            "Constantine": ["Constantine", "El Khroub", "Hamma Bouziane"],
-            "Sétif": ["Sétif", "El Eulma", "Ain Arnat"],
-            "Annaba": ["Annaba", "El Bouni", "Sidi Amar"]
-        };
-
         function formatPrice(price) {
             return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
         }
@@ -412,6 +425,7 @@
             window.location.href = 'index.html';
         }
 
+        // DOM Elements
         const productTitle = document.getElementById('product-title');
         const productPrice = document.getElementById('product-price');
         const productDescription = document.getElementById('product-description');
@@ -425,8 +439,9 @@
         const shippingTypeSelect = document.getElementById('shipping-type');
         const orderForm = document.getElementById('order-form');
         const confirmBtn = document.getElementById('confirm-btn');
+        const btnText = document.getElementById('btn-text');
         
-        // ✅ Shipping Price Elements
+        // Shipping Price Elements
         const shippingPriceCard = document.getElementById('shipping-price-card');
         const shippingPriceEl = document.getElementById('shipping-price');
         const shippingDetailsEl = document.getElementById('shipping-details');
@@ -442,7 +457,7 @@
             const option = document.createElement('option');
             option.value = w.name;
             option.dataset.id = id;
-            option.textContent = `${w.code} - ${w.name} (${w.nameAr})`;
+            option.textContent = `${w.code} - ${w.name}`;
             wilayaSelect.appendChild(option);
         });
 
@@ -450,6 +465,7 @@
         let currentProduct = null;
         let currentShippingPrice = 0;
 
+        // Fetch communes from external API
         async function fetchCommunes() {
             try {
                 const response = await fetch('https://raw.githubusercontent.com/S450R1/algeria-cities-2025/main/json/cities.json');
@@ -457,6 +473,8 @@
                 allCommunes = data.communes;
             } catch (error) {
                 console.error("Error fetching communes:", error);
+                // Fallback to static data
+                allCommunes = [];
             }
         }
 
@@ -470,30 +488,28 @@
                 shippingPriceCard.classList.add('hidden');
                 orderSummary.classList.add('hidden');
                 confirmBtn.disabled = true;
-                confirmBtn.querySelector('span').textContent = 'Select Location First';
+                btnText.textContent = 'Sélectionnez la wilaya';
                 return;
             }
 
-            // Find wilaya data
             const wilayaId = Object.keys(wilayasData).find(key => wilayasData[key].name === selectedWilaya);
             const wilayaInfo = wilayasData[wilayaId];
 
             if (!wilayaInfo) return;
 
-            // Get price based on shipping type
             currentShippingPrice = shippingType === 'a_domicile' ? wilayaInfo.home : wilayaInfo.desk;
             const shippingLabel = shippingType === 'a_domicile' ? 'À Domicile' : 'Stop Desk';
 
-            // ✅ Update Shipping Price Display with animation
+            // Update Shipping Price Display with animation
             shippingPriceCard.classList.remove('hidden');
             shippingPriceEl.textContent = formatPrice(currentShippingPrice);
             shippingPriceEl.classList.add('price-update');
             setTimeout(() => shippingPriceEl.classList.remove('price-update'), 300);
 
             shippingDetailsEl.textContent = `${selectedCommune}, ${selectedWilaya} • ${shippingLabel}`;
-            shippingTimeEl.querySelector('span:last-child').textContent = `Estimated: ${wilayaInfo.time}`;
+            shippingTimeEl.querySelector('span:last-child').textContent = `Livraison: ${wilayaInfo.time}`;
 
-            // ✅ Update Order Summary
+            // Update Order Summary
             if (currentProduct) {
                 orderSummary.classList.remove('hidden');
                 summaryProductPrice.textContent = formatPrice(currentProduct.price);
@@ -504,16 +520,17 @@
 
             // Enable confirm button
             confirmBtn.disabled = false;
-            confirmBtn.querySelector('span').textContent = 'Confirm Acquisition';
+            btnText.textContent = 'Confirmer la Commande';
         }
 
         // Update Communes on Wilaya Change
         wilayaSelect.addEventListener('change', () => {
             const selectedWilayaName = wilayaSelect.value;
-            communeSelect.innerHTML = '<option value="">Select Region</option>';
+            communeSelect.innerHTML = '<option value="">Chargement...</option>';
             shippingPriceCard.classList.add('hidden');
             orderSummary.classList.add('hidden');
             confirmBtn.disabled = true;
+            btnText.textContent = 'Sélectionnez la commune';
 
             if (!selectedWilayaName) return;
 
@@ -522,28 +539,41 @@
             if (allCommunes.length > 0 && wilayaId) {
                 const filtered = allCommunes.filter(c => c.wilaya_id == wilayaId);
                 filtered.sort((a, b) => a.commune_name_latin.localeCompare(b.commune_name_latin));
+                
+                communeSelect.innerHTML = '<option value="">Sélectionner</option>';
                 filtered.forEach(c => {
                     const option = document.createElement('option');
                     option.value = c.commune_name_latin;
-                    option.textContent = `${c.commune_name_latin} (${c.commune_name_arabic})`;
+                    option.textContent = c.commune_name_latin;
+                    communeSelect.appendChild(option);
+                });
+            } else {
+                // Fallback communes
+                const fallback = communesData[selectedWilayaName] || ['Centre', 'Nord', 'Sud'];
+                communeSelect.innerHTML = '<option value="">Sélectionner</option>';
+                fallback.forEach(c => {
+                    const option = document.createElement('option');
+                    option.value = c;
+                    option.textContent = c;
                     communeSelect.appendChild(option);
                 });
             }
         });
 
-        // ✅ Listen for changes to update shipping price
+        // Listen for changes to update shipping price
         communeSelect.addEventListener('change', updateShippingPrice);
         shippingTypeSelect.addEventListener('change', updateShippingPrice);
 
+        // Load communes on init
         fetchCommunes();
 
-        // ✅ FIXED: Load product without placeholder image flash
+        // ✅ Load product with proper image handling
         async function loadProduct() {
             try {
                 const product = await getProductById(productId);
                 
                 if (!product) {
-                    alert('Product not found!');
+                    alert('Produit non trouvé!');
                     window.location.href = 'index.html';
                     return;
                 }
@@ -557,15 +587,15 @@
                 productPrice.textContent = formatPrice(product.price);
                 productPrice.classList.remove('skeleton');
                 
-                productDescription.textContent = product.description || 'No description available.';
+                productDescription.textContent = product.description || 'Description non disponible.';
                 
                 breadcrumbCategory.textContent = product.category;
                 breadcrumbTitle.textContent = product.name;
-                stockStatus.textContent = 'In Stock • Ready for Delivery';
+                stockStatus.textContent = 'En Stock • Prêt à livrer';
                 
                 document.title = `${product.name} | Phone Haven`;
 
-                // ✅ Load image properly
+                // Load image properly
                 if (product.image) {
                     const img = new Image();
                     img.onload = () => {
@@ -587,7 +617,7 @@
                     productImage.classList.add('loaded');
                 }
 
-                // Initialize summary with product price
+                // Initialize summary
                 if (currentProduct) {
                     summaryProductPrice.textContent = formatPrice(currentProduct.price);
                 }
@@ -597,25 +627,25 @@
                 imageSkeleton.classList.add('hidden');
                 productImage.classList.remove('hidden');
                 productImage.classList.add('loaded');
-                alert('Error loading product. Check console.');
+                alert('Erreur de chargement. Réessayez.');
             }
         }
 
+        // Form submission
         orderForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             if (!currentProduct) return;
 
             confirmBtn.disabled = true;
-            const btnSpan = confirmBtn.querySelector('span');
-            const originalText = btnSpan.textContent;
-            btnSpan.textContent = "Processing...";
+            const originalText = btnText.textContent;
+            btnText.textContent = "Traitement...";
 
             const order = {
                 customerName: document.getElementById('customer-name').value,
                 customerPhone: document.getElementById('customer-phone').value,
-                shippingType: document.getElementById('shipping-type').value,
-                wilaya: document.getElementById('wilaya').value,
-                commune: document.getElementById('commune').value,
+                shippingType: shippingTypeSelect.value,
+                wilaya: wilayaSelect.value,
+                commune: communeSelect.value,
                 address: document.getElementById('address').value,
                 productId: currentProduct.id,
                 productName: currentProduct.name,
@@ -631,9 +661,9 @@
                 window.location.href = `success.html?id=${docRef.id}`;
             } catch (error) {
                 console.error("Error creating order:", error);
-                alert('Erreur lors de la confirmation. Veuillez réessayer.');
+                alert('Erreur de confirmation. Réessayez.');
                 confirmBtn.disabled = false;
-                btnSpan.textContent = originalText;
+                btnText.textContent = originalText;
             }
         });
 
