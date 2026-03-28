@@ -49,6 +49,28 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Loading skeleton animation */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Image fade-in transition */
+        #product-image {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #product-image.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -57,218 +79,198 @@
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
         <!-- Premium Navigation -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
+            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3 sm:py-4">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                <div class="flex items-center gap-10">
+                <div class="flex items-center gap-4 sm:gap-6 md:gap-10">
                     <a href="index.html" class="flex items-center gap-2 group">
                         <div
-                            class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                            class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
-                        <h2 class="font-display text-2xl font-black tracking-tighter">Phone Haven<span
+                        <h2 class="font-display text-xl sm:text-2xl font-black tracking-tighter">Phone Haven<span
                                 class="text-primary italic">.</span></h2>
                     </a>
-                    <nav class="hidden lg:flex items-center gap-8">
+                    <nav class="hidden lg:flex items-center gap-6 md:gap-8">
                         <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
                             href="index.html">Collection</a>
                         <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-all"
                             href="search.html">Catalogue</a>
                     </nav>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
                     <button
-                        class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all active:scale-90 shadow-sm">
-                        <span class="material-symbols-outlined text-[22px]">favorite</span>
+                        class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all active:scale-90 shadow-sm">
+                        <span class="material-symbols-outlined text-[20px] sm:text-[22px]">favorite</span>
                     </button>
                     <button
-                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
-                        <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+                        class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
+                        <span class="material-symbols-outlined text-[20px] sm:text-[22px]">shopping_bag</span>
                     </button>
                 </div>
             </div>
         </header>
 
-        <main class="mx-auto w-full max-w-7xl flex-1 px-6 py-12 md:px-20">
+        <main class="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6 md:px-20 py-8 sm:py-12">
             <!-- Breadcrumbs -->
-            <nav class="flex items-center gap-3 mb-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+            <nav class="flex items-center gap-3 mb-8 sm:mb-12 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                 <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
                 <span class="h-1 w-1 rounded-full bg-slate-300"></span>
                 <a id="breadcrumb-category" class="hover:text-primary transition-colors"
                     href="search.html">Collection</a>
                 <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-                <span id="breadcrumb-title" class="text-primary">Piece No. 001</span>
+                <span id="breadcrumb-title" class="text-primary">Loading...</span>
             </nav>
 
-            <div class="grid grid-cols-1 gap-20 lg:grid-cols-2">
+            <div class="grid grid-cols-1 gap-8 sm:gap-12 lg:gap-20 lg:grid-cols-2">
                 <!-- Gallery Section -->
-                <div class="space-y-6">
+                <div class="space-y-4 sm:space-y-6">
                     <div
-                        class="overflow-hidden rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-2xl relative group">
-                        <div class="aspect-square w-full flex items-center justify-center">
-                            <img id="product-image" alt="Piece Preview"
-                                class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                                src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80" />
-
-                        </div>
+                        class="overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] bg-slate-50 dark:bg-white/5 border border-white/5 shadow-2xl relative group">
+                        <!-- Loading Skeleton -->
+                        <div id="image-skeleton" class="aspect-square w-full skeleton"></div>
+                        <!-- Real Image (hidden until loaded) -->
+                        <img id="product-image" alt="Piece Preview"
+                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105 hidden"
+                            src="" />
                     </div>
-
                 </div>
+
                 <div class="flex flex-col">
-                    <div class="mb-6">
-
+                    <div class="mb-4 sm:mb-6">
                         <h1 id="product-title"
-                            class="text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-2 md:text-5xl">
-                            Loading Product...</h1>
-
+                            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-2">
+                            <span class="skeleton inline-block w-48 h-8 rounded-lg"></span>
+                        </h1>
                     </div>
+
                     <!-- Pricing & Description Card -->
                     <div
-                        class="mb-12 glass p-8 rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                        class="mb-8 sm:mb-12 glass p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
                         <div
                             class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
                         </div>
                         <div class="flex items-baseline gap-4 mb-2">
-                            <span id="product-price" class="font-display text-5xl font-black text-primary">00.00
-                                د.ج</span>
+                            <span id="product-price" class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-primary skeleton w-32 h-10 rounded-lg"></span>
                         </div>
                         <p
-                            class="text-[10px] font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
+                            class="text-[8px] sm:text-[10px] font-black text-green-500 uppercase tracking-widest flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            In Stock • Ready for Delivery
+                            <span id="stock-status">Loading...</span>
                         </p>
                     </div>
 
-                    <div class="space-y-10 mb-16 px-2">
+                    <div class="space-y-6 sm:space-y-10 mb-10 sm:mb-16 px-1 sm:px-2">
                         <div>
-                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Manifesto
-                            </h3>
+                            <h3 class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 sm:mb-6">Manifesto</h3>
                             <p id="product-description"
-                                class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-lg">
-                                Loading the craft's details...
+                                class="text-slate-500 dark:text-slate-400 leading-relaxed font-medium text-base sm:text-lg">
+                                <span class="skeleton inline-block w-full h-4 rounded"></span>
+                                <span class="skeleton inline-block w-3/4 h-4 rounded mt-2"></span>
                             </p>
                         </div>
                     </div>
 
                     <!-- Modernized Order Form -->
-                    <div class="glass border border-primary/20 p-10 rounded-[3rem] shadow-2xl relative">
-                        <div class="flex items-center gap-4 mb-10">
+                    <div class="glass border border-primary/20 p-6 sm:p-8 lg:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative">
+                        <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
                             <div
-                                class="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                                <span class="material-symbols-outlined font-bold">shopping_bag</span>
+                                class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined font-bold text-[20px] sm:text-[24px]">shopping_bag</span>
                             </div>
-                            <h3 class="font-display text-2xl font-black">Acquire Now</h3>
+                            <h3 class="font-display text-xl sm:text-2xl font-black">Acquire Now</h3>
                         </div>
 
                         <!-- Color Selection -->
-                        <div class="mb-10">
-                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Couleurs
-                            </h3>
-                            <div class="flex gap-4" id="color-options">
-                                <button
-                                    class="w-12 h-12 rounded-full border-2 border-primary ring-4 ring-primary/20 bg-slate-900"
-                                    title="Black"></button>
-                                <button class="w-12 h-12 rounded-full border-2 border-slate-200 bg-slate-200"
-                                    title="Silver"></button>
-                                <button class="w-12 h-12 rounded-full border-2 border-slate-200 bg-blue-600"
-                                    title="Blue"></button>
-                                <button class="w-12 h-12 rounded-full border-2 border-slate-200 bg-rose-200"
-                                    title="Pink"></button>
+                        <div class="mb-6 sm:mb-10">
+                            <h3 class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 sm:mb-6">Couleurs</h3>
+                            <div class="flex gap-3 sm:gap-4" id="color-options">
+                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-primary ring-4 ring-primary/20 bg-slate-900" title="Black"></button>
+                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-slate-200" title="Silver"></button>
+                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-blue-600" title="Blue"></button>
+                                <button class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-slate-200 bg-rose-200" title="Pink"></button>
                             </div>
                         </div>
-                        <form class="space-y-6" id="order-form">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <form class="space-y-4 sm:space-y-6" id="order-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                 <div class="space-y-2">
-                                    <label
-                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Client
-                                        Identity</label>
+                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Client Identity</label>
                                     <input id="customer-name"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
                                         placeholder="Nom et Prénom" required="" type="text" />
                                 </div>
                                 <div class="space-y-2">
-                                    <label
-                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Direct
-                                        Contact</label>
+                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Direct Contact</label>
                                     <input id="customer-phone"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
                                         placeholder="0XXXXXXXXX" required="" type="tel" />
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label
-                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics
-                                    Preference</label>
+                                <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics Preference</label>
                                 <select id="shipping-type"
-                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
+                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
                                     <option value="stop_desk">Stop Desk (Relais / Bureau)</option>
                                     <option value="a_domicile">Direct Delivery (À Domicile)</option>
                                 </select>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                 <div class="space-y-2">
-                                    <label
-                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
+                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
                                     <select id="wilaya"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
                                         required="">
                                         <option value="">Select Territory</option>
                                     </select>
                                 </div>
                                 <div class="space-y-2">
-                                    <label
-                                        class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Commune</label>
+                                    <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Commune</label>
                                     <select id="commune"
-                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
+                                        class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none"
                                         required="">
                                         <option value="">Select Region</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label
-                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise
-                                    Locale</label>
+                                <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise Locale</label>
                                 <input id="address"
-                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-6 py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                    class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
                                     placeholder="Detailed Address" required="" type="text" />
                             </div>
                             <button
-                                class="w-full mt-6 group relative flex h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95"
+                                class="w-full mt-4 sm:mt-6 group relative flex h-12 sm:h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                                 type="submit" id="confirm-btn">
-                                <div
-                                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                </div>
-                                <span
-                                    class="relative font-display text-base font-black tracking-widest uppercase">Confirm
-                                    Acquisition</span>
+                                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                <span class="relative font-display text-xs sm:text-base font-black tracking-widest uppercase">Confirm Acquisition</span>
                             </button>
                         </form>
                     </div>
                 </div>
-
             </div>
+        </main>
+
+        <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-12 sm:py-20 mt-20 sm:mt-32">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-20 text-center">
+                <a href="index.html" class="inline-flex items-center gap-2 group mb-8 sm:mb-12">
+                    <div class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg">
+                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                    </div>
+                    <h2 class="font-display text-xl sm:text-2xl font-black tracking-tighter">Phone Haven<span
+                            class="text-primary italic">.</span></h2>
+                </a>
+                <div
+                    class="flex flex-wrap justify-center gap-6 sm:gap-10 mb-8 sm:mb-12 text-xs sm:text-sm font-black uppercase tracking-widest text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
+                    <a class="hover:text-primary transition-colors" href="search.html">Collection</a>
+                    <a class="hover:text-primary transition-colors" href="tracking.html">Track Parcel</a>
+                    <a class="hover:text-primary transition-colors" href="#">Support</a>
+                </div>
+                <p class="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 Phone Haven • Algiers</p>
+            </div>
+        </footer>
     </div>
 
-    </main>
-    <footer class="bg-white dark:bg-background-dark border-t border-white/5 py-20 mt-32">
-        <div class="mx-auto max-w-7xl px-6 md:px-20 text-center">
-            <a href="index.html" class="inline-flex items-center gap-2 group mb-12">
-                <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg">
-                    <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                </div>
-                <h2 class="font-display text-2xl font-black tracking-tighter">Phone Haven<span
-                        class="text-primary italic">.</span></h2>
-            </a>
-            <div
-                class="flex flex-wrap justify-center gap-10 mb-12 text-sm font-black uppercase tracking-widest text-slate-400">
-                <a class="hover:text-primary transition-colors" href="index.html">Atelier</a>
-                <a class="hover:text-primary transition-colors" href="search.html">Collection</a>
-                <a class="hover:text-primary transition-colors" href="tracking.html">Track Parcel</a>
-                <a class="hover:text-primary transition-colors" href="#">Support</a>
-            </div>
-            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">© 2024 Phone Haven • Algiers</p>
-        </div>
-    </footer>
     <script>
         const wilayasData = {
             "1": { name: "Adrar", nameAr: "أدرار", code: "01", time: "72h à 96h", home: 1500, desk: 1000 },
@@ -331,6 +333,7 @@
             "58": { name: "El Meniaa", nameAr: "المنيعة", code: "58", home: 1000, desk: 600 }
         };
     </script>
+
     <script type="module">
         import { getProductById, addOrder } from './db-service.js';
 
@@ -342,6 +345,7 @@
             "Sétif": ["Sétif", "El Eulma", "Ain Arnat"],
             "Annaba": ["Annaba", "El Bouni", "Sidi Amar"]
         };
+
         function formatPrice(price) {
             return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
         }
@@ -357,8 +361,10 @@
         const productPrice = document.getElementById('product-price');
         const productDescription = document.getElementById('product-description');
         const productImage = document.getElementById('product-image');
+        const imageSkeleton = document.getElementById('image-skeleton');
         const breadcrumbCategory = document.getElementById('breadcrumb-category');
         const breadcrumbTitle = document.getElementById('breadcrumb-title');
+        const stockStatus = document.getElementById('stock-status');
         const wilayaSelect = document.getElementById('wilaya');
         const communeSelect = document.getElementById('commune');
         const orderForm = document.getElementById('order-form');
@@ -410,25 +416,65 @@
 
         let currentProduct = null;
 
+        // ✅ FIXED: Load product without placeholder image flash
         async function loadProduct() {
             try {
                 const product = await getProductById(productId);
+                
                 if (!product) {
                     alert('Product not found!');
                     window.location.href = 'index.html';
                     return;
                 }
+                
                 currentProduct = product;
 
+                // Update text content
                 productTitle.textContent = product.name;
+                productTitle.classList.remove('skeleton');
+                
                 productPrice.textContent = formatPrice(product.price);
-                productDescription.textContent = product.description;
-                productImage.src = product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
+                productPrice.classList.remove('skeleton');
+                
+                productDescription.textContent = product.description || 'No description available.';
+                
                 breadcrumbCategory.textContent = product.category;
                 breadcrumbTitle.textContent = product.name;
+                stockStatus.textContent = 'In Stock • Ready for Delivery';
+                
                 document.title = `${product.name} | Phone Haven`;
+
+                // ✅ Load image properly - hide skeleton, show real image
+                if (product.image) {
+                    const img = new Image();
+                    img.onload = () => {
+                        // Hide skeleton
+                        imageSkeleton.classList.add('hidden');
+                        // Set real image src and show it
+                        productImage.src = product.image;
+                        productImage.classList.remove('hidden');
+                        // Trigger fade-in
+                        setTimeout(() => productImage.classList.add('loaded'), 50);
+                    };
+                    img.onerror = () => {
+                        imageSkeleton.classList.add('hidden');
+                        productImage.src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
+                        productImage.classList.remove('hidden');
+                        productImage.classList.add('loaded');
+                    };
+                    img.src = product.image;
+                } else {
+                    imageSkeleton.classList.add('hidden');
+                    productImage.classList.remove('hidden');
+                    productImage.classList.add('loaded');
+                }
+
             } catch (error) {
                 console.error("Error loading product:", error);
+                // Hide skeleton on error
+                imageSkeleton.classList.add('hidden');
+                productImage.classList.remove('hidden');
+                productImage.classList.add('loaded');
                 alert('Error loading product. Check console.');
             }
         }
@@ -440,7 +486,7 @@
             confirmBtn.disabled = true;
             const btnSpan = confirmBtn.querySelector('span');
             const originalText = btnSpan.textContent;
-            btnSpan.textContent = "Processing Craft...";
+            btnSpan.textContent = "Processing...";
 
             const order = {
                 customerName: document.getElementById('customer-name').value,
@@ -467,6 +513,7 @@
             }
         });
 
+        // Initialize
         loadProduct();
     </script>
 </body>
