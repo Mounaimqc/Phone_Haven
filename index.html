@@ -8,10 +8,6 @@
     <meta name="description" content="Phone Haven - Votre boutique de smartphones et accessoires en Algérie. Livraison 58 wilayas, paiement à la livraison." />
     <title>Phone Haven | Smartphones & Accessoires Algérie</title>
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="images/logo.jpeg" />
-    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -40,15 +36,12 @@
                         "3xl": "1.5rem",
                         "4xl": "2rem",
                     },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slight': 'bounceSlight 2s infinite',
-                    },
-                    keyframes: {
-                        bounceSlight: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-4px)' },
-                        }
+                    screens: {
+                        'xs': '320px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
                     }
                 },
             },
@@ -56,10 +49,7 @@
     </script>
     
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
 
         .glass {
@@ -71,49 +61,31 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Mobile menu animation */
-        .mobile-menu {
-            transform: translateX(-100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .mobile-menu.open { transform: translateX(0); }
 
-        /* Smooth scroll */
         html { scroll-behavior: smooth; }
 
-        /* Prevent zoom on mobile inputs */
-        @media (max-width: 768px) {
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
             input, select, textarea { font-size: 16px !important; }
             button, [role="button"] { 
                 min-height: 44px; 
                 min-width: 44px;
                 touch-action: manipulation;
             }
+            /* Prevent horizontal scroll */
+            body { overflow-x: hidden; }
+            /* Better tap targets */
+            a, button { -webkit-tap-highlight-color: transparent; }
         }
 
-        /* Pull to refresh indicator */
-        .pull-indicator {
-            transform: translateY(-100%);
-            transition: transform 0.2s ease;
+        /* Small screen optimizations */
+        @media (max-width: 375px) {
+            .text-responsive { font-size: 0.875rem; }
+            .btn-responsive { padding: 0.75rem 1rem; font-size: 0.875rem; }
+            .card-responsive { border-radius: 1rem; }
         }
-        .pull-indicator.active { transform: translateY(0); }
-
-        /* Floating WhatsApp button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 1000;
-            animation: bounce-slight 2s infinite;
-        }
-
-        /* Quick add animation */
-        @keyframes addToCart {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .animate-add-to-cart { animation: addToCart 0.3s ease; }
 
         /* Skeleton loading */
         .skeleton {
@@ -127,174 +99,134 @@
             100% { background-position: 200% 0; }
         }
 
-        /* Product card hover effect mobile */
-        @media (hover: none) {
-            .product-card:active { transform: scale(0.98); }
-        }
-
-        /* Sticky bottom bar mobile */
-        .sticky-bottom-bar {
-            position: sticky;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(2,6,23,0.98), transparent);
-            padding: 12px 20px 20px;
-            backdrop-filter: blur(10px);
-            z-index: 40;
-        }
-
-        /* Voice search pulse */
-        .voice-search-active {
-            animation: pulse 1.5s infinite;
-            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
-        }
-
-        /* Trust badge animation */
-        .trust-badge {
-            animation: fadeInUp 0.5s ease forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .trust-badge:nth-child(1) { animation-delay: 0.1s; }
-        .trust-badge:nth-child(2) { animation-delay: 0.2s; }
-        .trust-badge:nth-child(3) { animation-delay: 0.3s; }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Category chip selection */
-        .category-chip:active { transform: scale(0.95); }
-        .category-chip.active {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            border-color: transparent;
-        }
-
-        /* Image lazy load fade */
+        /* Image lazy load */
         .lazy-image { opacity: 0; transition: opacity 0.4s ease; }
         .lazy-image.loaded { opacity: 1; }
+
+        /* Product card active state for mobile */
+        @media (hover: none) {
+            .product-card:active { transform: scale(0.98); transition: transform 0.1s; }
+        }
+
+        /* Sticky elements safe area for notched phones */
+        @supports (padding: max(0px)) {
+            .sticky-bottom-bar {
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Smooth fade for modals */
+        .modal-enter { opacity: 0; transform: translateY(20px); }
+        .modal-enter-active { opacity: 1; transform: translateY(0); transition: all 0.3s ease; }
     </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
-    
-    <!-- Pull to Refresh Indicator -->
-    <div id="pull-indicator" class="pull-indicator fixed top-0 left-0 right-0 h-16 bg-white dark:bg-background-dark flex items-center justify-center z-[200]">
-        <span class="material-symbols-outlined text-primary animate-spin">refresh</span>
-    </div>
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        
+
         <!-- Premium Navigation - Mobile Optimized -->
-        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3">
+        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
                 
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 group">
-                    <div class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
+                    <div class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
                         <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                     </div>
-                    <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                 </a>
 
                 <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center gap-6 md:gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
+                <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
                 <!-- Right Actions -->
-                <div class="flex items-center gap-2 sm:gap-3">
+                <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
                     
                     <!-- Desktop Search -->
                     <div class="hidden md:flex relative items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-slate-400 text-xl pointer-events-none">search</span>
-                        <input class="w-48 lg:w-64 rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 pl-12 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
-                        <button class="absolute right-3 text-slate-400 hover:text-primary transition-colors" title="Recherche vocale" id="voice-search-desktop">
-                            <span class="material-symbols-outlined text-lg">mic</span>
-                        </button>
+                        <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
+                        <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-8 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
                     </div>
 
                     <!-- Wishlist & Cart -->
-                    <div class="flex items-center bg-slate-100 dark:bg-white/5 rounded-2xl p-1 gap-1">
-                        <button class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl hover:bg-white dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris">
-                            <span class="material-symbols-outlined text-[20px] sm:text-[22px]">favorite</span>
-                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">3</span>
+                    <div class="flex items-center bg-slate-100 dark:bg-white/5 rounded-xl xs:rounded-2xl p-0.5 xs:p-1 gap-0.5 xs:gap-1">
+                        <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite</span>
+                            <span class="absolute -top-0.5 -right-0.5 xs:-top-1 xs:-right-1 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">3</span>
                         </button>
-                        <button class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110 relative" aria-label="Panier">
-                            <span class="material-symbols-outlined text-[20px] sm:text-[22px]">shopping_bag</span>
-                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
+                        <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110 relative" aria-label="Panier">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">shopping_bag</span>
+                            <span class="absolute -top-0.5 -right-0.5 xs:-top-1 xs:-right-1 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
                         </button>
                     </div>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
-                        <span class="material-symbols-outlined text-[24px]">menu</span>
+                    <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Search Bar -->
-            <div class="lg:hidden mt-3 px-1">
+            <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
-                    <input class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-3 pl-12 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
-                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors p-1" title="Recherche vocale" id="voice-search-mobile">
-                        <span class="material-symbols-outlined text-lg">mic</span>
-                    </button>
+                    <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
+                    <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-4 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
                 </div>
             </div>
         </header>
 
         <!-- Mobile Menu Overlay & Drawer -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden" style="display: none;"></div>
-        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
-                <div class="flex items-center justify-between p-6 border-b border-white/5">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/5">
                     <a href="index.html" class="flex items-center gap-2">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                        <div class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
                             <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                         </div>
-                        <h2 class="font-display text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                        <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                     </a>
-                    <button id="mobile-menu-close" class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all" aria-label="Fermer le menu">
-                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    <button id="mobile-menu-close" class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all" aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
                     </button>
                 </div>
 
-                <nav class="flex-1 p-4 overflow-y-auto">
-                    <ul class="flex flex-col gap-2">
-                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="index.html"><span class="material-symbols-outlined">smartphone</span> Téléphones</a></li>
-                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="search.html"><span class="material-symbols-outlined">grid_view</span> Catalogue</a></li>
-                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="index.html#new-arrivals"><span class="material-symbols-outlined">new_releases</span> Nouveautés</a></li>
-                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="tracking.html"><span class="material-symbols-outlined">local_shipping</span> Suivi Commande</a></li>
-                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">support_agent</span> Assistance</a></li>
+                <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
+                    <ul class="flex flex-col gap-1.5 xs:gap-2">
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span> Téléphones</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span> Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html#new-arrivals"><span class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="tracking.html"><span class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi Commande</a></li>
                     </ul>
 
                     <!-- Quick Filters -->
-                    <div class="mt-6 pt-6 border-t border-white/5">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 px-2">Filtres Rapides</p>
-                        <div class="flex flex-wrap gap-2 px-2">
-                            <span class="category-chip active px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Tout</span>
-                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">iPhone</span>
-                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Samsung</span>
-                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Xiaomi</span>
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Filtres Rapides</p>
+                        <div class="flex flex-wrap gap-1.5 xs:gap-2 px-2">
+                            <span class="category-chip active px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Tout</span>
+                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">iPhone</span>
+                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Samsung</span>
+                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Xiaomi</span>
                         </div>
                     </div>
                 </nav>
 
                 <!-- Mobile Footer Actions -->
-                <div class="p-4 border-t border-white/5 space-y-3">
-                    <button class="w-full flex items-center justify-center gap-2 p-3 rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all">
-                        <span class="material-symbols-outlined">account_circle</span> Mon Compte
+                <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
+                    <button class="w-full flex items-center justify-center gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all text-sm">
+                        <span class="material-symbols-outlined text-[18px]">account_circle</span> Mon Compte
                     </button>
-                    <div class="flex gap-2">
-                        <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a>
-                        <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">language</span></a>
-                        <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
-                            <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+                    <div class="flex gap-1.5 xs:gap-2">
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
+                        <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                         </button>
                     </div>
                 </div>
@@ -304,43 +236,43 @@
         <main class="flex-1">
             
             <!-- Hero Section - Mobile First -->
-            <section class="relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 overflow-hidden">
-                <div class="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
-                <div class="absolute -bottom-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <section class="relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 overflow-hidden">
+                <div class="absolute -top-16 xs:-top-20 -right-16 xs:-right-20 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-[100px] xs:blur-[120px] pointer-events-none"></div>
+                <div class="absolute -bottom-16 xs:-bottom-20 -left-16 xs:-left-20 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[100px] xs:blur-[120px] pointer-events-none"></div>
 
                 <!-- Hero Slider -->
                 <section class="relative overflow-hidden">
-                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[420px] sm:h-[500px] lg:h-[600px] xl:h-[700px]">
+                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[380px] xs:h-[420px] sm:h-[500px] lg:h-[600px] xl:h-[700px]">
                         
                         <!-- Slide 1: Smartphones -->
-                        <div class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 flex items-center">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-4 sm:gap-6 lg:gap-8">
-                                    <div class="flex flex-col gap-3 sm:gap-4">
-                                        <div class="flex items-center gap-2">
-                                            <span class="h-px w-6 sm:w-8 bg-primary"></span>
-                                            <span class="text-primary font-bold tracking-[0.25em] uppercase text-[9px] sm:text-[10px]">Nouveautés 2024</span>
+                        <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
+                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
+                                    <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
+                                        <div class="flex items-center gap-1.5 xs:gap-2">
+                                            <span class="h-px w-4 xs:w-6 sm:w-8 bg-primary"></span>
+                                            <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Nouveautés 2024</span>
                                         </div>
-                                        <h1 class="font-display text-slate-900 dark:text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
+                                        <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Les meilleurs <br><span class="text-primary italic">Smartphones</span> ici.
                                         </h1>
-                                        <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
                                             Découvrez notre sélection de smartphones et accessoires au meilleur prix en Algérie. Livraison 58 wilayas.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a href="search.html" class="group relative flex h-11 sm:h-12 lg:h-14 min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-2xl bg-primary px-5 sm:px-7 lg:px-9 text-white shadow-xl shadow-primary/25 transition-all active:scale-95">
+                                    <div class="flex flex-wrap gap-2 xs:gap-3">
+                                        <a href="search.html" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-primary px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-primary/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir les Téléphones</span>
+                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Téléphones</span>
                                         </a>
-                                        <a href="#new-arrivals" class="flex h-11 sm:h-12 items-center justify-center px-5 sm:px-6 rounded-2xl border-2 border-slate-200 dark:border-white/20 text-slate-700 dark:text-slate-300 font-medium hover:border-primary hover:text-primary transition-all active:scale-95">
-                                            <span class="material-symbols-outlined text-[18px] mr-1">play_circle</span>
-                                            <span class="text-sm">Découvrir</span>
+                                        <a href="#new-arrivals" class="flex h-10 xs:h-11 sm:h-12 items-center justify-center px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl border-2 border-slate-200 dark:border-white/20 text-slate-700 dark:text-slate-300 font-medium hover:border-primary hover:text-primary transition-all active:scale-95">
+                                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] mr-1">play_circle</span>
+                                            <span class="text-xs xs:text-sm">Découvrir</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="relative hidden lg:block">
-                                    <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
+                                    <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
@@ -349,30 +281,30 @@
                         </div>
 
                         <!-- Slide 2: Accessories -->
-                        <div class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 flex items-center bg-gradient-to-br from-slate-900 to-slate-800">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-4 sm:gap-6 lg:gap-8">
-                                    <div class="flex flex-col gap-3 sm:gap-4">
-                                        <div class="flex items-center gap-2">
-                                            <span class="h-px w-6 sm:w-8 bg-accent"></span>
-                                            <span class="text-accent font-bold tracking-[0.25em] uppercase text-[9px] sm:text-[10px]">Accessoires Premium</span>
+                        <div class="min-w-full h-full relative px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-12 lg:py-20 flex items-center bg-gradient-to-br from-slate-900 to-slate-800">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 lg:gap-12 items-center max-w-7xl mx-auto relative z-10 w-full">
+                                <div class="flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
+                                    <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
+                                        <div class="flex items-center gap-1.5 xs:gap-2">
+                                            <span class="h-px w-4 xs:w-6 sm:w-8 bg-accent"></span>
+                                            <span class="text-accent font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Accessoires Premium</span>
                                         </div>
-                                        <h1 class="font-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
+                                        <h1 class="font-display text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Accessoires de <br><span class="text-accent italic">Qualité</span>
                                         </h1>
-                                        <p class="text-slate-300 text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                        <p class="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
                                             Coques, chargeurs, écouteurs et bien plus — tout pour protéger et personnaliser votre smartphone.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-3">
-                                        <a href="search.html?category=Accessoire" class="group relative flex h-11 sm:h-12 lg:h-14 min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-2xl bg-accent px-5 sm:px-7 lg:px-9 text-white shadow-xl shadow-accent/25 transition-all active:scale-95">
+                                    <div class="flex flex-wrap gap-2 xs:gap-3">
+                                        <a href="search.html?category=Accessoire" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-accent px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-accent/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir les Accessoires</span>
+                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Accessoires</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="relative hidden lg:block">
-                                    <div class="w-full aspect-square bg-white/5 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
+                                    <div class="w-full aspect-square bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
                                         <img alt="Accessoires" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000&auto=format&fit=crop" />
                                     </div>
                                 </div>
@@ -381,227 +313,224 @@
                     </div>
 
                     <!-- Slider Navigation -->
-                    <div class="absolute bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
-                        <button id="hero-prev" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Précédent">
-                            <span class="material-symbols-outlined text-[18px] sm:text-[20px] font-bold">chevron_left</span>
+                    <div class="absolute bottom-3 xs:bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 xs:gap-3">
+                        <button id="hero-prev" class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Précédent">
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_left</span>
                         </button>
                         
                         <!-- Slide Indicators -->
-                        <div class="flex gap-1.5">
-                            <button class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="0" aria-label="Slide 1"></button>
-                            <button class="hero-dot w-2 h-2 rounded-full bg-primary" data-slide="1" aria-label="Slide 2"></button>
+                        <div class="flex gap-1 xs:gap-1.5">
+                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="0" aria-label="Slide 1"></button>
+                            <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-primary" data-slide="1" aria-label="Slide 2"></button>
                         </div>
                         
-                        <button id="hero-next" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Suivant">
-                            <span class="material-symbols-outlined text-[18px] sm:text-[20px] font-bold">chevron_right</span>
+                        <button id="hero-next" class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Suivant">
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_right</span>
                         </button>
                     </div>
 
                     <!-- Swipe Hint for Mobile -->
-                    <div class="lg:hidden absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-1 text-white/70 text-[10px] font-medium animate-pulse">
-                        <span class="material-symbols-outlined text-[14px]">swipe_horizontal</span>
-                        Glissez pour explorer
+                    <div class="lg:hidden absolute bottom-14 xs:bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-1 text-white/70 text-[9px] xs:text-[10px] font-medium animate-pulse pointer-events-none">
+                        <span class="material-symbols-outlined text-[12px] xs:text-[14px]">swipe_horizontal</span>
+                        Glissez
                     </div>
                 </section>
             </section>
 
             <!-- Trust Badges - Mobile Sticky -->
-            <div class="sticky-bottom-bar lg:hidden">
-                <div class="max-w-7xl mx-auto">
-                    <div class="flex items-center justify-around glass rounded-2xl p-3">
-                        <div class="trust-badge flex flex-col items-center gap-1">
-                            <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">100% Original</span>
+            <div class="sticky bottom-0 left-0 right-0 z-40 lg:hidden">
+                <div class="mx-3 xs:mx-4">
+                    <div class="flex items-center justify-around glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
+                        <div class="flex flex-col items-center gap-0.5 xs:gap-1">
+                            <span class="material-symbols-outlined text-primary text-[16px] xs:text-[18px]">verified</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">100%<br>Original</span>
                         </div>
-                        <div class="trust-badge flex flex-col items-center gap-1">
-                            <span class="material-symbols-outlined text-accent text-[18px]">local_shipping</span>
-                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">58 Wilayas</span>
+                        <div class="flex flex-col items-center gap-0.5 xs:gap-1">
+                            <span class="material-symbols-outlined text-accent text-[16px] xs:text-[18px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">58<br>Wilayas</span>
                         </div>
-                        <div class="trust-badge flex flex-col items-center gap-1">
-                            <span class="material-symbols-outlined text-success text-[18px]">payments</span>
-                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">Paiement à la livraison</span>
+                        <div class="flex flex-col items-center gap-0.5 xs:gap-1">
+                            <span class="material-symbols-outlined text-success text-[16px] xs:text-[18px]">payments</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">Paiement<br>à la livraison</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Categories - Mobile Horizontal Scroll -->
-            <section class="px-4 sm:px-6 md:px-20 py-4 sm:py-6">
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-3 xs:py-4 sm:py-6">
                 <div class="max-w-7xl mx-auto">
-                    <div class="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2">
-                        <button class="category-chip active flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 bg-primary text-white transition-all">
+                    <div class="flex items-center gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1 xs:pb-2 -mx-1 xs:mx-0 px-1 xs:px-0">
+                        <button class="category-chip active flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 bg-primary text-white transition-all">
                             🔥 Tendances
                         </button>
-                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
                             📱 iPhone
                         </button>
-                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
                             🤖 Samsung
                         </button>
-                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
                             ⚡ Xiaomi
                         </button>
-                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
                             🎧 Accessoires
-                        </button>
-                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
-                            💰 Promos
                         </button>
                     </div>
                 </div>
             </section>
 
             <!-- New Arrivals: Horizontal Slider -->
-            <section class="py-8 sm:py-16 border-y border-white/5" id="new-arrivals">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-20">
-                    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
-                        <div class="flex flex-col gap-2">
-                            <h2 class="font-display text-slate-900 dark:text-white text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Nouveautés</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Les derniers smartphones arrivés en stock</p>
+            <section class="py-6 xs:py-8 sm:py-12 border-y border-white/5" id="new-arrivals">
+                <div class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-20">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-4 xs:mb-6 sm:mb-8">
+                        <div class="flex flex-col gap-1.5 xs:gap-2">
+                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Nouveautés</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les derniers smartphones arrivés en stock</p>
                         </div>
-                        <div class="flex gap-2">
-                            <button id="new-prev" class="group flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all active:scale-90" aria-label="Précédent">
-                                <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_left</span>
+                        <div class="flex gap-1.5 xs:gap-2">
+                            <button id="new-prev" class="group flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all active:scale-90" aria-label="Précédent">
+                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]">chevron_left</span>
                             </button>
-                            <button id="new-next" class="group flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-90" aria-label="Suivant">
-                                <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_right</span>
+                            <button id="new-next" class="group flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-90" aria-label="Suivant">
+                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]">chevron_right</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="flex overflow-x-auto gap-4 sm:gap-6 no-scrollbar pb-4 -mx-4 px-4 snap-x" id="new-arrivals-container">
-                        <div class="w-full text-center py-16 text-slate-500 font-medium animate-pulse">Chargement des nouveautés...</div>
+                    <div class="flex overflow-x-auto gap-3 xs:gap-4 sm:gap-6 no-scrollbar pb-3 xs:pb-4 -mx-1 xs:mx-0 px-1 xs:px-0 snap-x" id="new-arrivals-container">
+                        <div class="w-full text-center py-12 xs:py-16 text-slate-500 font-medium animate-pulse text-xs xs:text-sm">Chargement...</div>
                     </div>
                     
                     <!-- View All Link -->
-                    <div class="text-center mt-6">
-                        <a href="search.html" class="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all">
+                    <div class="text-center mt-4 xs:mt-6">
+                        <a href="search.html" class="inline-flex items-center gap-1.5 xs:gap-2 text-primary font-medium text-xs xs:text-sm hover:gap-2.5 xs:hover:gap-3 transition-all">
                             Voir tous les produits
-                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">arrow_forward</span>
                         </a>
                     </div>
                 </div>
             </section>
 
             <!-- Featured Collection Grid -->
-            <section class="bg-white dark:bg-background-dark py-12 sm:py-20 lg:py-28 px-4 sm:px-6 md:px-20">
+            <section class="bg-white dark:bg-background-dark py-10 xs:py-12 sm:py-16 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-20">
                 <div class="max-w-7xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-                        <div class="flex flex-col gap-2">
-                            <div class="flex items-center gap-2 text-accent">
+                    <div class="flex flex-col md:flex-row items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-6 xs:mb-8 sm:mb-10">
+                        <div class="flex flex-col gap-1.5 xs:gap-2">
+                            <div class="flex items-center gap-1.5 xs:gap-2 text-accent">
                                 <span class="material-symbols-outlined text-sm font-bold">star</span>
-                                <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Sélection Premium</span>
+                                <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Sélection Premium</span>
                             </div>
-                            <h2 class="font-display text-slate-900 dark:text-white text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Produits Vedettes</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Les modèles les plus populaires au meilleur prix</p>
+                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Produits Vedettes</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les modèles les plus populaires au meilleur prix</p>
                         </div>
-                        <a class="group flex items-center gap-2 text-slate-900 dark:text-white font-bold" href="search.html">
-                            <span class="text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir tout le catalogue</span>
-                            <div class="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
-                                <span class="material-symbols-outlined text-[16px] sm:text-[18px]">north_east</span>
+                        <a class="group flex items-center gap-1.5 xs:gap-2 text-slate-900 dark:text-white font-bold" href="search.html">
+                            <span class="text-xs xs:text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir tout</span>
+                            <div class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg xs:rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px] sm:text-[18px]">north_east</span>
                             </div>
                         </a>
                     </div>
                     
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8" id="featured-products-container">
-                        <div class="col-span-full text-center py-16 italic text-slate-400">Chargement des produits...</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 lg:gap-8" id="featured-products-container">
+                        <div class="col-span-full text-center py-12 xs:py-16 italic text-slate-400 text-xs xs:text-sm">Chargement...</div>
                     </div>
                 </div>
             </section>
 
             <!-- Mobile Sticky Bottom Bar - Quick Actions -->
-            <div class="lg:hidden sticky-bottom-bar">
-                <div class="max-w-7xl mx-auto">
-                    <div class="flex items-center justify-between glass rounded-2xl p-3">
-                        <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-primary text-[20px]">home</span>
-                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">Accueil</span>
+            <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
+                <div class="mx-3 xs:mx-4">
+                    <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
+                        <a href="index.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">home</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300">Accueil</span>
                         </a>
-                        <a href="search.html" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
-                            <span class="text-[9px] font-medium text-slate-400">Rechercher</span>
+                        <a href="search.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all relative">
-                            <span class="material-symbols-outlined text-slate-400 text-[20px]">shopping_bag</span>
-                            <span class="text-[9px] font-medium text-slate-400">Panier</span>
-                            <span class="absolute -top-1 right-3 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all relative">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">shopping_bag</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Panier</span>
+                            <span class="absolute -top-0.5 xs:-top-1 right-2 xs:right-3 h-3.5 w-3.5 xs:h-4 xs:w-4 bg-accent text-[8px] xs:text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[20px]">person</span>
-                            <span class="text-[9px] font-medium text-slate-400">Compte</span>
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">person</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Compte</span>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Value Props Section -->
-            <section class="py-12 sm:py-20 lg:py-28 px-4 sm:px-6 md:px-20 max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
-                    <div class="flex flex-col gap-4 items-start">
-                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl sm:text-2xl">verified</span>
+            <section class="py-10 xs:py-12 sm:py-16 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 lg:gap-12">
+                    <div class="flex flex-col gap-3 xs:gap-4 items-start">
+                        <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">verified</span>
                         </div>
-                        <h3 class="font-display text-lg sm:text-xl font-black">Produits 100% Authentiques</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Produits 100% Authentiques</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
                     </div>
-                    <div class="flex flex-col gap-4 items-start">
-                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl sm:text-2xl">local_shipping</span>
+                    <div class="flex flex-col gap-3 xs:gap-4 items-start">
+                        <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-accent/10 text-accent flex items-center justify-center">
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">local_shipping</span>
                         </div>
-                        <h3 class="font-display text-lg sm:text-xl font-black">Livraison 58 Wilayas</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Livraison 58 Wilayas</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
                     </div>
-                    <div class="flex flex-col gap-4 items-start sm:col-span-2 lg:col-span-1">
-                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-xl sm:text-2xl">shield</span>
+                    <div class="flex flex-col gap-3 xs:gap-4 items-start sm:col-span-2 lg:col-span-1">
+                        <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">shield</span>
                         </div>
-                        <h3 class="font-display text-lg sm:text-xl font-black">Garantie 6 Mois</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Garantie 6 Mois</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Premium Newsletter -->
-            <section class="py-12 sm:py-20 px-4 sm:px-6 md:px-20 mb-16 sm:mb-24">
-                <div class="max-w-7xl mx-auto rounded-[2.5rem] sm:rounded-[3rem] bg-primary relative overflow-hidden shadow-2xl shadow-primary/30">
+            <section class="py-10 xs:py-12 sm:py-16 px-3 xs:px-4 sm:px-6 md:px-20 mb-12 xs:mb-16 sm:mb-20">
+                <div class="max-w-7xl mx-auto rounded-[2rem] xs:rounded-[2.5rem] sm:rounded-[3rem] bg-primary relative overflow-hidden shadow-2xl shadow-primary/30">
                     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                    <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="absolute top-0 right-0 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-                    <div class="relative z-10 py-10 sm:py-14 lg:py-16 px-6 sm:px-10 text-center">
-                        <h2 class="font-display text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-5">Rejoignez Phone Haven</h2>
-                        <p class="text-white/80 text-sm sm:text-base mb-6 sm:mb-8 max-w-lg mx-auto font-medium">Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
-                        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                            <input class="flex-1 h-12 sm:h-14 rounded-2xl px-5 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-sm" placeholder="votre@email.com" required type="email" />
-                            <button class="h-12 sm:h-14 px-6 sm:px-8 bg-white text-primary font-display font-black rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm" type="submit">S'inscrire</button>
+                    <div class="relative z-10 py-8 xs:py-10 sm:py-12 lg:py-16 px-4 xs:px-6 sm:px-10 text-center">
+                        <h2 class="font-display text-white text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2 xs:mb-3 sm:mb-5">Rejoignez Phone Haven</h2>
+                        <p class="text-white/80 text-xs xs:text-sm sm:text-base mb-4 xs:mb-6 sm:mb-8 max-w-md mx-auto font-medium">Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
+                        <form class="flex flex-col xs:flex-row gap-2 xs:gap-3 max-w-sm mx-auto">
+                            <input class="flex-1 h-10 xs:h-12 sm:h-14 rounded-xl xs:rounded-2xl px-4 xs:px-5 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-xs xs:text-sm" placeholder="votre@email.com" required type="email" />
+                            <button class="h-10 xs:h-12 sm:h-14 px-5 xs:px-6 sm:px-8 bg-white text-primary font-display font-black rounded-xl xs:rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-xs xs:text-sm" type="submit">S'inscrire</button>
                         </form>
-                        <p class="text-white/50 text-[10px] mt-4">🔒 Vos données sont sécurisées. Désinscription en un clic.</p>
+                        <p class="text-white/50 text-[9px] xs:text-[10px] mt-3 xs:mt-4">🔒 Vos données sont sécurisées.</p>
                     </div>
                 </div>
             </section>
         </main>
 
         <!-- Footer -->
-        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-12 sm:pt-20 pb-8 sm:pb-12 px-4 sm:px-6 md:px-20">
+        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-10 mb-12 sm:mb-16">
-                    <div class="col-span-2 flex flex-col gap-4 sm:gap-6">
-                        <a href="index.html" class="flex items-center gap-2">
-                            <div class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
+                    <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
+                        <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
+                            <div class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
                                 <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                             </div>
-                            <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                            <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                         </a>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">Basée à Sétif, Phone Haven est votre destination privilégiée pour les smartphones et accessoires originaux en Algérie.</p>
-                        <div class="flex gap-3">
-                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Instagram"><span class="material-symbols-outlined text-[18px]">instagram</span></a>
-                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Facebook"><span class="material-symbols-outlined text-[18px]">facebook</span></a>
-                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="TikTok"><span class="material-symbols-outlined text-[18px]">tiktok</span></a>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed">Basée à Sétif, Phone Haven est votre destination privilégiée pour les smartphones et accessoires originaux en Algérie.</p>
+                        <div class="flex gap-2 xs:gap-3">
+                            <a class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Instagram"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">instagram</span></a>
+                            <a class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Facebook"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">facebook</span></a>
+                            <a class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="TikTok"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">tiktok</span></a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Navigation</h4>
-                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Navigation</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
                             <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
                             <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">Nouveautés</a></li>
                             <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone">Téléphones</a></li>
@@ -610,8 +539,8 @@
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Assistance</h4>
-                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Assistance</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
                             <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
@@ -620,8 +549,8 @@
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Légal</h4>
-                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Légal</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
                             <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
@@ -629,9 +558,9 @@
                     </div>
                 </div>
 
-                <div class="pt-6 sm:pt-10 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
                     <p>© 2024 Phone Haven. Tous droits réservés.</p>
-                    <div class="flex gap-4 sm:gap-8">
+                    <div class="flex gap-3 xs:gap-4 sm:gap-6">
                         <a class="hover:text-primary" href="#">Instagram</a>
                         <a class="hover:text-primary" href="#">Facebook</a>
                         <a class="hover:text-primary" href="#">TikTok</a>
@@ -641,22 +570,17 @@
         </footer>
     </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/213XXXXXXXXX" target="_blank" class="whatsapp-float flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 hover:brightness-110 transition-all active:scale-90 z-[1000]" aria-label="Contacter sur WhatsApp">
-        <span class="material-symbols-outlined text-[26px] sm:text-[30px] font-bold">chat</span>
-    </a>
-
     <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed top-4 right-4 z-[200] space-y-2 max-w-[320px]"></div>
+    <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]"></div>
 
     <!-- Quick View Modal -->
     <div id="quick-view-modal" class="fixed inset-0 z-[150] hidden">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-overlay"></div>
-        <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-background-dark rounded-t-[2rem] p-6 max-h-[85vh] overflow-y-auto transform transition-transform duration-300 translate-y-full" id="modal-content">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="font-display text-xl font-black">Aperçu Rapide</h3>
-                <button id="modal-close" class="h-10 w-10 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center transition-all" aria-label="Fermer">
-                    <span class="material-symbols-outlined text-[22px]">close</span>
+        <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-background-dark rounded-t-[1.5rem] xs:rounded-t-[2rem] p-4 xs:p-6 max-h-[80vh] xs:max-h-[85vh] overflow-y-auto transform transition-transform duration-300 translate-y-full" id="modal-content">
+            <div class="flex items-center justify-between mb-4 xs:mb-6">
+                <h3 class="font-display text-lg xs:text-xl font-black">Aperçu Rapide</h3>
+                <button id="modal-close" class="h-9 w-9 xs:h-10 xs:w-10 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center transition-all" aria-label="Fermer">
+                    <span class="material-symbols-outlined text-[20px] xs:text-[22px]">close</span>
                 </button>
             </div>
             <div id="modal-product-content"></div>
@@ -685,8 +609,6 @@
         // Search
         const desktopSearch = document.getElementById('desktop-search');
         const mobileSearch = document.getElementById('mobile-search');
-        const voiceSearchDesktop = document.getElementById('voice-search-desktop');
-        const voiceSearchMobile = document.getElementById('voice-search-mobile');
 
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
@@ -708,7 +630,6 @@
         let currentSlide = 0;
         const totalSlides = 2;
         let allProducts = [];
-        let currentProduct = null;
 
         // ==================== Mobile Menu Functions ====================
         function openMobileMenu() {
@@ -731,7 +652,6 @@
         function updateHero() {
             if (heroSlider) {
                 heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                // Update dots
                 heroDots.forEach((dot, index) => {
                     dot.classList.toggle('bg-primary', index === currentSlide);
                     dot.classList.toggle('bg-white/50', index !== currentSlide);
@@ -744,94 +664,27 @@
             updateHero();
         }
 
-        if (heroNext) heroNext.addEventListener('click', () => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateHero();
-        });
+        if (heroNext) heroNext.addEventListener('click', () => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); });
+        if (heroPrev) heroPrev.addEventListener('click', () => { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateHero(); });
+        heroDots.forEach(dot => { dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide))); });
 
-        if (heroPrev) heroPrev.addEventListener('click', () => {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateHero();
-        });
-
-        heroDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                goToSlide(parseInt(dot.dataset.slide));
-            });
-        });
-
-        // Auto-slide hero
-        let heroInterval = setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateHero();
-        }, 8000);
-
-        // Pause auto-slide on hover/touch
+        let heroInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); }, 8000);
         heroSlider?.addEventListener('mouseenter', () => clearInterval(heroInterval));
-        heroSlider?.addEventListener('mouseleave', () => {
-            heroInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateHero();
-            }, 8000);
-        });
+        heroSlider?.addEventListener('mouseleave', () => { heroInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); }, 8000); });
 
         // ==================== New Arrivals Slider ====================
         if (newNext && newArrivalsContainer) {
             newNext.addEventListener('click', () => {
-                const scrollAmount = window.innerWidth < 640 ? 260 : 340;
+                const scrollAmount = window.innerWidth < 640 ? (window.innerWidth < 375 ? 220 : 260) : 340;
                 newArrivalsContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             });
         }
-
         if (newPrev && newArrivalsContainer) {
             newPrev.addEventListener('click', () => {
-                const scrollAmount = window.innerWidth < 640 ? 260 : 340;
+                const scrollAmount = window.innerWidth < 640 ? (window.innerWidth < 375 ? 220 : 260) : 340;
                 newArrivalsContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             });
         }
-
-        // ==================== Voice Search ====================
-        function initVoiceSearch(button, input) {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                button.style.display = 'none';
-                return;
-            }
-
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'fr-FR';
-            recognition.interimResults = false;
-
-            button.addEventListener('click', () => {
-                button.classList.add('voice-search-active', 'text-primary');
-                showToast('🎤 Écoute en cours...', 'info');
-                
-                recognition.start();
-                
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    input.value = transcript;
-                    showToast(`🔍 Recherche: "${transcript}"`, 'success');
-                    // Trigger search after delay
-                    setTimeout(() => {
-                        if (input.form) input.form.requestSubmit();
-                        else window.location.href = `search.html?q=${encodeURIComponent(transcript)}`;
-                    }, 500);
-                };
-
-                recognition.onerror = () => {
-                    showToast('❌ Erreur de reconnaissance vocale', 'error');
-                    button.classList.remove('voice-search-active', 'text-primary');
-                };
-
-                recognition.onend = () => {
-                    button.classList.remove('voice-search-active', 'text-primary');
-                };
-            });
-        }
-
-        if (voiceSearchDesktop && desktopSearch) initVoiceSearch(voiceSearchDesktop, desktopSearch);
-        if (voiceSearchMobile && mobileSearch) initVoiceSearch(voiceSearchMobile, mobileSearch);
 
         // ==================== Theme Toggle ====================
         function initThemeToggle() {
@@ -839,13 +692,12 @@
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             }
-            
             themeToggle?.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
-                showToast(isDark ? '🌙 Mode sombre activé' : '☀️ Mode clair activé', 'info');
+                showToast(isDark ? '🌙 Mode sombre' : '☀️ Mode clair', 'info');
             });
         }
         initThemeToggle();
@@ -855,12 +707,9 @@
             chip.addEventListener('click', () => {
                 categoryChips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
-                
                 const category = chip.textContent.trim().toLowerCase();
-                if (category !== 'tout' && category !== '🔥 tendances' && category !== '💰 promos') {
+                if (!category.includes('tout') && !category.includes('tendances') && !category.includes('promos')) {
                     window.location.href = `search.html?category=${encodeURIComponent(category.replace(/[📱🤖⚡🎧]/g, '').trim())}`;
-                } else if (category === '💰 promos') {
-                    window.location.href = 'search.html?sort=prix-asc';
                 }
             });
         });
@@ -870,54 +719,47 @@
             const toast = document.createElement('div');
             const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
             const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
-            
-            toast.className = `glass ${colors[type]} border border-white/10 rounded-2xl p-4 flex items-center gap-3 shadow-xl animate-[fadeInUp_0.3s_ease]`;
+            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
             toast.innerHTML = `
-                <span class="material-symbols-outlined text-white text-[20px]">${icons[type]}</span>
-                <span class="text-white text-sm font-medium flex-1">${message}</span>
+                <span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span>
+                <span class="text-white text-xs xs:text-sm font-medium flex-1">${message}</span>
                 <button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()">
-                    <span class="material-symbols-outlined text-[18px]">close</span>
+                    <span class="material-symbols-outlined text-[16px] xs:text-[18px]">close</span>
                 </button>
             `;
-            
             toastContainer.appendChild(toast);
-            
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
+                toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)';
                 setTimeout(() => toast.remove(), 300);
             }, duration);
         }
 
         // ==================== Quick View Modal ====================
         function openQuickView(product) {
-            currentProduct = product;
             modalProductContent.innerHTML = `
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="flex flex-col sm:flex-row gap-4 xs:gap-6">
                     <div class="sm:w-1/2">
-                        <div class="aspect-square rounded-2xl bg-slate-100 dark:bg-white/5 overflow-hidden">
+                        <div class="aspect-square rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 overflow-hidden">
                             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image" onload="this.classList.add('loaded')" />
                         </div>
                     </div>
                     <div class="sm:w-1/2 flex flex-col">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">${product.category}</p>
-                        <h3 class="font-display text-xl sm:text-2xl font-black mb-3">${product.name}</h3>
-                        <p class="text-2xl sm:text-3xl font-black text-primary mb-4">${formatPrice(product.price)}</p>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-3">${product.description || 'Description non disponible.'}</p>
-                        
-                        <div class="flex gap-3 mt-auto">
-                            <button class="flex-1 h-12 rounded-xl bg-primary text-white font-black text-sm hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-2" onclick="addToCart('${product.id}')">
-                                <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-primary mb-1 xs:mb-2">${product.category}</p>
+                        <h3 class="font-display text-lg xs:text-xl sm:text-2xl font-black mb-2 xs:mb-3">${product.name}</h3>
+                        <p class="text-xl xs:text-2xl sm:text-3xl font-black text-primary mb-3 xs:mb-4">${formatPrice(product.price)}</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm mb-4 xs:mb-6 line-clamp-3">${product.description || 'Description non disponible.'}</p>
+                        <div class="flex gap-2 xs:gap-3 mt-auto">
+                            <button class="flex-1 h-10 xs:h-12 rounded-xl bg-primary text-white font-black text-xs xs:text-sm hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-1.5 xs:gap-2" onclick="addToCart('${product.id}')">
+                                <span class="material-symbols-outlined text-[16px] xs:text-[18px]">shopping_bag</span>
                                 Ajouter
                             </button>
-                            <a href="product.html?id=${product.id}" class="h-12 px-5 rounded-xl border-2 border-slate-200 dark:border-white/20 font-medium text-sm hover:border-primary hover:text-primary transition-all flex items-center justify-center">
+                            <a href="product.html?id=${product.id}" class="h-10 xs:h-12 px-4 xs:px-5 rounded-xl border-2 border-slate-200 dark:border-white/20 font-medium text-xs xs:text-sm hover:border-primary hover:text-primary transition-all flex items-center justify-center">
                                 Détails
                             </a>
                         </div>
                     </div>
                 </div>
             `;
-            
             quickViewModal.classList.remove('hidden');
             setTimeout(() => modalContent.classList.remove('translate-y-full'), 10);
             document.body.style.overflow = 'hidden';
@@ -925,12 +767,8 @@
 
         function closeQuickView() {
             modalContent.classList.add('translate-y-full');
-            setTimeout(() => {
-                quickViewModal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
+            setTimeout(() => { quickViewModal.classList.add('hidden'); document.body.style.overflow = ''; }, 300);
         }
-
         modalClose?.addEventListener('click', closeQuickView);
         modalOverlay?.addEventListener('click', closeQuickView);
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !quickViewModal.classList.contains('hidden')) closeQuickView(); });
@@ -939,123 +777,48 @@
         function addToCart(productId) {
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
-            
-            // Get existing cart
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const existing = cart.find(item => item.id === productId);
-            
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-            
+            if (existing) { existing.quantity += 1; } else { cart.push({ ...product, quantity: 1 }); }
             localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Show feedback
-            showToast(`✅ ${product.name} ajouté au panier`, 'success');
-            
-            // Animate cart button
+            showToast(`✅ ${product.name} ajouté`, 'success');
             const cartBtn = document.querySelector('button[aria-label="Panier"]');
-            cartBtn?.classList.add('animate-add-to-cart');
-            setTimeout(() => cartBtn?.classList.remove('animate-add-to-cart'), 300);
-            
-            // Update cart badge
+            cartBtn?.classList.add('animate-[pulse_0.3s_ease]');
+            setTimeout(() => cartBtn?.classList.remove('animate-[pulse_0.3s_ease]'), 300);
             const badge = cartBtn?.querySelector('.absolute');
             if (badge) {
                 const count = cart.reduce((sum, item) => sum + item.quantity, 0);
                 badge.textContent = count > 9 ? '9+' : count;
             }
         }
-
-        // Make addToCart globally available
         window.addToCart = addToCart;
 
-        // ==================== Pull to Refresh ====================
-        let pullStartY = 0;
-        let pullDistance = 0;
-        const pullIndicator = document.getElementById('pull-indicator');
-        const maxPullDistance = 100;
-        const refreshThreshold = 80;
-
-        document.addEventListener('touchstart', (e) => {
-            if (window.scrollY === 0 && e.touches.length === 1) {
-                pullStartY = e.touches[0].clientY;
-            }
-        }, { passive: true });
-
-        document.addEventListener('touchmove', (e) => {
-            if (pullStartY && window.scrollY === 0 && e.touches.length === 1) {
-                const currentY = e.touches[0].clientY;
-                pullDistance = Math.max(0, currentY - pullStartY);
-                
-                if (pullDistance < maxPullDistance) {
-                    e.preventDefault();
-                    pullIndicator.style.transform = `translateY(${pullDistance - 100}px)`;
-                    pullIndicator.classList.toggle('active', pullDistance > refreshThreshold);
-                }
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchend', async () => {
-            if (pullDistance > refreshThreshold) {
-                pullIndicator.querySelector('span').classList.add('animate-spin');
-                showToast('🔄 Actualisation...', 'info', 1500);
-                
-                // Simulate refresh
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Reload products
-                await loadStorefrontProducts();
-                showToast('✅ Page actualisée', 'success');
-            }
-            
-            pullIndicator.style.transform = 'translateY(-100%)';
-            pullIndicator.querySelector('span').classList.remove('animate-spin');
-            pullStartY = 0;
-            pullDistance = 0;
-        });
-
         // ==================== Product Rendering ====================
-        function formatPrice(price) {
-            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-        }
+        function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
 
         function createProductCard(product, variant = 'grid') {
             const isSlider = variant === 'slider';
-            const height = isSlider ? 'h-[360px] sm:h-[400px]' : 'aspect-square';
-            const radius = isSlider ? 'rounded-[1.75rem]' : 'rounded-[1.5rem] sm:rounded-[2rem]';
-            
+            const height = isSlider ? 'h-[320px] xs:h-[360px] sm:h-[400px]' : 'aspect-square';
+            const radius = isSlider ? 'rounded-[1.5rem]' : 'rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem]';
             return `
-                <div class="product-card group cursor-pointer flex flex-col ${isSlider ? 'min-w-[260px] sm:min-w-[290px] snap-start' : ''}" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                <div class="product-card group cursor-pointer flex flex-col ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
                     <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
-                        <!-- Quick Actions -->
-                        <div class="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button class="h-8 w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')" aria-label="Ajouter aux favoris">
-                                <span class="material-symbols-outlined text-[16px]">favorite_border</span>
+                        <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10 flex flex-col gap-1.5 xs:gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.stopPropagation(); showToast('❤️ Favoris', 'success')" aria-label="Favoris">
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                             </button>
                         </div>
-                        
-                        <!-- Image -->
                         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" />
-                        
-                        <!-- Overlay on hover -->
                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        <!-- Quick Add Button -->
-                        <button class="absolute bottom-3 left-3 right-3 h-10 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-sm shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all active:scale-95 flex items-center justify-center gap-2" onclick="event.stopPropagation(); addToCart('${product.id}')">
-                            <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+                        <button class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 h-9 xs:h-10 rounded-lg xs:rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs xs:text-sm shadow-lg opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all active:scale-95 flex items-center justify-center gap-1.5 xs:gap-2" onclick="event.stopPropagation(); addToCart('${product.id}')">
+                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">add_shopping_cart</span>
                             Ajouter
                         </button>
-                        
-                        <!-- Category Badge -->
-                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/90 text-white text-[9px] font-black uppercase tracking-wider">${product.category}</span>
+                        <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                     </div>
-                    
-                    <!-- Product Info -->
-                    <div class="mt-3 px-1">
-                        <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-sm sm:text-base mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
-                        <p class="text-primary font-black text-base sm:text-lg">${formatPrice(product.price)}</p>
+                    <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
+                        <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
+                        <p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
                     </div>
                 </div>
             `;
@@ -1067,74 +830,51 @@
                 allProducts = products.length > 0 ? products : staticProducts;
                 renderStorefront(allProducts);
             } catch (error) {
-                console.error("Error loading products:", error);
+                console.error("Error:", error);
                 renderStorefront(staticProducts);
-                showToast('⚠️ Mode hors ligne activé', 'warning');
             }
         }
 
         function renderStorefront(products) {
             if (products.length === 0) {
-                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-sm">Aucun produit disponible pour le moment.</div>';
-                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-sm">Aucun produit disponible pour le moment.</div>';
+                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
+                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
                 return;
             }
-
-            // Render New Arrivals (Horizontal Slider)
             newArrivalsContainer.innerHTML = '';
             products.slice(0, 8).forEach(product => {
                 const div = document.createElement('div');
                 div.innerHTML = createProductCard(product, 'slider');
                 newArrivalsContainer.appendChild(div.firstElementChild);
             });
-
-            // Render Featured (Grid)
             featuredContainer.innerHTML = '';
             products.slice(0, 8).forEach(product => {
                 const div = document.createElement('div');
                 div.innerHTML = createProductCard(product, 'grid');
                 featuredContainer.appendChild(div.firstElementChild);
             });
-
-            // Lazy load images
-            document.querySelectorAll('.lazy-image').forEach(img => {
-                if (img.complete) img.classList.add('loaded');
-            });
+            document.querySelectorAll('.lazy-image').forEach(img => { if (img.complete) img.classList.add('loaded'); });
         }
 
-        // Static fallback products
         const staticProducts = [
-            { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', description: 'Le dernier flagship Samsung avec écran Dynamic AMOLED 2X et appareil photo 200MP.' },
-            { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', description: 'Puissance A17 Pro, titane aérospatial et système de caméra professionnel.' },
-            { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80', description: 'Performances exceptionnelles avec Snapdragon 8 Gen 3 et charge ultra-rapide 90W.' },
-            { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80', description: 'Réduction de bruit active, son spatial et autonomie prolongée.' },
-            { id: '5', name: 'Chargeur Rapide 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', description: 'Charge ultra-rapide compatible avec la plupart des smartphones.' },
-            { id: '6', name: 'Coque Samsung Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80', description: 'Protection élégante en cuir véritable avec finition premium.' }
+            { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', description: 'Flagship Samsung avec écran Dynamic AMOLED 2X.' },
+            { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', description: 'Puissance A17 Pro et titane aérospatial.' },
+            { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80', description: 'Snapdragon 8 Gen 3 et charge 90W.' },
+            { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80', description: 'Réduction de bruit active et son spatial.' },
+            { id: '5', name: 'Chargeur 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', description: 'Charge ultra-rapide universelle.' },
+            { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80', description: 'Protection élégante en cuir véritable.' }
         ];
 
         // ==================== Initialize ====================
         document.addEventListener('DOMContentLoaded', () => {
             loadStorefrontProducts();
-            
             // Preload critical images
-            const preloadImages = [
-                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000',
-                'https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000'
-            ];
-            preloadImages.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
-
-            // Register Service Worker for PWA
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
-            }
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
         });
 
-        // Handle online/offline status
-        window.addEventListener('online', () => showToast('🌐 Connexion rétablie', 'success'));
-        window.addEventListener('offline', () => showToast('📴 Mode hors ligne', 'warning', 5000));
+        // Online/Offline status
+        window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
+        window.addEventListener('offline', () => showToast('📴 Hors ligne', 'warning', 5000));
     </script>
 </body>
 </html>
