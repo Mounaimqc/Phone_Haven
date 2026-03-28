@@ -71,6 +71,16 @@
         #product-image.loaded {
             opacity: 1;
         }
+
+        /* Shipping price animation */
+        .price-update {
+            animation: pricePulse 0.3s ease-in-out;
+        }
+
+        @keyframes pricePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
     </style>
 </head>
 
@@ -145,7 +155,7 @@
 
                     <!-- Pricing & Description Card -->
                     <div
-                        class="mb-8 sm:mb-12 glass p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                        class="mb-6 sm:mb-8 glass p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden">
                         <div
                             class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
                         </div>
@@ -170,7 +180,7 @@
                         </div>
                     </div>
 
-                    <!-- Modernized Order Form -->
+                    <!-- Modernized Order Form with Dynamic Shipping Price -->
                     <div class="glass border border-primary/20 p-6 sm:p-8 lg:p-10 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl relative">
                         <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
                             <div
@@ -206,14 +216,18 @@
                                         placeholder="0XXXXXXXXX" required="" type="tel" />
                                 </div>
                             </div>
+                            
+                            <!-- Shipping Type Selection -->
                             <div class="space-y-2">
                                 <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Logistics Preference</label>
                                 <select id="shipping-type"
                                     class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none">
-                                    <option value="stop_desk">Stop Desk (Relais / Bureau)</option>
-                                    <option value="a_domicile">Direct Delivery (À Domicile)</option>
+                                    <option value="stop_desk">🏢 Stop Desk (Relais / Bureau)</option>
+                                    <option value="a_domicile">🏠 Direct Delivery (À Domicile)</option>
                                 </select>
                             </div>
+                            
+                            <!-- Wilaya & Commune with Shipping Price Display -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                 <div class="space-y-2">
                                     <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Wilaya</label>
@@ -232,17 +246,58 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <!-- ✅ Dynamic Shipping Price Display -->
+                            <div id="shipping-price-card" class="hidden glass border border-accent/30 bg-accent/5 rounded-2xl p-4 sm:p-6">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-xl bg-accent/20 text-accent flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Shipping Cost</p>
+                                            <p class="text-slate-700 dark:text-slate-300 font-medium text-sm" id="shipping-details">Calculating...</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Delivery</p>
+                                        <p id="shipping-price" class="text-accent font-black text-xl sm:text-2xl">0 د.ج</p>
+                                    </div>
+                                </div>
+                                <p id="shipping-time" class="text-[10px] text-slate-500 dark:text-slate-400 mt-3 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                    <span>Estimated: --</span>
+                                </p>
+                            </div>
+                            
                             <div class="space-y-2">
                                 <label class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Precise Locale</label>
                                 <input id="address"
                                     class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 sm:px-6 py-3 sm:py-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium"
                                     placeholder="Detailed Address" required="" type="text" />
                             </div>
+                            
+                            <!-- ✅ Order Summary -->
+                            <div id="order-summary" class="hidden glass border border-primary/30 rounded-2xl p-4 sm:p-6 space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Product Price</span>
+                                    <span id="summary-product-price" class="font-medium">0 د.ج</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-slate-500">Shipping</span>
+                                    <span id="summary-shipping-price" class="font-medium text-accent">0 د.ج</span>
+                                </div>
+                                <div class="border-t border-white/10 pt-3 flex justify-between">
+                                    <span class="font-black text-slate-900 dark:text-white">Total</span>
+                                    <span id="summary-total" class="font-black text-primary text-lg">0 د.ج</span>
+                                </div>
+                            </div>
+                            
                             <button
                                 class="w-full mt-4 sm:mt-6 group relative flex h-12 sm:h-16 items-center justify-center overflow-hidden rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                                type="submit" id="confirm-btn">
+                                type="submit" id="confirm-btn" disabled>
                                 <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                <span class="relative font-display text-xs sm:text-base font-black tracking-widest uppercase">Confirm Acquisition</span>
+                                <span class="relative font-display text-xs sm:text-base font-black tracking-widest uppercase">Select Location First</span>
                             </button>
                         </form>
                     </div>
@@ -367,19 +422,33 @@
         const stockStatus = document.getElementById('stock-status');
         const wilayaSelect = document.getElementById('wilaya');
         const communeSelect = document.getElementById('commune');
+        const shippingTypeSelect = document.getElementById('shipping-type');
         const orderForm = document.getElementById('order-form');
         const confirmBtn = document.getElementById('confirm-btn');
+        
+        // ✅ Shipping Price Elements
+        const shippingPriceCard = document.getElementById('shipping-price-card');
+        const shippingPriceEl = document.getElementById('shipping-price');
+        const shippingDetailsEl = document.getElementById('shipping-details');
+        const shippingTimeEl = document.getElementById('shipping-time');
+        const orderSummary = document.getElementById('order-summary');
+        const summaryProductPrice = document.getElementById('summary-product-price');
+        const summaryShippingPrice = document.getElementById('summary-shipping-price');
+        const summaryTotal = document.getElementById('summary-total');
 
         // Populate Wilayas
         Object.keys(wilayasData).forEach(id => {
             const w = wilayasData[id];
             const option = document.createElement('option');
             option.value = w.name;
+            option.dataset.id = id;
             option.textContent = `${w.code} - ${w.name} (${w.nameAr})`;
             wilayaSelect.appendChild(option);
         });
 
         let allCommunes = [];
+        let currentProduct = null;
+        let currentShippingPrice = 0;
 
         async function fetchCommunes() {
             try {
@@ -391,10 +460,60 @@
             }
         }
 
+        // ✅ Calculate and Display Shipping Price
+        function updateShippingPrice() {
+            const selectedWilaya = wilayaSelect.value;
+            const selectedCommune = communeSelect.value;
+            const shippingType = shippingTypeSelect.value;
+
+            if (!selectedWilaya || !selectedCommune) {
+                shippingPriceCard.classList.add('hidden');
+                orderSummary.classList.add('hidden');
+                confirmBtn.disabled = true;
+                confirmBtn.querySelector('span').textContent = 'Select Location First';
+                return;
+            }
+
+            // Find wilaya data
+            const wilayaId = Object.keys(wilayasData).find(key => wilayasData[key].name === selectedWilaya);
+            const wilayaInfo = wilayasData[wilayaId];
+
+            if (!wilayaInfo) return;
+
+            // Get price based on shipping type
+            currentShippingPrice = shippingType === 'a_domicile' ? wilayaInfo.home : wilayaInfo.desk;
+            const shippingLabel = shippingType === 'a_domicile' ? 'À Domicile' : 'Stop Desk';
+
+            // ✅ Update Shipping Price Display with animation
+            shippingPriceCard.classList.remove('hidden');
+            shippingPriceEl.textContent = formatPrice(currentShippingPrice);
+            shippingPriceEl.classList.add('price-update');
+            setTimeout(() => shippingPriceEl.classList.remove('price-update'), 300);
+
+            shippingDetailsEl.textContent = `${selectedCommune}, ${selectedWilaya} • ${shippingLabel}`;
+            shippingTimeEl.querySelector('span:last-child').textContent = `Estimated: ${wilayaInfo.time}`;
+
+            // ✅ Update Order Summary
+            if (currentProduct) {
+                orderSummary.classList.remove('hidden');
+                summaryProductPrice.textContent = formatPrice(currentProduct.price);
+                summaryShippingPrice.textContent = formatPrice(currentShippingPrice);
+                const total = currentProduct.price + currentShippingPrice;
+                summaryTotal.textContent = formatPrice(total);
+            }
+
+            // Enable confirm button
+            confirmBtn.disabled = false;
+            confirmBtn.querySelector('span').textContent = 'Confirm Acquisition';
+        }
+
         // Update Communes on Wilaya Change
         wilayaSelect.addEventListener('change', () => {
             const selectedWilayaName = wilayaSelect.value;
             communeSelect.innerHTML = '<option value="">Select Region</option>';
+            shippingPriceCard.classList.add('hidden');
+            orderSummary.classList.add('hidden');
+            confirmBtn.disabled = true;
 
             if (!selectedWilayaName) return;
 
@@ -412,9 +531,11 @@
             }
         });
 
-        fetchCommunes();
+        // ✅ Listen for changes to update shipping price
+        communeSelect.addEventListener('change', updateShippingPrice);
+        shippingTypeSelect.addEventListener('change', updateShippingPrice);
 
-        let currentProduct = null;
+        fetchCommunes();
 
         // ✅ FIXED: Load product without placeholder image flash
         async function loadProduct() {
@@ -444,16 +565,13 @@
                 
                 document.title = `${product.name} | Phone Haven`;
 
-                // ✅ Load image properly - hide skeleton, show real image
+                // ✅ Load image properly
                 if (product.image) {
                     const img = new Image();
                     img.onload = () => {
-                        // Hide skeleton
                         imageSkeleton.classList.add('hidden');
-                        // Set real image src and show it
                         productImage.src = product.image;
                         productImage.classList.remove('hidden');
-                        // Trigger fade-in
                         setTimeout(() => productImage.classList.add('loaded'), 50);
                     };
                     img.onerror = () => {
@@ -469,9 +587,13 @@
                     productImage.classList.add('loaded');
                 }
 
+                // Initialize summary with product price
+                if (currentProduct) {
+                    summaryProductPrice.textContent = formatPrice(currentProduct.price);
+                }
+
             } catch (error) {
                 console.error("Error loading product:", error);
-                // Hide skeleton on error
                 imageSkeleton.classList.add('hidden');
                 productImage.classList.remove('hidden');
                 productImage.classList.add('loaded');
@@ -497,7 +619,9 @@
                 address: document.getElementById('address').value,
                 productId: currentProduct.id,
                 productName: currentProduct.name,
-                total: currentProduct.price,
+                productPrice: currentProduct.price,
+                shippingPrice: currentShippingPrice,
+                total: currentProduct.price + currentShippingPrice,
                 status: 'Pending',
                 createdAt: new Date()
             };
