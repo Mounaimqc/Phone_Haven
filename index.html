@@ -131,6 +131,15 @@
                 display: none !important;
             }
         }
+
+        /* ✅ تأثير النبض للفئات */
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.2); }
+            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+        }
+        .category-pulse {
+            animation: softPulse 3s infinite;
+        }
     </style>
 </head>
 
@@ -218,12 +227,10 @@
                     </ul>
 
                     <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
-                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Filtres Rapides</p>
-                        <div class="flex flex-wrap gap-1.5 xs:gap-2 px-2">
-                            <span class="category-chip active px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Tout</span>
-                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">iPhone</span>
-                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Samsung</span>
-                            <span class="category-chip px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-full text-[10px] xs:text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Xiaomi</span>
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Catégories</p>
+                        <div class="flex flex-wrap gap-2 px-2">
+                            <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱 Téléphones</a>
+                            <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧 Accessoires</a>
                         </div>
                     </div>
                 </nav>
@@ -257,7 +264,7 @@
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
                                         <div class="flex items-center gap-1.5 xs:gap-2 justify-center lg:justify-start">
                                             <span class="h-px w-4 xs:w-6 sm:w-8 bg-primary"></span>
-                                            <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Nouveautés 2024</span>
+                                            <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Nouveautés 2026</span>
                                         </div>
                                         <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Les meilleurs <br><span class="text-primary italic">Smartphones</span> ici.
@@ -374,15 +381,35 @@
                 </div>
             </div>
 
-            <!-- Quick Categories -->
+            <!-- ✅ Quick Categories with Images (MODIFIED) -->
             <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-3 xs:py-4 sm:py-6">
                 <div class="max-w-7xl mx-auto">
-                    <div class="flex items-center gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1 xs:pb-2 -mx-1 xs:mx-0 px-1 xs:px-0">
-                        <button class="category-chip active flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 bg-primary text-white transition-all">🔥 Tendances</button>
-                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">📱 iPhone</button>
-                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">🤖 Samsung</button>
-                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">⚡ Xiaomi</button>
-                        <button class="category-chip flex-shrink-0 px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">🎧 Accessoires</button>
+                    <div class="flex items-center gap-3 xs:gap-4 overflow-x-auto no-scrollbar pb-1 xs:pb-2 -mx-1 xs:mx-0 px-1 xs:px-0">
+                        
+                        <!-- Category: Téléphones -->
+                        <a href="search.html?category=Téléphone" class="flex-shrink-0 group flex flex-col items-center gap-1.5 xs:gap-2 p-2 xs:p-3 rounded-2xl xs:rounded-3xl border-2 border-slate-200 dark:border-white/10 hover:border-primary hover:bg-primary/5 transition-all no-underline category-pulse">
+                            <div class="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 rounded-xl xs:rounded-2xl bg-gradient-to-br from-primary/20 to-indigo-500/20 overflow-hidden shadow-lg group-hover:shadow-primary/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80&auto=format&fit=crop" 
+                                     alt="Téléphones" 
+                                     class="w-full h-full object-cover lazy-image" 
+                                     onload="this.classList.add('loaded')"
+                                     loading="lazy">
+                            </div>
+                            <span class="text-[10px] xs:text-[11px] sm:text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Téléphones</span>
+                        </a>
+
+                        <!-- Category: Accessoires -->
+                        <a href="search.html?category=Accessoire" class="flex-shrink-0 group flex flex-col items-center gap-1.5 xs:gap-2 p-2 xs:p-3 rounded-2xl xs:rounded-3xl border-2 border-slate-200 dark:border-white/10 hover:border-accent hover:bg-accent/5 transition-all no-underline">
+                            <div class="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 rounded-xl xs:rounded-2xl bg-gradient-to-br from-accent/20 to-orange-500/20 overflow-hidden shadow-lg group-hover:shadow-accent/30 transition-all">
+                                <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=200&q=80&auto=format&fit=crop" 
+                                     alt="Accessoires" 
+                                     class="w-full h-full object-cover lazy-image" 
+                                     onload="this.classList.add('loaded')"
+                                     loading="lazy">
+                            </div>
+                            <span class="text-[10px] xs:text-[11px] sm:text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-accent transition-colors">Accessoires</span>
+                        </a>
+
                     </div>
                 </div>
             </section>
@@ -564,19 +591,27 @@
                 </div>
 
                 <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <p>© 2024 Phone Haven. Tous droits réservés.</p>
+                    <!-- ✅ Updated Year: 2024 → 2026 -->
+                    <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="#">
-                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">instagram</span>
-                            Instagram
+                        <!-- ✅ Updated Social Media Icons with SVG -->
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://instagram.com" target="_blank" aria-label="Instagram">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Instagram</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="#">
-                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">facebook</span>
-                            Facebook
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://facebook.com" target="_blank" aria-label="Facebook">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Facebook</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="#">
-                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">tiktok</span>
-                            TikTok
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">TikTok</span>
                         </a>
                     </div>
                 </div>
@@ -611,7 +646,6 @@
 
         const themeToggle = document.getElementById('theme-toggle');
         const toastContainer = document.getElementById('toast-container');
-        const categoryChips = document.querySelectorAll('.category-chip');
 
         let currentSlide = 0;
         const totalSlides = 2;
@@ -689,17 +723,6 @@
             });
         }
         initThemeToggle();
-
-        categoryChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                categoryChips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                const category = chip.textContent.trim().toLowerCase();
-                if (!category.includes('tout') && !category.includes('tendances')) {
-                    window.location.href = `search.html?category=${encodeURIComponent(category.replace(/[📱🤖⚡🎧]/g, '').trim())}`;
-                }
-            });
-        });
 
         function showToast(message, type = 'info', duration = 3000) {
             const toast = document.createElement('div');
