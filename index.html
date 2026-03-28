@@ -134,11 +134,25 @@
 
         /* ✅ تأثير النبض للفئات */
         @keyframes softPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.2); }
-            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
         }
         .category-pulse {
-            animation: softPulse 3s infinite;
+            animation: softPulse 3.5s infinite;
+        }
+
+        /* ✅ تأثير تكبير ناعم عند الهوفر */
+        .group-hover\:scale-105 {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ✅ Badge Promo Animation */
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-pulse {
+            animation: badgePulse 2s infinite;
         }
     </style>
 </head>
@@ -231,6 +245,7 @@
                         <div class="flex flex-wrap gap-2 px-2">
                             <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱 Téléphones</a>
                             <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧 Accessoires</a>
+                            <a href="search.html?category=Offres" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥 Offres</a>
                         </div>
                     </div>
                 </nav>
@@ -381,61 +396,58 @@
                 </div>
             </div>
 
-            <!-- ✅ Quick Categories with Images - ENLARGED VERSION -->
-<!-- ✅ Quick Categories with Images - DYNAMIC PRODUCT COUNT -->
-<section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-5 sm:py-8">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex items-center gap-4 xs:gap-6 sm:gap-8 overflow-x-auto no-scrollbar pb-2 xs:pb-3 -mx-1 xs:mx-0 px-1 xs:px-0">
-            
-            <!-- Category: Téléphones -->
-            <a href="search.html?category=Téléphone" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-primary hover:bg-primary/5 transition-all no-underline category-pulse shadow-sm hover:shadow-lg">
-                <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
-                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80&auto=format&fit=crop" 
-                         alt="Téléphones" 
-                         class="w-full h-full object-cover lazy-image" 
-                         onload="this.classList.add('loaded')"
-                         loading="lazy">
-                </div>
-                <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
-                <!-- ✅ ID pour le compteur dynamique -->
-                <span id="count-telephone" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
-            </a>
+            <!-- ✅ Quick Categories with Images - DYNAMIC PRODUCT COUNT -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-5 sm:py-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center gap-4 xs:gap-6 sm:gap-8 overflow-x-auto no-scrollbar pb-2 xs:pb-3 -mx-1 xs:mx-0 px-1 xs:px-0">
+                        
+                        <!-- Category: Téléphones -->
+                        <a href="search.html?category=Téléphone" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-primary hover:bg-primary/5 transition-all no-underline category-pulse shadow-sm hover:shadow-lg">
+                            <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80&auto=format&fit=crop" 
+                                     alt="Téléphones" 
+                                     class="w-full h-full object-cover lazy-image" 
+                                     onload="this.classList.add('loaded')"
+                                     loading="lazy">
+                            </div>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
+                            <span id="count-telephone" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                        </a>
 
-            <!-- Category: Accessoires -->
-            <a href="search.html?category=Accessoire" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-accent hover:bg-accent/5 transition-all no-underline shadow-sm hover:shadow-lg">
-                <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-accent/25 to-orange-500/25 overflow-hidden shadow-lg group-hover:shadow-accent/40 transition-all duration-300 group-hover:scale-105">
-                    <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&q=80&auto=format&fit=crop" 
-                         alt="Accessoires" 
-                         class="w-full h-full object-cover lazy-image" 
-                         onload="this.classList.add('loaded')"
-                         loading="lazy">
-                </div>
-                <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
-                <!-- ✅ ID pour le compteur dynamique -->
-                <span id="count-accessoire" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
-            </a>
+                        <!-- Category: Accessoires -->
+                        <a href="search.html?category=Accessoire" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-accent hover:bg-accent/5 transition-all no-underline shadow-sm hover:shadow-lg">
+                            <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-accent/25 to-orange-500/25 overflow-hidden shadow-lg group-hover:shadow-accent/40 transition-all duration-300 group-hover:scale-105">
+                                <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&q=80&auto=format&fit=crop" 
+                                     alt="Accessoires" 
+                                     class="w-full h-full object-cover lazy-image" 
+                                     onload="this.classList.add('loaded')"
+                                     loading="lazy">
+                            </div>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
+                            <span id="count-accessoire" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                        </a>
 
-            <!-- Category: Offres Spéciales -->
-            <a href="search.html?category=Offres" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-red-200 dark:border-red-500/20 hover:border-red-500 hover:bg-red-500/10 transition-all no-underline shadow-sm hover:shadow-lg category-pulse" style="animation-delay: 1.5s;">
-                <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-red-500/25 to-pink-500/25 overflow-hidden shadow-lg group-hover:shadow-red-500/40 transition-all duration-300 group-hover:scale-105 relative">
-                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&q=80&auto=format&fit=crop" 
-                         alt="Offres Spéciales" 
-                         class="w-full h-full object-cover lazy-image" 
-                         onload="this.classList.add('loaded')"
-                         loading="lazy">
-                    <!-- 🔥 Badge Promo -->
-                    <div class="absolute top-1 right-1 xs:top-1.5 xs:right-1.5 bg-red-500 text-white text-[9px] xs:text-[10px] font-black px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg animate-pulse">
-                        -30%
+                        <!-- Category: Offres Spéciales -->
+                        <a href="search.html?category=Offres" class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-red-200 dark:border-red-500/20 hover:border-red-500 hover:bg-red-500/10 transition-all no-underline shadow-sm hover:shadow-lg category-pulse" style="animation-delay: 1.5s;">
+                            <div class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-red-500/25 to-pink-500/25 overflow-hidden shadow-lg group-hover:shadow-red-500/40 transition-all duration-300 group-hover:scale-105 relative">
+                                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&q=80&auto=format&fit=crop" 
+                                     alt="Offres Spéciales" 
+                                     class="w-full h-full object-cover lazy-image" 
+                                     onload="this.classList.add('loaded')"
+                                     loading="lazy">
+                                <!-- 🔥 Badge Promo -->
+                                <div class="absolute top-1 right-1 xs:top-1.5 xs:right-1.5 bg-red-500 text-white text-[9px] xs:text-[10px] font-black px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg animate-pulse">
+                                    -30%
+                                </div>
+                            </div>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥 Offres</span>
+                            <span id="count-offres" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                        </a>
+
                     </div>
                 </div>
-                <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥 Offres</span>
-                <!-- ✅ ID pour le compteur dynamique -->
-                <span id="count-offres" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
-            </a>
+            </section>
 
-        </div>
-    </div>
-</section>
             <!-- New Arrivals -->
             <section class="py-6 xs:py-8 sm:py-12 border-y border-white/5" id="new-arrivals">
                 <div class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-20">
@@ -765,12 +777,57 @@
             return `<a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}"><div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500"><div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10"><button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')"><span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span></button></div><img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" /><div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all"><span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg"><span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>Voir détails</span></div><span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span></div><div class="mt-2 xs:mt-3 px-0.5 xs:px-1"><h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3><p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p></div></a>`;
         }
 
+        // ✅ حساب العدد الحقيقي للمنتجات لكل فئة
+        function updateCategoryCounts(products) {
+            const counts = {
+                'Téléphone': 0,
+                'Accessoire': 0,
+                'Offres': 0
+            };
+
+            // حساب المنتجات لكل فئة
+            products.forEach(product => {
+                if (product.category === 'Téléphone') {
+                    counts['Téléphone']++;
+                }
+                if (product.category === 'Accessoire') {
+                    counts['Accessoire']++;
+                }
+                // العروض: المنتجات اللي فيها discount أو السعر أقل من 50000
+                if (product.discount || product.price < 50000) {
+                    counts['Offres']++;
+                }
+            });
+
+            // تحديث العدادات في HTML
+            const telephoneEl = document.getElementById('count-telephone');
+            const accessoireEl = document.getElementById('count-accessoire');
+            const offresEl = document.getElementById('count-offres');
+
+            if (telephoneEl) {
+                telephoneEl.textContent = `+${counts['Téléphone']} produits`;
+            }
+            if (accessoireEl) {
+                accessoireEl.textContent = `+${counts['Accessoire']} produits`;
+            }
+            if (offresEl) {
+                offresEl.textContent = `+${counts['Offres']} produits`;
+            }
+        }
+
         async function loadStorefrontProducts() {
             try {
                 const products = await getProducts();
                 allProducts = products.length > 0 ? products : staticProducts;
                 renderStorefront(allProducts);
-            } catch (error) { console.error("Error:", error); renderStorefront(staticProducts); }
+                // ✅ تحديث عدادات الفئات
+                updateCategoryCounts(allProducts);
+            } catch (error) { 
+                console.error("Error:", error); 
+                renderStorefront(staticProducts); 
+                // ✅ تحديث عدادات الفئات حتى في حالة الخطأ
+                updateCategoryCounts(staticProducts); 
+            }
         }
 
         function renderStorefront(products) {
@@ -795,17 +852,19 @@
         }
 
         const staticProducts = [
-            { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80' },
-            { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80' },
-            { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80' },
-            { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80' },
-            { id: '5', name: 'Chargeur 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80' },
-            { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' }
+            { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', discount: false },
+            { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', discount: false },
+            { id: '3', name: 'Xiaomi 14', price: 42000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80', discount: true },
+            { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80', discount: false },
+            { id: '5', name: 'Chargeur 65W', price: 3500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', discount: true },
+            { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80', discount: false },
+            { id: '7', name: 'Galaxy A54', price: 45000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', discount: true },
+            { id: '8', name: 'Cable USB-C', price: 1500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', discount: false }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
             loadStorefrontProducts();
-            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000', 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300'].forEach(src => { const img = new Image(); img.src = src; });
         });
 
         window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
