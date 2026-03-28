@@ -17,10 +17,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#6366f1", // Indigo
-                        "accent": "#f59e0b", // Amber
+                        "primary": "#6366f1",
+                        "accent": "#f59e0b",
                         "background-light": "#ffffff",
-                        "background-dark": "#020617", // Deep Navy
+                        "background-dark": "#020617",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -147,7 +147,7 @@
                                             <span class="h-px w-8 bg-primary"></span>
                                             <span
                                                 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px]">Derniers
-                                                Modèles 2026</span>
+                                                Modèles 2024</span>
                                         </div>
                                         <h1
                                             class="font-display text-slate-900 dark:text-white text-6xl md:text-8xl font-black leading-[0.95] tracking-tight">
@@ -233,15 +233,15 @@
                         </div>
                     </div>
 
-                    <!-- Slider Navigation -->
-                    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-4">
+                    <!-- Slider Navigation - Fixed for both light and dark backgrounds -->
+                    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-4">
                         <button id="hero-prev"
-                            class="glass h-12 w-12 flex items-center justify-center rounded-2xl text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 border border-slate-300/30 dark:border-white/10">
-                            <span class="material-symbols-outlined">west</span>
+                            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
+                            <span class="material-symbols-outlined font-bold">west</span>
                         </button>
                         <button id="hero-next"
-                            class="glass h-12 w-12 flex items-center justify-center rounded-2xl text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 border border-slate-300/30 dark:border-white/10">
-                            <span class="material-symbols-outlined">east</span>
+                            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
+                            <span class="material-symbols-outlined font-bold">east</span>
                         </button>
                     </div>
                 </section>
@@ -277,7 +277,9 @@
                                 Chargement des nouveautés...</div>
                         </div>
                     </div>
-                </section> <!-- Featured Collection Grid -->
+                </section>
+
+                <!-- Featured Collection Grid -->
                 <section class="bg-white dark:bg-background-dark py-32 px-6 md:px-20">
                     <div class="max-w-7xl mx-auto">
                         <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-16">
@@ -417,7 +419,7 @@
                             newArrivalsContainer.appendChild(div);
                         });
 
-                        // Render Featured (Grid)
+                        // Render Featured (Grid) - Without star ratings
                         featuredContainer.innerHTML = '';
                         products.slice(0, 8).forEach(product => {
                             const div = document.createElement('div');
@@ -575,7 +577,7 @@
 
                 <div
                     class="pt-12 border-t border-slate-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <p>© 2026 Phone Haven. Tous droits réservés.</p>
+                    <p>© 2024 Phone Haven. Tous droits réservés.</p>
                     <div class="flex gap-10">
                         <a class="hover:text-primary" href="#">Instagram</a>
                         <a class="hover:text-primary" href="#">Pinterest</a>
