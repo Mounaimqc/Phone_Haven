@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Phone Haven | Smartphones & Accessoires</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="description" content="Phone Haven - Votre boutique de smartphones et accessoires en Algérie. Livraison 58 wilayas, paiement à la livraison." />
+    <title>Phone Haven | Smartphones & Accessoires Algérie</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/logo.jpeg" />
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-      <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
 
     <script id="tailwind-config">
         tailwind.config = {
@@ -23,6 +30,7 @@
                         "accent": "#f59e0b",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
+                        "success": "#10b981",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -32,28 +40,27 @@
                         "3xl": "1.5rem",
                         "4xl": "2rem",
                     },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slight': 'bounceSlight 2s infinite',
+                    },
+                    keyframes: {
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-4px)' },
+                        }
+                    }
                 },
             },
         }
     </script>
+    
     <style>
         @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
 
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -61,663 +68,1073 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Mobile menu animation */
         .mobile-menu {
             transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
+        .mobile-menu.open { transform: translateX(0); }
 
         /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+        html { scroll-behavior: smooth; }
+
+        /* Prevent zoom on mobile inputs */
+        @media (max-width: 768px) {
+            input, select, textarea { font-size: 16px !important; }
+            button, [role="button"] { 
+                min-height: 44px; 
+                min-width: 44px;
+                touch-action: manipulation;
+            }
         }
+
+        /* Pull to refresh indicator */
+        .pull-indicator {
+            transform: translateY(-100%);
+            transition: transform 0.2s ease;
+        }
+        .pull-indicator.active { transform: translateY(0); }
+
+        /* Floating WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            animation: bounce-slight 2s infinite;
+        }
+
+        /* Quick add animation */
+        @keyframes addToCart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .animate-add-to-cart { animation: addToCart 0.3s ease; }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Product card hover effect mobile */
+        @media (hover: none) {
+            .product-card:active { transform: scale(0.98); }
+        }
+
+        /* Sticky bottom bar mobile */
+        .sticky-bottom-bar {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(2,6,23,0.98), transparent);
+            padding: 12px 20px 20px;
+            backdrop-filter: blur(10px);
+            z-index: 40;
+        }
+
+        /* Voice search pulse */
+        .voice-search-active {
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+        }
+
+        /* Trust badge animation */
+        .trust-badge {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .trust-badge:nth-child(1) { animation-delay: 0.1s; }
+        .trust-badge:nth-child(2) { animation-delay: 0.2s; }
+        .trust-badge:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Category chip selection */
+        .category-chip:active { transform: scale(0.95); }
+        .category-chip.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Image lazy load fade */
+        .lazy-image { opacity: 0; transition: opacity 0.4s ease; }
+        .lazy-image.loaded { opacity: 1; }
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
+    
+    <!-- Pull to Refresh Indicator -->
+    <div id="pull-indicator" class="pull-indicator fixed top-0 left-0 right-0 h-16 bg-white dark:bg-background-dark flex items-center justify-center z-[200]">
+        <span class="material-symbols-outlined text-primary animate-spin">refresh</span>
+    </div>
+
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <!-- Premium Navigation -->
-        <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3 sm:py-4">
+        
+        <!-- Premium Navigation - Mobile Optimized -->
+        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-4 sm:px-6 md:px-20 py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                <div class="flex items-center gap-4 sm:gap-6 md:gap-10">
-                    <a href="index.html" class="flex items-center gap-2 group">
-                        <div
-                            class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                        </div>
-                        <h2 class="font-display text-xl sm:text-2xl font-black tracking-tighter">Phone Haven<span
-                                class="text-primary italic">.</span></h2>
-                    </a>
+                
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                    </div>
+                    <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                </a>
 
-                    <nav class="hidden lg:flex items-center gap-6 md:gap-8">
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="index.html">Téléphones</a>
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="search.html">Catalogue</a>
-                        <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="index.html#new-arrivals">Nouveautés</a>
-                    </nav>
-                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-6 md:gap-8">
+                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
+                </nav>
 
-                <div class="flex items-center gap-2 sm:gap-3 md:gap-4">
+                <!-- Right Actions -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    
+                    <!-- Desktop Search -->
                     <div class="hidden md:flex relative items-center">
-                        <span
-                            class="material-symbols-outlined absolute left-4 text-slate-400 text-xl pointer-events-none">search</span>
-                        <input
-                            class="w-48 lg:w-64 rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all"
-                            placeholder="Rechercher..." type="text" />
+                        <span class="material-symbols-outlined absolute left-4 text-slate-400 text-xl pointer-events-none">search</span>
+                        <input class="w-48 lg:w-64 rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 pl-12 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <button class="absolute right-3 text-slate-400 hover:text-primary transition-colors" title="Recherche vocale" id="voice-search-desktop">
+                            <span class="material-symbols-outlined text-lg">mic</span>
+                        </button>
                     </div>
 
+                    <!-- Wishlist & Cart -->
                     <div class="flex items-center bg-slate-100 dark:bg-white/5 rounded-2xl p-1 gap-1">
-                        <button
-                            class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl hover:bg-white dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all shadow-sm hover:shadow-md active:scale-90">
+                        <button class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl hover:bg-white dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris">
                             <span class="material-symbols-outlined text-[20px] sm:text-[22px]">favorite</span>
+                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">3</span>
                         </button>
-                        <button
-                            class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
+                        <button class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110 relative" aria-label="Panier">
                             <span class="material-symbols-outlined text-[20px] sm:text-[22px]">shopping_bag</span>
+                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
                         </button>
                     </div>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn"
-                        class="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90">
+                    <button id="mobile-menu-btn" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
                         <span class="material-symbols-outlined text-[24px]">menu</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu-overlay"
-                class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden" style="display: none;">
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu"
-                class="mobile-menu fixed top-0 left-0 h-full w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
-                <div class="flex flex-col h-full">
-                    <div class="flex items-center justify-between p-6 border-b border-white/5">
-                        <a href="index.html" class="flex items-center gap-2">
-                            <div
-                                class="flex h-8 w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
-                                <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                            </div>
-                            <h2 class="font-display text-lg font-black tracking-tighter">Phone Haven<span
-                                    class="text-primary italic">.</span></h2>
-                        </a>
-                        <button id="mobile-menu-close"
-                            class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-[24px]">close</span>
-                        </button>
-                    </div>
-
-                    <nav class="flex-1 p-6">
-                        <ul class="flex flex-col gap-4">
-                            <li>
-                                <a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all"
-                                    href="index.html">
-                                    <span class="material-symbols-outlined">smartphone</span>
-                                    Téléphones
-                                </a>
-                            </li>
-                            <li>
-                                <a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all"
-                                    href="search.html">
-                                    <span class="material-symbols-outlined">grid_view</span>
-                                    Catalogue
-                                </a>
-                            </li>
-                            <li>
-                                <a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all"
-                                    href="index.html#new-arrivals">
-                                    <span class="material-symbols-outlined">new_releases</span>
-                                    Nouveautés
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div class="p-6 border-t border-white/5">
-                        <div class="relative mb-4">
-                            <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl pointer-events-none">search</span>
-                            <input
-                                class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-3 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all"
-                                placeholder="Rechercher..." type="text" />
-                        </div>
-                        <div class="flex gap-3">
-                            <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#">
-                                <span class="material-symbols-outlined">share</span>
-                            </a>
-                            <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#">
-                                <span class="material-symbols-outlined">public</span>
-                            </a>
-                            <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#">
-                                <span class="material-symbols-outlined">podcasts</span>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Mobile Search Bar -->
+            <div class="lg:hidden mt-3 px-1">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+                    <input class="w-full rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-3 pl-12 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors p-1" title="Recherche vocale" id="voice-search-mobile">
+                        <span class="material-symbols-outlined text-lg">mic</span>
+                    </button>
                 </div>
             </div>
         </header>
 
+        <!-- Mobile Menu Overlay & Drawer -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden" style="display: none;"></div>
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b border-white/5">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                        </div>
+                        <h2 class="font-display text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                    </a>
+                    <button id="mobile-menu-close" class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all" aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-[24px]">close</span>
+                    </button>
+                </div>
+
+                <nav class="flex-1 p-4 overflow-y-auto">
+                    <ul class="flex flex-col gap-2">
+                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="index.html"><span class="material-symbols-outlined">smartphone</span> Téléphones</a></li>
+                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="search.html"><span class="material-symbols-outlined">grid_view</span> Catalogue</a></li>
+                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="index.html#new-arrivals"><span class="material-symbols-outlined">new_releases</span> Nouveautés</a></li>
+                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="tracking.html"><span class="material-symbols-outlined">local_shipping</span> Suivi Commande</a></li>
+                        <li><a class="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">support_agent</span> Assistance</a></li>
+                    </ul>
+
+                    <!-- Quick Filters -->
+                    <div class="mt-6 pt-6 border-t border-white/5">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 px-2">Filtres Rapides</p>
+                        <div class="flex flex-wrap gap-2 px-2">
+                            <span class="category-chip active px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Tout</span>
+                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">iPhone</span>
+                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Samsung</span>
+                            <span class="category-chip px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 cursor-pointer">Xiaomi</span>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Footer Actions -->
+                <div class="p-4 border-t border-white/5 space-y-3">
+                    <button class="w-full flex items-center justify-center gap-2 p-3 rounded-2xl bg-primary/10 text-primary font-medium hover:bg-primary hover:text-white transition-all">
+                        <span class="material-symbols-outlined">account_circle</span> Mon Compte
+                    </button>
+                    <div class="flex gap-2">
+                        <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a>
+                        <a class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[18px]">language</span></a>
+                        <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-2 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
+                            <span class="material-symbols-outlined text-[18px]">dark_mode</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <main class="flex-1">
-            <!-- Hero Section: Modern & Atmospheric -->
-            <section class="relative px-4 sm:px-6 md:px-20 py-12 sm:py-20 lg:py-32 overflow-hidden">
-                <div
-                    class="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none">
-                </div>
-                <div
-                    class="absolute -bottom-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none">
-                </div>
+            
+            <!-- Hero Section - Mobile First -->
+            <section class="relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-                <!-- Hero Section: Modern & Atmospheric Slider -->
+                <!-- Hero Slider -->
                 <section class="relative overflow-hidden">
-                    <div id="hero-slider"
-                        class="flex transition-transform duration-1000 ease-in-out h-[500px] sm:h-[600px] lg:h-[700px] xl:h-[800px]">
-                        <!-- Slide 1 -->
-                        <div class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-12 sm:py-20 lg:py-32 flex items-center">
-                            <div
-                                class="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none">
-                            </div>
-                            <div
-                                class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-6 sm:gap-8 lg:gap-10">
-                                    <div class="flex flex-col gap-4 sm:gap-6">
-                                        <div class="flex items-center gap-3">
+                    <div id="hero-slider" class="flex transition-transform duration-700 ease-out h-[420px] sm:h-[500px] lg:h-[600px] xl:h-[700px]">
+                        
+                        <!-- Slide 1: Smartphones -->
+                        <div class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 flex items-center">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
+                                <div class="flex flex-col gap-4 sm:gap-6 lg:gap-8">
+                                    <div class="flex flex-col gap-3 sm:gap-4">
+                                        <div class="flex items-center gap-2">
                                             <span class="h-px w-6 sm:w-8 bg-primary"></span>
-                                            <span
-                                                class="text-primary font-bold tracking-[0.3em] uppercase text-[8px] sm:text-[10px]">Derniers
-                                                Modèles 2024</span>
+                                            <span class="text-primary font-bold tracking-[0.25em] uppercase text-[9px] sm:text-[10px]">Nouveautés 2024</span>
                                         </div>
-                                        <h1
-                                            class="font-display text-slate-900 dark:text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
-                                            Les meilleurs <br /> Smartphones <span
-                                                class="text-primary italic">ici.</span>
+                                        <h1 class="font-display text-slate-900 dark:text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
+                                            Les meilleurs <br><span class="text-primary italic">Smartphones</span> ici.
                                         </h1>
-                                        <p
-                                            class="text-slate-500 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-lg leading-relaxed font-medium">
-                                            Découvrez notre sélection de smartphones et accessoires au meilleur prix en
-                                            Algérie.
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                            Découvrez notre sélection de smartphones et accessoires au meilleur prix en Algérie. Livraison 58 wilayas.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-3 sm:gap-5">
-                                        <a href="search.html"
-                                            class="group relative flex h-12 sm:h-14 lg:h-16 min-w-[160px] sm:min-w-[200px] items-center justify-center overflow-hidden rounded-2xl bg-primary px-6 sm:px-8 lg:px-10 text-white shadow-2xl shadow-primary/30 transition-all active:scale-95">
-                                            <div
-                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                            </div>
-                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir
-                                                les Téléphones</span>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="search.html" class="group relative flex h-11 sm:h-12 lg:h-14 min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-2xl bg-primary px-5 sm:px-7 lg:px-9 text-white shadow-xl shadow-primary/25 transition-all active:scale-95">
+                                            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir les Téléphones</span>
+                                        </a>
+                                        <a href="#new-arrivals" class="flex h-11 sm:h-12 items-center justify-center px-5 sm:px-6 rounded-2xl border-2 border-slate-200 dark:border-white/20 text-slate-700 dark:text-slate-300 font-medium hover:border-primary hover:text-primary transition-all active:scale-95">
+                                            <span class="material-symbols-outlined text-[18px] mr-1">play_circle</span>
+                                            <span class="text-sm">Découvrir</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="relative hidden lg:block">
-                                    <div
-                                        class="w-full aspect-square bg-slate-200 dark:bg-white/5 rounded-[3rem] sm:rounded-[4rem] overflow-hidden shadow-2xl relative group border border-white/5">
-                                        <img alt="Smartphones"
-                                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
-                                        <div
-                                            class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                        </div>
+                                    <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
+                                        <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 2 -->
-                        <div
-                            class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-12 sm:py-20 lg:py-32 flex items-center bg-slate-900">
-                            <div
-                                class="absolute -bottom-24 -left-24 w-64 h-64 sm:w-96 sm:h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none">
-                            </div>
-                            <div
-                                class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-6 sm:gap-8 lg:gap-10">
-                                    <div class="flex flex-col gap-4 sm:gap-6">
-                                        <div class="flex items-center gap-3">
+
+                        <!-- Slide 2: Accessories -->
+                        <div class="min-w-full h-full relative px-4 sm:px-6 md:px-20 py-8 sm:py-16 lg:py-24 flex items-center bg-gradient-to-br from-slate-900 to-slate-800">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
+                                <div class="flex flex-col gap-4 sm:gap-6 lg:gap-8">
+                                    <div class="flex flex-col gap-3 sm:gap-4">
+                                        <div class="flex items-center gap-2">
                                             <span class="h-px w-6 sm:w-8 bg-accent"></span>
-                                            <span
-                                                class="text-accent font-bold tracking-[0.3em] uppercase text-[8px] sm:text-[10px]">Accessoires
-                                                Premium</span>
+                                            <span class="text-accent font-bold tracking-[0.25em] uppercase text-[9px] sm:text-[10px]">Accessoires Premium</span>
                                         </div>
-                                        <h1
-                                            class="font-display text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
-                                            Accessoires <br /> de <span class="text-accent italic">Qualité.</span>
+                                        <h1 class="font-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
+                                            Accessoires de <br><span class="text-accent italic">Qualité</span>
                                         </h1>
-                                        <p
-                                            class="text-slate-400 text-base sm:text-lg md:text-xl max-w-lg leading-relaxed font-medium">
-                                            Coques, chargeurs, écouteurs et bien plus — tout pour compléter votre
-                                            smartphone.
+                                        <p class="text-slate-300 text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium">
+                                            Coques, chargeurs, écouteurs et bien plus — tout pour protéger et personnaliser votre smartphone.
                                         </p>
                                     </div>
-                                    <div class="flex flex-wrap gap-3 sm:gap-5">
-                                        <a href="search.html"
-                                            class="group relative flex h-12 sm:h-14 lg:h-16 min-w-[160px] sm:min-w-[200px] items-center justify-center overflow-hidden rounded-2xl bg-accent px-6 sm:px-8 lg:px-10 text-white shadow-2xl shadow-accent/30 transition-all active:scale-95">
-                                            <div
-                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                            </div>
-                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir
-                                                les Accessoires</span>
+                                    <div class="flex flex-wrap gap-3">
+                                        <a href="search.html?category=Accessoire" class="group relative flex h-11 sm:h-12 lg:h-14 min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-2xl bg-accent px-5 sm:px-7 lg:px-9 text-white shadow-xl shadow-accent/25 transition-all active:scale-95">
+                                            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                            <span class="relative font-display text-sm sm:text-base font-black tracking-wide">Voir les Accessoires</span>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="relative hidden lg:block">
-                                    <div
-                                        class="w-full aspect-square bg-white/5 rounded-[3rem] sm:rounded-[4rem] overflow-hidden shadow-2xl relative group border border-white/5">
-                                        <img alt="Accessoires"
-                                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            src="https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000&auto=format&fit=crop" />
+                                    <div class="w-full aspect-square bg-white/5 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
+                                        <img alt="Accessoires" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000&auto=format&fit=crop" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Slider Navigation - Fixed for both light and dark backgrounds -->
-                    <div class="absolute bottom-6 sm:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-3 sm:gap-4">
-                        <button id="hero-prev"
-                            class="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
-                            <span class="material-symbols-outlined text-[20px] sm:text-[22px] font-bold">west</span>
+                    <!-- Slider Navigation -->
+                    <div class="absolute bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+                        <button id="hero-prev" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Précédent">
+                            <span class="material-symbols-outlined text-[18px] sm:text-[20px] font-bold">chevron_left</span>
                         </button>
-                        <button id="hero-next"
-                            class="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
-                            <span class="material-symbols-outlined text-[20px] sm:text-[22px] font-bold">east</span>
+                        
+                        <!-- Slide Indicators -->
+                        <div class="flex gap-1.5">
+                            <button class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="0" aria-label="Slide 1"></button>
+                            <button class="hero-dot w-2 h-2 rounded-full bg-primary" data-slide="1" aria-label="Slide 2"></button>
+                        </div>
+                        
+                        <button id="hero-next" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Suivant">
+                            <span class="material-symbols-outlined text-[18px] sm:text-[20px] font-bold">chevron_right</span>
                         </button>
                     </div>
-                </section>
 
-                <!-- New Arrivals: horizontal slider -->
-                <section class="py-16 sm:py-24 border-y border-white/5" id="new-arrivals">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-20">
-                        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-16">
-                            <div class="flex flex-col gap-2 sm:gap-3">
-                                <h2
-                                    class="font-display text-slate-900 dark:text-white text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
-                                    Nouveautés</h2>
-                                <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium">Les derniers smartphones
-                                    arrivés en stock.</p>
-                            </div>
-                            <div class="flex gap-3 sm:gap-4">
-                                <button id="new-prev"
-                                    class="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all active:scale-90">
-                                    <span
-                                        class="material-symbols-outlined text-[20px] sm:text-[22px] group-hover:-translate-x-1 transition-transform">west</span>
-                                </button>
-                                <button id="new-next"
-                                    class="group flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-primary text-white shadow-xl shadow-primary/20 transition-all active:scale-90">
-                                    <span
-                                        class="material-symbols-outlined text-[20px] sm:text-[22px] group-hover:translate-x-1 transition-transform">east</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="flex overflow-x-auto gap-4 sm:gap-6 lg:gap-8 no-scrollbar pb-10 -mx-4 px-4 snap-x"
-                            id="new-arrivals-container">
-                            <div class="w-full text-center py-20 text-slate-500 font-medium animate-pulse italic">
-                                Chargement des nouveautés...</div>
-                        </div>
+                    <!-- Swipe Hint for Mobile -->
+                    <div class="lg:hidden absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-1 text-white/70 text-[10px] font-medium animate-pulse">
+                        <span class="material-symbols-outlined text-[14px]">swipe_horizontal</span>
+                        Glissez pour explorer
                     </div>
                 </section>
+            </section>
 
-                <!-- Featured Collection Grid -->
-                <section class="bg-white dark:bg-background-dark py-16 sm:py-24 lg:py-32 px-4 sm:px-6 md:px-20">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="flex flex-col md:flex-row items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-16">
-                            <div class="flex flex-col gap-2 sm:gap-3">
-                                <div class="flex items-center gap-2 text-accent">
-                                    <span class="material-symbols-outlined text-sm font-bold">star</span>
-                                    <span class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest">Sélection
-                                        Premium</span>
-                                </div>
-                                <h2
-                                    class="font-display text-slate-900 dark:text-white text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
-                                    Produits Vedettes</h2>
-                                <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-medium">Les modèles les plus
-                                    populaires au meilleur prix.</p>
-                            </div>
-                            <a class="group flex items-center gap-2 sm:gap-3 text-slate-900 dark:text-white font-bold"
-                                href="search.html">
-                                <span
-                                    class="text-xs sm:text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir
-                                    tous les produits</span>
-                                <div
-                                    class="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
-                                    <span class="material-symbols-outlined text-[18px] sm:text-[20px]">north_east</span>
-                                </div>
-                            </a>
+            <!-- Trust Badges - Mobile Sticky -->
+            <div class="sticky-bottom-bar lg:hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center justify-around glass rounded-2xl p-3">
+                        <div class="trust-badge flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">100% Original</span>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10"
-                            id="featured-products-container">
-                            <!-- Products will be loaded here -->
-                            <div class="col-span-full text-center py-20 italic text-slate-400">Chargement des
-                                produits...</div>
+                        <div class="trust-badge flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined text-accent text-[18px]">local_shipping</span>
+                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">58 Wilayas</span>
+                        </div>
+                        <div class="trust-badge flex flex-col items-center gap-1">
+                            <span class="material-symbols-outlined text-success text-[18px]">payments</span>
+                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">Paiement à la livraison</span>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
 
-                <script type="module">
-                    import { getProducts } from './db-service.js';
+            <!-- Quick Categories - Mobile Horizontal Scroll -->
+            <section class="px-4 sm:px-6 md:px-20 py-4 sm:py-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2">
+                        <button class="category-chip active flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 bg-primary text-white transition-all">
+                            🔥 Tendances
+                        </button>
+                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                            📱 iPhone
+                        </button>
+                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                            🤖 Samsung
+                        </button>
+                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                            ⚡ Xiaomi
+                        </button>
+                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                            🎧 Accessoires
+                        </button>
+                        <button class="category-chip flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 dark:border-white/10 hover:border-primary transition-all">
+                            💰 Promos
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-                    const newArrivalsContainer = document.getElementById('new-arrivals-container');
-                    const featuredContainer = document.getElementById('featured-products-container');
-                    const heroSlider = document.getElementById('hero-slider');
-                    const heroPrev = document.getElementById('hero-prev');
-                    const heroNext = document.getElementById('hero-next');
-                    const newPrev = document.getElementById('new-prev');
-                    const newNext = document.getElementById('new-next');
-
-                    // Mobile menu
-                    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                    const mobileMenuClose = document.getElementById('mobile-menu-close');
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-                    function openMobileMenu() {
-                        mobileMenu.classList.add('open');
-                        mobileMenuOverlay.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                    }
-
-                    function closeMobileMenu() {
-                        mobileMenu.classList.remove('open');
-                        mobileMenuOverlay.style.display = 'none';
-                        document.body.style.overflow = '';
-                    }
-
-                    if (mobileMenuBtn) {
-                        mobileMenuBtn.addEventListener('click', openMobileMenu);
-                    }
-
-                    if (mobileMenuClose) {
-                        mobileMenuClose.addEventListener('click', closeMobileMenu);
-                    }
-
-                    if (mobileMenuOverlay) {
-                        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-                    }
-
-                    let currentSlide = 0;
-                    const totalSlides = 2;
-
-                    function updateHero() {
-                        if (heroSlider) heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                    }
-
-                    if (heroNext) {
-                        heroNext.addEventListener('click', () => {
-                            currentSlide = (currentSlide + 1) % totalSlides;
-                            updateHero();
-                        });
-                    }
-
-                    if (heroPrev) {
-                        heroPrev.addEventListener('click', () => {
-                            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                            updateHero();
-                        });
-                    }
-
-                    // Auto-slide hero
-                    setInterval(() => {
-                        currentSlide = (currentSlide + 1) % totalSlides;
-                        updateHero();
-                    }, 8000);
-
-                    if (newNext && newArrivalsContainer) {
-                        newNext.addEventListener('click', () => {
-                            const scrollAmount = window.innerWidth < 640 ? 280 : 400;
-                            newArrivalsContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                        });
-                    }
-
-                    if (newPrev && newArrivalsContainer) {
-                        newPrev.addEventListener('click', () => {
-                            const scrollAmount = window.innerWidth < 640 ? 280 : 400;
-                            newArrivalsContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                        });
-                    }
-
-                    const staticProducts = [
-                        { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80' },
-                        { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80' },
-                        { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80' },
-                        { id: '4', name: 'AirPods Pro', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80' },
-                        { id: '5', name: 'Chargeur Rapide 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80' },
-                        { id: '6', name: 'Coque Samsung Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' }
-                    ];
-
-                    async function loadStorefrontProducts() {
-                        try {
-                            const products = await getProducts();
-                            renderStorefront(products.length > 0 ? products : staticProducts);
-                        } catch (error) {
-                            console.error("Error loading storefront products:", error);
-                            renderStorefront(staticProducts);
-                        }
-                    }
-
-                    function formatPrice(price) {
-                        return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-                    }
-
-                    function renderStorefront(products) {
-                        if (products.length === 0) {
-                            newArrivalsContainer.innerHTML = '<div class="w-full text-center py-20 text-slate-500">No products available yet.</div>';
-                            featuredContainer.innerHTML = '<div class="w-full text-center py-20 text-slate-500">No products available yet.</div>';
-                            return;
-                        }
-
-                        // Render New Arrivals (Horizontal Slider)
-                        newArrivalsContainer.innerHTML = '';
-                        products.slice(0, 6).forEach(product => {
-                            const div = document.createElement('div');
-                            div.className = 'min-w-[280px] sm:min-w-[320px] snap-start group relative';
-                            div.innerHTML = `
-                        <div class="h-[400px] sm:h-[450px] w-full bg-slate-100 dark:bg-white/5 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-white/5 transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-primary/20">
-                            <img src="${product.image}" class="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 p-4 sm:p-6 glass rounded-2xl translate-y-20 group-hover:translate-y-0 transition-all duration-500">
-                                <p class="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-primary mb-2">${product.category}</p>
-                                <h4 class="text-white font-display text-base sm:text-lg font-black leading-tight">${product.name}</h4>
-                                <div class="mt-3 sm:mt-4 flex items-center justify-between">
-                                    <span class="text-white font-black text-sm sm:text-base">${formatPrice(product.price)}</span>
-                                    <a href="product.html?id=${product.id}" class="h-9 w-9 sm:h-10 sm:w-10 bg-white text-slate-900 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white transition-all active:scale-90">
-                                        <span class="material-symbols-outlined text-sm">shopping_cart</span>
-                                    </a>
-                                </div>
-                            </div>
+            <!-- New Arrivals: Horizontal Slider -->
+            <section class="py-8 sm:py-16 border-y border-white/5" id="new-arrivals">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-20">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
+                        <div class="flex flex-col gap-2">
+                            <h2 class="font-display text-slate-900 dark:text-white text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Nouveautés</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Les derniers smartphones arrivés en stock</p>
                         </div>
-                    `;
-                            newArrivalsContainer.appendChild(div);
-                        });
-
-                        // Render Featured (Grid) - Without star ratings
-                        featuredContainer.innerHTML = '';
-                        products.slice(0, 8).forEach(product => {
-                            const div = document.createElement('div');
-                            div.className = 'group cursor-pointer flex flex-col';
-                            div.onclick = () => window.location.href = `product.html?id=${product.id}`;
-                            div.innerHTML = `
-                        <div class="relative aspect-square mb-4 sm:mb-6 overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-slate-50 dark:bg-white/5 border border-white/5 hover:border-primary/20 transition-all duration-700">
-                            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out z-10">
-                                <button class="w-full glass text-white font-display font-black py-3 sm:py-4 rounded-2xl shadow-xl hover:bg-primary transition-all active:scale-95 text-sm sm:text-base">
-                                    Quick Order
-                                </button>
-                            </div>
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&q=80'}')"></div>
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-                            <button class="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 h-12 w-12 sm:h-14 sm:w-14 bg-white dark:bg-white text-slate-900 rounded-2xl shadow-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 flex items-center justify-center hover:bg-primary hover:text-white active:scale-90">
-                                <span class="material-symbols-outlined text-[20px] sm:text-[22px] font-bold">shopping_bag</span>
+                        <div class="flex gap-2">
+                            <button id="new-prev" class="group flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all active:scale-90" aria-label="Précédent">
+                                <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_left</span>
+                            </button>
+                            <button id="new-next" class="group flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-90" aria-label="Suivant">
+                                <span class="material-symbols-outlined text-[18px] sm:text-[20px]">chevron_right</span>
                             </button>
                         </div>
-                        <div class="px-2">
-                            <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-lg sm:text-xl mb-1 group-hover:text-primary transition-colors">${product.name}</h3>
-                            <div class="flex items-center justify-between">
-                                <p class="text-primary font-black text-base sm:text-lg">${formatPrice(product.price)}</p>
-                            </div>
-                        </div>
-                    `;
-                            featuredContainer.appendChild(div);
-                        });
-                    }
-
-                    loadStorefrontProducts();
-                </script>
-
-                <!-- Value Props Section -->
-                <section class="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 md:px-20 max-w-7xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
-                        <div class="flex flex-col gap-4 sm:gap-6">
-                            <div
-                                class="h-14 w-14 sm:h-16 sm:w-16 rounded-3xl bg-primary/10 text-primary flex items-center justify-center">
-                                <span class="material-symbols-outlined text-2xl sm:text-3xl">verified</span>
-                            </div>
-                            <h3 class="font-display text-xl sm:text-2xl font-black">Produits 100% Authentiques</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-loose">Tous nos smartphones et
-                                accessoires sont originaux et garantis, avec factures officielles.</p>
-                        </div>
-                        <div class="flex flex-col gap-4 sm:gap-6 group">
-                            <div
-                                class="h-14 w-14 sm:h-16 sm:w-16 rounded-3xl bg-accent/10 text-accent flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-500">
-                                <span class="material-symbols-outlined text-2xl sm:text-3xl">local_shipping</span>
-                            </div>
-                            <h3 class="font-display text-xl sm:text-2xl font-black">Livraison dans tout Algérie</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-loose">Livraison rapide dans les 58
-                                wilayas. Livraison gratuite à partir de 15 000 د.ج.</p>
-                        </div>
-                        <div class="flex flex-col gap-4 sm:gap-6">
-                            <div
-                                class="h-14 w-14 sm:h-16 sm:w-16 rounded-3xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-2xl sm:text-3xl">shield_person</span>
-                            </div>
-                            <h3 class="font-display text-xl sm:text-2xl font-black">Garantie 6 mois</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-loose">Tous nos produits sont sous
-                                garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
-                        </div>
                     </div>
-                </section>
 
-                <!-- Premium Newsletter -->
-                <section class="py-16 sm:py-24 px-4 sm:px-6 md:px-20 mb-20 sm:mb-32">
-                    <div
-                        class="max-w-7xl mx-auto rounded-[3rem] sm:rounded-[4rem] bg-primary relative overflow-hidden shadow-2xl shadow-primary/30">
-                        <div
-                            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
-                        </div>
-                        <div
-                            class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
-                        </div>
-
-                        <div class="relative z-10 py-12 sm:py-16 lg:py-20 px-6 sm:px-10 text-center">
-                            <h2 class="font-display text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6">Rejoignez Phone
-                                Haven</h2>
-                            <p class="text-white/80 text-base sm:text-lg mb-8 sm:mb-12 max-w-xl mx-auto font-medium">Inscrivez-vous pour
-                                recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
-                            <form class="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto">
-                                <input
-                                    class="flex-1 h-12 sm:h-16 rounded-2xl px-4 sm:px-6 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-sm sm:text-base"
-                                    placeholder="your@email.com" required="" type="email" />
-                                <button
-                                    class="h-12 sm:h-16 px-6 sm:px-10 bg-white text-primary font-display font-black rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-xl text-sm sm:text-base"
-                                    type="submit">Subscribe</button>
-                            </form>
-                        </div>
+                    <div class="flex overflow-x-auto gap-4 sm:gap-6 no-scrollbar pb-4 -mx-4 px-4 snap-x" id="new-arrivals-container">
+                        <div class="w-full text-center py-16 text-slate-500 font-medium animate-pulse">Chargement des nouveautés...</div>
                     </div>
-                </section>
+                    
+                    <!-- View All Link -->
+                    <div class="text-center mt-6">
+                        <a href="search.html" class="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all">
+                            Voir tous les produits
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Collection Grid -->
+            <section class="bg-white dark:bg-background-dark py-12 sm:py-20 lg:py-28 px-4 sm:px-6 md:px-20">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2 text-accent">
+                                <span class="material-symbols-outlined text-sm font-bold">star</span>
+                                <span class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Sélection Premium</span>
+                            </div>
+                            <h2 class="font-display text-slate-900 dark:text-white text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Produits Vedettes</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Les modèles les plus populaires au meilleur prix</p>
+                        </div>
+                        <a class="group flex items-center gap-2 text-slate-900 dark:text-white font-bold" href="search.html">
+                            <span class="text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir tout le catalogue</span>
+                            <div class="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
+                                <span class="material-symbols-outlined text-[16px] sm:text-[18px]">north_east</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8" id="featured-products-container">
+                        <div class="col-span-full text-center py-16 italic text-slate-400">Chargement des produits...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mobile Sticky Bottom Bar - Quick Actions -->
+            <div class="lg:hidden sticky-bottom-bar">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center justify-between glass rounded-2xl p-3">
+                        <a href="index.html" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-primary text-[20px]">home</span>
+                            <span class="text-[9px] font-medium text-slate-600 dark:text-slate-300">Accueil</span>
+                        </a>
+                        <a href="search.html" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+                            <span class="text-[9px] font-medium text-slate-400">Rechercher</span>
+                        </a>
+                        <a href="#" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all relative">
+                            <span class="material-symbols-outlined text-slate-400 text-[20px]">shopping_bag</span>
+                            <span class="text-[9px] font-medium text-slate-400">Panier</span>
+                            <span class="absolute -top-1 right-3 h-4 w-4 bg-accent text-[9px] font-bold text-white rounded-full flex items-center justify-center">2</span>
+                        </a>
+                        <a href="#" class="flex flex-col items-center gap-1 px-4 py-2 rounded-xl hover:bg-white/10 transition-all">
+                            <span class="material-symbols-outlined text-slate-400 text-[20px]">person</span>
+                            <span class="text-[9px] font-medium text-slate-400">Compte</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Props Section -->
+            <section class="py-12 sm:py-20 lg:py-28 px-4 sm:px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+                    <div class="flex flex-col gap-4 items-start">
+                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl sm:text-2xl">verified</span>
+                        </div>
+                        <h3 class="font-display text-lg sm:text-xl font-black">Produits 100% Authentiques</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
+                    </div>
+                    <div class="flex flex-col gap-4 items-start">
+                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl sm:text-2xl">local_shipping</span>
+                        </div>
+                        <h3 class="font-display text-lg sm:text-xl font-black">Livraison 58 Wilayas</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
+                    </div>
+                    <div class="flex flex-col gap-4 items-start sm:col-span-2 lg:col-span-1">
+                        <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl sm:text-2xl">shield</span>
+                        </div>
+                        <h3 class="font-display text-lg sm:text-xl font-black">Garantie 6 Mois</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Premium Newsletter -->
+            <section class="py-12 sm:py-20 px-4 sm:px-6 md:px-20 mb-16 sm:mb-24">
+                <div class="max-w-7xl mx-auto rounded-[2.5rem] sm:rounded-[3rem] bg-primary relative overflow-hidden shadow-2xl shadow-primary/30">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                    <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+                    <div class="relative z-10 py-10 sm:py-14 lg:py-16 px-6 sm:px-10 text-center">
+                        <h2 class="font-display text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-5">Rejoignez Phone Haven</h2>
+                        <p class="text-white/80 text-sm sm:text-base mb-6 sm:mb-8 max-w-lg mx-auto font-medium">Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
+                        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                            <input class="flex-1 h-12 sm:h-14 rounded-2xl px-5 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-sm" placeholder="votre@email.com" required type="email" />
+                            <button class="h-12 sm:h-14 px-6 sm:px-8 bg-white text-primary font-display font-black rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm" type="submit">S'inscrire</button>
+                        </form>
+                        <p class="text-white/50 text-[10px] mt-4">🔒 Vos données sont sécurisées. Désinscription en un clic.</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
-        <!-- Footer: Elegant & Information-Rich -->
-        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-16 sm:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 md:px-20">
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-12 sm:pt-20 pb-8 sm:pb-12 px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 mb-16 sm:mb-24">
-                    <div class="col-span-2 flex flex-col gap-6 sm:gap-8">
-                        <a href="index.html" class="flex items-center gap-2 group">
-                            <div
-                                class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
-                                <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-10 mb-12 sm:mb-16">
+                    <div class="col-span-2 flex flex-col gap-4 sm:gap-6">
+                        <a href="index.html" class="flex items-center gap-2">
+                            <div class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                                <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                             </div>
-                            <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span
-                                    class="text-primary italic">.</span></h2>
+                            <h2 class="font-display text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
                         </a>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm sm:text-base leading-loose font-medium">
-                            Basée à Sétif, Phone Haven est votre destination privilégiée pour les smartphones et
-                            accessoires originaux.
-                        </p>
-                        <div class="flex gap-3 sm:gap-4">
-                            <a class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined text-[20px]">share</span></a>
-                            <a class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
-                            <a class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined text-[20px]">podcasts</span></a>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">Basée à Sétif, Phone Haven est votre destination privilégiée pour les smartphones et accessoires originaux en Algérie.</p>
+                        <div class="flex gap-3">
+                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Instagram"><span class="material-symbols-outlined text-[18px]">instagram</span></a>
+                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="Facebook"><span class="material-symbols-outlined text-[18px]">facebook</span></a>
+                            <a class="h-10 w-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#" aria-label="TikTok"><span class="material-symbols-outlined text-[18px]">tiktok</span></a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-6 sm:mb-8">Navigation</h4>
-                        <ul class="flex flex-col gap-4 sm:gap-5 text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Navigation</h4>
+                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
                             <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="index.html#new-arrivals">Nouveautés</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="search.html?category=Téléphone">Téléphones</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="search.html?category=Accessoire">Accessoires</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">Nouveautés</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone">Téléphones</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Accessoire">Accessoires</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-6 sm:mb-8">Assistance</h4>
-                        <ul class="flex flex-col gap-4 sm:gap-5 text-slate-500 dark:text-slate-400 text-sm font-medium">
-                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Track Order</a>
-                            </li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Shipping & Returns</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Inquiry</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Assistance</h4>
+                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
+                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-6 sm:mb-8">Legal</h4>
-                        <ul class="flex flex-col gap-4 sm:gap-5 text-slate-500 dark:text-slate-400 text-sm font-medium">
-                            <li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Terms</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Warranty</a></li>
+                        <h4 class="font-display font-black text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-6">Légal</h4>
+                        <ul class="flex flex-col gap-3 text-slate-500 dark:text-slate-400 text-sm">
+                            <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div
-                    class="pt-8 sm:pt-12 border-t border-slate-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <div class="pt-6 sm:pt-10 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
                     <p>© 2024 Phone Haven. Tous droits réservés.</p>
-                    <div class="flex gap-6 sm:gap-10">
+                    <div class="flex gap-4 sm:gap-8">
                         <a class="hover:text-primary" href="#">Instagram</a>
-                        <a class="hover:text-primary" href="#">Pinterest</a>
                         <a class="hover:text-primary" href="#">Facebook</a>
+                        <a class="hover:text-primary" href="#">TikTok</a>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
-</body>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/213XXXXXXXXX" target="_blank" class="whatsapp-float flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 hover:brightness-110 transition-all active:scale-90 z-[1000]" aria-label="Contacter sur WhatsApp">
+        <span class="material-symbols-outlined text-[26px] sm:text-[30px] font-bold">chat</span>
+    </a>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-[200] space-y-2 max-w-[320px]"></div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 z-[150] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modal-overlay"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-background-dark rounded-t-[2rem] p-6 max-h-[85vh] overflow-y-auto transform transition-transform duration-300 translate-y-full" id="modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-display text-xl font-black">Aperçu Rapide</h3>
+                <button id="modal-close" class="h-10 w-10 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center transition-all" aria-label="Fermer">
+                    <span class="material-symbols-outlined text-[22px]">close</span>
+                </button>
+            </div>
+            <div id="modal-product-content"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { getProducts } from './db-service.js';
+
+        // ==================== DOM Elements ====================
+        const newArrivalsContainer = document.getElementById('new-arrivals-container');
+        const featuredContainer = document.getElementById('featured-products-container');
+        const heroSlider = document.getElementById('hero-slider');
+        const heroPrev = document.getElementById('hero-prev');
+        const heroNext = document.getElementById('hero-next');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        const newPrev = document.getElementById('new-prev');
+        const newNext = document.getElementById('new-next');
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        // Search
+        const desktopSearch = document.getElementById('desktop-search');
+        const mobileSearch = document.getElementById('mobile-search');
+        const voiceSearchDesktop = document.getElementById('voice-search-desktop');
+        const voiceSearchMobile = document.getElementById('voice-search-mobile');
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Quick View Modal
+        const quickViewModal = document.getElementById('quick-view-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalClose = document.getElementById('modal-close');
+        const modalProductContent = document.getElementById('modal-product-content');
+
+        // Toast Container
+        const toastContainer = document.getElementById('toast-container');
+
+        // Category Chips
+        const categoryChips = document.querySelectorAll('.category-chip');
+
+        // ==================== State ====================
+        let currentSlide = 0;
+        const totalSlides = 2;
+        let allProducts = [];
+        let currentProduct = null;
+
+        // ==================== Mobile Menu Functions ====================
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+        if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // ==================== Hero Slider Functions ====================
+        function updateHero() {
+            if (heroSlider) {
+                heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                // Update dots
+                heroDots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-primary', index === currentSlide);
+                    dot.classList.toggle('bg-white/50', index !== currentSlide);
+                });
+            }
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateHero();
+        }
+
+        if (heroNext) heroNext.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateHero();
+        });
+
+        if (heroPrev) heroPrev.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateHero();
+        });
+
+        heroDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.slide));
+            });
+        });
+
+        // Auto-slide hero
+        let heroInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateHero();
+        }, 8000);
+
+        // Pause auto-slide on hover/touch
+        heroSlider?.addEventListener('mouseenter', () => clearInterval(heroInterval));
+        heroSlider?.addEventListener('mouseleave', () => {
+            heroInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateHero();
+            }, 8000);
+        });
+
+        // ==================== New Arrivals Slider ====================
+        if (newNext && newArrivalsContainer) {
+            newNext.addEventListener('click', () => {
+                const scrollAmount = window.innerWidth < 640 ? 260 : 340;
+                newArrivalsContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+        }
+
+        if (newPrev && newArrivalsContainer) {
+            newPrev.addEventListener('click', () => {
+                const scrollAmount = window.innerWidth < 640 ? 260 : 340;
+                newArrivalsContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+        }
+
+        // ==================== Voice Search ====================
+        function initVoiceSearch(button, input) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                button.style.display = 'none';
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR';
+            recognition.interimResults = false;
+
+            button.addEventListener('click', () => {
+                button.classList.add('voice-search-active', 'text-primary');
+                showToast('🎤 Écoute en cours...', 'info');
+                
+                recognition.start();
+                
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    input.value = transcript;
+                    showToast(`🔍 Recherche: "${transcript}"`, 'success');
+                    // Trigger search after delay
+                    setTimeout(() => {
+                        if (input.form) input.form.requestSubmit();
+                        else window.location.href = `search.html?q=${encodeURIComponent(transcript)}`;
+                    }, 500);
+                };
+
+                recognition.onerror = () => {
+                    showToast('❌ Erreur de reconnaissance vocale', 'error');
+                    button.classList.remove('voice-search-active', 'text-primary');
+                };
+
+                recognition.onend = () => {
+                    button.classList.remove('voice-search-active', 'text-primary');
+                };
+            });
+        }
+
+        if (voiceSearchDesktop && desktopSearch) initVoiceSearch(voiceSearchDesktop, desktopSearch);
+        if (voiceSearchMobile && mobileSearch) initVoiceSearch(voiceSearchMobile, mobileSearch);
+
+        // ==================== Theme Toggle ====================
+        function initThemeToggle() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            
+            themeToggle?.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
+                showToast(isDark ? '🌙 Mode sombre activé' : '☀️ Mode clair activé', 'info');
+            });
+        }
+        initThemeToggle();
+
+        // ==================== Category Chips ====================
+        categoryChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                categoryChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                
+                const category = chip.textContent.trim().toLowerCase();
+                if (category !== 'tout' && category !== '🔥 tendances' && category !== '💰 promos') {
+                    window.location.href = `search.html?category=${encodeURIComponent(category.replace(/[📱🤖⚡🎧]/g, '').trim())}`;
+                } else if (category === '💰 promos') {
+                    window.location.href = 'search.html?sort=prix-asc';
+                }
+            });
+        });
+
+        // ==================== Toast Notifications ====================
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
+            
+            toast.className = `glass ${colors[type]} border border-white/10 rounded-2xl p-4 flex items-center gap-3 shadow-xl animate-[fadeInUp_0.3s_ease]`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-white text-[20px]">${icons[type]}</span>
+                <span class="text-white text-sm font-medium flex-1">${message}</span>
+                <button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // ==================== Quick View Modal ====================
+        function openQuickView(product) {
+            currentProduct = product;
+            modalProductContent.innerHTML = `
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-1/2">
+                        <div class="aspect-square rounded-2xl bg-slate-100 dark:bg-white/5 overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image" onload="this.classList.add('loaded')" />
+                        </div>
+                    </div>
+                    <div class="sm:w-1/2 flex flex-col">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">${product.category}</p>
+                        <h3 class="font-display text-xl sm:text-2xl font-black mb-3">${product.name}</h3>
+                        <p class="text-2xl sm:text-3xl font-black text-primary mb-4">${formatPrice(product.price)}</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 line-clamp-3">${product.description || 'Description non disponible.'}</p>
+                        
+                        <div class="flex gap-3 mt-auto">
+                            <button class="flex-1 h-12 rounded-xl bg-primary text-white font-black text-sm hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-2" onclick="addToCart('${product.id}')">
+                                <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+                                Ajouter
+                            </button>
+                            <a href="product.html?id=${product.id}" class="h-12 px-5 rounded-xl border-2 border-slate-200 dark:border-white/20 font-medium text-sm hover:border-primary hover:text-primary transition-all flex items-center justify-center">
+                                Détails
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            quickViewModal.classList.remove('hidden');
+            setTimeout(() => modalContent.classList.remove('translate-y-full'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            modalContent.classList.add('translate-y-full');
+            setTimeout(() => {
+                quickViewModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        modalClose?.addEventListener('click', closeQuickView);
+        modalOverlay?.addEventListener('click', closeQuickView);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !quickViewModal.classList.contains('hidden')) closeQuickView(); });
+
+        // ==================== Add to Cart ====================
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Get existing cart
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const existing = cart.find(item => item.id === productId);
+            
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show feedback
+            showToast(`✅ ${product.name} ajouté au panier`, 'success');
+            
+            // Animate cart button
+            const cartBtn = document.querySelector('button[aria-label="Panier"]');
+            cartBtn?.classList.add('animate-add-to-cart');
+            setTimeout(() => cartBtn?.classList.remove('animate-add-to-cart'), 300);
+            
+            // Update cart badge
+            const badge = cartBtn?.querySelector('.absolute');
+            if (badge) {
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                badge.textContent = count > 9 ? '9+' : count;
+            }
+        }
+
+        // Make addToCart globally available
+        window.addToCart = addToCart;
+
+        // ==================== Pull to Refresh ====================
+        let pullStartY = 0;
+        let pullDistance = 0;
+        const pullIndicator = document.getElementById('pull-indicator');
+        const maxPullDistance = 100;
+        const refreshThreshold = 80;
+
+        document.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0 && e.touches.length === 1) {
+                pullStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (pullStartY && window.scrollY === 0 && e.touches.length === 1) {
+                const currentY = e.touches[0].clientY;
+                pullDistance = Math.max(0, currentY - pullStartY);
+                
+                if (pullDistance < maxPullDistance) {
+                    e.preventDefault();
+                    pullIndicator.style.transform = `translateY(${pullDistance - 100}px)`;
+                    pullIndicator.classList.toggle('active', pullDistance > refreshThreshold);
+                }
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', async () => {
+            if (pullDistance > refreshThreshold) {
+                pullIndicator.querySelector('span').classList.add('animate-spin');
+                showToast('🔄 Actualisation...', 'info', 1500);
+                
+                // Simulate refresh
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Reload products
+                await loadStorefrontProducts();
+                showToast('✅ Page actualisée', 'success');
+            }
+            
+            pullIndicator.style.transform = 'translateY(-100%)';
+            pullIndicator.querySelector('span').classList.remove('animate-spin');
+            pullStartY = 0;
+            pullDistance = 0;
+        });
+
+        // ==================== Product Rendering ====================
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
+        }
+
+        function createProductCard(product, variant = 'grid') {
+            const isSlider = variant === 'slider';
+            const height = isSlider ? 'h-[360px] sm:h-[400px]' : 'aspect-square';
+            const radius = isSlider ? 'rounded-[1.75rem]' : 'rounded-[1.5rem] sm:rounded-[2rem]';
+            
+            return `
+                <div class="product-card group cursor-pointer flex flex-col ${isSlider ? 'min-w-[260px] sm:min-w-[290px] snap-start' : ''}" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
+                        <!-- Quick Actions -->
+                        <div class="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="h-8 w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')" aria-label="Ajouter aux favoris">
+                                <span class="material-symbols-outlined text-[16px]">favorite_border</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Image -->
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" />
+                        
+                        <!-- Overlay on hover -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <!-- Quick Add Button -->
+                        <button class="absolute bottom-3 left-3 right-3 h-10 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-sm shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all active:scale-95 flex items-center justify-center gap-2" onclick="event.stopPropagation(); addToCart('${product.id}')">
+                            <span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+                            Ajouter
+                        </button>
+                        
+                        <!-- Category Badge -->
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/90 text-white text-[9px] font-black uppercase tracking-wider">${product.category}</span>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="mt-3 px-1">
+                        <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-sm sm:text-base mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
+                        <p class="text-primary font-black text-base sm:text-lg">${formatPrice(product.price)}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadStorefrontProducts() {
+            try {
+                const products = await getProducts();
+                allProducts = products.length > 0 ? products : staticProducts;
+                renderStorefront(allProducts);
+            } catch (error) {
+                console.error("Error loading products:", error);
+                renderStorefront(staticProducts);
+                showToast('⚠️ Mode hors ligne activé', 'warning');
+            }
+        }
+
+        function renderStorefront(products) {
+            if (products.length === 0) {
+                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-sm">Aucun produit disponible pour le moment.</div>';
+                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-sm">Aucun produit disponible pour le moment.</div>';
+                return;
+            }
+
+            // Render New Arrivals (Horizontal Slider)
+            newArrivalsContainer.innerHTML = '';
+            products.slice(0, 8).forEach(product => {
+                const div = document.createElement('div');
+                div.innerHTML = createProductCard(product, 'slider');
+                newArrivalsContainer.appendChild(div.firstElementChild);
+            });
+
+            // Render Featured (Grid)
+            featuredContainer.innerHTML = '';
+            products.slice(0, 8).forEach(product => {
+                const div = document.createElement('div');
+                div.innerHTML = createProductCard(product, 'grid');
+                featuredContainer.appendChild(div.firstElementChild);
+            });
+
+            // Lazy load images
+            document.querySelectorAll('.lazy-image').forEach(img => {
+                if (img.complete) img.classList.add('loaded');
+            });
+        }
+
+        // Static fallback products
+        const staticProducts = [
+            { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80', description: 'Le dernier flagship Samsung avec écran Dynamic AMOLED 2X et appareil photo 200MP.' },
+            { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80', description: 'Puissance A17 Pro, titane aérospatial et système de caméra professionnel.' },
+            { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80', description: 'Performances exceptionnelles avec Snapdragon 8 Gen 3 et charge ultra-rapide 90W.' },
+            { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80', description: 'Réduction de bruit active, son spatial et autonomie prolongée.' },
+            { id: '5', name: 'Chargeur Rapide 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', description: 'Charge ultra-rapide compatible avec la plupart des smartphones.' },
+            { id: '6', name: 'Coque Samsung Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80', description: 'Protection élégante en cuir véritable avec finition premium.' }
+        ];
+
+        // ==================== Initialize ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStorefrontProducts();
+            
+            // Preload critical images
+            const preloadImages = [
+                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000',
+                'https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000'
+            ];
+            preloadImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+
+            // Register Service Worker for PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+            }
+        });
+
+        // Handle online/offline status
+        window.addEventListener('online', () => showToast('🌐 Connexion rétablie', 'success'));
+        window.addEventListener('offline', () => showToast('📴 Mode hors ligne', 'warning', 5000));
+    </script>
+</body>
 </html>
