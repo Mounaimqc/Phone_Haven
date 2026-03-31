@@ -3,7 +3,7 @@
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <title>Phone Haven / Logistics Terminal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -21,6 +21,13 @@
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
                         "body": ["Inter", "sans-serif"]
+                    },
+                    screens: {
+                        'xs': '375px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
                     }
                 },
             },
@@ -31,60 +38,119 @@
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .terminal-border { border: 1px solid rgba(255, 255, 255, 0.08); }
         .font-display { font-family: 'Outfit', sans-serif; }
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
         .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 1023px) {
+            #sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.6);
+                z-index: 25;
+                backdrop-filter: blur(4px);
+                transition: opacity 0.3s ease;
+            }
+            #sidebar-overlay.active { display: block; }
+            .mobile-hidden { transform: translateX(-100%) !important; }
+        }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            button, a, [role="button"], .clickable {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+            .hover\:bg-white\/5:hover { background: rgba(255,255,255,0.02) !important; }
+        }
+        
+        /* Card Animation */
+        .order-card {
+            transition: all 0.2s ease;
+            transform-origin: center;
+        }
+        .order-card:active {
+            transform: scale(0.98);
+        }
+        
+        /* Smooth sidebar transition */
+        #sidebar {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        /* Prevent pull-to-refresh on mobile */
+        body {
+            overscroll-behavior-y: contain;
+        }
     </style>
 </head>
 <body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebar-overlay" class="lg:hidden"></div>
+    
     <div class="flex h-full w-full">
-        <!-- Sidebar: High Contrast Terminal -->
-        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
-            <div class="p-8">
-                <div class="flex items-center gap-3 mb-10">
-                    <div class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
-                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+        <!-- Sidebar: Responsive Terminal -->
+        <aside id="sidebar" class="w-72 bg-black border-r terminal-border flex flex-col z-30 fixed lg:static inset-y-0 left-0 mobile-hidden lg:translate-x-0">
+            <div class="p-6 lg:p-8">
+                <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
+                    <div class="flex items-center gap-3">
+                        <div class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                        </div>
+                        <div class="min-w-0">
+                            <h1 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">Phone Haven<span class="text-primary italic">.</span></h1>
+                            <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">Terminal</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span class="text-primary italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha</p>
-                    </div>
+                    <!-- Close button for mobile -->
+                    <button id="sidebar-close" class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white">
+                        <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
                 </div>
 
                 <nav class="space-y-1">
-                    <a href="admin-analytics.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
+                    <a href="admin-analytics.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
                     </a>
-                    <a href="admin-orders.html" class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Orders</span>
+                    <a href="admin-orders.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
                     </a>
-                    <a href="admin-products.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Collection</span>
+                    <a href="admin-products.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
-                    <a href="admin-reports.html" class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
+                    <a href="admin-reports.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytics</span>
                     </a>
                 </nav>
             </div>
 
-            <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
+            <div class="mt-auto p-4 lg:p-8 border-t terminal-border bg-slate-900/50">
+                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
+                    <div class="size-9 lg:size-10 rounded-full border terminal-border overflow-hidden p-0.5 flex-shrink-0">
                         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBOHA1KDmnNYWlhspgAoy9iDBlC33WWmN2Hii2YVikpWHz1rP8LG2Ppbu5tygofleHcZ4UsvGZifJVV4EO7UoswaQiAfgaOupabg9T1ZdmZx13-du-DJH9BAoqspjThxco2hLaInoRcUsIC_F1NoQ1-gxwtxB4OvRwWoW40ZQ89JE-RRozYipQOue5vRgdhxT5tCI5h4E5Mykk9BMp6L7XTzrJv_wQ2TbZfIA7Me4jbNdKQSztFdKHDLHA3INH0hVOUbE0umSjQ" class="w-full h-full object-cover rounded-full">
                     </div>
-                    <div>
-                        <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                    <div class="min-w-0">
+                        <p class="text-xs font-black text-white truncate">Administrator</p>
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
                     </div>
                 </div>
-                <a href="index.html" class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                <a href="index.html" class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    Lock Session
+                    <span class="hidden xs:inline">Lock Session</span>
                 </a>
             </div>
         </aside>
@@ -93,65 +159,89 @@
         <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
             
-            <!-- Header -->
-            <header class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
-                <div class="flex items-center gap-6">
-                    <div class="relative group">
-                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors">search</span>
-                        <input type="text" placeholder="QUERY LOGISTICS DATA..." class="w-96 bg-white/5 border terminal-border rounded-xl pl-12 pr-4 py-2.5 text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
+            <!-- Header: Responsive -->
+            <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
+                <div class="flex items-center gap-3 lg:gap-6 w-full">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                        <span class="material-symbols-outlined text-xl">menu</span>
+                    </button>
+                    
+                    <!-- Search: Full width on mobile -->
+                    <div class="relative group flex-1 lg:flex-none">
+                        <span class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
+                        <input type="text" placeholder="SEARCH..." 
+                               class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
-                    <button class="size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative">
-                        <span class="material-symbols-outlined">notifications</span>
-                        <span class="absolute top-3 right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
+                
+                <!-- Actions: Stack on mobile -->
+                <div class="flex items-center gap-2 lg:gap-6 ml-2 lg:ml-0">
+                    <button class="size-10 lg:size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl">notifications</span>
+                        <span class="absolute top-2.5 lg:top-3 right-2.5 lg:right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
                     </button>
-                    <button class="h-12 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95">
-                        Initiate Order
+                    <button class="h-10 lg:h-12 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
+                        <span class="hidden sm:inline">Initiate </span>Order
                     </button>
                 </div>
             </header>
 
-            <!-- Table View -->
-            <div class="p-10 flex-1 flex flex-col overflow-y-auto">
-                <div class="mb-10 flex items-end justify-between">
+            <!-- Content Area -->
+            <div class="p-4 lg:p-10 flex-1 flex flex-col overflow-y-auto">
+                <!-- Header Section -->
+                <div class="mb-4 lg:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
                             <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
-                            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time Stream</span>
+                            <span class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time</span>
                         </div>
-                        <h2 class="font-display text-4xl font-black text-white tracking-tighter">Orders Ledger</h2>
+                        <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Orders Ledger</h2>
                     </div>
-                    <div class="flex gap-4">
-                        <button class="h-10 px-4 glass rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all">Filter</button>
-                        <button class="h-10 px-4 glass rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all">Export CVS</button>
+                    <div class="flex gap-2 flex-wrap">
+                        <button class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Filter</button>
+                        <button class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Export</button>
                     </div>
                 </div>
 
-                <!-- Table Container -->
-                <div class="bg-black/40 rounded-3xl terminal-border overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-white/5 border-b terminal-border">
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Signature</th>
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Client</th>
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Timeline</th>
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Value</th>
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">State</th>
-                                <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400"></th>
-                            </tr>
-                        </thead>
-                        <tbody id="orders-table-body" class="divide-y terminal-border">
-                            <!-- Data injection -->
-                        </tbody>
-                    </table>
+                <!-- Desktop Table View -->
+                <div id="table-view" class="hidden-scrollbar">
+                    <div class="bg-black/40 rounded-2xl lg:rounded-3xl terminal-border overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[700px]">
+                                <thead>
+                                    <tr class="bg-white/5 border-b terminal-border">
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Signature</th>
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Client</th>
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Timeline</th>
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Value</th>
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">State</th>
+                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-table-body" class="divide-y terminal-border">
+                                    <!-- Data injection -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mt-8 flex items-center justify-between">
-                    <p id="order-count" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Loading node entries...</p>
-                    <div class="flex gap-2">
-                        <button class="size-8 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">west</span></button>
-                        <button class="size-8 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all"><span class="material-symbols-outlined text-sm">east</span></button>
+                <!-- Mobile Card View -->
+                <div id="card-view" class="lg:hidden space-y-3">
+                    <!-- Cards will be injected here by JS -->
+                </div>
+
+                <!-- Pagination / Footer -->
+                <div class="mt-6 lg:mt-8 flex items-center justify-between">
+                    <p id="order-count" class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Loading...</p>
+                    <div class="flex gap-1.5 lg:gap-2">
+                        <button class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                            <span class="material-symbols-outlined text-sm">west</span>
+                        </button>
+                        <button class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                            <span class="material-symbols-outlined text-sm">east</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -162,77 +252,212 @@
         import { getOrders } from './db-service.js';
 
         const tableBody = document.getElementById('orders-table-body');
+        const cardView = document.getElementById('card-view');
+        const tableView = document.getElementById('table-view');
         const orderCount = document.getElementById('order-count');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebarClose = document.getElementById('sidebar-close');
 
+        // Mobile Sidebar Toggle
+        function toggleSidebar(show) {
+            if (show) {
+                sidebar.classList.remove('mobile-hidden');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.add('mobile-hidden');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        mobileMenuBtn?.addEventListener('click', () => toggleSidebar(true));
+        sidebarClose?.addEventListener('click', () => toggleSidebar(false));
+        overlay?.addEventListener('click', () => toggleSidebar(false));
+
+        // Close sidebar on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !sidebar.classList.contains('mobile-hidden')) {
+                toggleSidebar(false);
+            }
+        });
+
+        // Format helpers
         function formatPrice(price) {
             return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
         }
 
+        function formatDate(date) {
+            if (!date) return 'N/A';
+            const d = date.toDate ? date.toDate() : new Date(date);
+            return d.toLocaleDateString('fr-DZ', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        function getStatusStyle(status) {
+            const styles = {
+                'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
+                'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
+                'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
+                'Cancelled': 'text-rose-400 border-rose-400/20 bg-rose-400/5'
+            };
+            return styles[status] || 'text-slate-400 border-white/10';
+        }
+
+        // Render Table Row (Desktop)
+        function renderTableRow(order) {
+            const tr = document.createElement('tr');
+            tr.className = 'group hover:bg-white/5 transition-all cursor-pointer clickable';
+            tr.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = `admin-order-details.html?id=${order.id}`;
+            };
+            
+            const date = formatDate(order.createdAt);
+            const statusClass = getStatusStyle(order.status);
+
+            tr.innerHTML = `
+                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs font-black text-white uppercase tracking-widest">
+                    <span class="text-slate-600">ID_</span> ${order.id?.substring(0, 8).toUpperCase() || 'N/A'}
+                </td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6">
+                    <div class="flex items-center gap-2 lg:gap-3">
+                        <div class="size-7 lg:size-8 rounded-lg border terminal-border flex items-center justify-center text-[9px] lg:text-[10px] font-black bg-white/5 text-white flex-shrink-0">
+                            ${order.customerName ? order.customerName.charAt(0).toUpperCase() : '?'}
+                        </div>
+                        <span class="text-[11px] lg:text-xs font-bold text-white tracking-wide truncate max-w-[120px] lg:max-w-none">${order.customerName || 'Anonymous'}</span>
+                    </div>
+                </td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[9px] lg:text-[10px] font-medium text-slate-400 uppercase tracking-widest whitespace-nowrap">${date}</td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[11px] lg:text-xs font-black text-white whitespace-nowrap">${formatPrice(order.total)}</td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6">
+                    <span class="px-2 lg:px-3 py-1 rounded-md border text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] ${statusClass}">
+                        ${order.status || 'Unknown'}
+                    </span>
+                </td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6 text-right">
+                    <button class="text-slate-500 group-hover:text-white transition-colors clickable">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </button>
+                </td>
+            `;
+            return tr;
+        }
+
+        // Render Card (Mobile)
+        function renderCard(order) {
+            const date = formatDate(order.createdAt);
+            const statusClass = getStatusStyle(order.status);
+            const card = document.createElement('div');
+            card.className = 'order-card glass rounded-2xl p-4 terminal-border hover:border-primary/30 transition-all clickable';
+            card.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
+            
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <div class="min-w-0">
+                        <span class="text-[8px] font-black uppercase tracking-[0.2em] text-slate-500">ID_</span>
+                        <span class="text-xs font-black text-white">${order.id?.substring(0, 8).toUpperCase() || 'N/A'}</span>
+                    </div>
+                    <span class="px-2 py-1 rounded border text-[8px] font-black uppercase tracking-wider ${statusClass} flex-shrink-0">
+                        ${order.status || 'Unknown'}
+                    </span>
+                </div>
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="size-8 rounded-lg border terminal-border flex items-center justify-center text-[10px] font-black bg-white/5 flex-shrink-0">
+                        ${order.customerName ? order.customerName.charAt(0).toUpperCase() : '?'}
+                    </div>
+                    <span class="text-sm font-bold text-white truncate">${order.customerName || 'Anonymous'}</span>
+                </div>
+                <div class="grid grid-cols-2 gap-3 text-[9px]">
+                    <div>
+                        <span class="text-slate-500 uppercase block mb-0.5">Timeline</span>
+                        <p class="text-white font-medium">${date}</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-slate-500 uppercase block mb-0.5">Value</span>
+                        <p class="text-white font-black">${formatPrice(order.total)}</p>
+                    </div>
+                </div>
+                <div class="mt-3 pt-3 border-t terminal-border flex justify-end">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-primary flex items-center gap-1">
+                        View Details
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </span>
+                </div>
+            `;
+            return card;
+        }
+
+        // Main render function - handles both views
+        function renderOrders(orders) {
+            const isMobile = window.innerWidth < 1024;
+            
+            if (orders.length === 0) {
+                const emptyMsg = 'Void: No transaction data detected';
+                if (isMobile) {
+                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</div>`;
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</td></tr>`;
+                }
+                orderCount.textContent = 'LEGER EMPTY';
+                return;
+            }
+
+            if (isMobile) {
+                // Mobile: Show cards
+                tableView.classList.add('hidden');
+                cardView.classList.remove('hidden');
+                cardView.innerHTML = '';
+                orders.forEach(order => {
+                    cardView.appendChild(renderCard(order));
+                });
+            } else {
+                // Desktop: Show table
+                cardView.classList.add('hidden');
+                tableView.classList.remove('hidden');
+                tableBody.innerHTML = '';
+                orders.forEach(order => {
+                    tableBody.appendChild(renderTableRow(order));
+                });
+            }
+
+            orderCount.textContent = `SYSTEM: ${orders.length} ENTRIES VERIFIED`;
+        }
+
+        // Load orders from database
         async function loadOrders() {
-            tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest pulse">Accessing ledger...</td></tr>';
+            const loadingMsg = 'Accessing ledger...';
+            tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
+            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
+            
             try {
                 const orders = await getOrders();
                 renderOrders(orders);
             } catch (error) {
                 console.error("Error loading orders:", error);
-                tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-red-500 font-black text-[10px] tracking-[0.3em]">Ledger Access Denied: Check Protocol</td></tr>';
+                const errorMsg = 'Ledger Access Denied: Check Protocol';
+                tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-red-500 font-black text-[10px] tracking-[0.3em]">${errorMsg}</td></tr>`;
+                cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-500 font-black text-[10px] tracking-widest">${errorMsg}</div>`;
             }
         }
 
-        function renderOrders(orders) {
-            if (orders.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="6" class="px-8 py-20 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">Void: No transaction data detected</td></tr>';
-                orderCount.textContent = 'LEGER EMPTY';
-                return;
-            }
+        // Re-render on resize (with debounce)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Only re-render if view type changed
+                const isMobile = window.innerWidth < 1024;
+                const tableVisible = !tableView.classList.contains('hidden');
+                if ((isMobile && tableVisible) || (!isMobile && !tableVisible)) {
+                    loadOrders();
+                }
+            }, 150);
+        });
 
-            tableBody.innerHTML = '';
-            orders.forEach(order => {
-                const tr = document.createElement('tr');
-                tr.className = 'group hover:bg-white/5 transition-all cursor-pointer';
-                tr.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
-                
-                const date = order.createdAt?.toDate ? order.createdAt.toDate().toLocaleDateString('fr-DZ') : 'N/A';
-                
-                const statusStyles = {
-                    'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
-                    'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
-                    'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
-                    'Cancelled': 'text-rose-400 border-rose-400/20 bg-rose-400/5'
-                };
-
-                tr.innerHTML = `
-                    <td class="px-8 py-6 text-xs font-black text-white uppercase tracking-widest">
-                        <span class="text-slate-600">ID_</span> ${order.id.substring(0, 8).toUpperCase()}
-                    </td>
-                    <td class="px-8 py-6">
-                        <div class="flex items-center gap-3">
-                            <div class="size-8 rounded-lg border terminal-border flex items-center justify-center text-[10px] font-black bg-white/5 text-white">
-                                ${order.customerName ? order.customerName.charAt(0) : '?'}
-                            </div>
-                            <span class="text-xs font-bold text-white tracking-wide">${order.customerName || 'Anonymous'}</span>
-                        </div>
-                    </td>
-                    <td class="px-8 py-6 text-[10px] font-medium text-slate-400 uppercase tracking-widest">${date}</td>
-                    <td class="px-8 py-6 text-xs font-black text-white">${formatPrice(order.total)}</td>
-                    <td class="px-8 py-6">
-                        <span class="px-3 py-1 rounded-md border text-[9px] font-black uppercase tracking-[0.2em] ${statusStyles[order.status] || 'text-slate-400 border-white/10'}">
-                            ${order.status}
-                        </span>
-                    </td>
-                    <td class="px-8 py-6 text-right">
-                        <button class="text-slate-500 group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-sm">open_in_new</span>
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-
-            orderCount.textContent = `SYSTEM ANALYTICS: ${orders.length} ENTRIES VERIFIED`;
-        }
-
-        loadOrders();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadOrders);
     </script>
 </body>
 </html>
