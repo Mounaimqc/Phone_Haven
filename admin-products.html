@@ -4,14 +4,13 @@
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Phone Haven / Inventory Node</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
-          <link rel="icon" href="logo.jpeg" type="image/x-icon">
-
+    <link rel="icon" href="logo.jpeg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <script id="tailwind-config">
@@ -27,6 +26,13 @@
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
                         "body": ["Inter", "sans-serif"]
+                    },
+                    screens: {
+                        'xs': '375px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
                     }
                 },
             },
@@ -55,6 +61,7 @@
 
         ::-webkit-scrollbar {
             width: 4px;
+            height: 4px;
         }
 
         ::-webkit-scrollbar-track {
@@ -87,13 +94,63 @@
             border-color: #6366f1 !important;
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
         }
+
+        /* Mobile Optimizations */
+        @media (max-width: 1023px) {
+            #sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.6);
+                z-index: 25;
+                backdrop-filter: blur(4px);
+            }
+            #sidebar-overlay.active { display: block; }
+            .mobile-hidden { transform: translateX(-100%) !important; }
+            .sticky { position: relative !important; top: auto !important; }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            button, a, [role="button"], .clickable, select, input {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+            .hover\:bg-white\/5:hover { background: rgba(255,255,255,0.02) !important; }
+            .group:hover .group-hover\:opacity-100 { opacity: 1 !important; }
+            .group:hover .group-hover\:translate-x-0 { transform: translateX(0) !important; }
+        }
+
+        /* Smooth animations */
+        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+        .card-hover { transition: all 0.2s ease; }
+        .card-hover:active { transform: scale(0.99); }
+
+        /* Prevent pull-to-refresh */
+        body { overscroll-behavior-y: contain; }
+
+        /* Mobile card view for products */
+        .product-card {
+            transition: all 0.2s ease;
+        }
+        .product-card:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 
 <body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebar-overlay" class="lg:hidden"></div>
+
     <!-- Log Console (Minimal) -->
     <div id="debug-console"
-        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none hidden lg:block">
         <div class="flex justify-between items-center mb-2">
             <span class="font-black uppercase tracking-widest">Sys_Log</span>
         </div>
@@ -101,239 +158,235 @@
     </div>
 
     <script>
-            (function () {
-                const logContent = document.getElementById('log-content');
-                const oldLog = console.log;
-                console.log = function (...args) {
-                    const div = document.createElement('div');
-                    div.className = 'mb-1 opacity-70';
-                    div.textContent = `> ${args.join(' ')}`;
-                    if (logContent) {
-                        logContent.appendChild(div);
-                        logContent.scrollTop = logContent.scrollHeight;
-                    }
-                    oldLog.apply(console, args);
-                };
-            })();
+        (function () {
+            const logContent = document.getElementById('log-content');
+            const oldLog = console.log;
+            console.log = function (...args) {
+                const div = document.createElement('div');
+                div.className = 'mb-1 opacity-70';
+                div.textContent = `> ${args.join(' ')}`;
+                if (logContent) {
+                    logContent.appendChild(div);
+                    logContent.scrollTop = logContent.scrollHeight;
+                }
+                oldLog.apply(console, args);
+            };
+        })();
     </script>
 
     <div class="flex h-full w-full">
-        <!-- Sidebar -->
-        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
-            <div class="p-8">
-                <div class="flex items-center gap-3 mb-10">
-                    <div
-                        class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
-                        <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+        <!-- Sidebar: Responsive -->
+        <aside id="sidebar" class="w-72 bg-black border-r terminal-border flex flex-col z-30 fixed lg:static inset-y-0 left-0 mobile-hidden lg:translate-x-0">
+            <div class="p-6 lg:p-8">
+                <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
+                    <div class="flex items-center gap-3">
+                        <div class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                        </div>
+                        <div class="min-w-0">
+                            <h1 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">Phone Haven<span class="text-primary italic">.</span></h1>
+                            <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">Terminal</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
-                                class="text-primary italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha
-                        </p>
-                    </div>
+                    <button id="sidebar-close" class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white clickable">
+                        <span class="material-symbols-outlined text-lg">close</span>
+                    </button>
                 </div>
 
                 <nav class="space-y-1">
-                    <a href="admin-analytics.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span
-                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
+                    <a href="admin-analytics.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
                     </a>
-                    <a href="admin-orders.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span
-                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Orders</span>
+                    <a href="admin-orders.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
                     </a>
-                    <a href="admin-products.html"
-                        class="flex items-center gap-4 px-4 py-3 active-nav rounded-xl transition-all group">
-                        <span
-                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Collection</span>
+                    <a href="admin-products.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
-                    <a href="admin-reports.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-                        <span
-                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
+                    <a href="admin-reports.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytics</span>
                     </a>
                 </nav>
             </div>
 
-            <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
+            <div class="mt-auto p-4 lg:p-8 border-t terminal-border bg-slate-900/50">
+                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
+                    <div class="size-9 lg:size-10 rounded-full border terminal-border overflow-hidden p-0.5 flex-shrink-0">
                         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A"
                             class="w-full h-full object-cover rounded-full">
                     </div>
-                    <div>
-                        <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                    <div class="min-w-0">
+                        <p class="text-xs font-black text-white truncate">Administrator</p>
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
                     </div>
                 </div>
-                <a href="index.html"
-                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                <a href="index.html" class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    Lock Session
+                    <span class="hidden xs:inline">Lock Session</span>
                 </a>
             </div>
         </aside>
 
         <!-- Main Workspace -->
         <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
-            <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
-            </div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
 
-            <header
-                class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
-                <div class="flex items-center gap-8">
-                    <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Inventory
-                    </h2>
-                    <div class="relative w-80">
-                        <span
-                            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
-                        <input id="product-search"
-                            class="w-full pl-11 pr-4 py-2 bg-white/5 border-white/10 rounded-xl text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600"
-                            placeholder="DECRYPT REPOSITORY..." type="text" />
+            <!-- Header: Responsive -->
+            <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
+                <div class="flex items-center gap-3 lg:gap-8 w-full">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                        <span class="material-symbols-outlined text-xl">menu</span>
+                    </button>
+                    
+                    <!-- Title + Search -->
+                    <div class="flex-1 min-w-0">
+                        <h2 class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-white/50 hidden xs:block">Node_Alpha // Inventory</h2>
+                        <div class="relative w-full lg:w-80 mt-1 lg:mt-0">
+                            <span class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg lg:text-sm">search</span>
+                            <input id="product-search"
+                                class="w-full pl-10 lg:pl-11 pr-3 lg:pr-4 py-2 lg:py-2 bg-white/5 border-white/10 rounded-xl text-[9px] lg:text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600"
+                                placeholder="SEARCH..." type="text" />
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
+                
+                <!-- Actions -->
+                <div class="flex items-center gap-2 lg:gap-6 flex-shrink-0 ml-2 lg:ml-0">
                     <button id="add-product-shortcut"
-                        class="h-11 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5">
-                        New Entry
+                        class="h-10 lg:h-11 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5 whitespace-nowrap clickable">
+                        <span class="hidden sm:inline">New </span>Entry
                     </button>
-                    <div
-                        class="size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border">
-                        <span class="material-symbols-outlined text-lg">settings_input_component</span>
+                    <div class="size-10 lg:size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border flex-shrink-0">
+                        <span class="material-symbols-outlined text-lg lg:text-lg">settings_input_component</span>
                     </div>
                 </div>
             </header>
 
-            <div class="p-10 flex-1 overflow-y-auto space-y-10">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    <!-- Form Terminal -->
-                    <div class="lg:col-span-4">
-                        <div class="bg-black/40 p-8 rounded-[3rem] terminal-border glass sticky top-0">
-                            <h4
-                                class="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8 flex items-center gap-3">
+            <!-- Content Area -->
+            <div class="p-4 lg:p-10 flex-1 overflow-y-auto">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+                    
+                    <!-- Form Terminal: Becomes top section on mobile -->
+                    <div class="lg:col-span-4 order-2 lg:order-1">
+                        <div class="bg-black/40 p-6 lg:p-8 rounded-2xl lg:rounded-[3rem] terminal-border glass">
+                            <h4 class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-6 lg:mb-8 flex items-center gap-3">
                                 <span class="size-2 bg-primary rounded-full animate-pulse"></span>
                                 <span id="form-title">Schema Input</span>
                             </h4>
-                            <form id="product-form" class="space-y-6">
+                            <form id="product-form" class="space-y-5 lg:space-y-6">
                                 <input type="hidden" id="editing-id">
+                                
+                                <!-- Product Name -->
                                 <div>
-                                    <label
-                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
+                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
                                     <input id="product-name" required
-                                        class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold"
+                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold"
                                         placeholder="UNIT LABEL..." type="text" />
                                 </div>
-                                <div class="grid grid-cols-2 gap-4">
+                                
+                                <!-- Price + Category Row -->
+                                <div class="grid grid-cols-2 gap-3 lg:gap-4">
                                     <div>
-                                        <label
-                                            class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation
-                                            (DZD)</label>
+                                        <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation</label>
                                         <input id="product-price" required
-                                            class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold" placeholder="0.00"
-                                            type="number" step="1" />
+                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold" placeholder="0"
+                                            type="number" step="1" inputmode="numeric" />
                                     </div>
                                     <div>
-                                        <label
-                                            class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
+                                        <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
                                         <select id="product-category"
-                                            class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold appearance-none">
+                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold appearance-none">
                                             <option value="Téléphone">Téléphone</option>
                                             <option value="Accessoire">Accessoire</option>
                                         </select>
                                     </div>
                                 </div>
+                                
+                                <!-- Description -->
                                 <div>
-                                    <label
-                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
+                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
                                     <textarea id="product-description"
-                                        class="w-full rounded-2xl px-5 py-3.5 text-xs font-bold"
+                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold resize-none"
                                         placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
                                 </div>
 
+                                <!-- Image Upload -->
                                 <div>
-                                    <label
-                                        class="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual
-                                        Asset</label>
-                                    <div
-                                        class="flex items-center gap-5 p-2 bg-white/5 border terminal-border rounded-2xl">
+                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual Asset</label>
+                                    <div class="flex items-center gap-4 lg:gap-5 p-3 lg:p-4 bg-white/5 border terminal-border rounded-xl lg:rounded-2xl">
                                         <div id="image-preview-container"
-                                            class="size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
-                                            <span class="material-symbols-outlined text-slate-700"
-                                                id="preview-placeholder">image</span>
-                                            <img id="image-preview" class="w-full h-full object-cover hidden"
-                                                alt="Preview" />
+                                            class="size-14 lg:size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
+                                            <span class="material-symbols-outlined text-slate-700 text-lg lg:text-xl" id="preview-placeholder">image</span>
+                                            <img id="image-preview" class="w-full h-full object-cover hidden" alt="Preview" />
                                         </div>
-                                        <div class="flex-1">
-                                            <input id="product-image-file" class="hidden" type="file"
-                                                accept="image/*" />
-                                            <button type="button"
-                                                onclick="document.getElementById('product-image-file').click()"
-                                                class="w-full py-2 bg-white/5 text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all">Upload
-                                                File</button>
+                                        <div class="flex-1 min-w-0">
+                                            <input id="product-image-file" class="hidden" type="file" accept="image/*" />
+                                            <button type="button" onclick="document.getElementById('product-image-file').click()"
+                                                class="w-full py-2 bg-white/5 text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all clickable">
+                                                <span class="hidden xs:inline">Upload </span>File
+                                            </button>
                                         </div>
                                     </div>
                                     <input type="hidden" id="product-image-url">
                                 </div>
 
-                                <div class="pt-6 flex gap-3">
+                                <!-- Action Buttons -->
+                                <div class="pt-4 lg:pt-6 flex gap-3">
                                     <button id="submit-btn"
-                                        class="flex-1 h-14 bg-primary text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all"
-                                        type="submit">Verify & Save</button>
+                                        class="flex-1 h-12 lg:h-14 bg-primary text-white text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-xl lg:rounded-2xl hover:brightness-110 shadow-lg shadow-primary/20 transition-all clickable"
+                                        type="submit">
+                                        <span class="hidden xs:inline">Verify & </span>Save
+                                    </button>
                                     <button id="cancel-edit-btn"
-                                        class="hidden w-14 h-14 bg-white/5 text-slate-400 border terminal-border rounded-2xl hover:text-white transition-all flex items-center justify-center"
+                                        class="hidden w-12 lg:w-14 h-12 lg:h-14 bg-white/5 text-slate-400 border terminal-border rounded-xl lg:rounded-2xl hover:text-white transition-all flex items-center justify-center clickable"
                                         type="button">
-                                        <span class="material-symbols-outlined">close</span>
+                                        <span class="material-symbols-outlined text-lg">close</span>
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
 
-                    <!-- Ledger Terminal -->
-                    <div class="lg:col-span-8">
-                        <div class="bg-black/40 rounded-[3rem] terminal-border overflow-hidden pb-10">
-                            <div class="p-10 border-b terminal-border flex justify-between items-center bg-white/5">
-                                <h3 class="font-display text-2xl font-black text-white tracking-tighter">Global Ledger
-                                </h3>
-                                <div
-                                    class="flex items-center px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-xl">
-                                    <span id="product-count"
-                                        class="text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
+                    <!-- Ledger Terminal: Products List -->
+                    <div class="lg:col-span-8 order-1 lg:order-2">
+                        <div class="bg-black/40 rounded-2xl lg:rounded-[3rem] terminal-border overflow-hidden">
+                            <div class="p-6 lg:p-10 border-b terminal-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/5">
+                                <h3 class="font-display text-xl lg:text-2xl font-black text-white tracking-tighter">Global Ledger</h3>
+                                <div class="flex items-center px-3 lg:px-4 py-2 bg-emerald-400/10 border border-emerald-400/20 rounded-xl">
+                                    <span id="product-count" class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-2">
                                         <span class="size-1.5 bg-emerald-400 rounded-full"></span>
-                                        Node Online
+                                        <span class="hidden xs:inline">Node </span>Online
                                     </span>
                                 </div>
                             </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left">
-                                    <thead>
-                                        <tr class="border-b terminal-border">
-                                            <th
-                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                                                Asset</th>
-                                            <th
-                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                                                Sector</th>
-                                            <th
-                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                                                Valuation</th>
-                                            <th
-                                                class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">
-                                                Operation</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="products-table-body" class="divide-y terminal-border">
-                                        <!-- Data Injected -->
-                                    </tbody>
-                                </table>
+                            
+                            <!-- Desktop Table View -->
+                            <div id="table-view" class="hidden-scrollbar">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left min-w-[600px]">
+                                        <thead>
+                                            <tr class="border-b terminal-border">
+                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500">Asset</th>
+                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500 hidden sm:table-cell">Sector</th>
+                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500">Valuation</th>
+                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="products-table-body" class="divide-y terminal-border">
+                                            <!-- Data Injected -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Mobile Card View -->
+                            <div id="card-view" class="lg:hidden p-4 space-y-3 hidden">
+                                <!-- Cards injected by JS -->
                             </div>
                         </div>
                     </div>
@@ -345,7 +398,34 @@
     <script type="module">
         import { getProducts, addProduct, updateProduct, deleteProduct, uploadImage } from './db-service.js';
 
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebarClose = document.getElementById('sidebar-close');
+
+        // Mobile Sidebar Toggle
+        function toggleSidebar(show) {
+            if (show) {
+                sidebar.classList.remove('mobile-hidden');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.add('mobile-hidden');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        mobileMenuBtn?.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(true); });
+        sidebarClose?.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(false); });
+        overlay?.addEventListener('click', () => toggleSidebar(false));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleSidebar(false); });
+
+        // Product Elements
         const tableBody = document.getElementById('products-table-body');
+        const cardView = document.getElementById('card-view');
+        const tableView = document.getElementById('table-view');
         const productForm = document.getElementById('product-form');
         const productCount = document.getElementById('product-count');
         const submitBtn = document.getElementById('submit-btn');
@@ -356,86 +436,158 @@
 
         let productsList = [];
 
+        // Helpers
         function formatPrice(price) {
             return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
         }
 
+        // Load Products
         async function loadProducts() {
-            tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">Awaiting Decryption...</td></tr>';
+            const loadingMsg = 'Awaiting Decryption...';
+            tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</td></tr>`;
+            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</div>`;
+            
             try {
                 productsList = await getProducts();
                 renderProducts(productsList);
             } catch (error) {
                 console.error("Link Failure:", error);
-                tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-red-500 text-[10px] font-black uppercase tracking-widest">Protocol Breach detected.</td></tr>';
+                const errorMsg = 'Protocol Breach detected.';
+                tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-red-500 text-[10px] font-black uppercase tracking-widest">${errorMsg}</td></tr>`;
+                cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-500 text-[10px] font-black uppercase tracking-widest">${errorMsg}</div>`;
             }
         }
 
+        // Render Table Row (Desktop)
+        function renderTableRow(product) {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-white/5 transition-all group clickable';
+            tr.innerHTML = `
+                <td class="px-6 lg:px-10 py-5 lg:py-6">
+                    <div class="flex items-center gap-4 lg:gap-5">
+                        <div class="size-12 lg:size-14 rounded-xl lg:rounded-2xl bg-black border terminal-border bg-cover bg-center overflow-hidden rotate-2 group-hover:rotate-0 transition-transform flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
+                        <div class="min-w-0">
+                            <p class="text-[10px] lg:text-[11px] font-black text-white uppercase tracking-widest leading-none mb-1 truncate">${product.name}</p>
+                            <p class="text-[8px] lg:text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">ID: ${product.id?.substring(0, 6) || 'N/A'}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black text-slate-400 uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
+                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[10px] lg:text-[11px] font-black text-emerald-400 tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</td>
+                <td class="px-6 lg:px-10 py-5 lg:py-6 text-right">
+                    <div class="flex justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
+                        <button class="size-9 lg:size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-primary transition-all edit-btn clickable" data-id="${product.id}">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                        <button class="size-9 lg:size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-red-500 transition-all delete-btn clickable" data-id="${product.id}">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                </td>
+            `;
+            return tr;
+        }
+
+        // Render Card (Mobile)
+        function renderCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card glass rounded-2xl p-4 terminal-border hover:border-primary/30 transition-all clickable';
+            card.innerHTML = `
+                <div class="flex items-start gap-4">
+                    <div class="size-16 rounded-xl bg-black border terminal-border bg-cover bg-center flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-sm font-black text-white uppercase tracking-widest truncate">${product.name}</h4>
+                            <span class="text-emerald-400 font-black text-sm tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</span>
+                        </div>
+                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">${product.category}</p>
+                        <div class="flex gap-2">
+                            <button class="flex-1 h-9 bg-white/5 text-slate-400 border terminal-border rounded-lg hover:text-primary transition-all edit-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
+                                Edit
+                            </button>
+                            <button class="flex-1 h-9 bg-white/5 text-slate-400 border terminal-border rounded-lg hover:text-red-500 transition-all delete-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Main Render Function
         function renderProducts(products) {
+            const isMobile = window.innerWidth < 1024;
+            
             if (products.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">Repository Vacant.</td></tr>';
-                productCount.textContent = 'Node Empty';
+                const emptyMsg = 'Repository Vacant.';
+                if (isMobile) {
+                    cardView.classList.remove('hidden');
+                    tableView.classList.add('hidden');
+                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
+                } else {
+                    cardView.classList.add('hidden');
+                    tableView.classList.remove('hidden');
+                    tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
+                }
+                productCount.innerHTML = `<span class="size-1.5 bg-slate-500 rounded-full"></span> Node Empty`;
                 return;
             }
 
-            tableBody.innerHTML = '';
-            products.forEach(product => {
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-white/5 transition-all group';
-                tr.innerHTML = `
-                    <td class="px-10 py-6">
-                        <div class="flex items-center gap-5">
-                            <div class="size-14 rounded-2xl bg-black border terminal-border bg-cover bg-center overflow-hidden rotate-2 group-hover:rotate-0 transition-transform" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
-                            <div>
-                                <p class="text-[11px] font-black text-white uppercase tracking-widest leading-none mb-2">${product.name}</p>
-                                <p class="text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">Hash: ${product.id.substring(0, 8)}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">${product.category}</td>
-                    <td class="px-10 py-6 text-[11px] font-black text-emerald-400 tracking-tighter">${formatPrice(product.price)}</td>
-                    <td class="px-10 py-6 text-right">
-                        <div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0">
-                            <button class="size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-primary transition-all edit-btn" data-id="${product.id}">
-                                <span class="material-symbols-outlined text-lg">edit</span>
-                            </button>
-                            <button class="size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-red-500 transition-all delete-btn" data-id="${product.id}">
-                                <span class="material-symbols-outlined text-lg">delete</span>
-                            </button>
-                        </div>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
+            if (isMobile) {
+                // Mobile: Show cards
+                tableView.classList.add('hidden');
+                cardView.classList.remove('hidden');
+                cardView.innerHTML = '';
+                products.forEach(product => {
+                    cardView.appendChild(renderCard(product));
+                });
+            } else {
+                // Desktop: Show table
+                cardView.classList.add('hidden');
+                tableView.classList.remove('hidden');
+                tableBody.innerHTML = '';
+                products.forEach(product => {
+                    tableBody.appendChild(renderTableRow(product));
+                });
+            }
 
             productCount.innerHTML = `<span class="size-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Indexing ${products.length} Units`;
 
+            // Re-attach event listeners
+            attachEventListeners(products);
+        }
+
+        // Attach Edit/Delete Listeners
+        function attachEventListeners(products) {
             document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', async () => {
+                btn.onclick = async (e) => {
+                    e.stopPropagation();
                     const id = btn.getAttribute('data-id');
-                    if (confirm('TERMINATE THIS ENTRY?')) {
+                    if (confirm('⚠️ TERMINATE THIS ENTRY?')) {
                         await deleteProduct(id);
                         loadProducts();
                     }
-                });
+                };
             });
 
             document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
                     const id = btn.getAttribute('data-id');
                     const product = productsList.find(p => p.id === id);
                     if (product) startEditing(product);
-                });
+                };
             });
         }
 
         // Search Implementation
-        searchInput.addEventListener('input', (e) => {
+        searchInput?.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             const filtered = productsList.filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.category.toLowerCase().includes(query) ||
-                p.id.toLowerCase().includes(query)
+                p.name?.toLowerCase().includes(query) ||
+                p.category?.toLowerCase().includes(query) ||
+                p.id?.toLowerCase().includes(query)
             );
             renderProducts(filtered);
         });
@@ -446,64 +598,72 @@
         const previewPlaceholder = document.getElementById('preview-placeholder');
         const imageUrlInput = document.getElementById('product-image-url');
 
-        imageFileInput.addEventListener('change', (e) => {
+        imageFileInput?.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     imagePreview.src = e.target.result;
                     imagePreview.classList.remove('hidden');
-                    previewPlaceholder.classList.add('hidden');
+                    previewPlaceholder?.classList.add('hidden');
                 };
                 reader.readAsDataURL(file);
             }
         });
 
+        // Form Editing Functions
         function startEditing(product) {
             editingIdInput.value = product.id;
-            document.getElementById('product-name').value = product.name;
-            document.getElementById('product-price').value = product.price;
-            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-name').value = product.name || '';
+            document.getElementById('product-price').value = product.price || '';
+            document.getElementById('product-category').value = product.category || 'Téléphone';
             document.getElementById('product-description').value = product.description || '';
 
             imageUrlInput.value = product.image || '';
             if (product.image) {
                 imagePreview.src = product.image;
                 imagePreview.classList.remove('hidden');
-                previewPlaceholder.classList.add('hidden');
+                previewPlaceholder?.classList.add('hidden');
             } else {
                 imagePreview.classList.add('hidden');
-                previewPlaceholder.classList.remove('hidden');
+                previewPlaceholder?.classList.remove('hidden');
             }
 
             formTitle.textContent = 'Modify Data';
-            submitBtn.textContent = 'Update Repository';
+            submitBtn.innerHTML = '<span class="hidden xs:inline">Update </span>Repository';
             cancelEditBtn.classList.remove('hidden');
-            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Scroll to form on mobile
+            if (window.innerWidth < 1024) {
+                document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
-        cancelEditBtn.addEventListener('click', resetForm);
+        cancelEditBtn?.addEventListener('click', resetForm);
 
         function resetForm() {
             productForm.reset();
             editingIdInput.value = '';
             imageUrlInput.value = '';
             imagePreview.classList.add('hidden');
-            previewPlaceholder.classList.remove('hidden');
+            previewPlaceholder?.classList.remove('hidden');
             formTitle.textContent = 'Schema Input';
-            submitBtn.textContent = 'Verify & Save';
+            submitBtn.innerHTML = '<span class="hidden xs:inline">Verify & </span>Save';
             cancelEditBtn.classList.add('hidden');
         }
 
-        document.getElementById('add-product-shortcut').addEventListener('click', () => {
+        document.getElementById('add-product-shortcut')?.addEventListener('click', () => {
             resetForm();
-            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.innerWidth < 1024) {
+                document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
 
-        productForm.addEventListener('submit', async (e) => {
+        // Form Submit Handler
+        productForm?.addEventListener('submit', async (e) => {
             e.preventDefault();
             const editingId = editingIdInput.value;
-            const file = imageFileInput.files[0];
+            const file = imageFileInput?.files[0];
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing...';
@@ -525,24 +685,39 @@
 
                 if (editingId) {
                     await updateProduct(editingId, productData);
-                    alert('ENTRY MODIFIED.');
+                    alert('✓ ENTRY MODIFIED.');
                 } else {
                     await addProduct(productData);
-                    alert('ENTRY LOGGED.');
+                    alert('✓ ENTRY LOGGED.');
                 }
                 resetForm();
                 loadProducts();
             } catch (error) {
                 console.error("Protocol failure:", error);
-                alert(`Error: ${error.message}`);
+                alert(`✗ Error: ${error.message}`);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = editingId ? 'Update Repository' : 'Verify & Save';
+                submitBtn.innerHTML = editingId ? 
+                    '<span class="hidden xs:inline">Update </span>Repository' : 
+                    '<span class="hidden xs:inline">Verify & </span>Save';
             }
         });
 
-        loadProducts();
+        // Re-render on resize (with debounce)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const isMobile = window.innerWidth < 1024;
+                const tableVisible = !tableView.classList.contains('hidden');
+                if ((isMobile && tableVisible) || (!isMobile && !tableVisible)) {
+                    renderProducts(productsList);
+                }
+            }, 150);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
-
 </html>
