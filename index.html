@@ -150,25 +150,6 @@
         .animate-pulse {
             animation: badgePulse 2s infinite;
         }
-
-        /* ✅ RTL Support for Arabic */
-        [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .text-left { text-align: right !important; }
-        [dir="rtl"] .text-right { text-align: left !important; }
-        [dir="rtl"] .ml-auto { margin-left: 0 !important; margin-right: auto !important; }
-        [dir="rtl"] .mr-auto { margin-right: 0 !important; margin-left: auto !important; }
-        [dir="rtl"] .pl-4 { padding-left: 0 !important; padding-right: 1rem !important; }
-        [dir="rtl"] .pr-4 { padding-right: 0 !important; padding-left: 1rem !important; }
-        [dir="rtl"] .material-symbols-outlined:has(+ span),
-        [dir="rtl"] [data-i18n-icon] { transform: scaleX(-1); }
-        [dir="rtl"] #language-dropdown .absolute { right: auto !important; left: 0 !important; }
-        [dir="rtl"] input, [dir="rtl"] select, [dir="rtl"] textarea { text-align: right; direction: rtl; }
-        [dir="rtl"] #toast-container { right: auto !important; left: 1rem !important; }
-        [dir="rtl"] .mobile-menu { transform: translateX(100%) !important; }
-        [dir="rtl"] .mobile-menu.open { transform: translateX(0) !important; }
-        [dir="rtl"] nav .material-symbols-outlined { transform: scaleX(-1); }
-        [dir="rtl"] .absolute.-right-16 { right: auto !important; left: -4rem !important; }
-        [dir="rtl"] .absolute.-left-16 { left: auto !important; right: -4rem !important; }
     </style>
 </head>
 
@@ -190,66 +171,34 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html" data-i18n="nav_home">Téléphones</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html" data-i18n="nav_catalog">Catalogue</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals" data-i18n="nav_new">Nouveautés</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
-                <!-- Right Actions with Language Selector -->
+                <!-- Right Actions (Language Removed) -->
                 <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
-                    
-                    <!-- ✅ Language Selector Dropdown -->
-                    <div class="relative group" id="language-dropdown">
-                        <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90" 
-                                aria-label="Change language" 
-                                title="Change language / تغيير اللغة"
-                                data-i18n-aria="language_selector">
-                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]" data-i18n-icon="language">language</span>
-                        </button>
-                        
-                        <!-- Dropdown Menu -->
-                        <div class="absolute right-0 xs:right-auto xs:left-0 top-full mt-2 w-40 xs:w-48 rounded-xl xs:rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
-                            <div class="p-1.5 xs:p-2">
-                                <button onclick="setLanguage('fr')" class="lang-btn w-full flex items-center gap-2 xs:gap-3 p-2 xs:p-2.5 rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left" data-lang="fr">
-                                    <span class="text-lg">🇫🇷</span>
-                                    <span class="text-xs xs:text-sm font-medium">Français</span>
-                                    <span id="check-fr" class="material-symbols-outlined text-primary ml-auto hidden">check_circle</span>
-                                </button>
-                                <button onclick="setLanguage('en')" class="lang-btn w-full flex items-center gap-2 xs:gap-3 p-2 xs:p-2.5 rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left" data-lang="en">
-                                    <span class="text-lg">🇬🇧</span>
-                                    <span class="text-xs xs:text-sm font-medium">English</span>
-                                    <span id="check-en" class="material-symbols-outlined text-primary ml-auto hidden">check_circle</span>
-                                </button>
-                                <button onclick="setLanguage('ar')" class="lang-btn w-full flex items-center gap-2 xs:gap-3 p-2 xs:p-2.5 rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left" data-lang="ar">
-                                    <span class="text-lg">🇩🇿</span>
-                                    <span class="text-xs xs:text-sm font-medium">العربية</span>
-                                    <span id="check-ar" class="material-symbols-outlined text-primary ml-auto hidden">check_circle</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Desktop Search with Voice -->
                     <div class="hidden md:flex relative items-center">
-                        <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none" data-i18n-icon="search">search</span>
+                        <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
                         <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" 
                                placeholder="Rechercher..." 
                                type="text" 
-                               id="desktop-search" 
-                               data-i18n-placeholder="search_placeholder" />
-                        <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale" data-i18n-aria="voice_search">
-                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]" data-i18n-icon="mic">mic</span>
+                               id="desktop-search" />
+                        <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                         </button>
                     </div>
 
                     <!-- Wishlist Button -->
-                    <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" data-i18n-aria="wishlist" onclick="showToast(getTranslation('toast_wishlist_add'), 'success')">
-                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]" data-i18n-icon="favorite_border">favorite_border</span>
+                    <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
                     </button>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu" data-i18n-aria="menu">
-                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]" data-i18n-icon="menu">menu</span>
+                    <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
                 </div>
             </div>
@@ -257,14 +206,13 @@
             <!-- Mobile Search Bar with Voice -->
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl" data-i18n-icon="search">search</span>
+                    <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
                     <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" 
                            placeholder="Rechercher un produit..." 
                            type="text" 
-                           id="mobile-search" 
-                           data-i18n-placeholder="search_placeholder" />
-                    <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale" data-i18n-aria="voice_search">
-                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]" data-i18n-icon="mic">mic</span>
+                           id="mobile-search" />
+                    <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                     </button>
                 </div>
             </div>
@@ -288,28 +236,27 @@
 
                 <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
                     <ul class="flex flex-col gap-1.5 xs:gap-2">
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html"><span class="material-symbols-outlined text-[18px]" data-i18n-icon="smartphone">smartphone</span> <span data-i18n="phones">Téléphones</span></a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="search.html"><span class="material-symbols-outlined text-[18px]" data-i18n-icon="grid_view">grid_view</span> <span data-i18n="nav_catalog">Catalogue</span></a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html#new-arrivals"><span class="material-symbols-outlined text-[18px]" data-i18n-icon="new_releases">new_releases</span> <span data-i18n="nav_new">Nouveautés</span></a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="tracking.html"><span class="material-symbols-outlined text-[18px]" data-i18n-icon="local_shipping">local_shipping</span> <span data-i18n="nav_tracking">Suivi Commande</span></a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span> Téléphones</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span> Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html#new-arrivals"><span class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="tracking.html"><span class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi Commande</a></li>
                     </ul>
 
                     <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
-                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2" data-i18n="categories">Catégories</p>
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Catégories</p>
                         <div class="flex flex-wrap gap-2 px-2">
-                            <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all" data-i18n="phones">📱 Téléphones</a>
-                            <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all" data-i18n="accessories">🎧 Accessoires</a>
-                            <a href="search.html?category=Offres" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all" data-i18n="offers">🔥 Offres</a>
+                            <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱 Téléphones</a>
+                            <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧 Accessoires</a>
+                            <a href="search.html?category=Offres" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥 Offres</a>
                         </div>
                     </div>
                 </nav>
 
                 <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
                     <div class="flex gap-1.5 xs:gap-2">
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]" data-i18n-icon="share">share</span></a>
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]" data-i18n-icon="language">language</span></a>
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
                         <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
-                            <span class="material-symbols-outlined text-[16px] xs:text-[18px]" data-i18n-icon="dark_mode">dark_mode</span>
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                         </button>
                     </div>
                 </div>
@@ -333,34 +280,34 @@
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
                                         <div class="flex items-center gap-1.5 xs:gap-2 justify-center lg:justify-start">
                                             <span class="h-px w-4 xs:w-6 sm:w-8 bg-primary"></span>
-                                            <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]" data-i18n="hero_badge">Nouveautés 2026</span>
+                                            <span class="text-primary font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Nouveautés 2026</span>
                                         </div>
-                                        <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight" data-i18n="hero_title_1" data-i18n-html="true">
+                                        <h1 class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Les meilleurs <br><span class="text-primary italic">Smartphones</span> ici.
                                         </h1>
-                                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0" data-i18n="hero_desc_1">
+                                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0">
                                             Découvrez notre sélection de smartphones et accessoires au meilleur prix en Algérie. Livraison 58 wilayas.
                                         </p>
                                     </div>
                                     <div class="flex flex-wrap gap-2 xs:gap-3 justify-center lg:justify-start">
                                         <a href="search.html" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-primary px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-primary/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide" data-i18n="hero_btn_1">Voir les Téléphones</span>
+                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Téléphones</span>
                                         </a>
                                         <a href="#new-arrivals" class="flex h-10 xs:h-11 sm:h-12 items-center justify-center px-4 xs:px-5 sm:px-6 rounded-xl xs:rounded-2xl border-2 border-slate-200 dark:border-white/20 text-slate-700 dark:text-slate-300 font-medium hover:border-primary hover:text-primary transition-all active:scale-95">
-                                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] mr-1" data-i18n-icon="play_circle">play_circle</span>
-                                            <span class="text-xs xs:text-sm" data-i18n="hero_discover">Découvrir</span>
+                                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] mr-1">play_circle</span>
+                                            <span class="text-xs xs:text-sm">Découvrir</span>
                                         </a>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Desktop -->
+                                <!-- Image Desktop -->
                                 <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-slate-100 dark:bg-white/5 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-background-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Mobile -->
+                                <!-- Image Mobile -->
                                 <div class="relative lg:hidden hero-image-mobile w-full">
                                     <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-slate-100 dark:bg-white/5 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/5">
                                         <img alt="Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop" />
@@ -376,30 +323,30 @@
                                     <div class="flex flex-col gap-2 xs:gap-3 sm:gap-4">
                                         <div class="flex items-center gap-1.5 xs:gap-2 justify-center lg:justify-start">
                                             <span class="h-px w-4 xs:w-6 sm:w-8 bg-accent"></span>
-                                            <span class="text-accent font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]" data-i18n="hero_badge">Accessoires Premium</span>
+                                            <span class="text-accent font-bold tracking-[0.2em] xs:tracking-[0.25em] uppercase text-[8px] xs:text-[9px] sm:text-[10px]">Accessoires Premium</span>
                                         </div>
-                                        <h1 class="font-display text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight" data-i18n="hero_title_2" data-i18n-html="true">
+                                        <h1 class="font-display text-white text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
                                             Accessoires de <br><span class="text-accent italic">Qualité</span>
                                         </h1>
-                                        <p class="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0" data-i18n="hero_desc_2">
+                                        <p class="text-slate-300 text-xs xs:text-sm sm:text-base md:text-lg max-w-md leading-relaxed font-medium mx-auto lg:mx-0">
                                             Coques, chargeurs, écouteurs et bien plus — tout pour protéger et personnaliser votre smartphone.
                                         </p>
                                     </div>
                                     <div class="flex flex-wrap gap-2 xs:gap-3 justify-center lg:justify-start">
                                         <a href="search.html?category=Accessoire" class="group relative flex h-10 xs:h-11 sm:h-12 lg:h-14 min-w-[120px] xs:min-w-[140px] sm:min-w-[180px] items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-accent px-4 xs:px-5 sm:px-7 lg:px-9 text-white shadow-lg xs:shadow-xl shadow-accent/25 transition-all active:scale-95">
                                             <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide" data-i18n="hero_btn_2">Voir les Accessoires</span>
+                                            <span class="relative font-display text-xs xs:text-sm sm:text-base font-black tracking-wide">Voir les Accessoires</span>
                                         </a>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Desktop -->
+                                <!-- Image Desktop -->
                                 <div class="relative hidden lg:block">
                                     <div class="w-full aspect-square bg-gradient-to-br from-accent/20 to-primary/20 rounded-[2.5rem] xs:rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10">
                                         <img alt="Accessoires Smartphones" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000&auto=format&fit=crop" />
                                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                                     </div>
                                 </div>
-                                <!-- ✅ Image Mobile -->
+                                <!-- Image Mobile -->
                                 <div class="relative lg:hidden hero-image-mobile w-full">
                                     <div class="w-full h-[200px] xs:h-[220px] sm:h-[250px] bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl xs:rounded-3xl overflow-hidden shadow-xl relative border border-white/10">
                                         <img alt="Accessoires Smartphones" class="h-full w-full object-cover lazy-image" onload="this.classList.add('loaded')" src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop" />
@@ -412,20 +359,20 @@
                     <!-- Slider Navigation -->
                     <div class="absolute bottom-3 xs:bottom-4 sm:bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 xs:gap-3">
                         <button id="hero-prev" class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Précédent">
-                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold" data-i18n-icon="chevron_left">chevron_left</span>
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_left</span>
                         </button>
                         <div class="flex gap-1 xs:gap-1.5">
                             <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-primary" data-slide="0"></button>
                             <button class="hero-dot w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="1"></button>
                         </div>
                         <button id="hero-next" class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20" aria-label="Suivant">
-                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold" data-i18n-icon="chevron_right">chevron_right</span>
+                            <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px] font-bold">chevron_right</span>
                         </button>
                     </div>
 
                     <div class="lg:hidden absolute bottom-14 xs:bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-1 text-white/70 text-[9px] xs:text-[10px] font-medium animate-pulse pointer-events-none">
-                        <span class="material-symbols-outlined text-[12px] xs:text-[14px]" data-i18n-icon="swipe_horizontal">swipe_horizontal</span>
-                        <span data-i18n="hero_swipe">Glissez</span>
+                        <span class="material-symbols-outlined text-[12px] xs:text-[14px]">swipe_horizontal</span>
+                        <span>Glissez</span>
                     </div>
                 </section>
             </section>
@@ -435,16 +382,16 @@
                 <div class="mx-3 xs:mx-4">
                     <div class="flex items-center justify-around glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
-                            <span class="material-symbols-outlined text-primary text-[16px] xs:text-[18px]" data-i18n-icon="verified">verified</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight" data-i18n="badge_original">100%<br>Original</span>
+                            <span class="material-symbols-outlined text-primary text-[16px] xs:text-[18px]">verified</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">100%<br>Original</span>
                         </div>
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
-                            <span class="material-symbols-outlined text-accent text-[16px] xs:text-[18px]" data-i18n-icon="local_shipping">local_shipping</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight" data-i18n="badge_wilayas">58<br>Wilayas</span>
+                            <span class="material-symbols-outlined text-accent text-[16px] xs:text-[18px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">58<br>Wilayas</span>
                         </div>
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
-                            <span class="material-symbols-outlined text-success text-[16px] xs:text-[18px]" data-i18n-icon="payments">payments</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight" data-i18n="badge_cod">Paiement<br>à la livraison</span>
+                            <span class="material-symbols-outlined text-success text-[16px] xs:text-[18px]">payments</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">Paiement<br>à la livraison</span>
                         </div>
                     </div>
                 </div>
@@ -464,7 +411,7 @@
                                      onload="this.classList.add('loaded')"
                                      loading="lazy">
                             </div>
-                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight" data-i18n="phones">Téléphones</span>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
                             <span id="count-telephone" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
                         </a>
 
@@ -477,7 +424,7 @@
                                      onload="this.classList.add('loaded')"
                                      loading="lazy">
                             </div>
-                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight" data-i18n="accessories">Accessoires</span>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
                             <span id="count-accessoire" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
                         </a>
 
@@ -490,9 +437,9 @@
                                      onload="this.classList.add('loaded')"
                                      loading="lazy">
                                 <!-- 🔥 Badge Promo -->
-                                <div class="absolute top-1 right-1 xs:top-1.5 xs:right-1.5 bg-red-500 text-white text-[9px] xs:text-[10px] font-black px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg animate-pulse" data-i18n="product_discount">-30%</div>
+                                <div class="absolute top-1 right-1 xs:top-1.5 xs:right-1.5 bg-red-500 text-white text-[9px] xs:text-[10px] font-black px-1.5 xs:px-2 py-0.5 xs:py-1 rounded-full shadow-lg animate-pulse">-30%</div>
                             </div>
-                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight" data-i18n="offers">🔥 Offres</span>
+                            <span class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥 Offres</span>
                             <span id="count-offres" class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
                         </a>
 
@@ -505,27 +452,27 @@
                 <div class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-20">
                     <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-4 xs:mb-6 sm:mb-8">
                         <div class="flex flex-col gap-1.5 xs:gap-2">
-                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight" data-i18n="section_new">Nouveautés</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium" data-i18n="section_new_desc">Les derniers smartphones arrivés en stock</p>
+                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Nouveautés</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les derniers smartphones arrivés en stock</p>
                         </div>
                         <div class="flex gap-1.5 xs:gap-2">
                             <button id="new-prev" class="group flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-primary text-slate-600 dark:text-slate-400 hover:text-primary transition-all active:scale-90" aria-label="Précédent">
-                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]" data-i18n-icon="chevron_left">chevron_left</span>
+                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]">chevron_left</span>
                             </button>
                             <button id="new-next" class="group flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xs:rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-90" aria-label="Suivant">
-                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]" data-i18n-icon="chevron_right">chevron_right</span>
+                                <span class="material-symbols-outlined text-[16px] xs:text-[18px] sm:text-[20px]">chevron_right</span>
                             </button>
                         </div>
                     </div>
 
                     <div class="flex overflow-x-auto gap-3 xs:gap-4 sm:gap-6 no-scrollbar pb-3 xs:pb-4 -mx-1 xs:mx-0 px-1 xs:px-0 snap-x" id="new-arrivals-container">
-                        <div class="w-full text-center py-12 xs:py-16 text-slate-500 font-medium animate-pulse text-xs xs:text-sm" data-i18n="product_loading">Chargement...</div>
+                        <div class="w-full text-center py-12 xs:py-16 text-slate-500 font-medium animate-pulse text-xs xs:text-sm">Chargement...</div>
                     </div>
                     
                     <div class="text-center mt-4 xs:mt-6">
-                        <a href="search.html" class="inline-flex items-center gap-1.5 xs:gap-2 text-primary font-medium text-xs xs:text-sm hover:gap-2.5 xs:hover:gap-3 transition-all" data-i18n="section_view_all">
+                        <a href="search.html" class="inline-flex items-center gap-1.5 xs:gap-2 text-primary font-medium text-xs xs:text-sm hover:gap-2.5 xs:hover:gap-3 transition-all">
                             Voir tous les produits
-                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]" data-i18n-icon="arrow_forward">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[14px] xs:text-[16px]">arrow_forward</span>
                         </a>
                     </div>
                 </div>
@@ -537,22 +484,22 @@
                     <div class="flex flex-col md:flex-row items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-6 xs:mb-8 sm:mb-10">
                         <div class="flex flex-col gap-1.5 xs:gap-2">
                             <div class="flex items-center gap-1.5 xs:gap-2 text-accent">
-                                <span class="material-symbols-outlined text-sm font-bold" data-i18n-icon="star">star</span>
-                                <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest" data-i18n="section_featured">Sélection Premium</span>
+                                <span class="material-symbols-outlined text-sm font-bold">star</span>
+                                <span class="text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Sélection Premium</span>
                             </div>
-                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight" data-i18n="section_featured">Produits Vedettes</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium" data-i18n="section_featured_desc">Les modèles les plus populaires au meilleur prix</p>
+                            <h2 class="font-display text-slate-900 dark:text-white text-lg xs:text-xl sm:text-2xl md:text-3xl font-black tracking-tight">Produits Vedettes</h2>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les modèles les plus populaires au meilleur prix</p>
                         </div>
                         <a class="group flex items-center gap-1.5 xs:gap-2 text-slate-900 dark:text-white font-bold" href="search.html">
-                            <span class="text-xs xs:text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all" data-i18n="section_view_all">Voir tout</span>
+                            <span class="text-xs xs:text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir tout</span>
                             <div class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg xs:rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
-                                <span class="material-symbols-outlined text-[14px] xs:text-[16px] sm:text-[18px]" data-i18n-icon="north_east">north_east</span>
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px] sm:text-[18px]">north_east</span>
                             </div>
                         </a>
                     </div>
                     
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 lg:gap-8" id="featured-products-container">
-                        <div class="col-span-full text-center py-12 xs:py-16 italic text-slate-400 text-xs xs:text-sm" data-i18n="product_loading">Chargement...</div>
+                        <div class="col-span-full text-center py-12 xs:py-16 italic text-slate-400 text-xs xs:text-sm">Chargement...</div>
                     </div>
                 </div>
             </section>
@@ -562,20 +509,20 @@
                 <div class="mx-3 xs:mx-4">
                     <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
                         <a href="index.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]" data-i18n-icon="home">home</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300" data-i18n="nav_home">Accueil</span>
+                            <span class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">home</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300">Accueil</span>
                         </a>
                         <a href="search.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]" data-i18n-icon="search">search</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400" data-i18n="nav_catalog">Rechercher</span>
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
                         </a>
                         <a href="tracking.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]" data-i18n-icon="local_shipping">local_shipping</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400" data-i18n="nav_tracking">Suivi</span>
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Suivi</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast(getTranslation('toast_wishlist_add'), 'info')">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]" data-i18n-icon="favorite_border">favorite_border</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400" data-i18n="wishlist">Favoris</span>
+                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('❤️ Ajouté aux favoris', 'info')">
+                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
                         </a>
                     </div>
                 </div>
@@ -586,24 +533,24 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 lg:gap-12">
                     <div class="flex flex-col gap-3 xs:gap-4 items-start">
                         <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl" data-i18n-icon="verified">verified</span>
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">verified</span>
                         </div>
-                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black" data-i18n="prop_authentic_title">Produits 100% Authentiques</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed" data-i18n="prop_authentic_desc">Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Produits 100% Authentiques</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
                     </div>
                     <div class="flex flex-col gap-3 xs:gap-4 items-start">
                         <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-accent/10 text-accent flex items-center justify-center">
-                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl" data-i18n-icon="local_shipping">local_shipping</span>
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">local_shipping</span>
                         </div>
-                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black" data-i18n="prop_delivery_title">Livraison 58 Wilayas</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed" data-i18n="prop_delivery_desc">Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Livraison 58 Wilayas</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
                     </div>
                     <div class="flex flex-col gap-3 xs:gap-4 items-start sm:col-span-2 lg:col-span-1">
                         <div class="h-10 w-10 xs:h-12 xs:w-12 sm:h-14 sm:w-14 rounded-xl xs:rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl" data-i18n-icon="shield">shield</span>
+                            <span class="material-symbols-outlined text-lg xs:text-xl sm:text-2xl">shield</span>
                         </div>
-                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black" data-i18n="prop_warranty_title">Garantie 6 Mois</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed" data-i18n="prop_warranty_desc">Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
+                        <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Garantie 6 Mois</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
                     </div>
                 </div>
             </section>
@@ -615,16 +562,15 @@
                     <div class="absolute top-0 right-0 w-48 h-48 xs:w-64 xs:h-64 sm:w-96 sm:h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
                     <div class="relative z-10 py-8 xs:py-10 sm:py-12 lg:py-16 px-4 xs:px-6 sm:px-10 text-center">
-                        <h2 class="font-display text-white text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2 xs:mb-3 sm:mb-5" data-i18n="newsletter_title">Rejoignez Phone Haven</h2>
-                        <p class="text-white/80 text-xs xs:text-sm sm:text-base mb-4 xs:mb-6 sm:mb-8 max-w-md mx-auto font-medium" data-i18n="newsletter_desc">Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
+                        <h2 class="font-display text-white text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2 xs:mb-3 sm:mb-5">Rejoignez Phone Haven</h2>
+                        <p class="text-white/80 text-xs xs:text-sm sm:text-base mb-4 xs:mb-6 sm:mb-8 max-w-md mx-auto font-medium">Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
                         <form class="flex flex-col xs:flex-row gap-2 xs:gap-3 max-w-sm mx-auto">
                             <input class="flex-1 h-10 xs:h-12 sm:h-14 rounded-xl xs:rounded-2xl px-4 xs:px-5 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-xs xs:text-sm" 
                                    placeholder="votre@email.com" 
-                                   required type="email" 
-                                   data-i18n-placeholder="newsletter_placeholder" />
-                            <button class="h-10 xs:h-12 sm:h-14 px-5 xs:px-6 sm:px-8 bg-white text-primary font-display font-black rounded-xl xs:rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-xs xs:text-sm" type="submit" data-i18n="newsletter_btn">S'inscrire</button>
+                                   required type="email" />
+                            <button class="h-10 xs:h-12 sm:h-14 px-5 xs:px-6 sm:px-8 bg-white text-primary font-display font-black rounded-xl xs:rounded-2xl hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-xs xs:text-sm" type="submit">S'inscrire</button>
                         </form>
-                        <p class="text-white/50 text-[9px] xs:text-[10px] mt-3 xs:mt-4" data-i18n="newsletter_privacy">🔒 Vos données sont sécurisées.</p>
+                        <p class="text-white/50 text-[9px] xs:text-[10px] mt-3 xs:mt-4">🔒 Vos données sont sécurisées.</p>
                     </div>
                 </div>
             </section>
@@ -650,37 +596,37 @@
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6" data-i18n="footer_nav">Navigation</h4>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Navigation</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="search.html" data-i18n="nav_catalog">Catalogue</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals" data-i18n="nav_new">Nouveautés</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone" data-i18n="phones">Téléphones</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Accessoire" data-i18n="accessories">Accessoires</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">Nouveautés</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone">Téléphones</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Accessoire">Accessoires</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6" data-i18n="footer_support">Assistance</h4>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Assistance</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="tracking.html" data-i18n="footer_tracking">Suivi Commande</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_shipping">Livraison & Retours</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_contact">Nous Contacter</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_faq">FAQ</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6" data-i18n="footer_legal">Légal</h4>
+                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Légal</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_privacy">Confidentialité</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_terms">Conditions</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#" data-i18n="footer_warranty">Garantie</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <p data-i18n="footer_copyright">© 2026 Phone Haven. Tous droits réservés.</p>
+                    <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
                         <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://instagram.com" target="_blank" aria-label="Instagram">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -709,274 +655,10 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]"></div>
 
-    <!-- Translations Data -->
-    <script>
-        const translations = {
-            fr: {
-                "nav_home": "Accueil", "nav_catalog": "Catalogue", "nav_new": "Nouveautés", "nav_tracking": "Suivi Commande",
-                "search_placeholder": "Rechercher...", "voice_search": "Recherche vocale", "wishlist": "Favoris", "menu": "Menu",
-                "categories": "Catégories", "phones": "Téléphones", "accessories": "Accessoires", "offers": "🔥 Offres",
-                "hero_badge": "Nouveautés 2026", "hero_title_1": "Les meilleurs <br><span class=\"text-primary italic\">Smartphones</span> ici.",
-                "hero_title_2": "Accessoires de <br><span class=\"text-accent italic\">Qualité</span>",
-                "hero_desc_1": "Découvrez notre sélection de smartphones et accessoires au meilleur prix en Algérie. Livraison 58 wilayas.",
-                "hero_desc_2": "Coques, chargeurs, écouteurs et bien plus — tout pour protéger et personnaliser votre smartphone.",
-                "hero_btn_1": "Voir les Téléphones", "hero_btn_2": "Voir les Accessoires", "hero_discover": "Découvrir", "hero_swipe": "Glissez",
-                "badge_original": "100%<br>Original", "badge_wilayas": "58<br>Wilayas", "badge_cod": "Paiement<br>à la livraison",
-                "cat_trending": "🔥 Tendances", "product_new": "Nouveau", "product_discount": "-30%", "product_view": "Voir détails",
-                "product_add_wishlist": "❤️ Ajouté aux favoris", "section_new": "Nouveautés", "section_new_desc": "Les derniers smartphones arrivés en stock",
-                "section_featured": "Produits Vedettes", "section_featured_desc": "Les modèles les plus populaires au meilleur prix",
-                "section_view_all": "Voir tous les produits", "section_related": "Vous aimerez aussi",
-                "prop_authentic_title": "Produits 100% Authentiques", "prop_authentic_desc": "Tous nos smartphones et accessoires sont originaux et garantis, avec factures officielles.",
-                "prop_delivery_title": "Livraison 58 Wilayas", "prop_delivery_desc": "Livraison rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.",
-                "prop_warranty_title": "Garantie 6 Mois", "prop_warranty_desc": "Tous nos produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre appareil.",
-                "newsletter_title": "Rejoignez Phone Haven", "newsletter_desc": "Inscrivez-vous pour recevoir nos offres exclusives et 10% de réduction sur votre première commande.",
-                "newsletter_placeholder": "votre@email.com", "newsletter_btn": "S'inscrire", "newsletter_privacy": "🔒 Vos données sont sécurisées.",
-                "footer_nav": "Navigation", "footer_support": "Assistance", "footer_legal": "Légal", "footer_tracking": "Suivi Commande",
-                "footer_shipping": "Livraison & Retours", "footer_contact": "Nous Contacter", "footer_faq": "FAQ",
-                "footer_privacy": "Confidentialité", "footer_terms": "Conditions", "footer_warranty": "Garantie",
-                "footer_copyright": "© 2026 Phone Haven. Tous droits réservés.",
-                "product_loading": "Chargement...", "product_in_stock": "En Stock • Prêt à livrer", "product_limited": "Stock limité: {count} restant(s)", "product_out": "Rupture de stock",
-                "product_description": "Description", "product_see_more": "Voir plus", "product_see_less": "Voir moins", "product_features": "Caractéristiques",
-                "feature_warranty": "Garantie 6 mois", "feature_original": "100% Original", "feature_delivery": "Livraison 58 wilayas", "feature_cod": "Paiement à la livraison",
-                "order_title": "Commander Maintenant", "form_name": "Nom Complet *", "form_name_ph": "Votre nom", "form_phone": "Téléphone *",
-                "form_phone_ph": "05/06/07 XX XX XX XX", "form_shipping": "Type de Livraison *", "form_shipping_desk": "🏢 Stop Desk (Bureau)",
-                "form_shipping_home": "🏠 À Domicile", "form_wilaya": "Wilaya *", "form_commune": "Commune *", "form_select": "Sélectionner",
-                "form_select_wilaya": "Sélectionnez la wilaya", "form_select_commune": "Sélectionnez d'abord la wilaya",
-                "form_address": "Adresse Complète *", "form_address_ph": "Rue, Numéro, Repère...", "shipping_fee": "Frais de Livraison",
-                "shipping_time": "Livraison: {time}", "order_product": "Produit", "order_shipping": "Livraison", "order_total": "Total à payer",
-                "order_cod_note": "💵 Paiement en espèces à la livraison", "order_confirm": "Confirmer la Commande", "order_processing": "Traitement...",
-                "order_success": "✅ Commande confirmée !", "tracking_title": "📦 Suivi de Commande", "tracking_desc": "Entrez votre numéro de commande pour suivre votre livraison en temps réel",
-                "tracking_order_id": "Numéro de Commande", "tracking_order_ph": "Ex: PH-2026-XXXX", "tracking_phone_opt": "Téléphone (Optionnel)",
-                "tracking_btn": "Suivre ma commande", "tracking_searching": "Recherche...", "tracking_help": "💡 Vous trouverez votre numéro de commande dans l'email de confirmation ou le SMS reçu.",
-                "tracking_not_found": "Commande non trouvée", "tracking_not_found_desc": "Vérifiez le numéro de commande et réessayez, ou contactez notre support pour assistance.",
-                "tracking_retry": "Réessayer", "tracking_order": "Commande", "tracking_status": "État de la livraison",
-                "tracking_step_confirmed": "Confirmée", "tracking_step_confirmed_desc": "Commande reçue", "tracking_step_processing": "Préparation",
-                "tracking_step_processing_desc": "En cours d'emballage", "tracking_step_shipped": "Expédiée", "tracking_step_shipped_desc": "En route vers vous",
-                "tracking_step_delivered": "Livrée", "tracking_step_delivered_desc": "Commande livrée", "tracking_step_ongoing": "Actuel",
-                "tracking_step_verified": "Vérifié", "tracking_step_pending": "En attente", "tracking_product": "Produit commandé",
-                "tracking_address": "Adresse de livraison", "tracking_help_title": "Besoin d'aide ?", "tracking_help_desc": "Notre équipe est disponible pour répondre à vos questions concernant votre commande.",
-                "tracking_whatsapp": "Contacter sur WhatsApp", "search_title_all": "Tous les Produits", "search_title_cat": "{category}",
-                "search_title_results": "Résultats pour \"{query}\"", "search_results": "{count} produit(s) trouvé(s)",
-                "search_loading": "Chargement du catalogue...", "search_empty": "Aucun résultat", "search_empty_desc": "Essayez de modifier vos critères de recherche ou de réinitialiser les filtres.",
-                "search_reset": "Réinitialiser", "search_filter_price": "Prix", "search_filter_all": "Tous les prix",
-                "search_filter_low": "Moins de 10.000 د.ج", "search_filter_medium": "10.000 - 50.000 د.ج", "search_filter_high": "Plus de 50.000 د.ج",
-                "search_filter_sort": "Trier par", "search_sort_newest": "🆕 Plus récents", "search_sort_price_low": "💰 Prix: Croissant",
-                "search_sort_price_high": "💰 Prix: Décroissant", "search_sort_name": "🔤 Nom: A-Z",
-                "search_tip": "💡 Astuce: Utilisez la recherche vocale 🎤 pour trouver rapidement vos produits préférés!",
-                "search_load_more": "Charger plus", "toast_success": "✅ {message}", "toast_error": "❌ {message}", "toast_info": "ℹ️ {message}",
-                "toast_warning": "⚠️ {message}", "toast_online": "🌐 En ligne", "toast_offline": "📴 Hors ligne", "toast_dark": "🌙 Mode sombre",
-                "toast_light": "☀️ Mode clair", "toast_wishlist_add": "❤️ Ajouté aux favoris", "toast_wishlist_remove": "🗑️ Retiré des favoris",
-                "validation_required": "⚠️ Veuillez remplir tous les champs", "validation_phone": "⚠️ Numéro de téléphone invalide",
-                "validation_product_not_found": "❌ Produit non trouvé", "validation_order_error": "❌ Erreur de confirmation, réessayez",
-                "admin_dashboard": "Tableau de bord", "admin_orders": "Commandes", "admin_products": "Produits", "admin_analytics": "Analytics", "admin_logout": "Déconnexion"
-            },
-            en: {
-                "nav_home": "Home", "nav_catalog": "Catalog", "nav_new": "New Arrivals", "nav_tracking": "Track Order",
-                "search_placeholder": "Search...", "voice_search": "Voice search", "wishlist": "Wishlist", "menu": "Menu",
-                "categories": "Categories", "phones": "Phones", "accessories": "Accessories", "offers": "🔥 Deals",
-                "hero_badge": "New 2026", "hero_title_1": "The best <br><span class=\"text-primary italic\">Smartphones</span> here.",
-                "hero_title_2": "Quality <br><span class=\"text-accent italic\">Accessories</span>",
-                "hero_desc_1": "Discover our selection of smartphones and accessories at the best prices in Algeria. Delivery to 58 wilayas.",
-                "hero_desc_2": "Cases, chargers, earphones and more — everything to protect and personalize your smartphone.",
-                "hero_btn_1": "Shop Phones", "hero_btn_2": "Shop Accessories", "hero_discover": "Discover", "hero_swipe": "Swipe",
-                "badge_original": "100%<br>Original", "badge_wilayas": "58<br>Wilayas", "badge_cod": "Cash on<br>Delivery",
-                "cat_trending": "🔥 Trending", "product_new": "New", "product_discount": "-30%", "product_view": "View Details",
-                "product_add_wishlist": "❤️ Added to wishlist", "section_new": "New Arrivals", "section_new_desc": "Latest smartphones just arrived in stock",
-                "section_featured": "Featured Products", "section_featured_desc": "Most popular models at the best prices",
-                "section_view_all": "View all products", "section_related": "You may also like",
-                "prop_authentic_title": "100% Authentic Products", "prop_authentic_desc": "All our smartphones and accessories are original and guaranteed, with official invoices.",
-                "prop_delivery_title": "Delivery to 58 Wilayas", "prop_delivery_desc": "Fast delivery across Algeria. Free shipping on orders over 15,000 DZD.",
-                "prop_warranty_title": "6 Month Warranty", "prop_warranty_desc": "All our products are under warranty. If there's an issue, we repair or replace your device.",
-                "newsletter_title": "Join Phone Haven", "newsletter_desc": "Subscribe to receive exclusive offers and 10% off your first order.",
-                "newsletter_placeholder": "your@email.com", "newsletter_btn": "Subscribe", "newsletter_privacy": "🔒 Your data is secure.",
-                "footer_nav": "Navigation", "footer_support": "Support", "footer_legal": "Legal", "footer_tracking": "Track Order",
-                "footer_shipping": "Shipping & Returns", "footer_contact": "Contact Us", "footer_faq": "FAQ",
-                "footer_privacy": "Privacy Policy", "footer_terms": "Terms & Conditions", "footer_warranty": "Warranty",
-                "footer_copyright": "© 2026 Phone Haven. All rights reserved.",
-                "product_loading": "Loading...", "product_in_stock": "In Stock • Ready to ship", "product_limited": "Limited stock: {count} left", "product_out": "Out of stock",
-                "product_description": "Description", "product_see_more": "See more", "product_see_less": "See less", "product_features": "Features",
-                "feature_warranty": "6 month warranty", "feature_original": "100% Original", "feature_delivery": "Delivery to 58 wilayas", "feature_cod": "Cash on delivery",
-                "order_title": "Order Now", "form_name": "Full Name *", "form_name_ph": "Your name", "form_phone": "Phone *",
-                "form_phone_ph": "05/06/07 XX XX XX XX", "form_shipping": "Shipping Type *", "form_shipping_desk": "🏢 Stop Desk (Office)",
-                "form_shipping_home": "🏠 Home Delivery", "form_wilaya": "Wilaya *", "form_commune": "Commune *", "form_select": "Select",
-                "form_select_wilaya": "Select wilaya", "form_select_commune": "Select wilaya first",
-                "form_address": "Full Address *", "form_address_ph": "Street, Number, Landmark...", "shipping_fee": "Shipping Fee",
-                "shipping_time": "Delivery: {time}", "order_product": "Product", "order_shipping": "Shipping", "order_total": "Total to pay",
-                "order_cod_note": "💵 Cash payment on delivery", "order_confirm": "Confirm Order", "order_processing": "Processing...",
-                "order_success": "✅ Order confirmed!", "tracking_title": "📦 Order Tracking", "tracking_desc": "Enter your order number to track your delivery in real-time",
-                "tracking_order_id": "Order Number", "tracking_order_ph": "Ex: PH-2026-XXXX", "tracking_phone_opt": "Phone (Optional)",
-                "tracking_btn": "Track My Order", "tracking_searching": "Searching...", "tracking_help": "💡 Find your order number in the confirmation email or SMS.",
-                "tracking_not_found": "Order not found", "tracking_not_found_desc": "Check the order number and try again, or contact our support for assistance.",
-                "tracking_retry": "Try Again", "tracking_order": "Order", "tracking_status": "Delivery Status",
-                "tracking_step_confirmed": "Confirmed", "tracking_step_confirmed_desc": "Order received", "tracking_step_processing": "Processing",
-                "tracking_step_processing_desc": "Being packaged", "tracking_step_shipped": "Shipped", "tracking_step_shipped_desc": "On the way to you",
-                "tracking_step_delivered": "Delivered", "tracking_step_delivered_desc": "Order delivered", "tracking_step_ongoing": "Current",
-                "tracking_step_verified": "Verified", "tracking_step_pending": "Pending", "tracking_product": "Ordered Product",
-                "tracking_address": "Delivery Address", "tracking_help_title": "Need Help?", "tracking_help_desc": "Our team is available to answer your questions about your order.",
-                "tracking_whatsapp": "Contact on WhatsApp", "search_title_all": "All Products", "search_title_cat": "{category}",
-                "search_title_results": "Results for \"{query}\"", "search_results": "{count} product(s) found",
-                "search_loading": "Loading catalog...", "search_empty": "No results", "search_empty_desc": "Try modifying your search criteria or reset filters.",
-                "search_reset": "Reset", "search_filter_price": "Price", "search_filter_all": "All prices",
-                "search_filter_low": "Under 10,000 DZD", "search_filter_medium": "10,000 - 50,000 DZD", "search_filter_high": "Over 50,000 DZD",
-                "search_filter_sort": "Sort by", "search_sort_newest": "🆕 Newest", "search_sort_price_low": "💰 Price: Low to High",
-                "search_sort_price_high": "💰 Price: High to Low", "search_sort_name": "🔤 Name: A-Z",
-                "search_tip": "💡 Tip: Use voice search 🎤 to quickly find your favorite products!",
-                "search_load_more": "Load More", "toast_success": "✅ {message}", "toast_error": "❌ {message}", "toast_info": "ℹ️ {message}",
-                "toast_warning": "⚠️ {message}", "toast_online": "🌐 Online", "toast_offline": "📴 Offline", "toast_dark": "🌙 Dark mode",
-                "toast_light": "☀️ Light mode", "toast_wishlist_add": "❤️ Added to wishlist", "toast_wishlist_remove": "🗑️ Removed from wishlist",
-                "validation_required": "⚠️ Please fill all fields", "validation_phone": "⚠️ Invalid phone number",
-                "validation_product_not_found": "❌ Product not found", "validation_order_error": "❌ Confirmation error, please try again",
-                "admin_dashboard": "Dashboard", "admin_orders": "Orders", "admin_products": "Products", "admin_analytics": "Analytics", "admin_logout": "Logout"
-            },
-            ar: {
-                "nav_home": "الرئيسية", "nav_catalog": "الكتالوج", "nav_new": "وصل حديثاً", "nav_tracking": "تتبع الطلب",
-                "search_placeholder": "ابحث...", "voice_search": "بحث صوتي", "wishlist": "المفضلة", "menu": "القائمة",
-                "categories": "التصنيفات", "phones": "هواتف", "accessories": "إكسسوارات", "offers": "🔥 عروض",
-                "hero_badge": "جديد 2026", "hero_title_1": "أفضل <br><span class=\"text-primary italic\">الهواتف الذكية</span> هنا.",
-                "hero_title_2": "إكسسوارات <br><span class=\"text-accent italic\">عالية الجودة</span>",
-                "hero_desc_1": "اكتشف تشكيلة الهواتف والإكسسوارات بأفضل الأسعار في الجزائر. توصيل لـ 58 ولاية.",
-                "hero_desc_2": "أغطية، شواحن، سماعات والمزيد — كل ما تحتاجه لحماية وتخصيص هاتفك الذكي.",
-                "hero_btn_1": "تصفح الهواتف", "hero_btn_2": "تصفح الإكسسوارات", "hero_discover": "اكتشف", "hero_swipe": "اسحب",
-                "badge_original": "100%<br>أصلي", "badge_wilayas": "58<br>ولاية", "badge_cod": "الدفع عند<br>الاستلام",
-                "cat_trending": "🔥 الأكثر مبيعاً", "product_new": "جديد", "product_discount": "-30%", "product_view": "عرض التفاصيل",
-                "product_add_wishlist": "❤️ تمت الإضافة للمفضلة", "section_new": "وصل حديثاً", "section_new_desc": "أحدث الهواتف التي وصلت للتو",
-                "section_featured": "منتجات مميزة", "section_featured_desc": "أكثر الموديلات شعبية بأفضل الأسعار",
-                "section_view_all": "عرض جميع المنتجات", "section_related": "قد يعجبك أيضاً",
-                "prop_authentic_title": "منتجات 100% أصلية", "prop_authentic_desc": "جميع هواتفنا وإكسسواراتنا أصلية ومضمونة، مع فواتير رسمية.",
-                "prop_delivery_title": "توصيل لـ 58 ولاية", "prop_delivery_desc": "توصيل سريع عبر كامل الجزائر. توصيل مجاني للطلبات فوق 15,000 د.ج.",
-                "prop_warranty_title": "ضمان 6 أشهر", "prop_warranty_desc": "جميع منتجاتنا تحت الضمان. في حال وجود مشكلة، نقوم بإصلاح أو استبدال جهازك.",
-                "newsletter_title": "انضم إلى Phone Haven", "newsletter_desc": "اشترك لتلقي عروضنا الحصرية وخصم 10% على طلبك الأول.",
-                "newsletter_placeholder": "بريدك الإلكتروني", "newsletter_btn": "اشترك", "newsletter_privacy": "🔒 بياناتك آمنة.",
-                "footer_nav": "التنقل", "footer_support": "الدعم", "footer_legal": "قانوني", "footer_tracking": "تتبع الطلب",
-                "footer_shipping": "الشحن والإرجاع", "footer_contact": "اتصل بنا", "footer_faq": "الأسئلة الشائعة",
-                "footer_privacy": "سياسة الخصوصية", "footer_terms": "الشروط والأحكام", "footer_warranty": "الضمان",
-                "footer_copyright": "© 2026 Phone Haven. جميع الحقوق محفوظة.",
-                "product_loading": "جاري التحميل...", "product_in_stock": "متوفر • جاهز للشحن", "product_limited": "كمية محدودة: {count} متبقية", "product_out": "نفذ من المخزون",
-                "product_description": "الوصف", "product_see_more": "عرض المزيد", "product_see_less": "عرض أقل", "product_features": "المميزات",
-                "feature_warranty": "ضمان 6 أشهر", "feature_original": "100% أصلي", "feature_delivery": "توصيل لـ 58 ولاية", "feature_cod": "الدفع عند الاستلام",
-                "order_title": "اطلب الآن", "form_name": "الاسم الكامل *", "form_name_ph": "اسمك", "form_phone": "الهاتف *",
-                "form_phone_ph": "05/06/07 XX XX XX XX", "form_shipping": "نوع التوصيل *", "form_shipping_desk": "🏢 استلام من المكتب",
-                "form_shipping_home": "🏠 توصيل للمنزل", "form_wilaya": "الولاية *", "form_commune": "البلدية *", "form_select": "اختر",
-                "form_select_wilaya": "اختر الولاية", "form_select_commune": "اختر الولاية أولاً",
-                "form_address": "العنوان الكامل *", "form_address_ph": "شارع، رقم، معلم...", "shipping_fee": "رسوم التوصيل",
-                "shipping_time": "وقت التوصيل: {time}", "order_product": "المنتج", "order_shipping": "التوصيل", "order_total": "المجموع",
-                "order_cod_note": "💵 الدفع نقداً عند الاستلام", "order_confirm": "تأكيد الطلب", "order_processing": "جاري المعالجة...",
-                "order_success": "✅ تم تأكيد طلبك!", "tracking_title": "📦 تتبع الطلب", "tracking_desc": "أدخل رقم طلبك لتتبع شحنك في الوقت الفعلي",
-                "tracking_order_id": "رقم الطلب", "tracking_order_ph": "مثال: PH-2026-XXXX", "tracking_phone_opt": "الهاتف (اختياري)",
-                "tracking_btn": "تتبع طلبي", "tracking_searching": "جاري البحث...", "tracking_help": "💡 تجد رقم طلبك في رسالة التأكيد أو الإيميل.",
-                "tracking_not_found": "الطلب غير موجود", "tracking_not_found_desc": "تحقق من رقم الطلب وحاول مرة أخرى، أو اتصل بالدعم للمساعدة.",
-                "tracking_retry": "حاول مرة أخرى", "tracking_order": "الطلب", "tracking_status": "حالة التوصيل",
-                "tracking_step_confirmed": "تم التأكيد", "tracking_step_confirmed_desc": "تم استلام الطلب", "tracking_step_processing": "قيد التحضير",
-                "tracking_step_processing_desc": "جاري التعبئة", "tracking_step_shipped": "تم الشحن", "tracking_step_shipped_desc": "في الطريق إليك",
-                "tracking_step_delivered": "تم التوصيل", "tracking_step_delivered_desc": "تم استلام الطلب", "tracking_step_ongoing": "حالي",
-                "tracking_step_verified": "تم التحقق", "tracking_step_pending": "قيد الانتظار", "tracking_product": "المنتج المطلوب",
-                "tracking_address": "عنوان التوصيل", "tracking_help_title": "تحتاج مساعدة؟", "tracking_help_desc": "فريقنا متاح للإجابة على أسئلتك حول طلبك.",
-                "tracking_whatsapp": "تواصل عبر واتساب", "search_title_all": "جميع المنتجات", "search_title_cat": "{category}",
-                "search_title_results": "نتائج البحث عن \"{query}\"", "search_results": "تم العثور على {count} منتج",
-                "search_loading": "جاري تحميل الكتالوج...", "search_empty": "لا توجد نتائج", "search_empty_desc": "حاول تعديل معايير البحث أو إعادة تعيين الفلاتر.",
-                "search_reset": "إعادة تعيين", "search_filter_price": "السعر", "search_filter_all": "جميع الأسعار",
-                "search_filter_low": "أقل من 10,000 د.ج", "search_filter_medium": "10,000 - 50,000 د.ج", "search_filter_high": "أكثر من 50,000 د.ج",
-                "search_filter_sort": "ترتيب حسب", "search_sort_newest": "🆕 الأحدث", "search_sort_price_low": "💰 السعر: من الأقل للأعلى",
-                "search_sort_price_high": "💰 السعر: من الأعلى للأقل", "search_sort_name": "🔤 الاسم: أ-ي",
-                "search_tip": "💡 نصيحة: استخدم البحث الصوتي 🎤 للعثور بسرعة على منتجاتك المفضلة!",
-                "search_load_more": "تحميل المزيد", "toast_success": "✅ {message}", "toast_error": "❌ {message}", "toast_info": "ℹ️ {message}",
-                "toast_warning": "⚠️ {message}", "toast_online": "🌐 متصل", "toast_offline": "📴 غير متصل", "toast_dark": "🌙 الوضع الليلي",
-                "toast_light": "☀️ الوضع النهاري", "toast_wishlist_add": "❤️ تمت الإضافة للمفضلة", "toast_wishlist_remove": "🗑️ تمت الإزالة من المفضلة",
-                "validation_required": "⚠️ يرجى ملء جميع الحقول", "validation_phone": "⚠️ رقم هاتف غير صحيح",
-                "validation_product_not_found": "❌ المنتج غير موجود", "validation_order_error": "❌ خطأ في التأكيد، يرجى المحاولة مرة أخرى",
-                "admin_dashboard": "لوحة التحكم", "admin_orders": "الطلبات", "admin_products": "المنتجات", "admin_analytics": "التحليلات", "admin_logout": "تسجيل الخروج"
-            }
-        };
-
-        const rtlLanguages = ['ar'];
-        const defaultLanguage = 'fr';
-        let currentLang = localStorage.getItem('lang') || defaultLanguage;
-    </script>
-
     <script type="module">
         import { getProducts } from './db-service.js';
 
-        // ===== LANGUAGE FUNCTIONS =====
-        function setLanguage(lang) {
-            if (!translations[lang]) lang = defaultLanguage;
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            
-            if (rtlLanguages.includes(lang)) {
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.setAttribute('lang', 'ar');
-                document.body.classList.add('rtl');
-            } else {
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-                document.body.classList.remove('rtl');
-            }
-            
-            translatePage();
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                const langCode = btn.dataset.lang;
-                const check = btn.querySelector('[id^="check-"]');
-                if (check) check.classList.toggle('hidden', langCode !== lang);
-            });
-            showToast(getTranslation('toast_info').replace('{message}', 
-                lang === 'fr' ? 'Langue: Français' : lang === 'en' ? 'Language: English' : 'اللغة: العربية'
-            ), 'info');
-        }
-
-        function translatePage() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.dataset.i18n;
-                const text = getTranslation(key);
-                if (text) {
-                    if (el.dataset.i18nHtml === 'true') el.innerHTML = text;
-                    else el.textContent = text;
-                }
-            });
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.dataset.i18nPlaceholder;
-                const text = getTranslation(key);
-                if (text) el.placeholder = text;
-            });
-            document.querySelectorAll('[data-i18n-aria]').forEach(el => {
-                const key = el.dataset.i18nAria;
-                const text = getTranslation(key);
-                if (text) el.setAttribute('aria-label', text);
-            });
-            updateDynamicContent();
-        }
-
-        function getTranslation(key, params = {}) {
-            let text = translations[currentLang]?.[key] || translations[defaultLanguage]?.[key] || key;
-            Object.entries(params).forEach(([param, value]) => {
-                text = text.replace(new RegExp(`\\{${param}\\}`, 'g'), value);
-            });
-            return text;
-        }
-
-        function updateDynamicContent() {
-            const breadcrumbCategory = document.getElementById('breadcrumb-category');
-            if (breadcrumbCategory?.textContent) {
-                const cat = breadcrumbCategory.textContent;
-                const catTrans = {
-                    'Téléphone': { fr: 'Téléphones', en: 'Phones', ar: 'هواتف' },
-                    'Accessoire': { fr: 'Accessoires', en: 'Accessories', ar: 'إكسسوارات' }
-                };
-                if (catTrans[cat]?.[currentLang]) breadcrumbCategory.textContent = catTrans[cat][currentLang];
-            }
-        }
-
-        function showToast(message, type = 'info', duration = 3000) {
-            const toast = document.createElement('div');
-            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
-            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
-            const isRtl = rtlLanguages.includes(currentLang);
-            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl ${isRtl ? 'flex-row-reverse' : ''}`;
-            toast.innerHTML = `<span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span><span class="text-white text-xs xs:text-sm font-medium flex-1 ${isRtl ? 'text-right' : ''}">${message}</span><button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">${isRtl ? 'chevron_left' : 'close'}</span></button>`;
-            document.getElementById('toast-container').appendChild(toast);
-            setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = isRtl ? 'translateX(-100%)' : 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, duration);
-        }
-
-        // ===== EXISTING CODE (Hero Slider, Products, etc.) =====
+        // DOM Elements
         const newArrivalsContainer = document.getElementById('new-arrivals-container');
         const featuredContainer = document.getElementById('featured-products-container');
         const heroSlider = document.getElementById('hero-slider');
@@ -994,18 +676,27 @@
         const voiceSearchDesktop = document.getElementById('voice-search-desktop');
         const voiceSearchMobile = document.getElementById('voice-search-mobile');
         const themeToggle = document.getElementById('theme-toggle');
-        const toastContainer = document.getElementById('toast-container');
 
         let currentSlide = 0;
         const totalSlides = 2;
         let allProducts = [];
 
-        function openMobileMenu() { mobileMenu.classList.add('open'); mobileMenuOverlay.style.display = 'block'; document.body.style.overflow = 'hidden'; }
-        function closeMobileMenu() { mobileMenu.classList.remove('open'); mobileMenuOverlay.style.display = 'none'; document.body.style.overflow = ''; }
+        // Mobile Menu Functions
+        function openMobileMenu() { 
+            mobileMenu.classList.add('open'); 
+            mobileMenuOverlay.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        }
+        function closeMobileMenu() { 
+            mobileMenu.classList.remove('open'); 
+            mobileMenuOverlay.style.display = 'none'; 
+            document.body.style.overflow = ''; 
+        }
         if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
         if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
         if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
+        // Hero Slider Functions
         function updateHero() {
             if (heroSlider) {
                 heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -1019,10 +710,20 @@
         if (heroNext) heroNext.addEventListener('click', () => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); });
         if (heroPrev) heroPrev.addEventListener('click', () => { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateHero(); });
         heroDots.forEach(dot => { dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide))); });
-        let heroInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); }, 8000);
+        
+        let heroInterval = setInterval(() => { 
+            currentSlide = (currentSlide + 1) % totalSlides; 
+            updateHero(); 
+        }, 8000);
         heroSlider?.addEventListener('mouseenter', () => clearInterval(heroInterval));
-        heroSlider?.addEventListener('mouseleave', () => { heroInterval = setInterval(() => { currentSlide = (currentSlide + 1) % totalSlides; updateHero(); }, 8000); });
+        heroSlider?.addEventListener('mouseleave', () => { 
+            heroInterval = setInterval(() => { 
+                currentSlide = (currentSlide + 1) % totalSlides; 
+                updateHero(); 
+            }, 8000); 
+        });
 
+        // New Arrivals Carousel
         if (newNext && newArrivalsContainer) {
             newNext.addEventListener('click', () => {
                 const scrollAmount = window.innerWidth < 640 ? (window.innerWidth < 375 ? 220 : 260) : 340;
@@ -1036,82 +737,171 @@
             });
         }
 
+        // Voice Search
         function initVoiceSearch(button, input) {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { button.style.display = 'none'; return; }
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { 
+                button.style.display = 'none'; 
+                return; 
+            }
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
-            recognition.lang = currentLang === 'ar' ? 'ar-SA' : currentLang === 'en' ? 'en-US' : 'fr-FR';
+            recognition.lang = 'fr-FR';
             recognition.interimResults = false;
+            
             button.addEventListener('click', () => {
-                if (button.classList.contains('voice-search-active')) { recognition.stop(); return; }
+                if (button.classList.contains('voice-search-active')) { 
+                    recognition.stop(); 
+                    return; 
+                }
                 button.classList.add('voice-search-active');
-                showToast(getTranslation('toast_info').replace('{message}', currentLang === 'ar' ? 'جاري الاستماع...' : 'Écoute en cours...'), 'info', 5000);
+                showToast('🎤 Écoute en cours...', 'info', 5000);
                 recognition.start();
+                
                 recognition.onresult = (event) => {
                     const transcript = event.results[0][0].transcript;
                     input.value = transcript;
-                    showToast(getTranslation('toast_success').replace('{message}', `${currentLang === 'ar' ? 'جاري البحث' : 'Recherche'}: "${transcript}"`), 'success', 2000);
-                    setTimeout(() => { window.location.href = `search.html?q=${encodeURIComponent(transcript)}`; }, 1000);
+                    showToast(`✅ Recherche: "${transcript}"`, 'success', 2000);
+                    setTimeout(() => { 
+                        window.location.href = `search.html?q=${encodeURIComponent(transcript)}`; 
+                    }, 1000);
                 };
-                recognition.onerror = () => { showToast(getTranslation('toast_error').replace('{message}', currentLang === 'ar' ? 'خطأ في التعرف' : 'Erreur de reconnaissance'), 'error'); button.classList.remove('voice-search-active'); };
-                recognition.onend = () => { button.classList.remove('voice-search-active'); };
+                recognition.onerror = () => { 
+                    showToast('❌ Erreur de reconnaissance', 'error'); 
+                    button.classList.remove('voice-search-active'); 
+                };
+                recognition.onend = () => { 
+                    button.classList.remove('voice-search-active'); 
+                };
             });
         }
         if (voiceSearchDesktop && desktopSearch) initVoiceSearch(voiceSearchDesktop, desktopSearch);
         if (voiceSearchMobile && mobileSearch) initVoiceSearch(voiceSearchMobile, mobileSearch);
 
+        // Theme Toggle
         function initThemeToggle() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.documentElement.classList.add('dark'); }
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) { 
+                document.documentElement.classList.add('dark'); 
+            }
             themeToggle?.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
-                showToast(getTranslation(isDark ? 'toast_dark' : 'toast_light'), 'info');
+                showToast(isDark ? '🌙 Mode sombre' : '☀️ Mode clair', 'info');
             });
         }
         initThemeToggle();
 
-        function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
+        // Toast Notification
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
+            
+            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span>
+                <span class="text-white text-xs xs:text-sm font-medium flex-1">${message}</span>
+                <button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()">
+                    <span class="material-symbols-outlined text-[16px] xs:text-[18px]">close</span>
+                </button>
+            `;
+            document.getElementById('toast-container').appendChild(toast);
+            
+            setTimeout(() => { 
+                toast.style.opacity = '0'; 
+                toast.style.transform = 'translateX(100%)'; 
+                setTimeout(() => toast.remove(), 300); 
+            }, duration);
+        }
 
+        // Price Formatter
+        function formatPrice(price) { 
+            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; 
+        }
+
+        // Product Card Generator
         function createProductCard(product, variant = 'grid') {
             const isSlider = variant === 'slider';
             const height = isSlider ? 'h-[320px] xs:h-[360px] sm:h-[400px]' : 'aspect-square';
             const radius = isSlider ? 'rounded-[1.5rem]' : 'rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem]';
-            return `<a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}"><div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500"><div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10"><button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast(getTranslation('toast_wishlist_add'), 'success')"><span class="material-symbols-outlined text-[14px] xs:text-[16px]" data-i18n-icon="favorite_border">favorite_border</span></button></div><img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" /><div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all"><span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg"><span class="material-symbols-outlined text-[14px] xs:text-[16px]" data-i18n-icon="visibility">visibility</span><span data-i18n="product_view">Voir détails</span></span></div><span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span></div><div class="mt-2 xs:mt-3 px-0.5 xs:px-1"><h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3><p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p></div></a>`;
+            
+            return `
+                <a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}">
+                    <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
+                        <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
+                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" 
+                                    onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
+                            </button>
+                        </div>
+                        <img src="${product.image}" alt="${product.name}" 
+                             class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" 
+                             onload="this.classList.add('loaded')" 
+                             loading="lazy" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
+                            <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg">
+                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>
+                                <span>Voir détails</span>
+                            </span>
+                        </div>
+                        <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
+                    </div>
+                    <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
+                        <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
+                        <p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
+                    </div>
+                </a>
+            `;
         }
 
+        // Load Products
         async function loadStorefrontProducts() {
             try {
                 const products = await getProducts();
                 allProducts = products.length > 0 ? products : staticProducts;
                 renderStorefront(allProducts);
                 updateCategoryCounts(allProducts);
-            } catch (error) { console.error("Error:", error); renderStorefront(staticProducts); updateCategoryCounts(staticProducts); }
+            } catch (error) { 
+                console.error("Error:", error); 
+                renderStorefront(staticProducts); 
+                updateCategoryCounts(staticProducts); 
+            }
         }
 
+        // Render Products
         function renderStorefront(products) {
             if (products.length === 0) {
-                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs" data-i18n="search_empty">Aucun produit</div>';
-                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs" data-i18n="search_empty">Aucun produit</div>';
+                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
+                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
                 return;
             }
+            
+            // New Arrivals (Slider)
             newArrivalsContainer.innerHTML = '';
             products.slice(0, 8).forEach(product => {
                 const div = document.createElement('div');
                 div.innerHTML = createProductCard(product, 'slider');
                 newArrivalsContainer.appendChild(div.firstElementChild);
             });
+            
+            // Featured (Grid)
             featuredContainer.innerHTML = '';
             products.slice(0, 8).forEach(product => {
                 const div = document.createElement('div');
                 div.innerHTML = createProductCard(product, 'grid');
                 featuredContainer.appendChild(div.firstElementChild);
             });
-            document.querySelectorAll('.lazy-image').forEach(img => { if (img.complete) img.classList.add('loaded'); });
+            
+            // Lazy load images
+            document.querySelectorAll('.lazy-image').forEach(img => { 
+                if (img.complete) img.classList.add('loaded'); 
+            });
         }
 
+        // Update Category Counts
         function updateCategoryCounts(products) {
             const counts = { 'Téléphone': 0, 'Accessoire': 0, 'Offres': 0 };
             products.forEach(p => {
@@ -1125,6 +915,7 @@
             });
         }
 
+        // Static Products (Fallback)
         const staticProducts = [
             { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80' },
             { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80' },
@@ -1134,17 +925,24 @@
             { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' }
         ];
 
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(currentLang);
             loadStorefrontProducts();
-            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000'].forEach(src => { const img = new Image(); img.src = src; });
-            window.setLanguage = setLanguage;
+            
+            // Preload hero images
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000', 
+             'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000'].forEach(src => { 
+                const img = new Image(); 
+                img.src = src; 
+            });
+            
+            // Expose functions globally
             window.showToast = showToast;
-            window.getTranslation = getTranslation;
         });
 
-        window.addEventListener('online', () => showToast(getTranslation('toast_online'), 'success'));
-        window.addEventListener('offline', () => showToast(getTranslation('toast_offline'), 'warning', 5000));
+        // Online/Offline Detection
+        window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
+        window.addEventListener('offline', () => showToast('📴 Hors ligne', 'warning', 5000));
     </script>
 </body>
 </html>
