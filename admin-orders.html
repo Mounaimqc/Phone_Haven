@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
     <script src="auth-gate.js"></script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <title>Phone Haven / Logistics Terminal</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -34,121 +38,276 @@
         }
     </script>
     <style>
-        body { background-color: #020617; font-family: 'Inter', sans-serif; color: #f8fafc; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .terminal-border { border: 1px solid rgba(255, 255, 255, 0.08); }
-        .font-display { font-family: 'Outfit', sans-serif; }
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        .active-nav { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #6366f1; color: white !important; }
-        
+        body {
+            background-color: #020617;
+            font-family: 'Inter', sans-serif;
+            color: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .active-nav {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #6366f1;
+            color: white !important;
+        }
+
         /* Mobile Optimizations */
         @media (max-width: 1023px) {
             #sidebar-overlay {
                 display: none;
                 position: fixed;
                 inset: 0;
-                background: rgba(0,0,0,0.6);
+                background: rgba(0, 0, 0, 0.6);
                 z-index: 25;
                 backdrop-filter: blur(4px);
                 transition: opacity 0.3s ease;
             }
-            #sidebar-overlay.active { display: block; }
-            .mobile-hidden { transform: translateX(-100%) !important; }
+
+            #sidebar-overlay.active {
+                display: block;
+            }
+
+            .mobile-hidden {
+                transform: translateX(-100%) !important;
+            }
         }
-        
+
         /* Touch device optimizations */
         @media (hover: none) and (pointer: coarse) {
-            button, a, [role="button"], .clickable {
+
+            button,
+            a,
+            [role="button"],
+            .clickable {
                 min-height: 44px;
                 min-width: 44px;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
             }
-            input, select, textarea {
+
+            input,
+            select,
+            textarea {
                 font-size: 16px !important;
             }
-            .hover\:bg-white\/5:hover { background: rgba(255,255,255,0.02) !important; }
+
+            .hover\:bg-white\/5:hover {
+                background: rgba(255, 255, 255, 0.02) !important;
+            }
         }
-        
+
         /* Card Animation */
         .order-card {
             transition: all 0.2s ease;
             transform-origin: center;
         }
+
         .order-card:active {
             transform: scale(0.98);
         }
-        
+
         /* Smooth sidebar transition */
         #sidebar {
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform;
         }
-        
+
         /* Prevent pull-to-refresh on mobile */
         body {
             overscroll-behavior-y: contain;
         }
     </style>
+    <style>
+        /* Global Gradient & Responsive Fixes */
+        html,
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #49377E 0%, #C64172 100%) !important;
+            background-attachment: fixed !important;
+        }
+
+        .bg-background-light,
+        .dark\:bg-background-dark,
+        .bg-terminal-black,
+        .bg-\[\#020617\],
+        body {
+            background-color: transparent !important;
+        }
+
+        .bg-white,
+        .bg-slate-50 {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-slate-900,
+        .text-slate-800,
+        .text-slate-700,
+        .text-gray-900,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        span {
+            color: #ffffff !important;
+        }
+
+        .text-secondary {
+            color: #C64172 !important;
+        }
+
+        .text-primary {
+            color: #49377E !important;
+        }
+
+        .text-emerald-400 {
+            color: #34d399 !important;
+        }
+
+        .text-red-500 {
+            color: #ef4444 !important;
+        }
+
+        .text-accent {
+            color: #f59e0b !important;
+        }
+
+        .bg-red-500 {
+            background-color: #ef4444 !important;
+        }
+
+        .bg-emerald-400 {
+            background-color: #34d399 !important;
+        }
+
+        .bg-primary {
+            background-color: #49377E !important;
+        }
+
+        .bg-secondary {
+            background-color: #C64172 !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+    </style>
 </head>
+
 <body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="lg:hidden"></div>
-    
+
     <div class="flex h-full w-full">
         <!-- Sidebar: Responsive Terminal -->
-        <aside id="sidebar" class="w-72 bg-black border-r terminal-border flex flex-col z-30 fixed lg:static inset-y-0 left-0 mobile-hidden lg:translate-x-0">
+        <aside id="sidebar"
+            class="w-72 bg-black border-r terminal-border flex flex-col z-30 fixed lg:static inset-y-0 left-0 mobile-hidden lg:translate-x-0">
             <div class="p-6 lg:p-8">
                 <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
                     <div class="flex items-center gap-3">
-                        <div class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                        <div
+                            class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
                         <div class="min-w-0">
-                            <h1 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">Phone Haven<span class="text-primary italic">.</span></h1>
-                            <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">Terminal</p>
+                            <h1
+                                class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">
+                                Phone Haven<span class="text-primary italic">.</span></h1>
+                            <p
+                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">
+                                Terminal</p>
                         </div>
                     </div>
                     <!-- Close button for mobile -->
-                    <button id="sidebar-close" class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white">
+                    <button id="sidebar-close"
+                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white">
                         <span class="material-symbols-outlined text-lg">close</span>
                     </button>
                 </div>
 
                 <nav class="space-y-1">
-                    <a href="admin-analytics.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
-                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
+                    <a href="admin-analytics.html"
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span
+                            class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
                     </a>
-                    <a href="admin-orders.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
-                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
-                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
+                    <a href="admin-orders.html"
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
+                        <span
+                            class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
+                        <span
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
                     </a>
-                    <a href="admin-products.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
-                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
+                    <a href="admin-products.html"
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span
+                            class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
-                    <a href="admin-reports.html" class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
-                        <span class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytics</span>
+                    <a href="admin-reports.html"
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        <span
+                            class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytics</span>
                     </a>
                 </nav>
             </div>
 
             <div class="mt-auto p-4 lg:p-8 border-t terminal-border bg-slate-900/50">
                 <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
-                    <div class="size-9 lg:size-10 rounded-full border terminal-border overflow-hidden p-0.5 flex-shrink-0">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBOHA1KDmnNYWlhspgAoy9iDBlC33WWmN2Hii2YVikpWHz1rP8LG2Ppbu5tygofleHcZ4UsvGZifJVV4EO7UoswaQiAfgaOupabg9T1ZdmZx13-du-DJH9BAoqspjThxco2hLaInoRcUsIC_F1NoQ1-gxwtxB4OvRwWoW40ZQ89JE-RRozYipQOue5vRgdhxT5tCI5h4E5Mykk9BMp6L7XTzrJv_wQ2TbZfIA7Me4jbNdKQSztFdKHDLHA3INH0hVOUbE0umSjQ" class="w-full h-full object-cover rounded-full">
+                    <div
+                        class="size-9 lg:size-10 rounded-full border terminal-border overflow-hidden p-0.5 flex-shrink-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlBOHA1KDmnNYWlhspgAoy9iDBlC33WWmN2Hii2YVikpWHz1rP8LG2Ppbu5tygofleHcZ4UsvGZifJVV4EO7UoswaQiAfgaOupabg9T1ZdmZx13-du-DJH9BAoqspjThxco2hLaInoRcUsIC_F1NoQ1-gxwtxB4OvRwWoW40ZQ89JE-RRozYipQOue5vRgdhxT5tCI5h4E5Mykk9BMp6L7XTzrJv_wQ2TbZfIA7Me4jbNdKQSztFdKHDLHA3INH0hVOUbE0umSjQ"
+                            class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-black text-white truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized
+                        </p>
                     </div>
                 </div>
-                <a href="index.html" class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
+                <a href="index.html"
+                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     <span class="hidden xs:inline">Lock Session</span>
                 </a>
@@ -157,31 +316,39 @@
 
         <!-- Main Workspace -->
         <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
-            
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
+            </div>
+
             <!-- Header: Responsive -->
-            <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
+            <header
+                class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
                 <div class="flex items-center gap-3 lg:gap-6 w-full">
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
-                    
+
                     <!-- Search: Full width on mobile -->
                     <div class="relative group flex-1 lg:flex-none">
-                        <span class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
-                        <input type="text" placeholder="SEARCH..." 
-                               class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
+                        <span
+                            class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
+                        <input type="text" placeholder="SEARCH..."
+                            class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
                 </div>
-                
+
                 <!-- Actions: Stack on mobile -->
                 <div class="flex items-center gap-2 lg:gap-6 ml-2 lg:ml-0">
-                    <button class="size-10 lg:size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative clickable">
+                    <button
+                        class="size-10 lg:size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative clickable">
                         <span class="material-symbols-outlined text-lg lg:text-xl">notifications</span>
-                        <span class="absolute top-2.5 lg:top-3 right-2.5 lg:right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
+                        <span
+                            class="absolute top-2.5 lg:top-3 right-2.5 lg:right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
                     </button>
-                    <button class="h-10 lg:h-12 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
+                    <button
+                        class="h-10 lg:h-12 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
                         <span class="hidden sm:inline">Initiate </span>Order
                     </button>
                 </div>
@@ -194,13 +361,17 @@
                     <div>
                         <div class="flex items-center gap-2 mb-2">
                             <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
-                            <span class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time</span>
+                            <span
+                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time</span>
                         </div>
-                        <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Orders Ledger</h2>
+                        <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Orders
+                            Ledger</h2>
                     </div>
                     <div class="flex gap-2 flex-wrap">
-                        <button class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Filter</button>
-                        <button class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Export</button>
+                        <button
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Filter</button>
+                        <button
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Export</button>
                     </div>
                 </div>
 
@@ -211,12 +382,24 @@
                             <table class="w-full text-left border-collapse min-w-[700px]">
                                 <thead>
                                     <tr class="bg-white/5 border-b terminal-border">
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Signature</th>
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Client</th>
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Timeline</th>
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Value</th>
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">State</th>
-                                        <th class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400"></th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            Signature</th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            Client</th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            Timeline</th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            Value</th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            State</th>
+                                        <th
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="orders-table-body" class="divide-y terminal-border">
@@ -234,12 +417,16 @@
 
                 <!-- Pagination / Footer -->
                 <div class="mt-6 lg:mt-8 flex items-center justify-between">
-                    <p id="order-count" class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Loading...</p>
+                    <p id="order-count"
+                        class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                        Loading...</p>
                     <div class="flex gap-1.5 lg:gap-2">
-                        <button class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                        <button
+                            class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
                             <span class="material-symbols-outlined text-sm">west</span>
                         </button>
-                        <button class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                        <button
+                            class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
                             <span class="material-symbols-outlined text-sm">east</span>
                         </button>
                     </div>
@@ -313,7 +500,7 @@
                 e.preventDefault();
                 window.location.href = `admin-order-details.html?id=${order.id}`;
             };
-            
+
             const date = formatDate(order.createdAt);
             const statusClass = getStatusStyle(order.status);
 
@@ -352,7 +539,7 @@
             const card = document.createElement('div');
             card.className = 'order-card glass rounded-2xl p-4 terminal-border hover:border-primary/30 transition-all clickable';
             card.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
-            
+
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-3">
                     <div class="min-w-0">
@@ -392,7 +579,7 @@
         // Main render function - handles both views
         function renderOrders(orders) {
             const isMobile = window.innerWidth < 1024;
-            
+
             if (orders.length === 0) {
                 const emptyMsg = 'Void: No transaction data detected';
                 if (isMobile) {
@@ -430,7 +617,7 @@
             const loadingMsg = 'Accessing ledger...';
             tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
             cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
-            
+
             try {
                 const orders = await getOrders();
                 renderOrders(orders);
@@ -460,4 +647,5 @@
         document.addEventListener('DOMContentLoaded', loadOrders);
     </script>
 </body>
+
 </html>

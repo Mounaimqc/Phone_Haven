@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#6366f1" />
     <meta name="description" content="Phone Haven - Détails du produit, commande et livraison en Algérie" />
     <title id="page-title">Produit | Phone Haven Algérie</title>
-    
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -47,10 +47,23 @@
             },
         }
     </script>
-    
+
     <style>
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
 
         .glass {
             background: rgba(255, 255, 255, 0.03);
@@ -58,47 +71,99 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
 
-        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .mobile-menu.open { transform: translateX(0); }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-        html { scroll-behavior: smooth; }
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         @media (max-width: 640px) {
-            input, select, textarea { font-size: 16px !important; }
-            button, [role="button"] { 
-                min-height: 44px; 
+
+            input,
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+
+            button,
+            [role="button"] {
+                min-height: 44px;
                 min-width: 44px;
                 touch-action: manipulation;
             }
-            body { overflow-x: hidden; }
-            a, button { -webkit-tap-highlight-color: transparent; }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            a,
+            button {
+                -webkit-tap-highlight-color: transparent;
+            }
         }
 
         @media (max-width: 375px) {
-            .text-responsive { font-size: 0.875rem; }
-            .btn-responsive { padding: 0.75rem 1rem; font-size: 0.875rem; }
-            .card-responsive { border-radius: 1rem; }
+            .text-responsive {
+                font-size: 0.875rem;
+            }
+
+            .btn-responsive {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .card-responsive {
+                border-radius: 1rem;
+            }
         }
 
         .skeleton {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             background-size: 200% 100%;
             animation: skeleton-loading 1.5s infinite;
             border-radius: 0.5rem;
         }
+
         @keyframes skeleton-loading {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
         }
 
-        .lazy-image { opacity: 0; transition: opacity 0.4s ease; }
-        .lazy-image.loaded { opacity: 1; }
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
 
         @media (hover: none) {
-            .product-card:active { transform: scale(0.98); transition: transform 0.1s; }
+            .product-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s;
+            }
         }
 
         @supports (padding: max(0px)) {
@@ -112,15 +177,31 @@
             background: rgba(99, 102, 241, 0.2);
             border-color: #6366f1;
         }
+
         @keyframes voicePulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
         }
 
         @keyframes softPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
-            50% { box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+            }
         }
+
         .category-pulse {
             animation: softPulse 3.5s infinite;
         }
@@ -130,18 +211,34 @@
         }
 
         @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
+
         .animate-pulse {
             animation: badgePulse 2s infinite;
         }
 
         /* ✅ Price pulse animation */
         @keyframes pricePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
+
         .price-update {
             animation: pricePulse 0.3s ease-in-out;
         }
@@ -150,6 +247,7 @@
         .product-image-zoom {
             transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .group:hover .product-image-zoom {
             transform: scale(1.05);
         }
@@ -168,55 +266,155 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-50%);
             z-index: 0;
         }
     </style>
+    <style>
+        /* Global Gradient & Responsive Fixes */
+        html,
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #49377E 0%, #C64172 100%) !important;
+            background-attachment: fixed !important;
+        }
+
+        .bg-background-light,
+        .dark\:bg-background-dark,
+        .bg-terminal-black,
+        .bg-\[\#020617\],
+        body {
+            background-color: transparent !important;
+        }
+
+        .bg-white,
+        .bg-slate-50 {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-slate-900,
+        .text-slate-800,
+        .text-slate-700,
+        .text-gray-900,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        span {
+            color: #ffffff !important;
+        }
+
+        .text-secondary {
+            color: #C64172 !important;
+        }
+
+        .text-primary {
+            color: #49377E !important;
+        }
+
+        .text-emerald-400 {
+            color: #34d399 !important;
+        }
+
+        .text-red-500 {
+            color: #ef4444 !important;
+        }
+
+        .text-accent {
+            color: #f59e0b !important;
+        }
+
+        .bg-red-500 {
+            background-color: #ef4444 !important;
+        }
+
+        .bg-emerald-400 {
+            background-color: #34d399 !important;
+        }
+
+        .bg-primary {
+            background-color: #49377E !important;
+        }
+
+        .bg-secondary {
+            background-color: #C64172 !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
+<body
+    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation (Same as index.html) -->
-        <header class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+        <header
+            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                
+
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
-                    <div class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                    <div
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
                         <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                     </div>
-                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
+                        Haven<span class="text-primary italic">.</span></h2>
                 </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html">Téléphones</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="search.html">Catalogue</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline" href="index.html#new-arrivals">Nouveautés</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                        href="index.html">Téléphones</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                        href="search.html">Catalogue</a>
+                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                        href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
                 <!-- Right Actions -->
                 <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
-                    
+
                     <!-- Desktop Search with Voice -->
                     <div class="hidden md:flex relative items-center">
-                        <span class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
-                        <input class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher..." type="text" id="desktop-search" />
-                        <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
+                        <span
+                            class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
+                        <input
+                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                            placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <button
+                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                            id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
                             <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                         </button>
                     </div>
 
                     <!-- Wishlist Button -->
-                    <button class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative" aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
-                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]" id="wishlist-icon">favorite_border</span>
+                    <button
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative"
+                        aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]"
+                            id="wishlist-icon">favorite_border</span>
                     </button>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90" aria-label="Menu">
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90"
+                        aria-label="Menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
                 </div>
@@ -225,9 +423,14 @@
             <!-- Mobile Search Bar with Voice -->
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
-                    <span class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
-                    <input class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Rechercher un produit..." type="text" id="mobile-search" />
-                    <button class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary" id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
+                    <span
+                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
+                    <input
+                        class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                        placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <button
+                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                        id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
                         <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                     </button>
                 </div>
@@ -235,44 +438,73 @@
         </header>
 
         <!-- Mobile Menu (Same as index.html) -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden" style="display: none;"></div>
-        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden"
+            style="display: none;"></div>
+        <div id="mobile-menu"
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/5">
                     <a href="index.html" class="flex items-center gap-2">
-                        <div class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                        <div
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
                             <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                         </div>
-                        <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                        <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span
+                                class="text-primary italic">.</span></h2>
                     </a>
-                    <button id="mobile-menu-close" class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all" aria-label="Fermer le menu">
+                    <button id="mobile-menu-close"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+                        aria-label="Fermer le menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
                     </button>
                 </div>
 
                 <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
                     <ul class="flex flex-col gap-1.5 xs:gap-2">
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span> Téléphones</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span> Catalogue</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="index.html#new-arrivals"><span class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm" href="tracking.html"><span class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi Commande</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                                href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span>
+                                Téléphones</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                                href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
+                                Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                                href="index.html#new-arrivals"><span
+                                    class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
+                        </li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                                href="tracking.html"><span
+                                    class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
+                                Commande</a></li>
                     </ul>
 
                     <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
-                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">Catégories</p>
+                        <p
+                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">
+                            Catégories</p>
                         <div class="flex flex-wrap gap-2 px-2">
-                            <a href="search.html?category=Téléphone" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱 Téléphones</a>
-                            <a href="search.html?category=Accessoire" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧 Accessoires</a>
-                            <a href="search.html?category=Offres" class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥 Offres</a>
+                            <a href="search.html?category=Téléphone"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱
+                                Téléphones</a>
+                            <a href="search.html?category=Accessoire"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧
+                                Accessoires</a>
+                            <a href="search.html?category=Offres"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥
+                                Offres</a>
                         </div>
                     </div>
                 </nav>
 
                 <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
                     <div class="flex gap-1.5 xs:gap-2">
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
-                        <button id="theme-toggle" class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all" aria-label="Changer le thème">
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                            href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                            href="#"><span
+                                class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
+                        <button id="theme-toggle"
+                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                            aria-label="Changer le thème">
                             <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                         </button>
                     </div>
@@ -285,10 +517,12 @@
             <!-- Breadcrumbs -->
             <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-5">
                 <div class="max-w-7xl mx-auto">
-                    <nav class="flex items-center gap-2 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                    <nav
+                        class="flex items-center gap-2 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                         <a class="hover:text-primary transition-colors" href="index.html">Accueil</a>
                         <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                        <a id="breadcrumb-category" class="hover:text-primary transition-colors" href="search.html">Collection</a>
+                        <a id="breadcrumb-category" class="hover:text-primary transition-colors"
+                            href="search.html">Collection</a>
                         <span class="material-symbols-outlined text-[10px]">chevron_right</span>
                         <span id="breadcrumb-product" class="text-primary">Chargement...</span>
                     </nav>
@@ -299,114 +533,150 @@
             <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-6">
                 <div class="max-w-7xl mx-auto">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 lg:gap-12">
-                        
+
                         <!-- Product Image Gallery -->
                         <div class="space-y-4 xs:space-y-6">
-                            <div class="group relative overflow-hidden rounded-3xl xs:rounded-[2rem] bg-slate-100 dark:bg-white/5 border border-white/5 shadow-xl aspect-square">
+                            <div
+                                class="group relative overflow-hidden rounded-3xl xs:rounded-[2rem] bg-slate-100 dark:bg-white/5 border border-white/5 shadow-xl aspect-square">
                                 <!-- Loading Skeleton -->
                                 <div id="image-skeleton" class="absolute inset-0 skeleton rounded-3xl"></div>
                                 <!-- Main Image -->
-                                <img id="product-image" alt="Product" 
-                                     class="h-full w-full object-cover product-image-zoom lazy-image hidden rounded-3xl"
-                                     src="" loading="lazy" />
+                                <img id="product-image" alt="Product"
+                                    class="h-full w-full object-cover product-image-zoom lazy-image hidden rounded-3xl"
+                                    src="" loading="lazy" />
                                 <!-- Discount Badge -->
-                                <div id="discount-badge" class="hidden absolute top-3 xs:top-4 left-3 xs:left-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-red-500 text-white text-[9px] xs:text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
+                                <div id="discount-badge"
+                                    class="hidden absolute top-3 xs:top-4 left-3 xs:left-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-red-500 text-white text-[9px] xs:text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
                                     -30%
                                 </div>
                                 <!-- Zoom Hint -->
-                                <div class="absolute bottom-3 xs:bottom-4 right-3 xs:right-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-black/50 text-white text-[9px] xs:text-[10px] font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div
+                                    class="absolute bottom-3 xs:bottom-4 right-3 xs:right-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-black/50 text-white text-[9px] xs:text-[10px] font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
                                     🔍 Zoom
                                 </div>
                             </div>
-                            
+
                             <!-- Mobile: Image Thumbnails (Horizontal Scroll) -->
                             <div class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1 lg:hidden">
-                                <button class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-primary overflow-hidden">
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-primary overflow-hidden">
                                     <img id="thumb-1" class="w-full h-full object-cover" src="" alt="Vue 1">
                                 </button>
-                                <button class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-transparent overflow-hidden opacity-60">
-                                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80" alt="Vue 2">
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-transparent overflow-hidden opacity-60">
+                                    <img class="w-full h-full object-cover"
+                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80"
+                                        alt="Vue 2">
                                 </button>
-                                <button class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-transparent overflow-hidden opacity-60">
-                                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&q=80" alt="Vue 3">
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl bg-slate-100 dark:bg-white/5 border-2 border-transparent overflow-hidden opacity-60">
+                                    <img class="w-full h-full object-cover"
+                                        src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&q=80"
+                                        alt="Vue 3">
                                 </button>
                             </div>
                         </div>
 
                         <!-- Product Info & Order Form -->
                         <div class="flex flex-col">
-                            
+
                             <!-- Title & Price -->
                             <div class="mb-4 xs:mb-6">
-                                <h1 id="product-title" class="font-display text-slate-900 dark:text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-2">
+                                <h1 id="product-title"
+                                    class="font-display text-slate-900 dark:text-white text-xl xs:text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-2">
                                     <span class="skeleton inline-block w-48 h-6 xs:h-7 rounded"></span>
                                 </h1>
                                 <div class="flex items-baseline gap-3">
-                                    <span id="product-price" class="font-display text-primary text-2xl xs:text-3xl sm:text-4xl font-black skeleton w-24 h-8 xs:h-9 rounded"></span>
-                                    <span id="original-price" class="text-slate-400 line-through text-sm xs:text-base hidden"></span>
+                                    <span id="product-price"
+                                        class="font-display text-primary text-2xl xs:text-3xl sm:text-4xl font-black skeleton w-24 h-8 xs:h-9 rounded"></span>
+                                    <span id="original-price"
+                                        class="text-slate-400 line-through text-sm xs:text-base hidden"></span>
                                 </div>
-                                <p id="stock-status" class="text-[9px] xs:text-[10px] font-black text-success uppercase tracking-widest mt-2 flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-success animate-pulse"></span>
+                                <p id="stock-status"
+                                    class="text-[9px] xs:text-[10px] font-black text-success uppercase tracking-widest mt-2 flex items-center gap-1.5">
+                                    <span
+                                        class="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-success animate-pulse"></span>
                                     <span class="skeleton inline-block w-24 h-3 rounded"></span>
                                 </p>
                             </div>
 
                             <!-- Description -->
                             <div class="mb-4 xs:mb-6 px-0.5">
-                                <h3 class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2 xs:mb-3">Description</h3>
-                                <p id="product-description" class="text-slate-600 dark:text-slate-400 text-xs xs:text-sm leading-relaxed font-medium line-clamp-3 xs:line-clamp-none">
+                                <h3
+                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2 xs:mb-3">
+                                    Description</h3>
+                                <p id="product-description"
+                                    class="text-slate-600 dark:text-slate-400 text-xs xs:text-sm leading-relaxed font-medium line-clamp-3 xs:line-clamp-none">
                                     <span class="skeleton inline-block w-full h-3 rounded mb-2"></span>
                                     <span class="skeleton inline-block w-3/4 h-3 rounded"></span>
                                 </p>
-                                <button id="toggle-description" class="text-primary text-xs font-medium mt-2 hidden hover:underline">
-                                    Voir plus <span class="material-symbols-outlined text-[14px] align-middle">expand_more</span>
+                                <button id="toggle-description"
+                                    class="text-primary text-xs font-medium mt-2 hidden hover:underline">
+                                    Voir plus <span
+                                        class="material-symbols-outlined text-[14px] align-middle">expand_more</span>
                                 </button>
                             </div>
 
                             <!-- Key Features -->
                             <div id="features-list" class="mb-4 xs:mb-6 space-y-2 hidden">
-                                <h3 class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2 xs:mb-3">Caractéristiques</h3>
+                                <h3
+                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2 xs:mb-3">
+                                    Caractéristiques</h3>
                                 <div class="grid grid-cols-2 gap-2 xs:gap-3">
                                     <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                                        <span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                        <span
+                                            class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
                                         <span>Garantie 6 mois</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                                        <span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                        <span
+                                            class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
                                         <span>100% Original</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                                        <span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                        <span
+                                            class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
                                         <span>Livraison 58 wilayas</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
-                                        <span class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
+                                        <span
+                                            class="material-symbols-outlined text-primary text-[14px]">check_circle</span>
                                         <span>Paiement à la livraison</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Order Form Card -->
-                            <div class="glass border border-primary/20 rounded-3xl xs:rounded-[2rem] p-4 xs:p-6 shadow-lg">
+                            <div
+                                class="glass border border-primary/20 rounded-3xl xs:rounded-[2rem] p-4 xs:p-6 shadow-lg">
                                 <div class="flex items-center gap-3 mb-4 xs:mb-6">
-                                    <div class="h-10 w-10 xs:h-12 xs:w-12 rounded-xl xs:rounded-2xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                                        <span class="material-symbols-outlined text-[20px] xs:text-[24px]">shopping_bag</span>
+                                    <div
+                                        class="h-10 w-10 xs:h-12 xs:w-12 rounded-xl xs:rounded-2xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                                        <span
+                                            class="material-symbols-outlined text-[20px] xs:text-[24px]">shopping_bag</span>
                                     </div>
-                                    <h3 class="font-display text-base xs:text-lg font-black text-slate-900 dark:text-white">Commander Maintenant</h3>
+                                    <h3
+                                        class="font-display text-base xs:text-lg font-black text-slate-900 dark:text-white">
+                                        Commander Maintenant</h3>
                                 </div>
 
                                 <form id="order-form" class="space-y-3 xs:space-y-4">
                                     <!-- Name & Phone -->
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
                                         <div class="space-y-1.5 xs:space-y-2">
-                                            <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Nom Complet *</label>
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Nom
+                                                Complet *</label>
                                             <input id="customer-name" type="text" required autocomplete="name"
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium form-input"
                                                 placeholder="Votre nom" />
                                         </div>
                                         <div class="space-y-1.5 xs:space-y-2">
-                                            <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Téléphone *</label>
-                                            <input id="customer-phone" type="tel" required inputmode="tel" autocomplete="tel"
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Téléphone
+                                                *</label>
+                                            <input id="customer-phone" type="tel" required inputmode="tel"
+                                                autocomplete="tel"
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium form-input"
                                                 placeholder="05/06/07 XX XX XX XX" />
                                         </div>
@@ -414,7 +684,9 @@
 
                                     <!-- Shipping Type -->
                                     <div class="space-y-1.5 xs:space-y-2">
-                                        <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Type de Livraison *</label>
+                                        <label
+                                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Type
+                                            de Livraison *</label>
                                         <select id="shipping-type"
                                             class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
                                             <option value="stop_desk">🏢 Stop Desk (Bureau)</option>
@@ -425,14 +697,18 @@
                                     <!-- Wilaya & Commune -->
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
                                         <div class="space-y-1.5 xs:space-y-2">
-                                            <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Wilaya *</label>
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Wilaya
+                                                *</label>
                                             <select id="wilaya" required
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
                                                 <option value="">Sélectionner</option>
                                             </select>
                                         </div>
                                         <div class="space-y-1.5 xs:space-y-2">
-                                            <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Commune *</label>
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Commune
+                                                *</label>
                                             <select id="commune" required disabled
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10 disabled:opacity-50">
                                                 <option value="">Sélectionnez d'abord la wilaya</option>
@@ -441,22 +717,30 @@
                                     </div>
 
                                     <!-- ✅ Dynamic Shipping Price Display -->
-                                    <div id="shipping-price-card" class="hidden glass border border-accent/30 bg-accent/5 rounded-xl xs:rounded-2xl p-3 xs:p-4">
+                                    <div id="shipping-price-card"
+                                        class="hidden glass border border-accent/30 bg-accent/5 rounded-xl xs:rounded-2xl p-3 xs:p-4">
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center gap-2 min-w-0">
-                                                <div class="h-8 w-8 xs:h-9 xs:w-9 rounded-lg bg-accent/20 text-accent flex items-center justify-center flex-shrink-0">
-                                                    <span class="material-symbols-outlined text-[18px] xs:text-[20px]">local_shipping</span>
+                                                <div
+                                                    class="h-8 w-8 xs:h-9 xs:w-9 rounded-lg bg-accent/20 text-accent flex items-center justify-center flex-shrink-0">
+                                                    <span
+                                                        class="material-symbols-outlined text-[18px] xs:text-[20px]">local_shipping</span>
                                                 </div>
                                                 <div class="min-w-0">
-                                                    <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 truncate">Frais de Livraison</p>
-                                                    <p class="text-slate-700 dark:text-slate-300 font-medium text-xs truncate" id="shipping-details">Calcul...</p>
+                                                    <p
+                                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 truncate">
+                                                        Frais de Livraison</p>
+                                                    <p class="text-slate-700 dark:text-slate-300 font-medium text-xs truncate"
+                                                        id="shipping-details">Calcul...</p>
                                                 </div>
                                             </div>
                                             <div class="text-right flex-shrink-0 ml-3">
-                                                <p id="shipping-price" class="text-accent font-black text-lg xs:text-xl">0 د.ج</p>
+                                                <p id="shipping-price"
+                                                    class="text-accent font-black text-lg xs:text-xl">0 د.ج</p>
                                             </div>
                                         </div>
-                                        <p id="shipping-time" class="text-[9px] xs:text-[10px] text-slate-500 dark:text-slate-400 mt-2 flex items-center gap-1">
+                                        <p id="shipping-time"
+                                            class="text-[9px] xs:text-[10px] text-slate-500 dark:text-slate-400 mt-2 flex items-center gap-1">
                                             <span class="material-symbols-outlined text-[12px]">schedule</span>
                                             <span class="truncate">--</span>
                                         </p>
@@ -464,37 +748,48 @@
 
                                     <!-- Address -->
                                     <div class="space-y-1.5 xs:space-y-2">
-                                        <label class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Adresse Complète *</label>
+                                        <label
+                                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400">Adresse
+                                            Complète *</label>
                                         <input id="address" type="text" required autocomplete="street-address"
                                             class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium form-input"
                                             placeholder="Rue, Numéro, Repère..." />
                                     </div>
 
                                     <!-- ✅ Order Summary -->
-                                    <div id="order-summary" class="hidden glass border border-primary/30 rounded-xl xs:rounded-2xl p-3 xs:p-4 space-y-2">
+                                    <div id="order-summary"
+                                        class="hidden glass border border-primary/30 rounded-xl xs:rounded-2xl p-3 xs:p-4 space-y-2">
                                         <div class="flex justify-between text-xs">
                                             <span class="text-slate-500">Produit</span>
                                             <span id="summary-product-price" class="font-medium">0 د.ج</span>
                                         </div>
                                         <div class="flex justify-between text-xs">
                                             <span class="text-slate-500">Livraison</span>
-                                            <span id="summary-shipping-price" class="font-medium text-accent">0 د.ج</span>
+                                            <span id="summary-shipping-price" class="font-medium text-accent">0
+                                                د.ج</span>
                                         </div>
                                         <div class="border-t border-white/10 pt-2 flex justify-between">
-                                            <span class="font-black text-slate-900 dark:text-white text-sm">Total à payer</span>
-                                            <span id="summary-total" class="font-black text-primary text-lg xs:text-xl">0 د.ج</span>
+                                            <span class="font-black text-slate-900 dark:text-white text-sm">Total à
+                                                payer</span>
+                                            <span id="summary-total"
+                                                class="font-black text-primary text-lg xs:text-xl">0 د.ج</span>
                                         </div>
-                                        <p class="text-[9px] text-slate-400 text-center">💵 Paiement en espèces à la livraison</p>
+                                        <p class="text-[9px] text-slate-400 text-center">💵 Paiement en espèces à la
+                                            livraison</p>
                                     </div>
 
                                     <!-- ✅ Sticky Submit Button on Mobile -->
                                     <div class="sticky-submit pt-2">
                                         <button id="confirm-btn" type="submit" disabled
                                             class="w-full group relative flex h-12 xs:h-14 items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-primary text-white shadow-lg shadow-primary/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
-                                            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                            <span class="relative font-display text-sm font-black tracking-wide uppercase flex items-center gap-2">
+                                            <div
+                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                            </div>
+                                            <span
+                                                class="relative font-display text-sm font-black tracking-wide uppercase flex items-center gap-2">
                                                 <span id="btn-text">Sélectionnez la wilaya</span>
-                                                <span class="material-symbols-outlined text-[18px] xs:text-[20px]">arrow_forward</span>
+                                                <span
+                                                    class="material-symbols-outlined text-[18px] xs:text-[20px]">arrow_forward</span>
                                             </span>
                                         </button>
                                     </div>
@@ -503,17 +798,29 @@
 
                             <!-- Trust Badges -->
                             <div class="mt-4 xs:mt-6 grid grid-cols-3 gap-2 xs:gap-3 text-center">
-                                <div class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
-                                    <span class="material-symbols-outlined text-success text-[18px] xs:text-[20px]">verified</span>
-                                    <span class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">100% Original</span>
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
+                                    <span
+                                        class="material-symbols-outlined text-success text-[18px] xs:text-[20px]">verified</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">100%
+                                        Original</span>
                                 </div>
-                                <div class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
-                                    <span class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">local_shipping</span>
-                                    <span class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">58 Wilayas</span>
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
+                                    <span
+                                        class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">local_shipping</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">58
+                                        Wilayas</span>
                                 </div>
-                                <div class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
-                                    <span class="material-symbols-outlined text-accent text-[18px] xs:text-[20px]">payments</span>
-                                    <span class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">Paiement Cash</span>
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl bg-slate-50 dark:bg-white/5">
+                                    <span
+                                        class="material-symbols-outlined text-accent text-[18px] xs:text-[20px]">payments</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-slate-600 dark:text-slate-400">Paiement
+                                        Cash</span>
                                 </div>
                             </div>
 
@@ -526,12 +833,15 @@
             <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 border-t border-white/5">
                 <div class="max-w-7xl mx-auto">
                     <div class="flex items-center justify-between mb-4 xs:mb-6">
-                        <h3 class="font-display text-base xs:text-lg font-black text-slate-900 dark:text-white">Vous aimerez aussi</h3>
-                        <a href="search.html" class="text-primary text-xs font-medium hover:underline flex items-center gap-1">
+                        <h3 class="font-display text-base xs:text-lg font-black text-slate-900 dark:text-white">Vous
+                            aimerez aussi</h3>
+                        <a href="search.html"
+                            class="text-primary text-xs font-medium hover:underline flex items-center gap-1">
                             Voir tout <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
                         </a>
                     </div>
-                    <div class="flex overflow-x-auto gap-3 xs:gap-4 no-scrollbar pb-2 -mx-1 xs:mx-0 px-1 xs:px-0" id="related-products">
+                    <div class="flex overflow-x-auto gap-3 xs:gap-4 no-scrollbar pb-2 -mx-1 xs:mx-0 px-1 xs:px-0"
+                        id="related-products">
                         <div class="w-full text-center py-8 text-slate-500 text-xs animate-pulse">Chargement...</div>
                     </div>
                 </div>
@@ -541,20 +851,29 @@
             <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
                 <div class="mx-3 xs:mx-4">
                     <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
-                        <a href="index.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">home</span>
+                        <a href="index.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span
+                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">home</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Accueil</span>
                         </a>
-                        <a href="search.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
+                        <a href="search.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span
+                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
                         </a>
-                        <a href="tracking.html" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
+                        <a href="tracking.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            <span
+                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Suivi</span>
                         </a>
-                        <a href="#" class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all" onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
-                            <span class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
+                        <a href="#"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all"
+                            onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
+                            <span
+                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
                             <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
                         </a>
                     </div>
@@ -564,17 +883,22 @@
         </main>
 
         <!-- Footer (Same as index.html with 2026) -->
-        <footer class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+        <footer
+            class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
                     <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
                         <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
-                            <div class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                            <div
+                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
                                 <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                             </div>
-                            <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone Haven<span class="text-primary italic">.</span></h2>
+                            <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
+                                Haven<span class="text-primary italic">.</span></h2>
                         </a>
-                        <p class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                        <p
+                            class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
                             📍 Basée à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             🚚 Livraison rapide dans les 58 wilayas<br>
@@ -583,19 +907,27 @@
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Navigation</h4>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            Navigation</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
                             <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="index.html#new-arrivals">Nouveautés</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Téléphone">Téléphones</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="search.html?category=Accessoire">Accessoires</a></li>
+                            <li><a class="hover:text-primary transition-colors"
+                                    href="index.html#new-arrivals">Nouveautés</a></li>
+                            <li><a class="hover:text-primary transition-colors"
+                                    href="search.html?category=Téléphone">Téléphones</a></li>
+                            <li><a class="hover:text-primary transition-colors"
+                                    href="search.html?category=Accessoire">Accessoires</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Assistance</h4>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            Assistance</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a>
+                            </li>
                             <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
@@ -603,7 +935,9 @@
                     </div>
 
                     <div>
-                        <h4 class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">Légal</h4>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            Légal</h4>
                         <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
                             <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
@@ -612,24 +946,31 @@
                     </div>
                 </div>
 
-                <div class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <div
+                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
                     <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://instagram.com" target="_blank" aria-label="Instagram">
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                            href="https://instagram.com" target="_blank" aria-label="Instagram">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Instagram</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://facebook.com" target="_blank" aria-label="Facebook">
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                            href="https://facebook.com" target="_blank" aria-label="Facebook">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Facebook</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                            href="https://tiktok.com" target="_blank" aria-label="TikTok">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">TikTok</span>
                         </a>
@@ -640,7 +981,9 @@
     </div>
 
     <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]"></div>
+    <div id="toast-container"
+        class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]">
+    </div>
 
     <script>
         // ✅ Algeria Wilayas Data (58 wilayas with shipping prices)
@@ -794,15 +1137,15 @@
         let allCommunes = [];
 
         // ===== MOBILE MENU =====
-        function openMobileMenu() { 
-            mobileMenu.classList.add('open'); 
-            mobileMenuOverlay.style.display = 'block'; 
-            document.body.style.overflow = 'hidden'; 
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
-        function closeMobileMenu() { 
-            mobileMenu.classList.remove('open'); 
-            mobileMenuOverlay.style.display = 'none'; 
-            document.body.style.overflow = ''; 
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.style.display = 'none';
+            document.body.style.overflow = '';
         }
         mobileMenuBtn?.addEventListener('click', openMobileMenu);
         mobileMenuClose?.addEventListener('click', closeMobileMenu);
@@ -811,8 +1154,8 @@
         // ===== THEME TOGGLE =====
         function initThemeToggle() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) { 
-                document.documentElement.classList.add('dark'); 
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
             }
             themeToggle?.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
@@ -825,20 +1168,20 @@
 
         // ===== VOICE SEARCH =====
         function initVoiceSearch(button, input) {
-            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { 
-                button.style.display = 'none'; return; 
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                button.style.display = 'none'; return;
             }
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recognition = new SpeechRecognition();
             recognition.lang = 'fr-FR';
             recognition.interimResults = false;
-            
+
             button.addEventListener('click', () => {
                 if (button.classList.contains('voice-search-active')) { recognition.stop(); return; }
                 button.classList.add('voice-search-active');
                 showToast('🎤 Écoute en cours...', 'info', 5000);
                 recognition.start();
-                
+
                 recognition.onresult = (event) => {
                     const transcript = event.results[0][0].transcript;
                     input.value = transcript;
@@ -926,7 +1269,7 @@
         wilayaSelect.addEventListener('change', async () => {
             const selectedWilaya = wilayaSelect.value;
             const wilayaId = wilayaSelect.options[wilayaSelect.selectedIndex]?.dataset.id;
-            
+
             communeSelect.innerHTML = '<option value="">Chargement...</option>';
             communeSelect.disabled = true;
             shippingPriceCard.classList.add('hidden');
@@ -974,7 +1317,7 @@
 
             try {
                 const product = await getProductById(productId);
-                
+
                 if (!product) {
                     showToast('❌ Produit non trouvé', 'error');
                     setTimeout(() => window.location.href = 'search.html', 2000);
@@ -986,26 +1329,26 @@
                 // Update text content
                 productTitle.textContent = product.name;
                 productTitle.classList.remove('skeleton');
-                
+
                 productPrice.textContent = formatPrice(product.price);
                 productPrice.classList.remove('skeleton');
-                
+
                 // Original price if discounted
                 if (product.discount && product.originalPrice) {
                     originalPrice.textContent = formatPrice(product.originalPrice);
                     originalPrice.classList.remove('hidden');
                     discountBadge.classList.remove('hidden');
                 }
-                
+
                 productDescription.textContent = product.description || 'Description non disponible.';
-                
+
                 breadcrumbCategory.textContent = product.category || 'Collection';
                 breadcrumbCategory.href = `search.html?category=${encodeURIComponent(product.category || '')}`;
                 breadcrumbProduct.textContent = product.name;
-                
+
                 stockStatus.querySelector('.skeleton')?.remove();
                 stockStatus.innerHTML = `<span class="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-success animate-pulse"></span> ${product.stock > 10 ? 'En Stock • Prêt à livrer' : product.stock > 0 ? `Stock limité: ${product.stock} restant(s)` : 'Rupture de stock'}`;
-                
+
                 if (product.stock <= 0) {
                     confirmBtn.disabled = true;
                     btnText.textContent = 'Rupture de stock';
@@ -1031,7 +1374,7 @@
                         productImage.classList.add('loaded');
                     };
                     img.src = product.image;
-                    
+
                     // Update thumbnail
                     document.getElementById('thumb-1').src = product.image;
                 } else {
@@ -1048,7 +1391,7 @@
                     toggleDescription.classList.remove('hidden');
                     toggleDescription.addEventListener('click', () => {
                         productDescription.classList.toggle('line-clamp-3');
-                        toggleDescription.innerHTML = productDescription.classList.contains('line-clamp-3') 
+                        toggleDescription.innerHTML = productDescription.classList.contains('line-clamp-3')
                             ? 'Voir plus <span class="material-symbols-outlined text-[14px] align-middle">expand_more</span>'
                             : 'Voir moins <span class="material-symbols-outlined text-[14px] align-middle">expand_less</span>';
                     });
@@ -1074,7 +1417,7 @@
             try {
                 const products = await getProducts({ category, limitCount: 6 });
                 const related = products.filter(p => p.id !== productId).slice(0, 4);
-                
+
                 if (related.length === 0) {
                     relatedContainer.innerHTML = '<div class="text-center py-4 text-slate-500 text-xs">Aucun produit similaire</div>';
                     return;
@@ -1148,7 +1491,7 @@
             try {
                 const result = await addOrder(order);
                 showToast('✅ Commande confirmée !', 'success');
-                
+
                 // Redirect to success page
                 setTimeout(() => {
                     window.location.href = `success.html?order=${result.id || 'confirmed'}`;
@@ -1174,7 +1517,7 @@
             const voiceMobile = document.getElementById('voice-search-mobile');
             const searchDesktop = document.getElementById('desktop-search');
             const searchMobile = document.getElementById('mobile-search');
-            
+
             if (voiceDesktop && searchDesktop) initVoiceSearch(voiceDesktop, searchDesktop);
             if (voiceMobile && searchMobile) initVoiceSearch(voiceMobile, searchMobile);
 
@@ -1204,4 +1547,5 @@
         window.addEventListener('offline', () => showToast('📴 Mode hors ligne', 'warning', 5000));
     </script>
 </body>
+
 </html>

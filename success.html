@@ -68,6 +68,89 @@
             scrollbar-width: none;
         }
     </style>
+    <style>
+        /* Global Gradient & Responsive Fixes */
+        html,
+        body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #49377E 0%, #C64172 100%) !important;
+            background-attachment: fixed !important;
+        }
+
+        .bg-background-light,
+        .dark\:bg-background-dark,
+        .bg-terminal-black,
+        .bg-\[\#020617\],
+        body {
+            background-color: transparent !important;
+        }
+
+        .bg-white,
+        .bg-slate-50 {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-slate-900,
+        .text-slate-800,
+        .text-slate-700,
+        .text-gray-900,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        span {
+            color: #ffffff !important;
+        }
+
+        .text-secondary {
+            color: #C64172 !important;
+        }
+
+        .text-primary {
+            color: #49377E !important;
+        }
+
+        .text-emerald-400 {
+            color: #34d399 !important;
+        }
+
+        .text-red-500 {
+            color: #ef4444 !important;
+        }
+
+        .text-accent {
+            color: #f59e0b !important;
+        }
+
+        .bg-red-500 {
+            background-color: #ef4444 !important;
+        }
+
+        .bg-emerald-400 {
+            background-color: #34d399 !important;
+        }
+
+        .bg-primary {
+            background-color: #49377E !important;
+        }
+
+        .bg-secondary {
+            background-color: #C64172 !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+    </style>
 </head>
 
 <body
