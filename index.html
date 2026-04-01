@@ -25,8 +25,7 @@
                     colors: {
                         "primary": "#49377E",
                         "secondary": "#C64172",
-                        "accent-pink": "#ffb3c6",
-                        "accent-purple": "#e0d4ff",
+                        "accent-yellow": "#FFA500",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
                         "success": "#10b981",
@@ -103,6 +102,11 @@
         .text-muted {
             color: rgba(255, 255, 255, 0.7);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-accent-yellow {
+            color: #FFA500;
+            text-shadow: 0 1px 4px rgba(255, 165, 0, 0.4);
         }
 
         .text-accent-pink {
@@ -280,7 +284,7 @@
         select:focus,
         textarea:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 179, 198, 0.3);
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.3);
         }
     </style>
 </head>
@@ -295,19 +299,18 @@
             class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
-                <!-- Logo -->
+                <!-- Logo with IMAGE -->
                 <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
                     <div
-                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl gradient-bg overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                        <span
-                            class="material-symbols-outlined text-white text-lg xs:text-xl sm:text-2xl">phone_iphone</span>
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500 bg-white">
+                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                     </div>
                     <div class="flex flex-col">
                         <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
                             Phone Haven<span class="text-accent-pink">.</span>
                         </h2>
                         <span
-                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-body font-medium whitespace-nowrap mt-0.5 tracking-wide">
+                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
                             More than a store, it's a haven for phones
                         </span>
                     </div>
@@ -381,16 +384,17 @@
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/15">
                     <a href="index.html" class="flex items-center gap-2">
+                        <!-- Logo with IMAGE in Mobile Menu -->
                         <div
-                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl gradient-bg overflow-hidden shadow-sm">
-                            <span class="material-symbols-outlined text-white text-lg">phone_iphone</span>
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                            <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                         </div>
                         <div class="flex flex-col">
                             <h2 class="font-display text-base xs:text-lg font-black tracking-tighter text-heading">
                                 Phone Haven<span class="text-accent-pink">.</span>
                             </h2>
                             <span
-                                class="text-[8.5px] xs:text-[10px] text-body font-medium whitespace-nowrap mt-0.5 tracking-wide">
+                                class="text-[8.5px] xs:text-[10px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
                                 More than a store, it's a haven
                             </span>
                         </div>
@@ -849,16 +853,17 @@
                     class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
                     <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
                         <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
+                            <!-- Logo with IMAGE in Footer -->
                             <div
-                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl gradient-bg overflow-hidden shadow-sm">
-                                <span class="material-symbols-outlined text-white text-sm">phone_iphone</span>
+                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                                <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                             </div>
                             <div class="flex flex-col">
                                 <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
                                     Phone Haven<span class="text-accent-pink">.</span>
                                 </h2>
                                 <span
-                                    class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-body font-medium whitespace-nowrap mt-0.5 tracking-wide">
+                                    class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
                                     More than a store, it's a haven for phones
                                 </span>
                             </div>
