@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
 <head>
@@ -222,190 +222,17 @@
             pointer-events: none;
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-secondary/30 overscroll-behavior-y-contain">
+    class="font-body text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  selection:bg-secondary/30 overscroll-behavior-y-contain bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+            class="sticky top-0 z-[100] w-full border-b border-[rgba(255,255,255,0.15)] bg-white/90  backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo -->
@@ -417,7 +244,7 @@
                     </div>
                     <div class="flex flex-col">
                         <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
-                            Haven<span class="text-secondary">.</span></h2>
+                            Haven<span class="text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)]">.</span></h2>
                         <span
                             class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-white/90 font-medium whitespace-nowrap mt-0.5 tracking-wide">More
                             Thanr store ,it's a haven for phone </span>
@@ -426,13 +253,13 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-secondary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="index.html">Accueil</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-secondary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="search.html">Catalogue</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-secondary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="index.html#new-arrivals">Nouveautés</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-secondary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="tracking.html">Suivi</a>
                 </nav>
 
@@ -442,15 +269,15 @@
                     <!-- Desktop Search -->
                     <div class="hidden md:flex relative items-center">
                         <span
-                            class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
+                            class="material-symbols-outlined absolute left-3 xs:left-4 text-white/60 text-lg xs:text-xl pointer-events-none">search</span>
                         <input
-                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-secondary/20 transition-all"
+                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-secondary/20 transition-all"
                             placeholder="Rechercher..." type="text" id="desktop-search" />
                     </div>
 
                     <!-- Wishlist Button -->
                     <button
-                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative"
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 text-white/90  transition-all active:scale-90 relative"
                         aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
                         <span
                             class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
@@ -458,14 +285,14 @@
 
                     <!-- Theme Toggle -->
                     <button id="theme-toggle"
-                        class="hidden sm:flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90"
+                        class="hidden sm:flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 text-white/90  transition-all active:scale-90"
                         aria-label="Changer le thème">
                         <span class="material-symbols-outlined text-[18px] xs:text-[20px]">dark_mode</span>
                     </button>
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  transition-all active:scale-90"
                         aria-label="Menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
@@ -476,9 +303,9 @@
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
                     <span
-                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
+                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg xs:text-xl">search</span>
                     <input
-                        class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-secondary/20 transition-all"
+                        class="w-full rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-secondary/20 transition-all"
                         placeholder="Rechercher un produit..." type="text" id="mobile-search" />
                 </div>
             </div>
@@ -488,9 +315,9 @@
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden"
             style="display: none;"></div>
         <div id="mobile-menu"
-            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
-                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/5">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-[rgba(255,255,255,0.15)]">
                     <a href="index.html" class="flex items-center gap-2">
                         <div
                             class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl gradient-bg overflow-hidden shadow-sm">
@@ -498,14 +325,14 @@
                         </div>
                         <div class="flex flex-col">
                             <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span
-                                    class="text-secondary">.</span></h2>
+                                    class="text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)]">.</span></h2>
                             <span
                                 class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-white/90 font-medium whitespace-nowrap mt-0.5 tracking-wide">More
                                 Thanr store ,it's a haven for phone </span>
                         </div>
                     </a>
                     <button id="mobile-menu-close"
-                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 transition-all"
                         aria-label="Fermer le menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
                     </button>
@@ -513,32 +340,32 @@
 
                 <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
                     <ul class="flex flex-col gap-1.5 xs:gap-2">
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:gradient-bg hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="index.html"><span class="material-symbols-outlined text-[18px]">home</span>
                                 Accueil</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:gradient-bg hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
                                 Catalogue</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:gradient-bg hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="index.html#new-arrivals"><span
                                     class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
                         </li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:gradient-bg hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="tracking.html"><span
                                     class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
                                 Commande</a></li>
                     </ul>
 
-                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-[rgba(255,255,255,0.15)]">
                         <p
-                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">
+                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/60 mb-2 xs:mb-3 px-2">
                             Catégories</p>
                         <div class="flex flex-wrap gap-2 px-2">
                             <a href="search.html?category=Téléphone"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-secondary hover:text-secondary transition-all">📱
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-secondary hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-all">📱
                                 Téléphones</a>
                             <a href="search.html?category=Accessoire"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-accent hover:text-accent transition-all">🎧
                                 Accessoires</a>
                             <a href="search.html?category=Offres"
                                 class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥
@@ -547,10 +374,10 @@
                     </div>
                 </nav>
 
-                <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
+                <div class="p-3 xs:p-4 border-t border-[rgba(255,255,255,0.15)] space-y-2 xs:space-y-3">
                     <div class="flex gap-1.5 xs:gap-2">
                         <button id="theme-toggle-mobile"
-                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-secondary transition-all"
+                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-all"
                             aria-label="Changer le thème">
                             <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                             <span class="text-[11px] xs:text-[12px] font-medium">Thème</span>
@@ -578,7 +405,7 @@
                     <div class="text-center lg:text-left animate-slide-up">
                         <div
                             class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-4 xs:mb-6 border border-white/20">
-                            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                            <span class="w-2 h-2 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-full animate-pulse"></span>
                             <span
                                 class="text-white/90 text-[10px] xs:text-xs sm:text-sm font-medium uppercase tracking-wider">Nouveautés
                                 2026</span>
@@ -598,7 +425,7 @@
 
                         <div class="flex flex-wrap gap-3 xs:gap-4 justify-center lg:justify-start mb-8 xs:mb-10">
                             <a href="#new-arrivals"
-                                class="group flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl bg-white text-primary font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all active:scale-95">
+                                class="group flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all active:scale-95">
                                 Voir les Produits
                                 <span
                                     class="material-symbols-outlined ml-2 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -641,14 +468,14 @@
 
                                 <!-- Floating Badge -->
                                 <div
-                                    class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 xs:p-5 shadow-xl animate-float">
+                                    class="absolute -bottom-6 -left-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-2xl p-4 xs:p-5 shadow-xl animate-float">
                                     <div class="flex items-center gap-3">
                                         <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                                             <span class="material-symbols-outlined text-white text-2xl">verified</span>
                                         </div>
                                         <div>
-                                            <p class="font-bold text-slate-900 text-sm xs:text-base">100% Original</p>
-                                            <p class="text-xs xs:text-sm text-slate-500">Garantie 6 mois</p>
+                                            <p class="font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black text-sm xs:text-base">100% Original</p>
+                                            <p class="text-xs xs:text-sm text-white/80">Garantie 6 mois</p>
                                         </div>
                                     </div>
                                 </div>
@@ -679,21 +506,21 @@
                     <div class="flex items-center justify-around glass rounded-xl xs:rounded-2xl p-2 xs:p-3 shadow-lg">
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
                             <span
-                                class="material-symbols-outlined text-secondary text-[16px] xs:text-[18px]">verified</span>
+                                class="material-symbols-outlined text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)] text-[16px] xs:text-[18px]">verified</span>
                             <span
-                                class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">100%<br>Original</span>
+                                class="text-[8px] xs:text-[9px] font-medium text-white/90  text-center leading-tight">100%<br>Original</span>
                         </div>
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
                             <span
                                 class="material-symbols-outlined text-accent text-[16px] xs:text-[18px]">local_shipping</span>
                             <span
-                                class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">58<br>Wilayas</span>
+                                class="text-[8px] xs:text-[9px] font-medium text-white/90  text-center leading-tight">58<br>Wilayas</span>
                         </div>
                         <div class="flex flex-col items-center gap-0.5 xs:gap-1">
                             <span
                                 class="material-symbols-outlined text-success text-[16px] xs:text-[18px]">payments</span>
                             <span
-                                class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300 text-center leading-tight">Paiement<br>à
+                                class="text-[8px] xs:text-[9px] font-medium text-white/90  text-center leading-tight">Paiement<br>à
                                 la livraison</span>
                         </div>
                     </div>
@@ -708,7 +535,7 @@
 
                         <!-- Category: Téléphones -->
                         <a href="search.html?category=Téléphone"
-                            class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-secondary hover:bg-secondary/5 transition-all no-underline shadow-sm hover:shadow-lg">
+                            class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-secondary hover:bg-secondary/5 transition-all no-underline shadow-sm hover:shadow-lg">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl gradient-bg overflow-hidden shadow-lg group-hover:shadow-secondary/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80&auto=format&fit=crop"
@@ -716,14 +543,14 @@
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-secondary transition-colors tracking-tight">Téléphones</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-secondary transition-colors tracking-tight">Téléphones</span>
                             <span id="count-telephone"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </a>
 
                         <!-- Category: Accessoires -->
                         <a href="search.html?category=Accessoire"
-                            class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-accent hover:bg-accent/5 transition-all no-underline shadow-sm hover:shadow-lg">
+                            class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-accent hover:bg-accent/5 transition-all no-underline shadow-sm hover:shadow-lg">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-accent/25 to-orange-500/25 overflow-hidden shadow-lg group-hover:shadow-accent/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&q=80&auto=format&fit=crop"
@@ -731,9 +558,9 @@
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
                             <span id="count-accessoire"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </a>
 
                         <!-- Category: Offres Spéciales -->
@@ -749,10 +576,10 @@
                                     -30%</div>
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥
                                 Offres</span>
                             <span id="count-offres"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </a>
 
                     </div>
@@ -761,7 +588,7 @@
 
             <!-- Value Props Section -->
             <section
-                class="py-10 xs:py-12 sm:py-16 lg:py-20 px-3 xs:px-4 sm:px-6 md:px-20 bg-white dark:bg-background-dark">
+                class="py-10 xs:py-12 sm:py-16 lg:py-20 px-3 xs:px-4 sm:px-6 md:px-20 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] ">
                 <div class="max-w-7xl mx-auto">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 lg:gap-12">
                         <div class="flex flex-col gap-3 xs:gap-4 items-start group">
@@ -771,7 +598,7 @@
                             </div>
                             <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Produits 100%
                                 Authentiques</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos
+                            <p class="text-white/80  text-xs xs:text-sm leading-relaxed">Tous nos
                                 smartphones et accessoires sont originaux et garantis, avec factures officielles.</p>
                         </div>
                         <div class="flex flex-col gap-3 xs:gap-4 items-start group">
@@ -782,7 +609,7 @@
                             </div>
                             <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Livraison 58 Wilayas
                             </h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Livraison
+                            <p class="text-white/80  text-xs xs:text-sm leading-relaxed">Livraison
                                 rapide dans toute l'Algérie. Livraison gratuite à partir de 15 000 د.ج.</p>
                         </div>
                         <div class="flex flex-col gap-3 xs:gap-4 items-start sm:col-span-2 lg:col-span-1 group">
@@ -791,7 +618,7 @@
                                 <span class="material-symbols-outlined text-xl xs:text-2xl sm:text-3xl">shield</span>
                             </div>
                             <h3 class="font-display text-base xs:text-lg sm:text-xl font-black">Garantie 6 Mois</h3>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm leading-relaxed">Tous nos
+                            <p class="text-white/80  text-xs xs:text-sm leading-relaxed">Tous nos
                                 produits sont sous garantie. En cas de problème, nous réparons ou remplaçons votre
                                 appareil.</p>
                         </div>
@@ -800,21 +627,21 @@
             </section>
 
             <!-- New Arrivals -->
-            <section class="py-10 xs:py-12 sm:py-16 border-y border-white/5 bg-slate-50 dark:bg-background-dark/50"
+            <section class="py-10 xs:py-12 sm:py-16 border-y border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg dark:bg-background-dark/50"
                 id="new-arrivals">
                 <div class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-20">
                     <div
                         class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-6 xs:mb-8">
                         <div class="flex flex-col gap-1.5 xs:gap-2">
                             <h2
-                                class="font-display text-slate-900 dark:text-white text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
+                                class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
                                 Nouveautés</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les derniers
+                            <p class="text-white/80  text-xs xs:text-sm font-medium">Les derniers
                                 smartphones arrivés en stock</p>
                         </div>
                         <div class="flex gap-1.5 xs:gap-2">
                             <button id="new-prev"
-                                class="group flex h-9 w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-slate-200 dark:border-white/10 hover:border-secondary text-slate-600 dark:text-slate-400 hover:text-secondary transition-all active:scale-90"
+                                class="group flex h-9 w-9 xs:h-10 xs:w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-[rgba(255,255,255,0.2)]  hover:border-secondary text-white/90  hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-all active:scale-90"
                                 aria-label="Précédent">
                                 <span
                                     class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">chevron_left</span>
@@ -831,13 +658,13 @@
                     <div class="flex overflow-x-auto gap-3 xs:gap-4 sm:gap-6 no-scrollbar pb-3 xs:pb-4 -mx-1 xs:mx-0 px-1 xs:px-0 snap-x"
                         id="new-arrivals-container">
                         <div
-                            class="w-full text-center py-12 xs:py-16 text-slate-500 font-medium animate-pulse text-xs xs:text-sm">
+                            class="w-full text-center py-12 xs:py-16 text-white/80 font-medium animate-pulse text-xs xs:text-sm">
                             Chargement...</div>
                     </div>
 
                     <div class="text-center mt-6 xs:mt-8">
                         <a href="search.html"
-                            class="inline-flex items-center gap-1.5 xs:gap-2 text-secondary font-medium text-xs xs:text-sm hover:gap-2.5 xs:hover:gap-3 transition-all">
+                            class="inline-flex items-center gap-1.5 xs:gap-2 text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)] font-medium text-xs xs:text-sm hover:gap-2.5 xs:hover:gap-3 transition-all">
                             Voir tous les produits
                             <span class="material-symbols-outlined text-[14px] xs:text-[16px]">arrow_forward</span>
                         </a>
@@ -847,30 +674,30 @@
 
             <!-- Featured Collection Grid -->
             <section
-                class="bg-white dark:bg-background-dark py-12 xs:py-16 sm:py-20 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-20">
+                class="bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  py-12 xs:py-16 sm:py-20 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-20">
                 <div class="max-w-7xl mx-auto">
                     <div
                         class="flex flex-col md:flex-row items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-8 xs:mb-10 sm:mb-12">
                         <div class="flex flex-col gap-1.5 xs:gap-2">
-                            <div class="flex items-center gap-1.5 xs:gap-2 text-secondary">
+                            <div class="flex items-center gap-1.5 xs:gap-2 text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)]">
                                 <span class="material-symbols-outlined text-sm font-bold">star</span>
                                 <span
                                     class="text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest">Sélection
                                     Premium</span>
                             </div>
                             <h2
-                                class="font-display text-slate-900 dark:text-white text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
+                                class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-xl xs:text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
                                 Produits Vedettes</h2>
-                            <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Les modèles les
+                            <p class="text-white/80  text-xs xs:text-sm font-medium">Les modèles les
                                 plus populaires au meilleur prix</p>
                         </div>
-                        <a class="group flex items-center gap-1.5 xs:gap-2 text-slate-900 dark:text-white font-bold"
+                        <a class="group flex items-center gap-1.5 xs:gap-2 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-bold"
                             href="search.html">
                             <span
                                 class="text-xs xs:text-sm underline underline-offset-8 decoration-secondary/30 group-hover:decoration-secondary transition-all">Voir
                                 tout</span>
                             <div
-                                class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg xs:rounded-xl bg-slate-100 dark:bg-white/5 transition-transform group-hover:rotate-45">
+                                class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg xs:rounded-xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  transition-transform group-hover:rotate-45">
                                 <span
                                     class="material-symbols-outlined text-[14px] xs:text-[16px] sm:text-[18px]">north_east</span>
                             </div>
@@ -879,7 +706,7 @@
 
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 xs:gap-4 sm:gap-6 lg:gap-8"
                         id="featured-products-container">
-                        <div class="col-span-full text-center py-12 xs:py-16 italic text-slate-400 text-xs xs:text-sm">
+                        <div class="col-span-full text-center py-12 xs:py-16 italic text-white/60 text-xs xs:text-sm">
                             Chargement...</div>
                     </div>
                 </div>
@@ -889,32 +716,32 @@
             <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
                 <div class="mx-3 xs:mx-4 mb-3 xs:mb-4">
                     <div
-                        class="flex items-center justify-between glass-light dark:glass rounded-xl xs:rounded-2xl p-2 xs:p-3 shadow-lg">
+                        class="flex items-center justify-between glass-light  rounded-xl xs:rounded-2xl p-2 xs:p-3 shadow-lg">
                         <a href="index.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-secondary/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.2)] transition-all">
                             <span
-                                class="material-symbols-outlined text-secondary text-[18px] xs:text-[20px]">home</span>
+                                class="material-symbols-outlined text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)] text-[18px] xs:text-[20px]">home</span>
                             <span
-                                class="text-[8px] xs:text-[9px] font-medium text-slate-600 dark:text-slate-300">Accueil</span>
+                                class="text-[8px] xs:text-[9px] font-medium text-white/90 ">Accueil</span>
                         </a>
                         <a href="search.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-secondary/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.2)] transition-all">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">search</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Rechercher</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Rechercher</span>
                         </a>
                         <a href="tracking.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-secondary/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.2)] transition-all">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Suivi</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Suivi</span>
                         </a>
                         <a href="#"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-secondary/10 transition-all"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.2)] transition-all"
                             onclick="showToast('❤️ Ajouté aux favoris', 'info')">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Favoris</span>
                         </a>
                     </div>
                 </div>
@@ -942,7 +769,7 @@
                                 class="flex-1 h-11 xs:h-12 sm:h-14 rounded-xl xs:rounded-2xl px-4 xs:px-5 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all text-xs xs:text-sm"
                                 placeholder="votre@email.com" required type="email" />
                             <button
-                                class="h-11 xs:h-12 sm:h-14 px-5 xs:px-6 sm:px-8 bg-white text-primary font-display font-black rounded-xl xs:rounded-2xl hover:bg-white/90 transition-all active:scale-95 shadow-lg text-xs xs:text-sm"
+                                class="h-11 xs:h-12 sm:h-14 px-5 xs:px-6 sm:px-8 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-display font-black rounded-xl xs:rounded-2xl hover:bg-white/90 transition-all active:scale-95 shadow-lg text-xs xs:text-sm"
                                 type="submit">S'inscrire</button>
                         </form>
                         <p class="text-white/50 text-[9px] xs:text-[10px] mt-3 xs:mt-4">🔒 Vos données sont sécurisées.
@@ -954,7 +781,7 @@
 
         <!-- Footer -->
         <footer
-            class="bg-slate-900 dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+            class="bg-[rgba(0,0,0,0.4)] backdrop-blur-2xl  border-t border-[rgba(255,255,255,0.15)] pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
@@ -966,14 +793,14 @@
                             </div>
                             <div class="flex flex-col">
                                 <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">
-                                    Phone Haven<span class="text-secondary">.</span></h2>
+                                    Phone Haven<span class="text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)]">.</span></h2>
                                 <span
                                     class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-white/90 font-medium whitespace-nowrap mt-0.5 tracking-wide">More
                                     Thanr store ,it's a haven for phone </span>
                             </div>
                         </a>
                         <p
-                            class="text-slate-400 dark:text-slate-500 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                            class="text-white/60  max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
                             📍 Basée à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             🚚 Livraison rapide dans les 58 wilayas<br>
@@ -985,13 +812,13 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-slate-300">
                             Navigation</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-400 dark:text-slate-500 text-xs">
-                            <li><a class="hover:text-secondary transition-colors" href="search.html">Catalogue</a></li>
-                            <li><a class="hover:text-secondary transition-colors"
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/60  text-xs">
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="search.html">Catalogue</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors"
                                     href="index.html#new-arrivals">Nouveautés</a></li>
-                            <li><a class="hover:text-secondary transition-colors"
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors"
                                     href="search.html?category=Téléphone">Téléphones</a></li>
-                            <li><a class="hover:text-secondary transition-colors"
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors"
                                     href="search.html?category=Accessoire">Accessoires</a></li>
                         </ul>
                     </div>
@@ -1000,12 +827,12 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-slate-300">
                             Assistance</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-400 dark:text-slate-500 text-xs">
-                            <li><a class="hover:text-secondary transition-colors" href="tracking.html">Suivi
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/60  text-xs">
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="tracking.html">Suivi
                                     Commande</a></li>
-                            <li><a class="hover:text-secondary transition-colors" href="#">Livraison & Retours</a></li>
-                            <li><a class="hover:text-secondary transition-colors" href="#">Nous Contacter</a></li>
-                            <li><a class="hover:text-secondary transition-colors" href="#">FAQ</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">FAQ</a></li>
                         </ul>
                     </div>
 
@@ -1013,19 +840,19 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-slate-300">
                             Légal</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-400 dark:text-slate-500 text-xs">
-                            <li><a class="hover:text-secondary transition-colors" href="#">Confidentialité</a></li>
-                            <li><a class="hover:text-secondary transition-colors" href="#">Conditions</a></li>
-                            <li><a class="hover:text-secondary transition-colors" href="#">Garantie</a></li>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/60  text-xs">
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">Conditions</a></li>
+                            <li><a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors" href="#">Garantie</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div
-                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-800 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-500">
+                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-[rgba(255,255,255,0.1)]  flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white/80">
                     <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
-                        <a class="hover:text-secondary transition-colors flex items-center gap-1.5"
+                        <a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors flex items-center gap-1.5"
                             href="https://instagram.com" target="_blank" aria-label="Instagram">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -1033,7 +860,7 @@
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Instagram</span>
                         </a>
-                        <a class="hover:text-secondary transition-colors flex items-center gap-1.5"
+                        <a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors flex items-center gap-1.5"
                             href="https://facebook.com" target="_blank" aria-label="Facebook">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -1041,7 +868,7 @@
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Facebook</span>
                         </a>
-                        <a class="hover:text-secondary transition-colors flex items-center gap-1.5"
+                        <a class="hover:text-[#ffb3c6] hover:drop-shadow-[0_0_15px_rgba(255,159,184,0.8)] transition-colors flex items-center gap-1.5"
                             href="https://tiktok.com" target="_blank" aria-label="TikTok">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -1172,9 +999,9 @@
 
             return `
                 <a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}">
-                    <div class="relative ${height} w-full bg-slate-50 dark:bg-white/5 ${radius} overflow-hidden border border-white/5 hover:border-secondary/30 transition-all duration-500">
+                    <div class="relative ${height} w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  ${radius} overflow-hidden border border-[rgba(255,255,255,0.15)] hover:border-secondary/30 transition-all duration-500">
                         <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
-                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" 
+                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  shadow-lg flex items-center justify-center text-white/90  hover:text-red-500 transition-colors active:scale-90" 
                                     onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
                                 <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                             </button>
@@ -1193,8 +1020,8 @@
                         <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full gradient-bg text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                     </div>
                     <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
-                        <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-secondary transition-colors">${product.name}</h3>
-                        <p class="text-secondary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
+                        <h3 class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-secondary transition-colors">${product.name}</h3>
+                        <p class="text-[#ffb3c6] drop-shadow-[0_0_12px_rgba(255,159,184,0.6)] font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
                     </div>
                 </a>
             `;
@@ -1217,8 +1044,8 @@
         // Render Products
         function renderStorefront(products) {
             if (products.length === 0) {
-                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
-                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-slate-500 text-xs">Aucun produit</div>';
+                newArrivalsContainer.innerHTML = '<div class="w-full text-center py-12 text-white/80 text-xs">Aucun produit</div>';
+                featuredContainer.innerHTML = '<div class="w-full text-center py-12 text-white/80 text-xs">Aucun produit</div>';
                 return;
             }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 
 <head>
@@ -145,183 +145,10 @@
             overscroll-behavior-y: contain;
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="lg:hidden"></div>
 
@@ -333,28 +160,28 @@
                 <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
                     <div class="flex items-center gap-3">
                         <div
-                            class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
                         <div class="min-w-0">
                             <h1
                                 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">
-                                Phone Haven<span class="text-primary italic">.</span></h1>
+                                Phone Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h1>
                             <p
-                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">
+                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-white/80 hidden sm:block">
                                 Terminal</p>
                         </div>
                     </div>
                     <!-- Close button for mobile -->
                     <button id="sidebar-close"
-                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white">
+                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white">
                         <span class="material-symbols-outlined text-lg">close</span>
                     </button>
                 </div>
 
                 <nav class="space-y-1">
                     <a href="admin-analytics.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span
@@ -368,14 +195,14 @@
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
                     </a>
                     <a href="admin-products.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
                     <a href="admin-reports.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span
@@ -393,12 +220,12 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-black text-white truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized
                         </p>
                     </div>
                 </div>
                 <a href="index.html"
-                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
+                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     <span class="hidden xs:inline">Lock Session</span>
                 </a>
@@ -406,7 +233,7 @@
         </aside>
 
         <!-- Main Workspace -->
-        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+        <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
             </div>
@@ -417,14 +244,14 @@
                 <div class="flex items-center gap-3 lg:gap-6 w-full">
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all clickable">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
 
                     <!-- Search: Full width on mobile -->
                     <div class="relative group flex-1 lg:flex-none">
                         <span
-                            class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
+                            class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-white/80 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
                         <input type="text" placeholder="SEARCH..."
                             class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
@@ -433,13 +260,13 @@
                 <!-- Actions: Stack on mobile -->
                 <div class="flex items-center gap-2 lg:gap-6 ml-2 lg:ml-0">
                     <button
-                        class="size-10 lg:size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all relative clickable">
+                        class="size-10 lg:size-12 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all relative clickable">
                         <span class="material-symbols-outlined text-lg lg:text-xl">notifications</span>
                         <span
                             class="absolute top-2.5 lg:top-3 right-2.5 lg:right-3 size-2 bg-primary rounded-full border-2 border-terminal-black"></span>
                     </button>
                     <button
-                        class="h-10 lg:h-12 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
+                        class="h-10 lg:h-12 px-4 lg:px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
                         <span class="hidden sm:inline">Initiate </span>Order
                     </button>
                 </div>
@@ -453,16 +280,16 @@
                         <div class="flex items-center gap-2 mb-2">
                             <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
                             <span
-                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-primary">Real-time</span>
+                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Real-time</span>
                         </div>
                         <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Orders
                             Ledger</h2>
                     </div>
                     <div class="flex gap-2 flex-wrap">
                         <button
-                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Filter</button>
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Filter</button>
                         <button
-                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-all clickable">Export</button>
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Export</button>
                     </div>
                 </div>
 
@@ -474,22 +301,22 @@
                                 <thead>
                                     <tr class="bg-white/5 border-b terminal-border">
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                             Signature</th>
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                             Client</th>
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                             Timeline</th>
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                             Value</th>
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                             State</th>
                                         <th
-                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                            class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                         </th>
                                     </tr>
                                 </thead>
@@ -509,15 +336,15 @@
                 <!-- Pagination / Footer -->
                 <div class="mt-6 lg:mt-8 flex items-center justify-between">
                     <p id="order-count"
-                        class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                        class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/80">
                         Loading...</p>
                     <div class="flex gap-1.5 lg:gap-2">
                         <button
-                            class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                            class="size-8 lg:size-9 glass rounded-lg text-white/60 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
                             <span class="material-symbols-outlined text-sm">west</span>
                         </button>
                         <button
-                            class="size-8 lg:size-9 glass rounded-lg text-slate-400 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
+                            class="size-8 lg:size-9 glass rounded-lg text-white/60 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
                             <span class="material-symbols-outlined text-sm">east</span>
                         </button>
                     </div>
@@ -580,7 +407,7 @@
                 'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
                 'Cancelled': 'text-rose-400 border-rose-400/20 bg-rose-400/5'
             };
-            return styles[status] || 'text-slate-400 border-white/10';
+            return styles[status] || 'text-white/60 border-white/10';
         }
 
         // Render Table Row (Desktop)
@@ -597,7 +424,7 @@
 
             tr.innerHTML = `
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs font-black text-white uppercase tracking-widest">
-                    <span class="text-slate-600">ID_</span> ${order.id?.substring(0, 8).toUpperCase() || 'N/A'}
+                    <span class="text-white/90">ID_</span> ${order.id?.substring(0, 8).toUpperCase() || 'N/A'}
                 </td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6">
                     <div class="flex items-center gap-2 lg:gap-3">
@@ -607,7 +434,7 @@
                         <span class="text-[11px] lg:text-xs font-bold text-white tracking-wide truncate max-w-[120px] lg:max-w-none">${order.customerName || 'Anonymous'}</span>
                     </div>
                 </td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[9px] lg:text-[10px] font-medium text-slate-400 uppercase tracking-widest whitespace-nowrap">${date}</td>
+                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[9px] lg:text-[10px] font-medium text-white/60 uppercase tracking-widest whitespace-nowrap">${date}</td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-[11px] lg:text-xs font-black text-white whitespace-nowrap">${formatPrice(order.total)}</td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6">
                     <span class="px-2 lg:px-3 py-1 rounded-md border text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] ${statusClass}">
@@ -615,7 +442,7 @@
                     </span>
                 </td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-right">
-                    <button class="text-slate-500 group-hover:text-white transition-colors clickable">
+                    <button class="text-white/80 group-hover:text-white transition-colors clickable">
                         <span class="material-symbols-outlined text-sm">open_in_new</span>
                     </button>
                 </td>
@@ -634,7 +461,7 @@
             card.innerHTML = `
                 <div class="flex justify-between items-start mb-3">
                     <div class="min-w-0">
-                        <span class="text-[8px] font-black uppercase tracking-[0.2em] text-slate-500">ID_</span>
+                        <span class="text-[8px] font-black uppercase tracking-[0.2em] text-white/80">ID_</span>
                         <span class="text-xs font-black text-white">${order.id?.substring(0, 8).toUpperCase() || 'N/A'}</span>
                     </div>
                     <span class="px-2 py-1 rounded border text-[8px] font-black uppercase tracking-wider ${statusClass} flex-shrink-0">
@@ -649,16 +476,16 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3 text-[9px]">
                     <div>
-                        <span class="text-slate-500 uppercase block mb-0.5">Timeline</span>
+                        <span class="text-white/80 uppercase block mb-0.5">Timeline</span>
                         <p class="text-white font-medium">${date}</p>
                     </div>
                     <div class="text-right">
-                        <span class="text-slate-500 uppercase block mb-0.5">Value</span>
+                        <span class="text-white/80 uppercase block mb-0.5">Value</span>
                         <p class="text-white font-black">${formatPrice(order.total)}</p>
                     </div>
                 </div>
                 <div class="mt-3 pt-3 border-t terminal-border flex justify-end">
-                    <span class="text-[9px] font-black uppercase tracking-widest text-primary flex items-center gap-1">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-1">
                         View Details
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </span>
@@ -674,9 +501,9 @@
             if (orders.length === 0) {
                 const emptyMsg = 'Void: No transaction data detected';
                 if (isMobile) {
-                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</div>`;
+                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/90 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</div>`;
                 } else {
-                    tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-slate-600 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-white/90 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</td></tr>`;
                 }
                 orderCount.textContent = 'LEGER EMPTY';
                 return;
@@ -706,8 +533,8 @@
         // Load orders from database
         async function loadOrders() {
             const loadingMsg = 'Accessing ledger...';
-            tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
-            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-500 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
+            tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
+            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
 
             try {
                 const orders = await getOrders();

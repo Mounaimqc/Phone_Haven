@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 
 <head>
@@ -72,196 +72,23 @@
             color: white !important;
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
     <div class="flex h-full w-full">
         <!-- Sidebar -->
         <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
             <div class="p-8">
                 <div class="flex items-center gap-3 mb-10">
                     <div
-                        class="size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
+                        class="size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
                         <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
                     </div>
                     <div>
                         <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
-                                class="text-primary italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-500">Logistics Node Alpha
+                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
+                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80">Logistics Node Alpha
                         </p>
                     </div>
                 </div>
@@ -274,19 +101,19 @@
                         <span class="text-xs font-black uppercase tracking-widest">Dashboard</span>
                     </a>
                     <a href="admin-orders.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        class="flex items-center gap-4 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
                         <span
                             class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span class="text-xs font-black uppercase tracking-widest">Orders</span>
                     </a>
                     <a href="admin-products.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        class="flex items-center gap-4 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
                         <span
                             class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
                         <span class="text-xs font-black uppercase tracking-widest">Collection</span>
                     </a>
                     <a href="admin-reports.html"
-                        class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+                        class="flex items-center gap-4 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
                         <span
                             class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span class="text-xs font-black uppercase tracking-widest">Analytics</span>
@@ -302,11 +129,11 @@
                     </div>
                     <div>
                         <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-primary">Authorized</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized</p>
                     </div>
                 </div>
                 <a href="index.html"
-                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     Lock Session
                 </a>
@@ -314,7 +141,7 @@
         </aside>
 
         <!-- Main Workspace -->
-        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+        <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
             </div>
@@ -324,12 +151,12 @@
                 <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Dashboard</h2>
                 <div class="flex items-center gap-6">
                     <button
-                        class="size-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                        class="size-12 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all">
                         <span class="material-symbols-outlined">sync</span>
                     </button>
                     <div class="flex items-center gap-3 px-4 py-2 bg-primary/10 border border-primary/20 rounded-xl">
                         <span class="size-2 rounded-full bg-primary animate-ping"></span>
-                        <span class="text-[9px] font-black uppercase tracking-widest text-primary">System Online</span>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">System Online</span>
                     </div>
                 </div>
             </header>
@@ -340,7 +167,7 @@
                     <div
                         class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">inventory_2</span>
                             Inventory Control
                         </p>
@@ -353,7 +180,7 @@
                     <div
                         class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">receipt_long</span>
                             Total Transactions
                         </p>
@@ -366,7 +193,7 @@
                     <div
                         class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">payments</span>
                             Gross Revenue
                         </p>
@@ -379,7 +206,7 @@
                     <div
                         class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-6 flex items-center gap-2">
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">analytics</span>
                             Average Yield
                         </p>
@@ -398,11 +225,11 @@
                             <div>
                                 <h3 class="font-display text-2xl font-black text-white tracking-tighter">Volume
                                     Trajectory</h3>
-                                <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mt-1">Growth
+                                <p class="text-[10px] font-black uppercase tracking-widest text-white/80 mt-1">Growth
                                     analysis over 6 month horizon</p>
                             </div>
                             <div
-                                class="size-10 bg-white shadow-xl rounded-xl flex items-center justify-center text-black">
+                                class="size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] shadow-xl rounded-xl flex items-center justify-center text-black">
                                 <span class="material-symbols-outlined">trending_up</span>
                             </div>
                         </div>
@@ -423,7 +250,7 @@
                                 <line stroke="rgba(255,255,255,0.05)" x1="0" x2="800" y1="180" y2="180"></line>
                             </svg>
                             <div
-                                class="flex justify-between mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">
+                                class="flex justify-between mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
                                 <span>Period_A</span>
                                 <span>Period_B</span>
                                 <span>Period_C</span>
@@ -440,7 +267,7 @@
                         <div class="space-y-8">
                             <div>
                                 <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
                                     <span>Elite Tier</span>
                                     <span class="text-white">15.4%</span>
                                 </div>
@@ -451,7 +278,7 @@
                             </div>
                             <div>
                                 <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
                                     <span>Recurring</span>
                                     <span class="text-white">45.2%</span>
                                 </div>
@@ -461,7 +288,7 @@
                             </div>
                             <div>
                                 <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
                                     <span>New Entries</span>
                                     <span class="text-white">32.9%</span>
                                 </div>
@@ -470,7 +297,7 @@
                                 </div>
                             </div>
                             <div class="mt-12 p-6 glass rounded-2xl">
-                                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 italic">
+                                <p class="text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 italic">
                                     Recommendation Engine</p>
                                 <p class="text-xs text-white/80 leading-relaxed font-medium">Focus acquisition protocols
                                     on Elite Tier clients to optimize yield trajectory in Q3.</p>
@@ -485,7 +312,7 @@
                         <h3 class="font-display text-2xl font-black text-white tracking-tighter">Recent Transmissions
                         </h3>
                         <a href="admin-orders.html"
-                            class="h-10 px-6 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all flex items-center">Open
+                            class="h-10 px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all flex items-center">Open
                             Full Ledger</a>
                     </div>
                     <div class="overflow-x-auto">
@@ -493,16 +320,16 @@
                             <thead>
                                 <tr class="border-b terminal-border">
                                     <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
                                         Node_ID</th>
                                     <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
                                         Client</th>
                                     <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
                                         State</th>
                                     <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">
+                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80 text-right">
                                         Value</th>
                                 </tr>
                             </thead>
@@ -557,7 +384,7 @@
                             'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
                             'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
                             'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5'
-                        }[order.status] || 'text-slate-400 border-white/10';
+                        }[order.status] || 'text-white/60 border-white/10';
 
                         tr.innerHTML = `
                             <td class="px-10 py-6 text-xs font-black text-white uppercase tracking-widest">#${order.id.substring(0, 8).toUpperCase()}</td>
@@ -565,7 +392,7 @@
                             <td class="px-10 py-6">
                                 <span class="px-3 py-1 border rounded-md ${statusClass} text-[9px] font-black uppercase tracking-widest">${order.status}</span>
                             </td>
-                            <td class="px-10 py-6 text-xs font-black text-right text-primary">${formatPrice(order.total)}</td>
+                            <td class="px-10 py-6 text-xs font-black text-right text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">${formatPrice(order.total)}</td>
                         `;
                         recentOrdersBody.appendChild(tr);
                     });

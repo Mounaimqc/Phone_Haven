@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,183 +33,10 @@
             box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.2);
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
-<body class="flex items-center justify-center min-h-screen p-6 selection:bg-indigo-500/30">
+<body class="flex items-center justify-center min-h-screen p-6 selection:bg-indigo-500/30 bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
     <div class="w-full max-w-md">
         <div class="glass p-12 rounded-[3.5rem] lock-shadow relative overflow-hidden">
             <div
@@ -223,11 +50,11 @@
                 </div>
 
                 <h1 class="font-display text-3xl font-black tracking-tight text-white mb-2">Bureau Terminal</h1>
-                <p class="text-slate-500 text-xs font-black uppercase tracking-[0.3em] mb-12">Authorization Required</p>
+                <p class="text-white/80 text-xs font-black uppercase tracking-[0.3em] mb-12">Authorization Required</p>
 
                 <form id="login-form" class="w-full space-y-6">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Access
+                        <label class="text-[10px] font-black uppercase tracking-widest text-white/60 ml-4">Access
                             Signature</label>
                         <input type="password" id="password" required
                             class="w-full h-16 bg-white/5 border border-white/10 rounded-3xl px-8 text-white font-black tracking-widest focus:outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all text-center"
@@ -235,7 +62,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full h-16 bg-white text-slate-900 rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-slate-100 active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                        class="w-full h-16 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black rounded-3xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl active:scale-[0.98] transition-all flex items-center justify-center gap-3">
                         Decrypt Dashboard
                     </button>
 
@@ -246,7 +73,7 @@
             </div>
         </div>
 
-        <p class="text-center mt-12 text-[10px] font-black uppercase tracking-[0.4em] text-slate-700">© 2024 Phone Haven
+        <p class="text-center mt-12 text-[10px] font-black uppercase tracking-[0.4em] text-white/95 font-semibold">© 2024 Phone Haven
             • Logistics Control</p>
     </div>
 

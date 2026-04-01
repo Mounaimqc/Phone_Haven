@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -264,208 +264,35 @@
             animation-delay: 0.5s;
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 selection:bg-primary/30 overscroll-behavior-y-contain">
+    class="font-body text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  selection:bg-primary/30 overscroll-behavior-y-contain bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation (Same as index.html) -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-white/5 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+            class="sticky top-0 z-[100] w-full border-b border-[rgba(255,255,255,0.15)] bg-white/90  backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
                     <div
-                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-white overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
                         <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                     </div>
                     <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
-                        Haven<span class="text-primary italic">.</span></h2>
+                        Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
                 </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="index.html">Téléphones</a>
-                    <a class="text-primary font-bold text-xs sm:text-sm" href="search.html">Catalogue</a>
-                    <a class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold text-xs sm:text-sm" href="search.html">Catalogue</a>
+                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
                         href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
@@ -475,12 +302,12 @@
                     <!-- Desktop Search with Voice -->
                     <div class="hidden md:flex relative items-center">
                         <span
-                            class="material-symbols-outlined absolute left-3 xs:left-4 text-slate-400 text-lg xs:text-xl pointer-events-none">search</span>
+                            class="material-symbols-outlined absolute left-3 xs:left-4 text-white/60 text-lg xs:text-xl pointer-events-none">search</span>
                         <input
-                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
                             placeholder="Rechercher..." type="text" id="desktop-search" />
                         <button
-                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
                             id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
                             <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                         </button>
@@ -488,7 +315,7 @@
 
                     <!-- Wishlist Button -->
                     <button
-                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 transition-all active:scale-90 relative"
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 text-white/90  transition-all active:scale-90 relative"
                         aria-label="Favoris" onclick="showToast('❤️ Fonctionnalité bientôt disponible', 'info')">
                         <span
                             class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
@@ -496,7 +323,7 @@
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 transition-all active:scale-90"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  transition-all active:scale-90"
                         aria-label="Menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
@@ -507,12 +334,12 @@
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
                     <span
-                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg xs:text-xl">search</span>
+                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg xs:text-xl">search</span>
                     <input
-                        class="w-full rounded-xl xs:rounded-2xl border-none bg-slate-100 dark:bg-white/5 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                        class="w-full rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
                         placeholder="Rechercher un produit..." type="text" id="mobile-search" />
                     <button
-                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
                         id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
                         <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                     </button>
@@ -524,19 +351,19 @@
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden"
             style="display: none;"></div>
         <div id="mobile-menu"
-            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-white dark:bg-background-dark z-[100] lg:hidden shadow-2xl">
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
-                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/5">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-[rgba(255,255,255,0.15)]">
                     <a href="index.html" class="flex items-center gap-2">
                         <div
-                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-sm">
                             <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                         </div>
                         <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span
-                                class="text-primary italic">.</span></h2>
+                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
                     </a>
                     <button id="mobile-menu-close"
-                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 transition-all"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 transition-all"
                         aria-label="Fermer le menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
                     </button>
@@ -544,32 +371,32 @@
 
                 <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
                     <ul class="flex flex-col gap-1.5 xs:gap-2">
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
                                 href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span>
                                 Téléphones</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-primary/10 text-primary font-bold"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-primary/10 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold"
                                 href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
                                 Catalogue</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
                                 href="index.html#new-arrivals"><span
                                     class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
                         </li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
                                 href="tracking.html"><span
                                     class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
                                 Commande</a></li>
                     </ul>
 
-                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/5">
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-[rgba(255,255,255,0.15)]">
                         <p
-                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 xs:mb-3 px-2">
+                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/60 mb-2 xs:mb-3 px-2">
                             Catégories</p>
                         <div class="flex flex-wrap gap-2 px-2">
                             <a href="search.html?category=Téléphone"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary transition-all">📱
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-primary hover:text-primary transition-all">📱
                                 Téléphones</a>
                             <a href="search.html?category=Accessoire"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/10 hover:border-accent hover:text-accent transition-all">🎧
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-accent hover:text-accent transition-all">🎧
                                 Accessoires</a>
                             <a href="search.html?category=Offres"
                                 class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥
@@ -578,15 +405,15 @@
                     </div>
                 </nav>
 
-                <div class="p-3 xs:p-4 border-t border-white/5 space-y-2 xs:space-y-3">
+                <div class="p-3 xs:p-4 border-t border-[rgba(255,255,255,0.15)] space-y-2 xs:space-y-3">
                     <div class="flex gap-1.5 xs:gap-2">
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
                             href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
                             href="#"><span
                                 class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
                         <button id="theme-toggle"
-                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-primary transition-all"
+                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
                             aria-label="Changer le thème">
                             <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
                         </button>
@@ -602,32 +429,32 @@
                 <div class="max-w-7xl mx-auto">
                     <!-- Breadcrumbs -->
                     <nav
-                        class="flex items-center gap-2 mb-4 xs:mb-6 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                        class="flex items-center gap-2 mb-4 xs:mb-6 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                         <a class="hover:text-primary transition-colors" href="index.html">Accueil</a>
                         <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                        <span class="text-primary font-black">Catalogue</span>
+                        <span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-black">Catalogue</span>
                     </nav>
 
                     <!-- Title & Search -->
                     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 xs:gap-6">
                         <div>
                             <h1 id="page-title"
-                                class="font-display text-slate-900 dark:text-white text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight mb-2">
+                                class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight mb-2">
                                 Tous les Produits
                             </h1>
                             <p id="result-count"
-                                class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm font-medium">Chargement du
+                                class="text-white/80  text-xs xs:text-sm font-medium">Chargement du
                                 catalogue...</p>
                         </div>
 
                         <!-- Desktop Search Bar -->
                         <div class="hidden lg:flex relative items-center max-w-md">
-                            <span class="material-symbols-outlined absolute left-4 text-slate-400 text-xl">search</span>
+                            <span class="material-symbols-outlined absolute left-4 text-white/60 text-xl">search</span>
                             <input id="search-input-desktop"
-                                class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
                                 placeholder="Rechercher smartphones, accessoires..." type="text" />
                             <button id="voice-search-page"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
                                 aria-label="Recherche vocale">
                                 <span class="material-symbols-outlined text-lg">mic</span>
                             </button>
@@ -638,12 +465,12 @@
                     <div class="lg:hidden mt-4 xs:mt-6">
                         <div class="relative">
                             <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-xl">search</span>
                             <input id="search-input-mobile"
-                                class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
                                 placeholder="Rechercher un produit..." type="text" />
                             <button id="voice-search-page-mobile"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-slate-400 hover:text-primary"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
                                 aria-label="Recherche vocale">
                                 <span class="material-symbols-outlined text-lg">mic</span>
                             </button>
@@ -653,7 +480,7 @@
             </section>
 
             <!-- Categories Quick Filter (Same style as index.html) -->
-            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-2 xs:py-3 sm:py-4 border-y border-white/5">
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-2 xs:py-3 sm:py-4 border-y border-[rgba(255,255,255,0.15)]">
                 <div class="max-w-7xl mx-auto">
                     <div
                         class="flex items-center gap-4 xs:gap-6 sm:gap-8 overflow-x-auto no-scrollbar pb-2 xs:pb-3 -mx-1 xs:mx-0 px-1 xs:px-0">
@@ -664,17 +491,17 @@
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105 flex items-center justify-center">
                                 <span
-                                    class="material-symbols-outlined text-3xl xs:text-4xl sm:text-5xl text-primary">apps</span>
+                                    class="material-symbols-outlined text-3xl xs:text-4xl sm:text-5xl text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">apps</span>
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-primary tracking-tight">Tout</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white tracking-tight">Tout</span>
                             <span id="count-all"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </button>
 
                         <!-- Téléphones -->
                         <button data-category="Téléphone"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-primary hover:bg-primary/5 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-primary hover:bg-primary/5 transition-all shadow-sm">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80&auto=format&fit=crop"
@@ -682,14 +509,14 @@
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
                             <span id="count-telephone"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </button>
 
                         <!-- Accessoires -->
                         <button data-category="Accessoire"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-slate-200 dark:border-white/10 hover:border-accent hover:bg-accent/5 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-accent hover:bg-accent/5 transition-all shadow-sm">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-accent/25 to-orange-500/25 overflow-hidden shadow-lg group-hover:shadow-accent/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&q=80&auto=format&fit=crop"
@@ -697,9 +524,9 @@
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
                             <span id="count-accessoire"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </button>
 
                         <!-- Offres -->
@@ -715,10 +542,10 @@
                                     -30%</div>
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥
+                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥
                                 Offres</span>
                             <span id="count-offres"
-                                class="text-[10px] xs:text-[11px] text-slate-400 dark:text-slate-500">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
                         </button>
 
                     </div>
@@ -736,35 +563,35 @@
 
                                 <!-- Price Filter -->
                                 <div class="filter-item">
-                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-4">
                                         Prix</h3>
                                     <div class="space-y-3">
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="all" checked
-                                                class="w-4 h-4 text-primary focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
                                             <span
-                                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Tous
+                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Tous
                                                 les prix</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="low"
-                                                class="w-4 h-4 text-primary focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
                                             <span
-                                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Moins
+                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Moins
                                                 de 10.000 د.ج</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="medium"
-                                                class="w-4 h-4 text-primary focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
                                             <span
-                                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">10.000
+                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">10.000
                                                 - 50.000 د.ج</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="high"
-                                                class="w-4 h-4 text-primary focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
                                             <span
-                                                class="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Plus
+                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Plus
                                                 de 50.000 د.ج</span>
                                         </label>
                                     </div>
@@ -772,10 +599,10 @@
 
                                 <!-- Sort Filter -->
                                 <div class="filter-item">
-                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4">
+                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-4">
                                         Trier par</h3>
                                     <select id="sort-select"
-                                        class="w-full bg-slate-100 dark:bg-white/5 border-none rounded-xl py-2.5 px-4 text-xs font-medium focus:ring-2 focus:ring-primary/20 transition-all">
+                                        class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-xl py-2.5 px-4 text-xs font-medium focus:ring-2 focus:ring-primary/20 transition-all">
                                         <option value="newest">🆕 Plus récents</option>
                                         <option value="price-low">💰 Prix: Croissant</option>
                                         <option value="price-high">💰 Prix: Décroissant</option>
@@ -785,9 +612,9 @@
 
                                 <!-- Quick Tips -->
                                 <div
-                                    class="filter-item glass p-4 xs:p-5 rounded-2xl xs:rounded-3xl border border-white/5">
+                                    class="filter-item glass p-4 xs:p-5 rounded-2xl xs:rounded-3xl border border-[rgba(255,255,255,0.15)]">
                                     <p
-                                        class="text-[10px] xs:text-xs font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
+                                        class="text-[10px] xs:text-xs font-medium text-white/80  leading-relaxed">
                                         💡 <strong>Astuce:</strong> Utilisez la recherche vocale 🎤 pour trouver
                                         rapidement vos produits préférés!
                                     </p>
@@ -801,9 +628,9 @@
                             <!-- Results Header -->
                             <div class="flex items-center justify-between mb-4 xs:mb-6">
                                 <span id="grid-result-count"
-                                    class="text-xs font-medium text-slate-500 dark:text-slate-400">Chargement...</span>
+                                    class="text-xs font-medium text-white/80 ">Chargement...</span>
                                 <button id="clear-filters"
-                                    class="text-xs text-primary font-medium hover:underline hidden">Effacer les
+                                    class="text-xs text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-medium hover:underline hidden">Effacer les
                                     filtres</button>
                             </div>
 
@@ -820,14 +647,14 @@
                             <!-- Empty State -->
                             <div id="empty-state" class="hidden text-center py-16 xs:py-20">
                                 <div
-                                    class="w-16 h-16 xs:w-20 xs:h-20 mx-auto mb-4 xs:mb-6 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center">
+                                    class="w-16 h-16 xs:w-20 xs:h-20 mx-auto mb-4 xs:mb-6 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  flex items-center justify-center">
                                     <span
-                                        class="material-symbols-outlined text-2xl xs:text-3xl text-slate-400">search_off</span>
+                                        class="material-symbols-outlined text-2xl xs:text-3xl text-white/60">search_off</span>
                                 </div>
                                 <h3
-                                    class="font-display text-lg xs:text-xl font-black text-slate-900 dark:text-white mb-2">
+                                    class="font-display text-lg xs:text-xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  mb-2">
                                     Aucun résultat</h3>
-                                <p class="text-slate-500 dark:text-slate-400 text-xs xs:text-sm mb-4 xs:mb-6">Essayez de
+                                <p class="text-white/80  text-xs xs:text-sm mb-4 xs:mb-6">Essayez de
                                     modifier vos critères de recherche ou de réinitialiser les filtres.</p>
                                 <button onclick="resetFilters()"
                                     class="inline-flex items-center gap-2 px-4 xs:px-6 py-2 xs:py-2.5 rounded-xl bg-primary text-white font-medium text-xs xs:text-sm hover:bg-primary/90 transition-all">
@@ -839,7 +666,7 @@
                             <!-- Load More -->
                             <div id="load-more-container" class="mt-8 xs:mt-12 text-center hidden">
                                 <button id="load-more-btn"
-                                    class="inline-flex items-center gap-2 px-6 xs:px-8 py-3 xs:py-3.5 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-medium text-xs xs:text-sm hover:bg-primary hover:text-white transition-all">
+                                    class="inline-flex items-center gap-2 px-6 xs:px-8 py-3 xs:py-3.5 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/95 font-semibold  font-medium text-xs xs:text-sm hover:bg-primary hover:text-white transition-all">
                                     <span
                                         class="material-symbols-outlined text-[16px] xs:text-[18px]">expand_more</span>
                                     Charger plus
@@ -858,27 +685,27 @@
                         <a href="index.html"
                             class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">home</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Accueil</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">home</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Accueil</span>
                         </a>
                         <a href="search.html"
                             class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl bg-primary/10 transition-all">
                             <span
-                                class="material-symbols-outlined text-primary text-[18px] xs:text-[20px]">search</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-primary">Rechercher</span>
+                                class="material-symbols-outlined text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Rechercher</span>
                         </a>
                         <a href="tracking.html"
                             class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">local_shipping</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Suivi</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Suivi</span>
                         </a>
                         <a href="#"
                             class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all"
                             onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
                             <span
-                                class="material-symbols-outlined text-slate-400 text-[18px] xs:text-[20px]">favorite_border</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-slate-400">Favoris</span>
+                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Favoris</span>
                         </a>
                     </div>
                 </div>
@@ -888,21 +715,21 @@
 
         <!-- Footer (Same as index.html with 2026) -->
         <footer
-            class="bg-white dark:bg-background-dark border-t border-white/5 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+            class="bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  border-t border-[rgba(255,255,255,0.15)] pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
                     <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
                         <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
                             <div
-                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-white overflow-hidden shadow-sm">
+                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-sm">
                                 <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
                             </div>
                             <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
-                                Haven<span class="text-primary italic">.</span></h2>
+                                Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
                         </a>
                         <p
-                            class="text-slate-600 dark:text-slate-400 max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                            class="text-white/90  max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
                             📍 Basée à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             🚚 Livraison rapide dans les 58 wilayas<br>
@@ -914,7 +741,7 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
                             Navigation</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
                             <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
                             <li><a class="hover:text-primary transition-colors"
                                     href="index.html#new-arrivals">Nouveautés</a></li>
@@ -929,7 +756,7 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
                             Assistance</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
                             <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a>
                             </li>
                             <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
@@ -942,7 +769,7 @@
                         <h4
                             class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
                             Légal</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-slate-500 dark:text-slate-400 text-xs">
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
                             <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
                             <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
@@ -951,7 +778,7 @@
                 </div>
 
                 <div
-                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100  flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white/60">
                     <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
                         <a class="hover:text-primary transition-colors flex items-center gap-1.5"
@@ -1047,9 +874,9 @@
         // Create Product Card (Same style as index.html)
         function createProductCard(product) {
             return `<a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline">
-                <div class="relative aspect-square w-full bg-slate-50 dark:bg-white/5 rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-500">
+                <div class="relative aspect-square w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-[rgba(255,255,255,0.15)] hover:border-primary/30 transition-all duration-500">
                     <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
-                        <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
+                        <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  shadow-lg flex items-center justify-center text-white/90  hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
                             <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                         </button>
                     </div>
@@ -1064,8 +891,8 @@
                     <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                 </div>
                 <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
-                    <h3 class="font-display text-slate-900 dark:text-slate-100 font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
-                    <p class="text-primary font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
+                    <h3 class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
+                    <p class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
                 </div>
             </a>`;
         }
@@ -1184,10 +1011,10 @@
             if (searchInputMobile) searchInputMobile.value = '';
             categoryFilterBtns.forEach(btn => {
                 btn.classList.remove('border-primary', 'bg-primary/5');
-                btn.classList.add('border-slate-200', 'dark:border-white/10');
+                btn.classList.add('border-[rgba(255,255,255,0.2)]', '');
                 if (btn.dataset.category === 'All') {
                     btn.classList.add('border-primary', 'bg-primary/5');
-                    btn.classList.remove('border-slate-200', 'dark:border-white/10');
+                    btn.classList.remove('border-[rgba(255,255,255,0.2)]', '');
                 }
             });
             document.querySelector('input[name="price"][value="all"]').checked = true;
@@ -1275,10 +1102,10 @@
                     // Update active state
                     categoryFilterBtns.forEach(b => {
                         b.classList.remove('border-primary', 'bg-primary/5');
-                        b.classList.add('border-slate-200', 'dark:border-white/10');
+                        b.classList.add('border-[rgba(255,255,255,0.2)]', '');
                     });
                     btn.classList.add('border-primary', 'bg-primary/5');
-                    btn.classList.remove('border-slate-200', 'dark:border-white/10');
+                    btn.classList.remove('border-[rgba(255,255,255,0.2)]', '');
 
                     applyFilters();
                 });

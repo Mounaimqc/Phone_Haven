@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 
 <head>
@@ -182,189 +182,16 @@
             transform: scale(0.98);
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="lg:hidden"></div>
 
     <!-- Log Console (Minimal) -->
     <div id="debug-console"
-        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-primary text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none hidden lg:block">
+        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none hidden lg:block">
         <div class="flex justify-between items-center mb-2">
             <span class="font-black uppercase tracking-widest">Sys_Log</span>
         </div>
@@ -396,34 +223,34 @@
                 <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
                     <div class="flex items-center gap-3">
                         <div
-                            class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
                         <div class="min-w-0">
                             <h1
                                 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">
-                                Phone Haven<span class="text-primary italic">.</span></h1>
+                                Phone Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h1>
                             <p
-                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">
+                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-white/80 hidden sm:block">
                                 Terminal</p>
                         </div>
                     </div>
                     <button id="sidebar-close"
-                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white clickable">
+                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white clickable">
                         <span class="material-symbols-outlined text-lg">close</span>
                     </button>
                 </div>
 
                 <nav class="space-y-1">
                     <a href="admin-analytics.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
                     </a>
                     <a href="admin-orders.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span
@@ -437,7 +264,7 @@
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
                     <a href="admin-reports.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span
@@ -455,12 +282,12 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-black text-white truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized
                         </p>
                     </div>
                 </div>
                 <a href="index.html"
-                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
+                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     <span class="hidden xs:inline">Lock Session</span>
                 </a>
@@ -468,7 +295,7 @@
         </aside>
 
         <!-- Main Workspace -->
-        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+        <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
             </div>
@@ -479,7 +306,7 @@
                 <div class="flex items-center gap-3 lg:gap-8 w-full">
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all clickable">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
 
@@ -490,7 +317,7 @@
                             Node_Alpha // Inventory</h2>
                         <div class="relative w-full lg:w-80 mt-1 lg:mt-0">
                             <span
-                                class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg lg:text-sm">search</span>
+                                class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-white/80 text-lg lg:text-sm">search</span>
                             <input id="product-search"
                                 class="w-full pl-10 lg:pl-11 pr-3 lg:pr-4 py-2 lg:py-2 bg-white/5 border-white/10 rounded-xl text-[9px] lg:text-[11px] font-bold tracking-wide focus:ring-primary focus:border-primary placeholder:text-slate-600"
                                 placeholder="SEARCH..." type="text" />
@@ -501,11 +328,11 @@
                 <!-- Actions -->
                 <div class="flex items-center gap-2 lg:gap-6 flex-shrink-0 ml-2 lg:ml-0">
                     <button id="add-product-shortcut"
-                        class="h-10 lg:h-11 px-4 lg:px-6 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5 whitespace-nowrap clickable">
+                        class="h-10 lg:h-11 px-4 lg:px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-xl shadow-white/5 whitespace-nowrap clickable">
                         <span class="hidden sm:inline">New </span>Entry
                     </button>
                     <div
-                        class="size-10 lg:size-11 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 border terminal-border flex-shrink-0">
+                        class="size-10 lg:size-11 rounded-xl bg-white/5 flex items-center justify-center text-white/60 border terminal-border flex-shrink-0">
                         <span class="material-symbols-outlined text-lg lg:text-lg">settings_input_component</span>
                     </div>
                 </div>
@@ -519,7 +346,7 @@
                     <div class="lg:col-span-4 order-2 lg:order-1">
                         <div class="bg-black/40 p-6 lg:p-8 rounded-2xl lg:rounded-[3rem] terminal-border glass">
                             <h4
-                                class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-6 lg:mb-8 flex items-center gap-3">
+                                class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-6 lg:mb-8 flex items-center gap-3">
                                 <span class="size-2 bg-primary rounded-full animate-pulse"></span>
                                 <span id="form-title">Schema Input</span>
                             </h4>
@@ -529,7 +356,7 @@
                                 <!-- Product Name -->
                                 <div>
                                     <label
-                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Designation</label>
+                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 px-1">Designation</label>
                                     <input id="product-name" required
                                         class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold"
                                         placeholder="UNIT LABEL..." type="text" />
@@ -539,14 +366,14 @@
                                 <div class="grid grid-cols-2 gap-3 lg:gap-4">
                                     <div>
                                         <label
-                                            class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Valuation</label>
+                                            class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 px-1">Valuation</label>
                                         <input id="product-price" required
                                             class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold"
                                             placeholder="0" type="number" step="1" inputmode="numeric" />
                                     </div>
                                     <div>
                                         <label
-                                            class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Sector</label>
+                                            class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 px-1">Sector</label>
                                         <select id="product-category"
                                             class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold appearance-none">
                                             <option value="Téléphone">Téléphone</option>
@@ -558,7 +385,7 @@
                                 <!-- Description -->
                                 <div>
                                     <label
-                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Specification</label>
+                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 px-1">Specification</label>
                                     <textarea id="product-description"
                                         class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold resize-none"
                                         placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
@@ -567,13 +394,13 @@
                                 <!-- Image Upload -->
                                 <div>
                                     <label
-                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2 px-1">Visual
+                                        class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 px-1">Visual
                                         Asset</label>
                                     <div
                                         class="flex items-center gap-4 lg:gap-5 p-3 lg:p-4 bg-white/5 border terminal-border rounded-xl lg:rounded-2xl">
                                         <div id="image-preview-container"
                                             class="size-14 lg:size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
-                                            <span class="material-symbols-outlined text-slate-700 text-lg lg:text-xl"
+                                            <span class="material-symbols-outlined text-white/95 font-semibold text-lg lg:text-xl"
                                                 id="preview-placeholder">image</span>
                                             <img id="image-preview" class="w-full h-full object-cover hidden"
                                                 alt="Preview" />
@@ -583,7 +410,7 @@
                                                 accept="image/*" />
                                             <button type="button"
                                                 onclick="document.getElementById('product-image-file').click()"
-                                                class="w-full py-2 bg-white/5 text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary border border-primary/20 rounded-lg hover:bg-primary/10 transition-all clickable">
+                                                class="w-full py-2 bg-white/5 text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white border border-primary/20 rounded-lg hover:bg-primary/10 transition-all clickable">
                                                 <span class="hidden xs:inline">Upload </span>File
                                             </button>
                                         </div>
@@ -599,7 +426,7 @@
                                         <span class="hidden xs:inline">Verify & </span>Save
                                     </button>
                                     <button id="cancel-edit-btn"
-                                        class="hidden w-12 lg:w-14 h-12 lg:h-14 bg-white/5 text-slate-400 border terminal-border rounded-xl lg:rounded-2xl hover:text-white transition-all flex items-center justify-center clickable"
+                                        class="hidden w-12 lg:w-14 h-12 lg:h-14 bg-white/5 text-white/60 border terminal-border rounded-xl lg:rounded-2xl hover:text-white transition-all flex items-center justify-center clickable"
                                         type="button">
                                         <span class="material-symbols-outlined text-lg">close</span>
                                     </button>
@@ -632,16 +459,16 @@
                                         <thead>
                                             <tr class="border-b terminal-border">
                                                 <th
-                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white/80">
                                                     Asset</th>
                                                 <th
-                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500 hidden sm:table-cell">
+                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white/80 hidden sm:table-cell">
                                                     Sector</th>
                                                 <th
-                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white/80">
                                                     Valuation</th>
                                                 <th
-                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">
+                                                    class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white/80 text-right">
                                                     Operation</th>
                                             </tr>
                                         </thead>
@@ -712,8 +539,8 @@
         // Load Products
         async function loadProducts() {
             const loadingMsg = 'Awaiting Decryption...';
-            tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</td></tr>`;
-            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</div>`;
+            tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-white/90 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</td></tr>`;
+            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/90 text-[10px] font-black uppercase tracking-widest">${loadingMsg}</div>`;
 
             try {
                 productsList = await getProducts();
@@ -736,18 +563,18 @@
                         <div class="size-12 lg:size-14 rounded-xl lg:rounded-2xl bg-black border terminal-border bg-cover bg-center overflow-hidden rotate-2 group-hover:rotate-0 transition-transform flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
                         <div class="min-w-0">
                             <p class="text-[10px] lg:text-[11px] font-black text-white uppercase tracking-widest leading-none mb-1 truncate">${product.name}</p>
-                            <p class="text-[8px] lg:text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">ID: ${product.id?.substring(0, 6) || 'N/A'}</p>
+                            <p class="text-[8px] lg:text-[9px] font-black text-white/90 uppercase tracking-[0.2em]">ID: ${product.id?.substring(0, 6) || 'N/A'}</p>
                         </div>
                     </div>
                 </td>
-                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black text-slate-400 uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
+                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black text-white/60 uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-[10px] lg:text-[11px] font-black text-emerald-400 tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-right">
                     <div class="flex justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
-                        <button class="size-9 lg:size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-primary transition-all edit-btn clickable" data-id="${product.id}">
+                        <button class="size-9 lg:size-10 bg-white/5 text-white/60 border terminal-border rounded-xl hover:text-primary transition-all edit-btn clickable" data-id="${product.id}">
                             <span class="material-symbols-outlined text-lg">edit</span>
                         </button>
-                        <button class="size-9 lg:size-10 bg-white/5 text-slate-400 border terminal-border rounded-xl hover:text-red-500 transition-all delete-btn clickable" data-id="${product.id}">
+                        <button class="size-9 lg:size-10 bg-white/5 text-white/60 border terminal-border rounded-xl hover:text-red-500 transition-all delete-btn clickable" data-id="${product.id}">
                             <span class="material-symbols-outlined text-lg">delete</span>
                         </button>
                     </div>
@@ -768,12 +595,12 @@
                             <h4 class="text-sm font-black text-white uppercase tracking-widest truncate">${product.name}</h4>
                             <span class="text-emerald-400 font-black text-sm tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</span>
                         </div>
-                        <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">${product.category}</p>
+                        <p class="text-[9px] font-black text-white/80 uppercase tracking-widest mb-3">${product.category}</p>
                         <div class="flex gap-2">
-                            <button class="flex-1 h-9 bg-white/5 text-slate-400 border terminal-border rounded-lg hover:text-primary transition-all edit-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
+                            <button class="flex-1 h-9 bg-white/5 text-white/60 border terminal-border rounded-lg hover:text-primary transition-all edit-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
                                 Edit
                             </button>
-                            <button class="flex-1 h-9 bg-white/5 text-slate-400 border terminal-border rounded-lg hover:text-red-500 transition-all delete-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
+                            <button class="flex-1 h-9 bg-white/5 text-white/60 border terminal-border rounded-lg hover:text-red-500 transition-all delete-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
                                 Delete
                             </button>
                         </div>
@@ -792,11 +619,11 @@
                 if (isMobile) {
                     cardView.classList.remove('hidden');
                     tableView.classList.add('hidden');
-                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
+                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/90 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
                 } else {
                     cardView.classList.add('hidden');
                     tableView.classList.remove('hidden');
-                    tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-slate-600 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
+                    tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-white/90 text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
                 }
                 productCount.innerHTML = `<span class="size-1.5 bg-slate-500 rounded-full"></span> Node Empty`;
                 return;

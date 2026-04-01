@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 
 <head>
@@ -147,183 +147,10 @@
             overscroll-behavior-y: contain;
         }
     </style>
-    <style>
-        /* Ultra Premium Glassmorphism & Gradient Base */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            --glass-hover: rgba(255, 255, 255, 0.12);
-        }
-
-        html,
-        body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
-            background-attachment: fixed !important;
-            color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Clear existing solid backgrounds */
-        .bg-background-light,
-        .dark\:bg-background-dark,
-        .bg-terminal-black,
-        .bg-\[\#020617\],
-        body {
-            background-color: transparent !important;
-        }
-
-        /* Premium Glass Cards replacing solid white */
-        .bg-white,
-        .bg-slate-50,
-        .bg-slate-100 {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
-            border: 1px solid var(--glass-border) !important;
-            box-shadow: var(--glass-shadow) !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .product-card>.bg-white:hover,
-        .group:hover>.bg-white {
-            background: var(--glass-hover) !important;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
-        }
-
-        /* Forms & Inputs styling */
-        input,
-        select,
-        textarea {
-            background: rgba(0, 0, 0, 0.25) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #C64172 !important;
-            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
-            background: rgba(0, 0, 0, 0.35) !important;
-        }
-
-        /* Intelligent Text Hierarchy */
-        .text-slate-900,
-        .text-slate-800,
-        .text-gray-900,
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #ffffff !important;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        .text-slate-700,
-        .text-slate-600 {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .text-slate-500,
-        .text-slate-400,
-        .text-gray-500 {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* Accents & Brand Colors optimized for dark gradient */
-        .text-secondary,
-        .group-hover\:text-secondary:hover {
-            color: #ff9fb8 !important;
-            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
-        }
-
-        .text-primary {
-            color: #bca0ff !important;
-            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
-        }
-
-        .text-emerald-400,
-        .text-success {
-            color: #6ee7b7 !important;
-            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
-        }
-
-        .text-red-500 {
-            color: #fca5a5 !important;
-        }
-
-        .text-accent,
-        .text-amber-500 {
-            color: #fde047 !important;
-        }
-
-        /* Buttons and Interactive Elements */
-        button.bg-white,
-        a.bg-white,
-        .btn-white {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            backdrop-filter: blur(10px) !important;
-        }
-
-        button.bg-white:hover,
-        a.bg-white:hover,
-        .btn-white:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-            border-color: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        /* Special background overrides */
-        .bg-secondary {
-            background-color: rgba(198, 65, 114, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        .bg-primary {
-            background-color: rgba(73, 55, 126, 0.85) !important;
-            backdrop-filter: blur(8px) !important;
-        }
-
-        /* Navigation specifics */
-        header.bg-white,
-        header.glass {
-            background: rgba(0, 0, 0, 0.2) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(20px) !important;
-        }
-
-        /* Lists and links overrides */
-        a {
-            color: inherit;
-        }
-
-        a:hover {
-            color: #ff9fb8;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
+    
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen">
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="lg:hidden"></div>
 
@@ -335,34 +162,34 @@
                 <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
                     <div class="flex items-center gap-3">
                         <div
-                            class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
                         <div class="min-w-0">
                             <h1
                                 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">
-                                Phone Haven<span class="text-primary italic">.</span></h1>
+                                Phone Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h1>
                             <p
-                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-slate-500 hidden sm:block">
+                                class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-white/80 hidden sm:block">
                                 Terminal</p>
                         </div>
                     </div>
                     <button id="sidebar-close"
-                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-slate-400 hover:text-white clickable">
+                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white clickable">
                         <span class="material-symbols-outlined text-lg">close</span>
                     </button>
                 </div>
 
                 <nav class="space-y-1">
                     <a href="admin-analytics.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
                     </a>
                     <a href="admin-orders.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span
@@ -376,7 +203,7 @@
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
                     <a href="admin-reports.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span
@@ -394,12 +221,12 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-black text-white truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">Authorized
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized
                         </p>
                     </div>
                 </div>
                 <a href="index.html"
-                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-slate-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
+                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
                     <span class="hidden xs:inline">Lock Session</span>
                 </a>
@@ -407,7 +234,7 @@
         </aside>
 
         <!-- Main Workspace -->
-        <main class="flex-1 flex flex-col bg-terminal-black relative overflow-hidden">
+        <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
                 class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
             </div>
@@ -418,14 +245,14 @@
                 <div class="flex items-center gap-3 lg:gap-6 w-full">
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all clickable">
+                        class="lg:hidden size-10 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all clickable">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
 
                     <!-- Back Button + Title -->
                     <div class="flex items-center gap-3 lg:gap-6 min-w-0">
                         <a href="admin-orders.html"
-                            class="size-10 lg:size-11 rounded-xl bg-white/5 border terminal-border flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all flex-shrink-0 clickable">
+                            class="size-10 lg:size-11 rounded-xl bg-white/5 border terminal-border flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all flex-shrink-0 clickable">
                             <span class="material-symbols-outlined text-lg lg:text-xl">arrow_back</span>
                         </a>
                         <div class="min-w-0">
@@ -440,7 +267,7 @@
 
                 <!-- Date Badge -->
                 <div class="flex-shrink-0">
-                    <p class="text-[8px] lg:text-[10px] font-black text-slate-500 uppercase tracking-widest bg-white/5 px-3 lg:px-4 py-2 rounded-lg border terminal-border whitespace-nowrap"
+                    <p class="text-[8px] lg:text-[10px] font-black text-white/80 uppercase tracking-widest bg-white/5 px-3 lg:px-4 py-2 rounded-lg border terminal-border whitespace-nowrap"
                         id="order-date">Sync...</p>
                 </div>
             </header>
@@ -456,7 +283,7 @@
                         <div class="bg-black/40 rounded-2xl lg:rounded-[3rem] terminal-border glass overflow-hidden">
                             <div class="p-6 lg:p-10 border-b terminal-border bg-white/5">
                                 <h3
-                                    class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
+                                    class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-3">
                                     <span class="size-2 bg-primary rounded-full animate-pulse"></span>
                                     <span class="hidden xs:inline">Subject_</span>Information_Matrix
                                 </h3>
@@ -464,14 +291,14 @@
                             <div class="p-6 lg:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
                                 <div class="space-y-2">
                                     <p
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-600">
+                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/90">
                                         Full_Designation</p>
                                     <p class="text-base lg:text-lg font-black text-white glow-text break-words"
                                         id="cust-name">Loading...</p>
                                 </div>
                                 <div class="space-y-2">
                                     <p
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-600">
+                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/90">
                                         Comm_Link</p>
                                     <p class="text-base lg:text-lg font-black text-white glow-text" id="cust-phone">
                                         Loading...</p>
@@ -479,21 +306,21 @@
                                 <div
                                     class="sm:col-span-2 space-y-2 px-4 lg:px-6 py-4 bg-white/5 rounded-2xl lg:rounded-[2rem] border terminal-border">
                                     <p
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-primary">
+                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">
                                         Destination_Coordinate</p>
                                     <p class="text-sm lg:text-base font-black text-slate-300 leading-relaxed break-words"
                                         id="cust-address">Loading...</p>
                                 </div>
                                 <div class="space-y-2">
                                     <p
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-600">
+                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/90">
                                         Regional_Sector</p>
                                     <p class="text-[10px] lg:text-[11px] font-black text-white uppercase tracking-widest"
                                         id="cust-location">Loading...</p>
                                 </div>
                                 <div class="space-y-2">
                                     <p
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-slate-600">
+                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-white/90">
                                         Transit_Protocol</p>
                                     <p class="text-[10px] lg:text-[11px] font-black text-white uppercase tracking-widest"
                                         id="cust-shipping">Loading...</p>
@@ -505,7 +332,7 @@
                         <div class="bg-black/40 rounded-2xl lg:rounded-[3rem] terminal-border glass overflow-hidden">
                             <div class="p-6 lg:p-8 border-b terminal-border bg-white/5">
                                 <h3
-                                    class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-primary flex items-center gap-3">
+                                    class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-3">
                                     <span class="size-2 bg-primary rounded-full"></span>
                                     <span class="hidden xs:inline">Asset_</span>Deployment_Manifest
                                 </h3>
@@ -516,17 +343,17 @@
                                     <div
                                         class="size-20 lg:size-24 rounded-2xl bg-black border terminal-border flex items-center justify-center shrink-0 group-hover:border-primary/50 transition-all">
                                         <span
-                                            class="material-symbols-outlined text-slate-700 text-3xl lg:text-4xl group-hover:text-primary transition-all">package_2</span>
+                                            class="material-symbols-outlined text-white/95 font-semibold text-3xl lg:text-4xl group-hover:text-primary transition-all">package_2</span>
                                     </div>
                                     <div class="flex-1 text-center sm:text-left min-w-0">
                                         <h4 class="text-lg lg:text-xl font-black text-white tracking-tight mb-2 truncate"
                                             id="item-name">Loading Product...</h4>
-                                        <p class="text-[9px] lg:text-[10px] font-black text-slate-500 uppercase tracking-widest truncate"
+                                        <p class="text-[9px] lg:text-[10px] font-black text-white/80 uppercase tracking-widest truncate"
                                             id="item-id">Product_ID: NO_SYNC</p>
                                     </div>
                                     <div class="text-center sm:text-right">
                                         <p
-                                            class="text-[8px] lg:text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">
+                                            class="text-[8px] lg:text-[9px] font-black text-white/80 uppercase tracking-widest mb-1">
                                             Total_Yield</p>
                                         <p class="font-display text-3xl lg:text-4xl font-black text-white glow-text tracking-tighter"
                                             id="item-price">0 د.ج</p>
@@ -553,7 +380,7 @@
                             <div class="space-y-6">
                                 <div>
                                     <label
-                                        class="text-[8px] lg:text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-3 lg:mb-4 text-center lg:text-left">Set_Operational_State</label>
+                                        class="text-[8px] lg:text-[9px] font-black text-white/80 uppercase tracking-widest block mb-3 lg:mb-4 text-center lg:text-left">Set_Operational_State</label>
                                     <select id="status-select"
                                         class="w-full bg-black border terminal-border rounded-xl lg:rounded-2xl px-5 lg:px-6 py-3 lg:py-4 text-[10px] lg:text-[11px] font-black uppercase tracking-widest text-white appearance-none focus:ring-primary focus:border-primary cursor-pointer text-center lg:text-left">
                                         <option value="Pending">Pending_Action</option>
@@ -575,8 +402,8 @@
                         <div
                             class="bg-indigo-950/20 p-6 lg:p-10 rounded-2xl lg:rounded-[3rem] border border-indigo-500/20">
                             <div class="flex items-center gap-2 lg:gap-3 mb-4 lg:mb-6">
-                                <span class="material-symbols-outlined text-primary text-lg lg:text-xl">info</span>
-                                <p class="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-primary">
+                                <span class="material-symbols-outlined text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-lg lg:text-xl">info</span>
+                                <p class="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">
                                     Intelligence_Log</p>
                             </div>
                             <p class="text-[10px] lg:text-[11px] text-indigo-200/60 leading-relaxed font-body">
@@ -591,7 +418,7 @@
             <!-- Footer -->
             <footer class="h-14 lg:h-16 border-t terminal-border flex items-center justify-center bg-black/50 px-4">
                 <p
-                    class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.5em] text-slate-600 text-center break-words">
+                    class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.5em] text-white/90 text-center break-words">
                     <span class="hidden xs:inline">Phone Haven_</span>MANIFEST_V1.0.4 // <span
                         class="hidden sm:inline">SECURE_</span>DECODER
                 </p>
