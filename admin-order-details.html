@@ -148,15 +148,24 @@
         }
     </style>
     <style>
-        /* Global Gradient & Responsive Fixes */
+        /* Ultra Premium Glassmorphism & Gradient Base */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            --glass-hover: rgba(255, 255, 255, 0.12);
+        }
+
         html,
         body {
             max-width: 100vw;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #49377E 0%, #C64172 100%) !important;
+            background: linear-gradient(135deg, #2D1A54 0%, #49377E 50%, #C64172 100%) !important;
             background-attachment: fixed !important;
+            color: rgba(255, 255, 255, 0.9) !important;
         }
 
+        /* Clear existing solid backgrounds */
         .bg-background-light,
         .dark\:bg-background-dark,
         .bg-terminal-black,
@@ -165,62 +174,144 @@
             background-color: transparent !important;
         }
 
+        /* Premium Glass Cards replacing solid white */
         .bg-white,
-        .bg-slate-50 {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .bg-slate-50,
+        .bg-slate-100 {
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(24px) !important;
+            -webkit-backdrop-filter: blur(24px) !important;
+            border: 1px solid var(--glass-border) !important;
+            box-shadow: var(--glass-shadow) !important;
             color: #ffffff !important;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease !important;
         }
 
+        .product-card>.bg-white:hover,
+        .group:hover>.bg-white {
+            background: var(--glass-hover) !important;
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* Forms & Inputs styling */
+        input,
+        select,
+        textarea {
+            background: rgba(0, 0, 0, 0.25) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none !important;
+            border-color: #C64172 !important;
+            box-shadow: 0 0 0 3px rgba(198, 65, 114, 0.3) !important;
+            background: rgba(0, 0, 0, 0.35) !important;
+        }
+
+        /* Intelligent Text Hierarchy */
         .text-slate-900,
         .text-slate-800,
-        .text-slate-700,
         .text-gray-900,
         h1,
         h2,
         h3,
-        h4,
-        p,
-        span {
+        h4 {
             color: #ffffff !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
         }
 
-        .text-secondary {
-            color: #C64172 !important;
+        .text-slate-700,
+        .text-slate-600 {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .text-slate-500,
+        .text-slate-400,
+        .text-gray-500 {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        /* Accents & Brand Colors optimized for dark gradient */
+        .text-secondary,
+        .group-hover\:text-secondary:hover {
+            color: #ff9fb8 !important;
+            text-shadow: 0 0 12px rgba(255, 159, 184, 0.4) !important;
         }
 
         .text-primary {
-            color: #49377E !important;
+            color: #bca0ff !important;
+            text-shadow: 0 0 12px rgba(188, 160, 255, 0.4) !important;
         }
 
-        .text-emerald-400 {
-            color: #34d399 !important;
+        .text-emerald-400,
+        .text-success {
+            color: #6ee7b7 !important;
+            text-shadow: 0 0 10px rgba(110, 231, 183, 0.3) !important;
         }
 
         .text-red-500 {
-            color: #ef4444 !important;
+            color: #fca5a5 !important;
         }
 
-        .text-accent {
-            color: #f59e0b !important;
+        .text-accent,
+        .text-amber-500 {
+            color: #fde047 !important;
         }
 
-        .bg-red-500 {
-            background-color: #ef4444 !important;
+        /* Buttons and Interactive Elements */
+        button.bg-white,
+        a.bg-white,
+        .btn-white {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(10px) !important;
         }
 
-        .bg-emerald-400 {
-            background-color: #34d399 !important;
+        button.bg-white:hover,
+        a.bg-white:hover,
+        .btn-white:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Special background overrides */
+        .bg-secondary {
+            background-color: rgba(198, 65, 114, 0.85) !important;
+            backdrop-filter: blur(8px) !important;
         }
 
         .bg-primary {
-            background-color: #49377E !important;
+            background-color: rgba(73, 55, 126, 0.85) !important;
+            backdrop-filter: blur(8px) !important;
         }
 
-        .bg-secondary {
-            background-color: #C64172 !important;
+        /* Navigation specifics */
+        header.bg-white,
+        header.glass {
+            background: rgba(0, 0, 0, 0.2) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+
+        /* Lists and links overrides */
+        a {
+            color: inherit;
+        }
+
+        a:hover {
+            color: #ff9fb8;
         }
 
         @media (max-width: 768px) {
