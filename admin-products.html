@@ -27,6 +27,7 @@
                         "background-dark": "#020617",
                         "success": "#10b981",
                         "accent": "#f59e0b",
+                        "services": "#06b6d4",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -83,6 +84,11 @@
         .text-secondary {
             color: #C64172;
             text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
+        }
+
+        .text-services {
+            color: #06b6d4;
+            text-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
         }
 
         /* ✅ FORM INPUT STYLES */
@@ -204,7 +210,7 @@
             display: none !important;
         }
 
-        /* ✅ MOBILE OPTIMIZATIONS - Without breaking Tailwind classes */
+        /* ✅ MOBILE OPTIMIZATIONS */
         @media (max-width: 1023px) {
             .sticky {
                 position: relative !important;
@@ -383,6 +389,27 @@
         .delete-btn-mobile:active {
             background: rgba(239, 68, 68, 0.5);
         }
+
+        /* ✅ BURGER MENU BUTTON - Visible text colors */
+        #mobile-menu-btn {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        #mobile-menu-btn:hover {
+            color: #ffb3c6 !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
+        }
+
+        #mobile-menu-btn .material-symbols-outlined {
+            color: #ffffff !important;
+        }
+
+        #mobile-menu-btn:hover .material-symbols-outlined {
+            color: #ffb3c6 !important;
+        }
     </style>
 </head>
 
@@ -492,9 +519,9 @@
             <!-- Header: Responsive -->
             <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
                 <div class="flex items-center gap-3 lg:gap-8 w-full">
-                    <!-- Mobile Menu Button -->
+                    <!-- Mobile Menu Button - FIXED COLORS -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden size-10 rounded-xl bg-white/10 flex items-center justify-center text-body hover:text-accent-pink transition-all clickable">
+                        class="lg:hidden size-10 rounded-xl flex items-center justify-center transition-all clickable">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
 
@@ -559,6 +586,7 @@
                                             class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-select appearance-none bg-[url('image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
                                             <option value="Téléphone">Téléphone</option>
                                             <option value="Accessoire">Accessoire</option>
+                                            <option value="Services">Services</option>
                                         </select>
                                     </div>
                                 </div>
@@ -722,10 +750,23 @@
             }
         }
 
-        // Render Table Row (Desktop) - with hover actions
+        // Get category color
+        function getCategoryColor(category) {
+            const colors = {
+                'Téléphone': 'text-secondary',
+                'Accessoire': 'text-accent',
+                'Services': 'text-services',
+                'Offres': 'text-red-400'
+            };
+            return colors[category] || 'text-body';
+        }
+
+        // Render Table Row (Desktop)
         function renderTableRow(product) {
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-white/10 transition-all group clickable';
+            const categoryColor = getCategoryColor(product.category);
+            
             tr.innerHTML = `
                 <td class="px-6 lg:px-10 py-5 lg:py-6">
                     <div class="flex items-center gap-4 lg:gap-5">
@@ -736,10 +777,9 @@
                         </div>
                     </div>
                 </td>
-                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black text-muted uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
+                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black ${categoryColor} uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-[10px] lg:text-[11px] font-black text-success tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-right">
-                    <!-- Desktop: Hover actions -->
                     <div class="desktop-actions justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
                         <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-accent-pink transition-all edit-btn clickable" data-id="${product.id}" aria-label="Edit ${product.name}">
                             <span class="material-symbols-outlined text-lg">edit</span>
@@ -748,7 +788,6 @@
                             <span class="material-symbols-outlined text-lg">delete</span>
                         </button>
                     </div>
-                    <!-- Mobile: Always visible actions (injected via CSS) -->
                     <div class="mobile-actions justify-end gap-2">
                         <button class="action-btn edit-btn-mobile edit-btn clickable px-3" data-id="${product.id}" aria-label="Edit">
                             <span class="material-symbols-outlined text-sm">edit</span>
@@ -762,10 +801,12 @@
             return tr;
         }
 
-        // Render Card (Mobile) - with ALWAYS VISIBLE actions
+        // Render Card (Mobile)
         function renderCard(product) {
             const card = document.createElement('div');
             card.className = 'product-card glass rounded-2xl p-4 terminal-border hover:border-secondary/30 transition-all clickable';
+            const categoryColor = getCategoryColor(product.category);
+            
             card.innerHTML = `
                 <div class="flex items-start gap-4">
                     <div class="size-16 rounded-xl bg-black border terminal-border bg-cover bg-center flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
@@ -774,8 +815,7 @@
                             <h4 class="text-sm font-black text-heading uppercase tracking-widest truncate">${product.name}</h4>
                             <span class="text-success font-black text-sm tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</span>
                         </div>
-                        <p class="text-[9px] font-black text-body uppercase tracking-widest mb-3">${product.category}</p>
-                        <!-- Mobile Actions: ALWAYS VISIBLE, large touch targets -->
+                        <p class="text-[9px] font-black ${categoryColor} uppercase tracking-widest mb-3">${product.category}</p>
                         <div class="flex gap-2 mobile-actions">
                             <button class="action-btn edit-btn-mobile edit-btn clickable flex-1 text-[10px] font-black uppercase tracking-widest" data-id="${product.id}">
                                 <span class="material-symbols-outlined text-base mr-1">edit</span>Edit
@@ -790,21 +830,22 @@
             return card;
         }
 
-        // Main Render Function - FIXED FOR MOBILE VISIBILITY
+        // Main Render Function
         function renderProducts(products) {
             const isMobile = window.innerWidth < 1024;
 
             if (products.length === 0) {
                 const emptyMsg = 'Repository Vacant.';
                 if (isMobile) {
-                    // Mobile: Show cards view with empty state
                     tableView.classList.add('hidden');
                     cardView.classList.remove('hidden');
+                    cardView.style.display = 'block';
                     cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
                 } else {
-                    // Desktop: Show table view with empty state
                     cardView.classList.add('hidden');
+                    cardView.style.display = 'none';
                     tableView.classList.remove('hidden');
+                    tableView.style.display = 'block';
                     tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
                 }
                 productCount.innerHTML = `<span class="size-1.5 bg-muted rounded-full"></span> Node Empty`;
@@ -812,24 +853,18 @@
             }
 
             if (isMobile) {
-                // ✅ MOBILE: Show cards with always-visible actions
-                // Make sure table is hidden and cards are visible
                 tableView.classList.add('hidden');
                 cardView.classList.remove('hidden');
-                cardView.style.display = 'block'; // Force display
-                
+                cardView.style.display = 'block';
                 cardView.innerHTML = '';
                 products.forEach(product => {
                     cardView.appendChild(renderCard(product));
                 });
             } else {
-                // ✅ DESKTOP: Show table with hover actions
-                // Make sure cards are hidden and table is visible
                 cardView.classList.add('hidden');
-                cardView.style.display = 'none'; // Force hide
+                cardView.style.display = 'none';
                 tableView.classList.remove('hidden');
-                tableView.style.display = 'block'; // Force display
-                
+                tableView.style.display = 'block';
                 tableBody.innerHTML = '';
                 products.forEach(product => {
                     tableBody.appendChild(renderTableRow(product));
@@ -837,26 +872,20 @@
             }
 
             productCount.innerHTML = `<span class="size-1.5 bg-success rounded-full animate-pulse"></span> Indexing ${products.length} Units`;
-
-            // Re-attach event listeners AFTER rendering
             attachEventListeners(products);
         }
 
-        // Attach Edit/Delete Listeners - WORKS FOR BOTH TABLE AND CARDS
+        // Attach Edit/Delete Listeners
         function attachEventListeners(products) {
-            // Delete buttons (both table and card)
             document.querySelectorAll('.delete-btn').forEach(btn => {
-                // Remove old listeners by cloning
                 const newBtn = btn.cloneNode(true);
                 btn.parentNode.replaceChild(newBtn, btn);
-                
                 newBtn.onclick = async (e) => {
                     e.stopPropagation();
                     e.preventDefault();
                     const id = newBtn.getAttribute('data-id');
                     const product = productsList.find(p => p.id === id);
                     const productName = product?.name || 'this item';
-                    
                     if (confirm(`⚠️ TERMINATE "${productName}"?`)) {
                         try {
                             await deleteProduct(id);
@@ -869,12 +898,9 @@
                 };
             });
 
-            // Edit buttons (both table and card)
             document.querySelectorAll('.edit-btn').forEach(btn => {
-                // Remove old listeners by cloning
                 const newBtn = btn.cloneNode(true);
                 btn.parentNode.replaceChild(newBtn, btn);
-                
                 newBtn.onclick = (e) => {
                     e.stopPropagation();
                     e.preventDefault();
@@ -888,7 +914,7 @@
             });
         }
 
-        // Simple toast notification
+        // Toast notification
         function showToast(message, type = 'info') {
             const toast = document.createElement('div');
             const colors = { 
@@ -958,7 +984,6 @@
             submitBtn.innerHTML = '<span class="hidden xs:inline">Update </span>Repository';
             cancelEditBtn.classList.remove('hidden');
 
-            // Scroll to form on mobile
             if (window.innerWidth < 1024) {
                 document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -1028,20 +1053,17 @@
             }
         });
 
-        // Re-render on resize (with debounce) - FIXED
+        // Re-render on resize
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                const isMobile = window.innerWidth < 1024;
-                // Force re-render with correct view
                 renderProducts(productsList);
             }, 150);
         });
 
-        // Initialize - Also call render on load to ensure mobile view
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Initial render to ensure correct view on load
             const isMobile = window.innerWidth < 1024;
             if (isMobile) {
                 tableView.classList.add('hidden');
