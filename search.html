@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#49377E" />
     <meta name="description"
         content="Catalogue Phone Haven - Découvrez tous nos smartphones et accessoires en Algérie" />
     <title>Catalogue | Phone Haven Algérie</title>
@@ -23,11 +23,15 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#6366f1",
-                        "accent": "#f59e0b",
+                        "primary": "#49377E",
+                        "secondary": "#C64172",
+                        "accent-yellow": "#FFA500",
+                        "accent-pink": "#ffb3c6",
+                        "accent-purple": "#e0d4ff",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
                         "success": "#10b981",
+                        "accent": "#f59e0b",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -50,26 +54,106 @@
     </script>
 
     <style>
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
+        /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
+        .gradient-bg {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
         }
 
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        /* ✅ SYSTÈME DE COULEURS DE TEXTE */
+        .text-heading {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
+        .text-body {
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.75);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-accent-yellow {
+            color: #FFA500;
+            text-shadow: 0 1px 4px rgba(255, 165, 0, 0.4);
+        }
+
+        .text-accent-pink {
+            color: #ffb3c6;
+            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
+        }
+
+        .text-accent-purple {
+            color: #e0d4ff;
+            text-shadow: 0 0 12px rgba(224, 212, 255, 0.4);
+        }
+
+        .text-secondary {
+            color: #C64172;
+            text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
+        }
+
+        /* ✅ FORM INPUT STYLES - TEXTE NOIR POUR DROPDOWNS */
+        .form-input {
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-shadow: none;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.4);
+        }
+
+        /* ✅ SELECT OPTIONS - TEXTE NOIR */
+        .form-select {
+            color: #1f2937 !important;
+            background-color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .form-select option {
+            color: #1f2937 !important;
+            background-color: #ffffff !important;
+            padding: 8px;
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.85);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ✅ HOVER EFFECTS */
+        .link-hover:hover {
+            color: #ffb3c6 !important;
+            text-shadow: 0 0 15px rgba(255, 179, 198, 0.7) !important;
+            transition: all 0.2s ease;
+        }
+
+        /* ✅ GLASSMORPHISM */
         .glass {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -244,55 +328,47 @@
             animation: fadeInUp 0.4s ease forwards;
         }
 
-        .filter-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .filter-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .filter-item:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .filter-item:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .filter-item:nth-child(5) {
-            animation-delay: 0.5s;
-        }
+        .filter-item:nth-child(1) { animation-delay: 0.1s; }
+        .filter-item:nth-child(2) { animation-delay: 0.2s; }
+        .filter-item:nth-child(3) { animation-delay: 0.3s; }
+        .filter-item:nth-child(4) { animation-delay: 0.4s; }
+        .filter-item:nth-child(5) { animation-delay: 0.5s; }
     </style>
-    
 </head>
 
 <body
-    class="font-body text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  selection:bg-primary/30 overscroll-behavior-y-contain bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
+    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] bg-fixed bg-no-repeat bg-cover">
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
-        <!-- Premium Navigation (Same as index.html) -->
+        <!-- Premium Navigation -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-[rgba(255,255,255,0.15)] bg-white/90  backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
-                <!-- Logo -->
+                <!-- Logo with IMAGE -->
                 <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
                     <div
-                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                        <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500 bg-white">
+                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                     </div>
-                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
-                        Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
+                    <div class="flex flex-col">
+                        <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
+                            Phone Haven<span class="text-accent-pink">.</span>
+                        </h2>
+                        <span
+                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                            More than a store, it's a haven for phones
+                        </span>
+                    </div>
                 </a>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
-                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
                         href="index.html">Téléphones</a>
-                    <a class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold text-xs sm:text-sm" href="search.html">Catalogue</a>
-                    <a class="text-white/80  text-xs sm:text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
+                    <a class="text-accent-purple font-bold text-xs sm:text-sm" href="search.html">Catalogue</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
                         href="index.html#new-arrivals">Nouveautés</a>
                 </nav>
 
@@ -302,12 +378,12 @@
                     <!-- Desktop Search with Voice -->
                     <div class="hidden md:flex relative items-center">
                         <span
-                            class="material-symbols-outlined absolute left-3 xs:left-4 text-white/60 text-lg xs:text-xl pointer-events-none">search</span>
+                            class="material-symbols-outlined absolute left-3 xs:left-4 text-muted text-lg xs:text-xl pointer-events-none">search</span>
                         <input
-                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
                             placeholder="Rechercher..." type="text" id="desktop-search" />
                         <button
-                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
+                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
                             id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
                             <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                         </button>
@@ -315,15 +391,15 @@
 
                     <!-- Wishlist Button -->
                     <button
-                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 text-white/90  transition-all active:scale-90 relative"
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white/20 transition-all active:scale-90 relative"
                         aria-label="Favoris" onclick="showToast('❤️ Fonctionnalité bientôt disponible', 'info')">
                         <span
-                            class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px]">favorite_border</span>
+                            class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px] text-body">favorite_border</span>
                     </button>
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn"
-                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl xs:rounded-xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  transition-all active:scale-90"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-lg border border-white/15 text-body transition-all active:scale-90"
                         aria-label="Menu">
                         <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
                     </button>
@@ -334,12 +410,12 @@
             <div class="lg:hidden mt-2 xs:mt-3 px-1">
                 <div class="relative">
                     <span
-                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-white/60 text-lg xs:text-xl">search</span>
+                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-muted text-lg xs:text-xl">search</span>
                     <input
-                        class="w-full rounded-xl xs:rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm focus:ring-2 focus:ring-primary/20 transition-all"
+                        class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
                         placeholder="Rechercher un produit..." type="text" id="mobile-search" />
                     <button
-                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
+                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
                         id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
                         <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                     </button>
@@ -347,76 +423,75 @@
             </div>
         </header>
 
-        <!-- Mobile Menu (Same as index.html) -->
-        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] hidden lg:hidden"
+        <!-- Mobile Menu -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] hidden lg:hidden"
             style="display: none;"></div>
         <div id="mobile-menu"
-            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  z-[100] lg:hidden shadow-2xl">
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[#1a1233]/95 backdrop-blur-xl border border-white/15 z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
-                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-[rgba(255,255,255,0.15)]">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/15">
                     <a href="index.html" class="flex items-center gap-2">
+                        <!-- Logo with IMAGE in Mobile Menu -->
                         <div
-                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-sm">
-                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                            <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                         </div>
-                        <h2 class="font-display text-base xs:text-lg font-black tracking-tighter">Phone Haven<span
-                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
+                        <div class="flex flex-col">
+                            <h2 class="font-display text-base xs:text-lg font-black tracking-tighter text-heading">
+                                Phone Haven<span class="text-accent-pink">.</span>
+                            </h2>
+                            <span
+                                class="text-[8.5px] xs:text-[10px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                                More than a store, it's a haven
+                            </span>
+                        </div>
                     </a>
                     <button id="mobile-menu-close"
-                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl dark:hover:bg-white/10 transition-all"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-white/15 transition-all"
                         aria-label="Fermer le menu">
-                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">close</span>
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px] text-body">close</span>
                     </button>
                 </div>
 
                 <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
                     <ul class="flex flex-col gap-1.5 xs:gap-2">
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span>
                                 Téléphones</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-primary/10 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-accent-purple font-bold"
                                 href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
                                 Catalogue</a></li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="index.html#new-arrivals"><span
                                     class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
                         </li>
-                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  text-white/95 font-semibold  font-medium hover:bg-primary hover:text-white transition-all text-sm"
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
                                 href="tracking.html"><span
                                     class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
                                 Commande</a></li>
                     </ul>
 
-                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-[rgba(255,255,255,0.15)]">
-                        <p
-                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/60 mb-2 xs:mb-3 px-2">
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/15">
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-muted mb-2 xs:mb-3 px-2">
                             Catégories</p>
                         <div class="flex flex-wrap gap-2 px-2">
                             <a href="search.html?category=Téléphone"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-primary hover:text-primary transition-all">📱
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-secondary hover:text-accent-pink transition-all">📱
                                 Téléphones</a>
                             <a href="search.html?category=Accessoire"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-[rgba(255,255,255,0.2)]  hover:border-accent hover:text-accent transition-all">🎧
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-accent hover:text-accent transition-all">🎧
                                 Accessoires</a>
                             <a href="search.html?category=Offres"
-                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-200 dark:border-red-500/20 hover:border-red-500 hover:text-red-500 transition-all">🔥
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-400/30 hover:border-red-500 hover:text-red-400 transition-all">🔥
                                 Offres</a>
                         </div>
                     </div>
                 </nav>
 
-                <div class="p-3 xs:p-4 border-t border-[rgba(255,255,255,0.15)] space-y-2 xs:space-y-3">
+                <div class="p-3 xs:p-4 border-t border-white/15 space-y-2 xs:space-y-3">
                     <div class="flex gap-1.5 xs:gap-2">
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl glass-card text-body hover:text-accent-pink transition-all"
                             href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
-                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
-                            href="#"><span
-                                class="material-symbols-outlined text-[16px] xs:text-[18px]">language</span></a>
-                        <button id="theme-toggle"
-                            class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/90  hover:text-primary transition-all"
-                            aria-label="Changer le thème">
-                            <span class="material-symbols-outlined text-[16px] xs:text-[18px]">dark_mode</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -429,32 +504,32 @@
                 <div class="max-w-7xl mx-auto">
                     <!-- Breadcrumbs -->
                     <nav
-                        class="flex items-center gap-2 mb-4 xs:mb-6 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                        <a class="hover:text-primary transition-colors" href="index.html">Accueil</a>
+                        class="flex items-center gap-2 mb-4 xs:mb-6 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted">
+                        <a class="link-hover transition-colors" href="index.html">Accueil</a>
                         <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                        <span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-black">Catalogue</span>
+                        <span class="text-accent-purple font-black">Catalogue</span>
                     </nav>
 
                     <!-- Title & Search -->
                     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 xs:gap-6">
                         <div>
                             <h1 id="page-title"
-                                class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight mb-2">
+                                class="font-display text-heading text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight mb-2">
                                 Tous les Produits
                             </h1>
                             <p id="result-count"
-                                class="text-white/80  text-xs xs:text-sm font-medium">Chargement du
+                                class="text-body text-xs xs:text-sm font-medium">Chargement du
                                 catalogue...</p>
                         </div>
 
                         <!-- Desktop Search Bar -->
                         <div class="hidden lg:flex relative items-center max-w-md">
-                            <span class="material-symbols-outlined absolute left-4 text-white/60 text-xl">search</span>
+                            <span class="material-symbols-outlined absolute left-4 text-muted text-xl">search</span>
                             <input id="search-input-desktop"
-                                class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                class="w-full bg-white/10 backdrop-blur-lg border border-white/15 border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
                                 placeholder="Rechercher smartphones, accessoires..." type="text" />
                             <button id="voice-search-page"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
                                 aria-label="Recherche vocale">
                                 <span class="material-symbols-outlined text-lg">mic</span>
                             </button>
@@ -465,12 +540,12 @@
                     <div class="lg:hidden mt-4 xs:mt-6">
                         <div class="relative">
                             <span
-                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/60 text-xl">search</span>
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-muted text-xl">search</span>
                             <input id="search-input-mobile"
-                                class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
+                                class="w-full bg-white/10 backdrop-blur-lg border border-white/15 border-none rounded-2xl py-3 pl-12 pr-12 text-sm font-medium form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
                                 placeholder="Rechercher un produit..." type="text" />
                             <button id="voice-search-page-mobile"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-white/60 hover:text-primary"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
                                 aria-label="Recherche vocale">
                                 <span class="material-symbols-outlined text-lg">mic</span>
                             </button>
@@ -479,44 +554,44 @@
                 </div>
             </section>
 
-            <!-- Categories Quick Filter (Same style as index.html) -->
-            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-2 xs:py-3 sm:py-4 border-y border-[rgba(255,255,255,0.15)]">
+            <!-- Categories Quick Filter -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-2 xs:py-3 sm:py-4 border-y border-white/15">
                 <div class="max-w-7xl mx-auto">
                     <div
                         class="flex items-center gap-4 xs:gap-6 sm:gap-8 overflow-x-auto no-scrollbar pb-2 xs:pb-3 -mx-1 xs:mx-0 px-1 xs:px-0">
 
                         <!-- All -->
                         <button data-category="All"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-primary bg-primary/5 hover:bg-primary/10 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-secondary bg-secondary/5 hover:bg-secondary/10 transition-all shadow-sm">
                             <div
-                                class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105 flex items-center justify-center">
+                                class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-secondary/25 to-pink-500/25 overflow-hidden shadow-lg group-hover:shadow-secondary/40 transition-all duration-300 group-hover:scale-105 flex items-center justify-center">
                                 <span
-                                    class="material-symbols-outlined text-3xl xs:text-4xl sm:text-5xl text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">apps</span>
+                                    class="material-symbols-outlined text-3xl xs:text-4xl sm:text-5xl text-accent-purple">apps</span>
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white tracking-tight">Tout</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-accent-purple tracking-tight">Tout</span>
                             <span id="count-all"
-                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
                         </button>
 
                         <!-- Téléphones -->
                         <button data-category="Téléphone"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-primary hover:bg-primary/5 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-white/20 hover:border-secondary hover:bg-secondary/5 transition-all shadow-sm">
                             <div
-                                class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-primary/25 to-indigo-500/25 overflow-hidden shadow-lg group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
+                                class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl gradient-bg overflow-hidden shadow-lg group-hover:shadow-secondary/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80&auto=format&fit=crop"
                                     alt="Téléphones" class="w-full h-full object-cover lazy-image"
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-primary transition-colors tracking-tight">Téléphones</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-body group-hover:text-secondary transition-colors tracking-tight">Téléphones</span>
                             <span id="count-telephone"
-                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
                         </button>
 
                         <!-- Accessoires -->
                         <button data-category="Accessoire"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-[rgba(255,255,255,0.2)]  hover:border-accent hover:bg-accent/5 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-white/20 hover:border-accent hover:bg-accent/5 transition-all shadow-sm">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-accent/25 to-orange-500/25 overflow-hidden shadow-lg group-hover:shadow-accent/40 transition-all duration-300 group-hover:scale-105">
                                 <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&q=80&auto=format&fit=crop"
@@ -524,14 +599,14 @@
                                     onload="this.classList.add('loaded')" loading="lazy">
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
+                                class="text-xs xs:text-sm sm:text-base font-black text-body group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
                             <span id="count-accessoire"
-                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
                         </button>
 
                         <!-- Offres -->
                         <button data-category="Offres"
-                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-red-200 dark:border-red-500/20 hover:border-red-500 hover:bg-red-500/10 transition-all shadow-sm">
+                            class="category-filter-btn flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-red-400/30 hover:border-red-500 hover:bg-red-500/10 transition-all shadow-sm">
                             <div
                                 class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-red-500/25 to-pink-500/25 overflow-hidden shadow-lg group-hover:shadow-red-500/40 transition-all duration-300 group-hover:scale-105 relative">
                                 <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&q=80&auto=format&fit=crop"
@@ -542,10 +617,10 @@
                                     -30%</div>
                             </div>
                             <span
-                                class="text-xs xs:text-sm sm:text-base font-black text-white/95 font-semibold dark:text-slate-200 group-hover:text-red-500 transition-colors tracking-tight">🔥
+                                class="text-xs xs:text-sm sm:text-base font-black text-body group-hover:text-red-400 transition-colors tracking-tight">🔥
                                 Offres</span>
                             <span id="count-offres"
-                                class="text-[10px] xs:text-[11px] text-white/60 ">Chargement...</span>
+                                class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
                         </button>
 
                     </div>
@@ -563,35 +638,35 @@
 
                                 <!-- Price Filter -->
                                 <div class="filter-item">
-                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-4">
+                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-4">
                                         Prix</h3>
                                     <div class="space-y-3">
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="all" checked
-                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-accent-purple focus:ring-secondary/20 border-white/20">
                                             <span
-                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Tous
+                                                class="text-xs font-medium text-body group-hover:text-secondary transition-colors">Tous
                                                 les prix</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="low"
-                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-accent-purple focus:ring-secondary/20 border-white/20">
                                             <span
-                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Moins
+                                                class="text-xs font-medium text-body group-hover:text-secondary transition-colors">Moins
                                                 de 10.000 د.ج</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="medium"
-                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-accent-purple focus:ring-secondary/20 border-white/20">
                                             <span
-                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">10.000
+                                                class="text-xs font-medium text-body group-hover:text-secondary transition-colors">10.000
                                                 - 50.000 د.ج</span>
                                         </label>
                                         <label class="flex items-center gap-3 cursor-pointer group">
                                             <input type="radio" name="price" value="high"
-                                                class="w-4 h-4 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white focus:ring-primary/20 border-slate-300">
+                                                class="w-4 h-4 text-accent-purple focus:ring-secondary/20 border-white/20">
                                             <span
-                                                class="text-xs font-medium text-white/90  group-hover:text-primary transition-colors">Plus
+                                                class="text-xs font-medium text-body group-hover:text-secondary transition-colors">Plus
                                                 de 50.000 د.ج</span>
                                         </label>
                                     </div>
@@ -599,10 +674,10 @@
 
                                 <!-- Sort Filter -->
                                 <div class="filter-item">
-                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-4">
+                                    <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-4">
                                         Trier par</h3>
                                     <select id="sort-select"
-                                        class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-xl py-2.5 px-4 text-xs font-medium focus:ring-2 focus:ring-primary/20 transition-all">
+                                        class="w-full form-select rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
                                         <option value="newest">🆕 Plus récents</option>
                                         <option value="price-low">💰 Prix: Croissant</option>
                                         <option value="price-high">💰 Prix: Décroissant</option>
@@ -612,9 +687,9 @@
 
                                 <!-- Quick Tips -->
                                 <div
-                                    class="filter-item glass p-4 xs:p-5 rounded-2xl xs:rounded-3xl border border-[rgba(255,255,255,0.15)]">
+                                    class="filter-item glass p-4 xs:p-5 rounded-2xl xs:rounded-3xl border border-white/15">
                                     <p
-                                        class="text-[10px] xs:text-xs font-medium text-white/80  leading-relaxed">
+                                        class="text-[10px] xs:text-xs font-medium text-body leading-relaxed">
                                         💡 <strong>Astuce:</strong> Utilisez la recherche vocale 🎤 pour trouver
                                         rapidement vos produits préférés!
                                     </p>
@@ -628,9 +703,9 @@
                             <!-- Results Header -->
                             <div class="flex items-center justify-between mb-4 xs:mb-6">
                                 <span id="grid-result-count"
-                                    class="text-xs font-medium text-white/80 ">Chargement...</span>
+                                    class="text-xs font-medium text-body">Chargement...</span>
                                 <button id="clear-filters"
-                                    class="text-xs text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-medium hover:underline hidden">Effacer les
+                                    class="text-xs text-accent-purple font-medium link-hover hidden">Effacer les
                                     filtres</button>
                             </div>
 
@@ -647,17 +722,17 @@
                             <!-- Empty State -->
                             <div id="empty-state" class="hidden text-center py-16 xs:py-20">
                                 <div
-                                    class="w-16 h-16 xs:w-20 xs:h-20 mx-auto mb-4 xs:mb-6 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  flex items-center justify-center">
+                                    class="w-16 h-16 xs:w-20 xs:h-20 mx-auto mb-4 xs:mb-6 rounded-2xl glass-card flex items-center justify-center">
                                     <span
-                                        class="material-symbols-outlined text-2xl xs:text-3xl text-white/60">search_off</span>
+                                        class="material-symbols-outlined text-2xl xs:text-3xl text-muted">search_off</span>
                                 </div>
                                 <h3
-                                    class="font-display text-lg xs:text-xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  mb-2">
+                                    class="font-display text-lg xs:text-xl font-black text-heading mb-2">
                                     Aucun résultat</h3>
-                                <p class="text-white/80  text-xs xs:text-sm mb-4 xs:mb-6">Essayez de
+                                <p class="text-body text-xs xs:text-sm mb-4 xs:mb-6">Essayez de
                                     modifier vos critères de recherche ou de réinitialiser les filtres.</p>
                                 <button onclick="resetFilters()"
-                                    class="inline-flex items-center gap-2 px-4 xs:px-6 py-2 xs:py-2.5 rounded-xl bg-primary text-white font-medium text-xs xs:text-sm hover:bg-primary/90 transition-all">
+                                    class="inline-flex items-center gap-2 px-4 xs:px-6 py-2 xs:py-2.5 rounded-xl bg-secondary text-white font-medium text-xs xs:text-sm hover:bg-secondary/90 transition-all">
                                     <span class="material-symbols-outlined text-[14px] xs:text-[16px]">refresh</span>
                                     Réinitialiser
                                 </button>
@@ -666,7 +741,7 @@
                             <!-- Load More -->
                             <div id="load-more-container" class="mt-8 xs:mt-12 text-center hidden">
                                 <button id="load-more-btn"
-                                    class="inline-flex items-center gap-2 px-6 xs:px-8 py-3 xs:py-3.5 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  text-white/95 font-semibold  font-medium text-xs xs:text-sm hover:bg-primary hover:text-white transition-all">
+                                    class="inline-flex items-center gap-2 px-6 xs:px-8 py-3 xs:py-3.5 rounded-2xl glass-card text-body font-semibold hover:bg-secondary hover:text-white transition-all">
                                     <span
                                         class="material-symbols-outlined text-[16px] xs:text-[18px]">expand_more</span>
                                     Charger plus
@@ -678,34 +753,35 @@
                 </div>
             </section>
 
-            <!-- Mobile Sticky Bottom Bar (Same as index.html) -->
+            <!-- Mobile Sticky Bottom Bar -->
             <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
                 <div class="mx-3 xs:mx-4">
-                    <div class="flex items-center justify-between glass rounded-xl xs:rounded-2xl p-2 xs:p-3">
+                    <div class="flex items-center justify-between glass-light rounded-xl xs:rounded-2xl p-2 xs:p-3 shadow-lg">
                         <a href="index.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
                             <span
-                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">home</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Accueil</span>
+                                class="material-symbols-outlined text-accent-pink text-[18px] xs:text-[20px]">home</span>
+                            <span
+                                class="text-[8px] xs:text-[9px] font-medium text-body">Accueil</span>
                         </a>
                         <a href="search.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl bg-primary/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
                             <span
-                                class="material-symbols-outlined text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-[18px] xs:text-[20px]">search</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Rechercher</span>
+                                class="material-symbols-outlined text-accent-purple text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-accent-purple">Rechercher</span>
                         </a>
                         <a href="tracking.html"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all">
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
                             <span
-                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">local_shipping</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Suivi</span>
+                                class="material-symbols-outlined text-muted text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-muted">Suivi</span>
                         </a>
                         <a href="#"
-                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/10 transition-all"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all"
                             onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
                             <span
-                                class="material-symbols-outlined text-white/60 text-[18px] xs:text-[20px]">favorite_border</span>
-                            <span class="text-[8px] xs:text-[9px] font-medium text-white/60">Favoris</span>
+                                class="material-symbols-outlined text-muted text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-muted">Favoris</span>
                         </a>
                     </div>
                 </div>
@@ -713,23 +789,30 @@
 
         </main>
 
-        <!-- Footer (Same as index.html with 2026) -->
+        <!-- Footer -->
         <footer
-            class="bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  border-t border-[rgba(255,255,255,0.15)] pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+            class="bg-black/40 backdrop-blur-2xl border-t border-white/15 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
             <div class="max-w-7xl mx-auto">
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
                     <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
                         <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
+                            <!-- Logo with IMAGE in Footer -->
                             <div
-                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-sm">
-                                <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven">
+                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                                <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
                             </div>
-                            <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter">Phone
-                                Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
+                            <div class="flex flex-col">
+                                <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
+                                    Phone Haven<span class="text-accent-pink">.</span>
+                                </h2>
+                                <span
+                                    class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                                    More than a store, it's a haven for phones
+                                </span>
+                            </div>
                         </a>
-                        <p
-                            class="text-white/90  max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                        <p class="text-muted max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
                             📍 Basée à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             🚚 Livraison rapide dans les 58 wilayas<br>
@@ -739,49 +822,49 @@
 
                     <div>
                         <h4
-                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
                             Navigation</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
-                            <li><a class="hover:text-primary transition-colors"
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="search.html">Catalogue</a></li>
+                            <li><a class="link-hover transition-colors"
                                     href="index.html#new-arrivals">Nouveautés</a></li>
-                            <li><a class="hover:text-primary transition-colors"
+                            <li><a class="link-hover transition-colors"
                                     href="search.html?category=Téléphone">Téléphones</a></li>
-                            <li><a class="hover:text-primary transition-colors"
+                            <li><a class="link-hover transition-colors"
                                     href="search.html?category=Accessoire">Accessoires</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4
-                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
                             Assistance</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Suivi Commande</a>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="tracking.html">Suivi Commande</a>
                             </li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Livraison & Retours</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Nous Contacter</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="link-hover transition-colors" href="#">FAQ</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4
-                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6">
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
                             Légal</h4>
-                        <ul class="flex flex-col gap-2 xs:gap-3 text-white/80  text-xs">
-                            <li><a class="hover:text-primary transition-colors" href="#">Confidentialité</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Conditions</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Conditions</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Garantie</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div
-                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-slate-100  flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white/60">
+                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-muted">
                     <p>© 2026 Phone Haven. Tous droits réservés.</p>
                     <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
                             href="https://instagram.com" target="_blank" aria-label="Instagram">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -789,7 +872,7 @@
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Instagram</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
                             href="https://facebook.com" target="_blank" aria-label="Facebook">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -797,7 +880,7 @@
                             </svg>
                             <span class="text-[10px] xs:text-[11px]">Facebook</span>
                         </a>
-                        <a class="hover:text-primary transition-colors flex items-center gap-1.5"
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
                             href="https://tiktok.com" target="_blank" aria-label="TikTok">
                             <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -838,7 +921,7 @@
         const mobileMenuClose = document.getElementById('mobile-menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        const themeToggle = document.getElementById('theme-toggle');
+
         const toastContainer = document.getElementById('toast-container');
 
         // State
@@ -861,8 +944,8 @@
         function showToast(message, type = 'info', duration = 3000) {
             const toast = document.createElement('div');
             const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
-            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'bg-primary', warning: 'bg-accent' };
-            toast.className = `glass ${colors[type]} border border-white/10 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'gradient-bg', warning: 'bg-accent' };
+            toast.className = `glass ${colors[type]} border border-white/15 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
             toast.innerHTML = `<span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span><span class="text-white text-xs xs:text-sm font-medium flex-1">${message}</span><button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">close</span></button>`;
             toastContainer.appendChild(toast);
             setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, duration);
@@ -871,12 +954,12 @@
         // Format Price
         function formatPrice(price) { return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج'; }
 
-        // Create Product Card (Same style as index.html)
+        // Create Product Card
         function createProductCard(product) {
             return `<a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline">
-                <div class="relative aspect-square w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-[rgba(255,255,255,0.15)] hover:border-primary/30 transition-all duration-500">
+                <div class="relative aspect-square w-full glass-card rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/15 hover:border-secondary/30 transition-all duration-500">
                     <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
-                        <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  shadow-lg flex items-center justify-center text-white/90  hover:text-red-500 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
+                        <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full glass-card shadow-lg flex items-center justify-center text-body hover:text-red-400 transition-colors active:scale-90" onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
                             <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
                         </button>
                     </div>
@@ -884,15 +967,15 @@
                     <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" onload="this.classList.add('loaded')" loading="lazy" />
                     <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
-                        <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl bg-primary/90 text-white font-medium text-xs xs:text-sm shadow-lg">
+                        <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl gradient-bg text-white font-medium text-xs xs:text-sm shadow-lg">
                             <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>Voir détails
                         </span>
                     </div>
-                    <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-primary/90 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
+                    <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full gradient-bg text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
                 </div>
                 <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
-                    <h3 class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-primary transition-colors">${product.name}</h3>
-                    <p class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
+                    <h3 class="font-display text-heading font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-secondary transition-colors">${product.name}</h3>
+                    <p class="text-accent-purple font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
                 </div>
             </a>`;
         }
@@ -914,12 +997,9 @@
         // Filter Products
         function filterProducts() {
             return allProducts.filter(p => {
-                // Search
                 const matchesSearch = !currentSearch || p.name.toLowerCase().includes(currentSearch) || p.description?.toLowerCase().includes(currentSearch);
-                // Category
                 const matchesCategory = currentCategory === 'All' ||
                     (currentCategory === 'Offres' ? (p.discount || p.price < 50000) : p.category === currentCategory);
-                // Price
                 let matchesPrice = true;
                 if (currentPrice === 'low') matchesPrice = p.price < 10000;
                 else if (currentPrice === 'medium') matchesPrice = p.price >= 10000 && p.price <= 50000;
@@ -935,7 +1015,7 @@
                 case 'price-low': sorted.sort((a, b) => a.price - b.price); break;
                 case 'price-high': sorted.sort((a, b) => b.price - a.price); break;
                 case 'name': sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
-                default: sorted.sort((a, b) => b.id - a.id); // Newest first
+                default: sorted.sort((a, b) => b.id - a.id);
             }
             return sorted;
         }
@@ -964,17 +1044,14 @@
                 productGrid.appendChild(div);
             });
 
-            // Update counts
             gridResultCount.textContent = `${toRender.length} / ${products.length} produit(s)`;
 
-            // Load more button
             if (products.length > visibleCount) {
                 loadMoreContainer.classList.remove('hidden');
             } else {
                 loadMoreContainer.classList.add('hidden');
             }
 
-            // Lazy load images
             document.querySelectorAll('.lazy-image').forEach(img => { if (img.complete) img.classList.add('loaded'); });
         }
 
@@ -984,11 +1061,9 @@
             visibleCount = 12;
             renderProducts(filteredProducts);
 
-            // Update UI
             resultCount.textContent = `${filteredProducts.length} produit(s) trouvé(s)`;
             clearFiltersBtn.classList.toggle('hidden', !currentSearch && currentCategory === 'All' && currentPrice === 'all');
 
-            // Update title
             if (currentSearch) {
                 pageTitle.textContent = `Résultats pour "${currentSearch}"`;
             } else if (currentCategory !== 'All') {
@@ -1006,15 +1081,14 @@
             currentSort = 'newest';
             visibleCount = 12;
 
-            // Reset UI
             if (searchInputDesktop) searchInputDesktop.value = '';
             if (searchInputMobile) searchInputMobile.value = '';
             categoryFilterBtns.forEach(btn => {
-                btn.classList.remove('border-primary', 'bg-primary/5');
-                btn.classList.add('border-[rgba(255,255,255,0.2)]', '');
+                btn.classList.remove('border-secondary', 'bg-secondary/5');
+                btn.classList.add('border-white/20', '');
                 if (btn.dataset.category === 'All') {
-                    btn.classList.add('border-primary', 'bg-primary/5');
-                    btn.classList.remove('border-[rgba(255,255,255,0.2)]', '');
+                    btn.classList.add('border-secondary', 'bg-secondary/5');
+                    btn.classList.remove('border-white/20', '');
                 }
             });
             document.querySelector('input[name="price"][value="all"]').checked = true;
@@ -1029,7 +1103,6 @@
             try {
                 allProducts = await getProducts();
                 if (allProducts.length === 0) {
-                    // Fallback to static products
                     allProducts = staticProducts;
                 }
                 updateCategoryCounts(allProducts);
@@ -1071,61 +1144,35 @@
             });
         }
 
-        // Theme Toggle
-        function initThemeToggle() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
-            themeToggle?.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                const isDark = document.documentElement.classList.contains('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                themeToggle.querySelector('span').textContent = isDark ? 'light_mode' : 'dark_mode';
-                showToast(isDark ? '🌙 Mode sombre' : '☀️ Mode clair', 'info');
-            });
-        }
-
         // Event Listeners
         function setupEventListeners() {
-            // Search
             const handleSearch = (e) => { currentSearch = e.target.value.toLowerCase(); visibleCount = 12; applyFilters(); };
             if (searchInputDesktop) searchInputDesktop.addEventListener('input', handleSearch);
             if (searchInputMobile) searchInputMobile.addEventListener('input', handleSearch);
 
-            // Category Filters
             categoryFilterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentCategory = btn.dataset.category;
                     visibleCount = 12;
 
-                    // Update active state
                     categoryFilterBtns.forEach(b => {
-                        b.classList.remove('border-primary', 'bg-primary/5');
-                        b.classList.add('border-[rgba(255,255,255,0.2)]', '');
+                        b.classList.remove('border-secondary', 'bg-secondary/5');
+                        b.classList.add('border-white/20', '');
                     });
-                    btn.classList.add('border-primary', 'bg-primary/5');
-                    btn.classList.remove('border-[rgba(255,255,255,0.2)]', '');
+                    btn.classList.add('border-secondary', 'bg-secondary/5');
+                    btn.classList.remove('border-white/20', '');
 
                     applyFilters();
                 });
             });
 
-            // Sort
             if (sortSelect) sortSelect.addEventListener('change', (e) => { currentSort = e.target.value; applyFilters(); });
-
-            // Price
             priceFilters.forEach(radio => {
                 radio.addEventListener('change', (e) => { currentPrice = e.target.value; visibleCount = 12; applyFilters(); });
             });
-
-            // Clear Filters
             if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', resetFilters);
-
-            // Load More
             if (loadMoreBtn) loadMoreBtn.addEventListener('click', () => { visibleCount += 8; renderProducts(filteredProducts, true); });
 
-            // Voice Search
             const voiceBtnPage = document.getElementById('voice-search-page');
             const voiceBtnPageMobile = document.getElementById('voice-search-page-mobile');
             if (voiceBtnPage && searchInputDesktop) initVoiceSearch(voiceBtnPage, searchInputDesktop);
@@ -1146,18 +1193,15 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            initThemeToggle();
             setupEventListeners();
             loadProducts();
 
-            // Preload hero images
             ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000',
                 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000',
                 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300'].forEach(src => {
                     const img = new Image(); img.src = src;
                 });
 
-            // Handle URL params
             const urlParams = new URL(window.location.href).searchParams;
             if (urlParams.has('category')) {
                 const cat = urlParams.get('category');
@@ -1172,11 +1216,8 @@
             }
         });
 
-        // Online/Offline
         window.addEventListener('online', () => showToast('🌐 En ligne', 'success'));
         window.addEventListener('offline', () => showToast('📴 Hors ligne', 'warning', 5000));
-
-        // Expose resetFilters globally
         window.resetFilters = resetFilters;
     </script>
 </body>
