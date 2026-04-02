@@ -199,7 +199,12 @@
             will-change: transform;
         }
 
-        /* ✅ MOBILE OPTIMIZATIONS */
+        /* ✅ UTILS - Hidden class */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ✅ MOBILE OPTIMIZATIONS - Without breaking Tailwind classes */
         @media (max-width: 1023px) {
             .sticky {
                 position: relative !important;
@@ -228,19 +233,7 @@
                 opacity: 1 !important;
             }
 
-            /* Card layout fixes */
-            .lg\:hidden {
-                display: none !important;
-            }
-
-            .lg\:block {
-                display: block !important;
-            }
-
-            .lg\:flex {
-                display: flex !important;
-            }
-
+            /* Card layout fixes - Stack columns on mobile */
             .lg\:grid-cols-12 {
                 grid-template-columns: 1fr !important;
             }
@@ -563,7 +556,7 @@
                                     <div>
                                         <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Sector</label>
                                         <select id="product-category"
-                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-select appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-select appearance-none bg-[url('image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
                                             <option value="Téléphone">Téléphone</option>
                                             <option value="Accessoire">Accessoire</option>
                                         </select>
@@ -633,7 +626,7 @@
                             </div>
 
                             <!-- Desktop Table View -->
-                            <div id="table-view" class="hidden-scrollbar">
+                            <div id="table-view">
                                 <div class="overflow-x-auto">
                                     <table class="w-full text-left min-w-[600px]">
                                         <thead>
@@ -656,7 +649,7 @@
                             </div>
 
                             <!-- Mobile Card View -->
-                            <div id="card-view" class="lg:hidden p-4 space-y-3 hidden">
+                            <div id="card-view" class="p-4 space-y-3">
                                 <!-- Cards injected by JS -->
                             </div>
                         </div>
@@ -797,17 +790,19 @@
             return card;
         }
 
-        // Main Render Function
+        // Main Render Function - FIXED FOR MOBILE VISIBILITY
         function renderProducts(products) {
             const isMobile = window.innerWidth < 1024;
 
             if (products.length === 0) {
                 const emptyMsg = 'Repository Vacant.';
                 if (isMobile) {
-                    cardView.classList.remove('hidden');
+                    // Mobile: Show cards view with empty state
                     tableView.classList.add('hidden');
+                    cardView.classList.remove('hidden');
                     cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
                 } else {
+                    // Desktop: Show table view with empty state
                     cardView.classList.add('hidden');
                     tableView.classList.remove('hidden');
                     tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
@@ -817,17 +812,24 @@
             }
 
             if (isMobile) {
-                // Mobile: Show cards with always-visible actions
+                // ✅ MOBILE: Show cards with always-visible actions
+                // Make sure table is hidden and cards are visible
                 tableView.classList.add('hidden');
                 cardView.classList.remove('hidden');
+                cardView.style.display = 'block'; // Force display
+                
                 cardView.innerHTML = '';
                 products.forEach(product => {
                     cardView.appendChild(renderCard(product));
                 });
             } else {
-                // Desktop: Show table with hover actions
+                // ✅ DESKTOP: Show table with hover actions
+                // Make sure cards are hidden and table is visible
                 cardView.classList.add('hidden');
+                cardView.style.display = 'none'; // Force hide
                 tableView.classList.remove('hidden');
+                tableView.style.display = 'block'; // Force display
+                
                 tableBody.innerHTML = '';
                 products.forEach(product => {
                     tableBody.appendChild(renderTableRow(product));
@@ -1026,21 +1028,33 @@
             }
         });
 
-        // Re-render on resize (with debounce)
+        // Re-render on resize (with debounce) - FIXED
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 const isMobile = window.innerWidth < 1024;
-                const tableVisible = !tableView.classList.contains('hidden');
-                if ((isMobile && tableVisible) || (!isMobile && !tableVisible)) {
-                    renderProducts(productsList);
-                }
+                // Force re-render with correct view
+                renderProducts(productsList);
             }, 150);
         });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadProducts);
+        // Initialize - Also call render on load to ensure mobile view
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial render to ensure correct view on load
+            const isMobile = window.innerWidth < 1024;
+            if (isMobile) {
+                tableView.classList.add('hidden');
+                cardView.classList.remove('hidden');
+                cardView.style.display = 'block';
+            } else {
+                cardView.classList.add('hidden');
+                cardView.style.display = 'none';
+                tableView.classList.remove('hidden');
+                tableView.style.display = 'block';
+            }
+            loadProducts();
+        });
     </script>
 </body>
 
