@@ -206,6 +206,29 @@
                 top: auto !important;
             }
 
+            /* Touch targets - always visible actions on mobile */
+            .mobile-actions {
+                opacity: 1 !important;
+                display: flex !important;
+                gap: 8px;
+            }
+
+            .mobile-actions button {
+                min-width: 40px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .desktop-actions {
+                display: none !important;
+            }
+
+            /* Hide hover-only actions on mobile */
+            .group-hover\:opacity-100 {
+                opacity: 1 !important;
+            }
+
+            /* Card layout fixes */
             .lg\:hidden {
                 display: none !important;
             }
@@ -235,19 +258,23 @@
                 order: 2 !important;
             }
 
-            /* Touch targets */
+            /* Touch targets for all interactive elements */
             button,
             a,
             [role="button"],
             .clickable,
             select,
             input,
-            textarea {
+            textarea,
+            .edit-btn,
+            .delete-btn {
                 min-height: 44px;
                 min-width: 44px;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
 
             input,
@@ -256,17 +283,25 @@
                 font-size: 16px !important;
             }
 
-            /* Card hover effects on touch */
-            .hover\:bg-white\/5:hover {
-                background: rgba(255, 255, 255, 0.02) !important;
+            /* Card hover effects on touch - use active state instead */
+            .hover\:bg-white\/10:hover,
+            .hover\:bg-white\/10:active {
+                background: rgba(255, 255, 255, 0.15) !important;
             }
 
-            .group:hover .group-hover\:opacity-100 {
-                opacity: 1 !important;
+            .product-card:active {
+                transform: scale(0.98) !important;
+            }
+        }
+
+        /* ✅ DESKTOP: Show hover actions, hide mobile actions */
+        @media (min-width: 1024px) {
+            .mobile-actions {
+                display: none !important;
             }
 
-            .group:hover .group-hover\:translate-x-0 {
-                transform: translateX(0) !important;
+            .desktop-actions {
+                display: flex !important;
             }
         }
 
@@ -288,15 +323,8 @@
 
         /* ✅ ANIMATIONS */
         @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .animate-pulse {
@@ -330,6 +358,37 @@
             background: rgba(255, 255, 255, 0.1) !important;
             border-left: 3px solid #FFA500 !important;
             color: #ffffff !important;
+        }
+
+        /* ✅ ACTION BUTTONS - Mobile friendly */
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border-radius: 0.5rem;
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .edit-btn-mobile {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .edit-btn-mobile:active {
+            background: rgba(73, 55, 126, 0.5);
+        }
+
+        .delete-btn-mobile {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .delete-btn-mobile:active {
+            background: rgba(239, 68, 68, 0.5);
         }
     </style>
 </head>
@@ -670,7 +729,7 @@
             }
         }
 
-        // Render Table Row (Desktop)
+        // Render Table Row (Desktop) - with hover actions
         function renderTableRow(product) {
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-white/10 transition-all group clickable';
@@ -687,12 +746,22 @@
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black text-muted uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-[10px] lg:text-[11px] font-black text-success tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</td>
                 <td class="px-6 lg:px-10 py-5 lg:py-6 text-right">
-                    <div class="flex justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
-                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-accent-pink transition-all edit-btn clickable" data-id="${product.id}">
+                    <!-- Desktop: Hover actions -->
+                    <div class="desktop-actions justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
+                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-accent-pink transition-all edit-btn clickable" data-id="${product.id}" aria-label="Edit ${product.name}">
                             <span class="material-symbols-outlined text-lg">edit</span>
                         </button>
-                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-red-400 transition-all delete-btn clickable" data-id="${product.id}">
+                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-red-400 transition-all delete-btn clickable" data-id="${product.id}" aria-label="Delete ${product.name}">
                             <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                    <!-- Mobile: Always visible actions (injected via CSS) -->
+                    <div class="mobile-actions justify-end gap-2">
+                        <button class="action-btn edit-btn-mobile edit-btn clickable px-3" data-id="${product.id}" aria-label="Edit">
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                        </button>
+                        <button class="action-btn delete-btn-mobile delete-btn clickable px-3" data-id="${product.id}" aria-label="Delete">
+                            <span class="material-symbols-outlined text-sm">delete</span>
                         </button>
                     </div>
                 </td>
@@ -700,7 +769,7 @@
             return tr;
         }
 
-        // Render Card (Mobile)
+        // Render Card (Mobile) - with ALWAYS VISIBLE actions
         function renderCard(product) {
             const card = document.createElement('div');
             card.className = 'product-card glass rounded-2xl p-4 terminal-border hover:border-secondary/30 transition-all clickable';
@@ -713,12 +782,13 @@
                             <span class="text-success font-black text-sm tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</span>
                         </div>
                         <p class="text-[9px] font-black text-body uppercase tracking-widest mb-3">${product.category}</p>
-                        <div class="flex gap-2">
-                            <button class="flex-1 h-9 bg-white/10 text-body border terminal-border rounded-lg hover:text-accent-pink transition-all edit-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
-                                Edit
+                        <!-- Mobile Actions: ALWAYS VISIBLE, large touch targets -->
+                        <div class="flex gap-2 mobile-actions">
+                            <button class="action-btn edit-btn-mobile edit-btn clickable flex-1 text-[10px] font-black uppercase tracking-widest" data-id="${product.id}">
+                                <span class="material-symbols-outlined text-base mr-1">edit</span>Edit
                             </button>
-                            <button class="flex-1 h-9 bg-white/10 text-body border terminal-border rounded-lg hover:text-red-400 transition-all delete-btn text-[9px] font-black uppercase tracking-widest clickable" data-id="${product.id}">
-                                Delete
+                            <button class="action-btn delete-btn-mobile delete-btn clickable flex-1 text-[10px] font-black uppercase tracking-widest" data-id="${product.id}">
+                                <span class="material-symbols-outlined text-base mr-1">delete</span>Delete
                             </button>
                         </div>
                     </div>
@@ -747,7 +817,7 @@
             }
 
             if (isMobile) {
-                // Mobile: Show cards
+                // Mobile: Show cards with always-visible actions
                 tableView.classList.add('hidden');
                 cardView.classList.remove('hidden');
                 cardView.innerHTML = '';
@@ -755,7 +825,7 @@
                     cardView.appendChild(renderCard(product));
                 });
             } else {
-                // Desktop: Show table
+                // Desktop: Show table with hover actions
                 cardView.classList.add('hidden');
                 tableView.classList.remove('hidden');
                 tableBody.innerHTML = '';
@@ -766,31 +836,72 @@
 
             productCount.innerHTML = `<span class="size-1.5 bg-success rounded-full animate-pulse"></span> Indexing ${products.length} Units`;
 
-            // Re-attach event listeners
+            // Re-attach event listeners AFTER rendering
             attachEventListeners(products);
         }
 
-        // Attach Edit/Delete Listeners
+        // Attach Edit/Delete Listeners - WORKS FOR BOTH TABLE AND CARDS
         function attachEventListeners(products) {
+            // Delete buttons (both table and card)
             document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.onclick = async (e) => {
+                // Remove old listeners by cloning
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                
+                newBtn.onclick = async (e) => {
                     e.stopPropagation();
-                    const id = btn.getAttribute('data-id');
-                    if (confirm('⚠️ TERMINATE THIS ENTRY?')) {
-                        await deleteProduct(id);
-                        loadProducts();
+                    e.preventDefault();
+                    const id = newBtn.getAttribute('data-id');
+                    const product = productsList.find(p => p.id === id);
+                    const productName = product?.name || 'this item';
+                    
+                    if (confirm(`⚠️ TERMINATE "${productName}"?`)) {
+                        try {
+                            await deleteProduct(id);
+                            showToast('✓ Entry terminated.', 'success');
+                            loadProducts();
+                        } catch (err) {
+                            showToast('✗ Delete failed: ' + err.message, 'error');
+                        }
                     }
                 };
             });
 
+            // Edit buttons (both table and card)
             document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.onclick = (e) => {
+                // Remove old listeners by cloning
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                
+                newBtn.onclick = (e) => {
                     e.stopPropagation();
-                    const id = btn.getAttribute('data-id');
+                    e.preventDefault();
+                    const id = newBtn.getAttribute('data-id');
                     const product = productsList.find(p => p.id === id);
-                    if (product) startEditing(product);
+                    if (product) {
+                        startEditing(product);
+                        showToast(`✏️ Editing: ${product.name}`, 'info');
+                    }
                 };
             });
+        }
+
+        // Simple toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            const colors = { 
+                success: 'bg-success/20 border-success/30 text-success', 
+                error: 'bg-red-500/20 border-red-400/30 text-red-400', 
+                info: 'bg-secondary/20 border-secondary/30 text-accent-purple' 
+            };
+            toast.className = `fixed top-4 right-4 z-[200] glass ${colors[type]} border rounded-xl px-4 py-3 text-sm font-medium shadow-lg animate-pulse`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
         }
 
         // Search Implementation
@@ -897,16 +1008,16 @@
 
                 if (editingId) {
                     await updateProduct(editingId, productData);
-                    alert('✓ ENTRY MODIFIED.');
+                    showToast('✓ ENTRY MODIFIED.', 'success');
                 } else {
                     await addProduct(productData);
-                    alert('✓ ENTRY LOGGED.');
+                    showToast('✓ ENTRY LOGGED.', 'success');
                 }
                 resetForm();
                 loadProducts();
             } catch (error) {
                 console.error("Protocol failure:", error);
-                alert(`✗ Error: ${error.message}`);
+                showToast(`✗ Error: ${error.message}`, 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = editingId ?
