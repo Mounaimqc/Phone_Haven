@@ -1,844 +1,1537 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="theme-color" content="#000000">
-  
-  <!-- ✅ Meta tags compatibles iOS & Android -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="format-detection" content="telephone=no">
-  
-  <title>Détails Produit - Amar Informatique</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="logo.jpg" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAUjSJTplPn9O8pK_YU5ydsyqUQ9HVfKXo",
-      authDomain: "amar-informatique.firebaseapp.com",
-      projectId: "amar-informatique",
-      storageBucket: "amar-informatique.firebasestorage.app",
-      messagingSenderId: "568367870390",
-      appId: "1:568367870390:web:e1583c182272ecbf141117"
-    };
-    
-    try {
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      const db = firebase.firestore();
-      window.db = db;
-    } catch (e) {
-      console.error('❌ Firebase init error:', e);
-    }
-  </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#49377E" />
+    <meta name="description" content="Phone Haven - Détails du produit, commande et livraison en Algérie" />
+    <title id="page-title">Produit | Phone Haven Algérie</title>
 
-  <style>
-    :root {
-      --primary-color: #6366f1; --secondary-color: #f59e0b;
-      --bg-main: #0f0f1a; --bg-card: #1a1a2e; --bg-hover: #252542;
-      --text-main: #ffffff; --text-muted: #a0a0b0; --border: #333355;
-      --success: #22c55e; --danger: #ef4444; --shadow: 0 10px 40px rgba(0,0,0,0.3);
-      --radius: 20px; --transition: all 0.3s ease;
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg-main: #f8fafc; --bg-card: #ffffff; --bg-hover: #f1f5f9;
-        --text-main: #1e293b; --text-muted: #64748b; --border: #e2e8f0;
-        --shadow: 0 10px 40px rgba(0,0,0,0.1);
-      }
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Outfit', system-ui, sans-serif; background: var(--bg-main);
-      color: var(--text-main); line-height: 1.6; min-height: 100vh;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    img { max-width: 100%; height: auto; display: block; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
-    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
 
-    /* Header */
-    header {
-      background: var(--bg-card); padding: 15px 0;
-      box-shadow: var(--shadow); border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .header-content {
-      display: flex; justify-content: space-between; align-items: center; gap: 15px;
-    }
-    .logo-link {
-      display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem;
-    }
-    .logo-link img { height: 40px; border-radius: 8px; }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--primary-color); font-weight: 500; padding: 8px 16px;
-      border-radius: 50px; background: var(--bg-hover);
-      transition: var(--transition);
-    }
-    .back-btn:hover { transform: translateX(-3px); background: var(--primary-color); color: #fff; }
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#49377E",
+                        "secondary": "#C64172",
+                        "accent-yellow": "#FFA500",
+                        "accent-pink": "#ffb3c6",
+                        "accent-purple": "#e0d4ff",
+                        "background-light": "#ffffff",
+                        "background-dark": "#020617",
+                        "success": "#10b981",
+                        "accent": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "3xl": "1.5rem",
+                        "4xl": "2rem",
+                    },
+                    screens: {
+                        'xs': '320px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                    }
+                },
+            },
+        }
+    </script>
 
-    /* Product Detail Layout */
-    .product-detail-page {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      padding: 30px 20px;
-      align-items: start;
-    }
-    
-    @media (max-width: 900px) {
-      .product-detail-page {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-    }
+    <style>
+        /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
+        .gradient-bg {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
+        }
 
-    /* ✅ Conteneur image - centré */
-    .detail-image-container {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 400px;
-      text-align: center;
-    }
+        /* ✅ SYSTÈME DE COULEURS DE TEXTE */
+        .text-heading {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
 
-    .detail-image {
-      max-width: 100%;
-      max-height: 450px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      margin: 0 auto;
-      border-radius: 15px;
-      transition: var(--transition);
-      display: block;
-    }
+        .text-body {
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    .detail-image:hover { transform: scale(1.05); }
+        .text-muted {
+            color: rgba(255, 255, 255, 0.75);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
 
-    /* Info Column */
-    .detail-info {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-    .detail-info h1 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-    .product-category {
-      color: var(--primary-color);
-      font-weight: 600;
-      margin-bottom: 15px;
-      text-transform: capitalize;
-      font-size: 1rem;
-    }
-    .product-description {
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 25px;
-      font-size: 1.05rem;
-    }
-    .detail-price {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--secondary-color);
-      margin-bottom: 25px;
-    }
-    .detail-price old {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      text-decoration: line-through;
-      font-weight: 400;
-      margin-right: 12px;
-    }
+        .text-accent-yellow {
+            color: #FFA500;
+            text-shadow: 0 1px 4px rgba(255, 165, 0, 0.4);
+        }
 
-    .btn-add-cart, .btn-buy-now {
-      width: 100%;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: var(--transition);
-      margin-bottom: 12px;
-    }
-    .btn-add-cart {
-      background: var(--primary-color);
-      color: #fff;
-    }
-    .btn-add-cart:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(99,102,241,0.4);
-      filter: brightness(0.95);
-    }
-    .btn-buy-now {
-      background: var(--success);
-      color: #fff;
-    }
-    .btn-buy-now:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(34,197,94,0.4);
-      filter: brightness(0.95);
-    }
+        .text-accent-pink {
+            color: #ffb3c6;
+            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
+        }
 
-    /* Order Form */
-    .order-form {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 1px solid var(--border);
-    }
-    .order-form h3 {
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .form-group { margin-bottom: 18px; }
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--bg-main);
-      color: var(--text-main);
-      font-size: 1rem;
-      outline: none;
-      transition: var(--transition);
-    }
-    .form-group input:focus, .form-group select:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+        .text-accent-purple {
+            color: #e0d4ff;
+            text-shadow: 0 0 12px rgba(224, 212, 255, 0.4);
+        }
 
-    .shipping-price {
-      background: var(--bg-hover);
-      padding: 12px 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.95rem;
-    }
-    .shipping-price i { color: var(--primary-color); }
-    .shipping-price strong {
-      margin-left: auto;
-      color: var(--secondary-color);
-      font-weight: 700;
-    }
+        .text-secondary {
+            color: #C64172;
+            text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
+        }
 
-    .btn-submit-order {
-      width: 100%;
-      padding: 15px;
-      border-radius: 12px;
-      background: var(--success);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: var(--transition);
-      margin-top: 10px;
-    }
-    .btn-submit-order:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(34,197,94,0.4);
-    }
-    .btn-submit-order:disabled {
-      background: var(--border);
-      cursor: not-allowed;
-      transform: none;
-    }
+        /* ✅ FORM INPUT STYLES - TEXTE NOIR POUR DROPDOWNS */
+        .form-input {
+            color: #ffffff !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
 
-    /* Loading & Error States */
-    .loading, .error {
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .loading i, .error i {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      opacity: 0.7;
-    }
-    .error { color: var(--danger); }
-    .error a { color: var(--primary-color); font-weight: 600; }
-    .error button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: var(--primary-color);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-shadow: none;
+        }
 
-    /* Share Button */
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: 50px;
-      background: var(--bg-hover);
-      color: var(--text-main);
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      transition: var(--transition);
-    }
-    .share-btn:hover {
-      background: var(--primary-color);
-      color: #fff;
-    }
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.4);
+        }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-main); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+        /* ✅ SELECT OPTIONS - TEXTE NOIR */
+        .form-select {
+            color: #1f2937 !important;
+            background-color: #ffffff !important;
+            font-weight: 500;
+        }
 
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .detail-image-container {
-        position: relative;
-        top: 0;
-        padding: 20px;
-        min-height: 300px;
-      }
-      .detail-image { max-height: 350px; }
-      .detail-info { padding: 20px; }
-      .detail-info h1 { font-size: 1.5rem; }
-      .detail-price { font-size: 1.8rem; }
-    }
+        .form-select option {
+            color: #1f2937 !important;
+            background-color: #ffffff !important;
+            padding: 8px;
+        }
 
-    @media (max-width: 480px) {
-      .product-detail-page { padding: 20px 15px; gap: 20px; }
-      .detail-image-container { padding: 15px; min-height: 250px; }
-      .detail-image { max-height: 280px; }
-    }
-  </style>
+        .form-label {
+            color: rgba(255, 255, 255, 0.85);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ✅ HOVER EFFECTS */
+        .link-hover:hover {
+            color: #ffb3c6 !important;
+            text-shadow: 0 0 15px rgba(255, 179, 198, 0.7) !important;
+            transition: all 0.2s ease;
+        }
+
+        /* ✅ GLASSMORPHISM */
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 640px) {
+
+            input,
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+
+            button,
+            [role="button"] {
+                min-height: 44px;
+                min-width: 44px;
+                touch-action: manipulation;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            a,
+            button {
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .text-responsive {
+                font-size: 0.875rem;
+            }
+
+            .btn-responsive {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .card-responsive {
+                border-radius: 1rem;
+            }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
+        @media (hover: none) {
+            .product-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            .sticky-bottom-bar {
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
+            }
+        }
+
+        .voice-search-active {
+            animation: voicePulse 1.5s infinite;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+        }
+
+        @keyframes voicePulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+        }
+
+        @keyframes softPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+            }
+        }
+
+        .category-pulse {
+            animation: softPulse 3.5s infinite;
+        }
+
+        .group-hover\:scale-105 {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .animate-pulse {
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes pricePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .price-update {
+            animation: pricePulse 0.3s ease-in-out;
+        }
+
+        .product-image-zoom {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .product-image-zoom {
+            transform: scale(1.05);
+        }
+
+        .order-stepper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+    </style>
 </head>
-<body>
 
-  <!-- Header -->
-  <header>
-    <div class="container header-content">
-      <a href="index.html" class="logo-link">
-        <img src="logo.png" alt="Logo Amar Informatique" onerror="this.style.display='none'">
-        <span>Amar Informatique</span>
-      </a>
-      <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Retour
-      </a>
-    </div>
-  </header>
+<body
+    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] bg-fixed bg-no-repeat bg-cover">
 
-  <!-- Main Content -->
-  <main>
-    <div id="productContainer" class="container">
-      <div class="loading">
-        <i class="fas fa-spinner fa-spin"></i>
-        <p style="margin-top:15px">Chargement du produit...</p>
-      </div>
-    </div>
-  </main>
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
-  <script>
-    // ========== 🇩🇿 DONNÉES COMPLÈTES - 58 WILAYAS & COMMUNES ==========
-    
-    const wilayasList = [
-      "01 - Adrar", "02 - Chlef", "03 - Laghouat", "04 - Oum El Bouaghi", "05 - Batna",
-      "06 - Béjaïa", "07 - Biskra", "08 - Béchar", "09 - Blida", "10 - Bouira",
-      "11 - Tamanrasset", "12 - Tébessa", "13 - Tlemcen", "14 - Tiaret", "15 - Tizi Ouzou",
-      "16 - Alger", "17 - Djelfa", "18 - Jijel", "19 - Sétif", "20 - Saïda",
-      "21 - Skikda", "22 - Sidi Bel Abbès", "23 - Annaba", "24 - Guelma", "25 - Constantine",
-      "26 - Médéa", "27 - Mostaganem", "28 - M'Sila", "29 - Mascara", "30 - Ouargla",
-      "31 - Oran", "32 - El Bayadh", "33 - Illizi", "34 - Bordj Bou Arréridj", "35 - Boumerdès",
-      "36 - El Tarf", "37 - Tindouf", "38 - Tissemsilt", "39 - El Oued", "40 - Khenchela",
-      "41 - Souk Ahras", "42 - Tipaza", "43 - Mila", "44 - Aïn Defla", "45 - Naâma",
-      "46 - Aïn Témouchent", "47 - Ghardaïa", "48 - Relizane", "49 - Timimoun", "50 - Bordj Badji Mokhtar",
-      "51 - Ouled Djellal", "52 - Béni Abbès", "53 - In Salah", "54 - In Guezzam", "55 - Touggourt",
-      "56 - Djanet", "57 - El M'Ghair", "58 - El Meniaa"
-    ];
+        <!-- Premium Navigation -->
+        <header
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+            <div class="mx-auto flex max-w-7xl items-center justify-between">
 
-    const communesData = {
-      "01": ["Adrar", "Aoulef", "Charouine", "Reggane", "Tamentit", "Tsabit", "Zaouiet Kounta"],
-      "02": ["Chlef", "Abou", "Ain Merane", "Boukadir", "El Karimia", "Oued Fodda", "Tadjena", "Zeboudja"],
-      "03": ["Laghouat", "Ain Madhi", "Brida", "El Ghicha", "Hassi Delaa", "Ksar El Hirane", "Sidi Makhlouf"],
-      "04": ["Oum El Bouaghi", "Ain Beida", "Ain M'lila", "Behir Chergui", "El Amiria", "Sigus", "Souk Naamane"],
-      "05": ["Batna", "Ain Touta", "Arris", "Barika", "Bouzina", "El Madher", "Fesdis", "Ghassira", "Merouana", "N'Gaous", "Ras El Aioun", "Tazoult", "Timgad"],
-      "06": ["Béjaïa", "Akbou", "Amizour", "Chemini", "Darguina", "El Kseur", "Ifnayen", "Kherrata", "Seddouk", "Tichy", "Tifra", "Timezrit"],
-      "07": ["Biskra", "Ain Naga", "Bordj Ben Azzouz", "Chetma", "El Kantara", "El Outaya", "M'Chouneche", "Ouled Djellal", "Sidi Okba", "Zeribet El Oued"],
-      "08": ["Béchar", "Abadla", "Beni Ounif", "Kenadsa", "Lahmar", "Mechraa Houari Boumedienne", "Taghit"],
-      "09": ["Blida", "Boufarik", "Bougara", "Chebli", "Chiffa", "El Affroun", "Mouzaia", "Oued Alleug", "Souhane"],
-      "10": ["Bouira", "Ain Bessem", "Bechloul", "Bordj Okhriss", "El Adjiba", "Haizer", "Lakhdaria", "M'Chedallah", "Sour El Ghozlane"],
-      "11": ["Tamanrasset", "Abalessa", "Foggaret Ezzaouia", "Idles", "In Amguel", "In Ghar", "In Salah", "Tazrouk"],
-      "12": ["Tébessa", "Ain Zerga", "Bir El Ater", "Cheria", "El Aouinet", "El Ogla", "Morsott", "Negrine", "Ouenza", "Stah Guentis"],
-      "13": ["Tlemcen", "Ain Fezza", "Ain Youcef", "Beni Bahdel", "Beni Snous", "Bensekrane", "El Aricha", "El Fehoul", "Ghazaouet", "Hennaya", "Maghnia", "Mansourah", "Nedroma", "Remchi", "Sebdou", "Zenata"],
-      "14": ["Tiaret", "Ain Deheb", "Ain Kermes", "Djillali Ben Amar", "Frenda", "Hamadia", "Ksar Chellala", "Mahdia", "Mechraa Safa", "Medroussa", "Oued Lili", "Rahouia", "Sougueur"],
-      "15": ["Tizi Ouzou", "Ain El Hammam", "Akbil", "Azeffoun", "Boghni", "Boudjima", "Draa El Mizan", "Iferhounene", "Larbaa Nath Irathen", "Maatkas", "Makouda", "Mizrana", "Ouacif", "Ouadhia", "Tigzirt", "Timizart"],
-      "16": ["Alger Centre", "Bab El Oued", "Belouizdad", "Bir Mourad Raïs", "Birkhadem", "El Harrach", "Hussein Dey", "Kouba", "Mohamed Belouizdad", "Oued Koriche", "Sidi M'Hamed"],
-      "17": ["Djelfa", "Ain Chouhada", "Ain El Ibel", "Birine", "Charef", "El Idrissia", "Faidh El Botma", "Guernini", "Hassi Bahbah", "Hassi El Euch", "Messaad", "Sidi Ladjel"],
-      "18": ["Jijel", "Ain Taya", "Boucif Ouled Askeur", "Chahna", "El Ancer", "El Milia", "Emir Abdelkader", "Ghebala", "Kaous", "Ouled Rabah", "Taher", "Texenna", "Ziama Mansouriah"],
-      "19": ["Sétif", "Ain Abessa", "Ain Arnat", "Ain Azel", "Ain El Kebira", "Ain Oulmene", "Amoucha", "Babor", "Bazer Sakhra", "Beidha Bordj", "Beni Aziz", "Bir El Arch", "Bouandas", "Bouga", "Djemila", "El Eulma", "Guenzet", "Guidjel", "Hammam Guergour", "Harbil", "Maaouia", "Maoklane", "Salah Bey", "Serdj El Ghoul", "Tachouda", "Tamazirt", "Tella", "Zerdaza"],
-      "20": ["Saïda", "Ain El Hadjar", "Ain Sekhouna", "Doui Thabet", "El Hassasna", "Hounet", "Maamora", "Moulay Larbi", "Ouled Brahim", "Ouled Khaled", "Youb"],
-      "21": ["Skikda", "Ain Kechra", "Azzaba", "Ben Azzouz", "Collo", "El Harrouch", "Oued Zehour", "Ramdane Djamel", "Sidi Mezghiche", "Tamalous", "Zitouna"],
-      "22": ["Sidi Bel Abbès", "Ain Adden", "Ain Thrid", "Ben Badis", "Marhoum", "Mérine", "Mostefa Ben Brahim", "Moulay Slissen", "Oued Taourira", "Ras El Ma", "Sfisef", "Tafraoui", "Telagh", "Ténira"],
-      "23": ["Annaba", "Ain Berda", "Berrahal", "Chorfa", "El Bouni", "El Hadjar", "Oued El Aneb", "Seraidi", "Treat"],
-      "24": ["Guelma", "Ain Ben Beida", "Ain Reggada", "Bou Hamdane", "Bouati Mahmoud", "Dahoua", "El Fedjoudj Boughrara", "Hammam Debagh", "Hammam N'Bails", "Heliopolis", "Khezaras", "Oued Zenati", "Ras El Agba", "Salaoua Announa", "Zemmoura"],
-      "25": ["Constantine", "Ain Smara", "Didouche Mourad", "El Khroub", "Hamma Bouziane", "Ibn Ziad", "Messaouda", "Zighoud Youcef"],
-      "26": ["Médéa", "Ain Boucif", "Ain Ouksir", "Aziz", "Berrouaghia", "Chahbounia", "Chelif", "Deux Bassins", "Djouab", "El Azizia", "El Omaria", "Guelb El Kebir", "Ksar El Boukhari", "Mihoub", "Oued Harbil", "Ouled Deid", "Ouled Hellal", "Ouled Maaref", "Seghouane", "Si Mahdjoub", "Souagui", "Tablat"],
-      "27": ["Mostaganem", "Ain Tedles", "Ain Sidi Cherif", "Bouguirat", "Hassi Mamèche", "Kheir Eddine", "Mesra", "Ouled Boughalem", "Ouled Malah", "Sidi Ali", "Sidi Lakhdar", "Sirat", "Stidia", "Tazgait"],
-      "28": ["M'Sila", "Ain El Melh", "Ben Srour", "Bou Saada", "Chellal", "Djebel Messaad", "El Hamel", "El Houamed", "Hammam Dhalaâ", "Khoubana", "Maadid", "Magra", "Medjedel", "Ouanougha", "Ouled Derradj", "Ouled Sidi Brahim", "Sidi Aissa", "Sidi Hadjeres", "Sidi M'hamed", "Souamaa", "Tarmount", "Zarzit"],
-      "29": ["Mascara", "Ain Farès", "Ain Fekroun", "Ain Fekan", "Aouf", "El Bordj", "El Gaada", "El Ghomri", "El Keurt", "El Menaouer", "Froha", "Ghriss", "Hachem", "Hacine", "Maoussa", "Mohammadia", "Mocta Douz", "Nesmoth", "Oggaz", "Oued El Abtal", "Oued Taria", "Ras Ain Amirouche", "Sidi Abdeldjebar", "Sidi Kada", "Sidi Zahar", "Tighennif", "Tizi", "Zahana"],
-      "30": ["Ouargla", "Ain Beida", "El Allia", "El Hadjira", "El Hajeb", "Hassi Ben Abdellah", "Hassi Messaoud", "N'Goussa", "Rouissat", "Sidi Khouiled", "Taibet", "Tebesbest", "Touggourt", "Zaouia El Abidia"],
-      "31": ["Oran", "Arzew", "Bethioua", "Bir El Djir", "Es Senia", "Gdyel", "Hassi Bounif", "Marsat El Hadjadj", "Mers El Kebir", "Misserghin", "Oued Tlelat", "Sidi Ben Yebka", "Sidi Chami"],
-      "32": ["El Bayadh", "Ain El Orak", "Bougtoub", "Brézina", "Chellala", "El Abiodh Sidi Cheikh", "El Bnoud", "Ghassoul", "Kef El Ahmar", "Rogassa", "Sidi Slimane", "Stitten"],
-      "33": ["Illizi", "Bordj Omar Driss", "Djanet", "Debdeb", "El Borma", "In Amenas", "In Guezzam", "In Salah", "Tin Zaouatine"],
-      "34": ["Bordj Bou Arréridj", "Ain Taghrout", "Belimour", "Bir Kasdali", "Bordj Ghdir", "Bordj Zemmoura", "Colla", "El Achir", "El Anser", "El Hamadia", "El Main", "El M'hir", "Ghilassa", "Haraza", "Hasnaoua", "Ksour", "Mansourah", "Medjana", "Ouled Brahem", "Ouled Dahmane", "Ouled Sidi Brahim", "Ras El Oued", "Righa", "Taglait", "Teniet En Nasr"],
-      "35": ["Boumerdès", "Ammal", "Baghlia", "Bordj Menaiel", "Boudouaou", "Boudouaou El Bahri", "Chabet El Ameur", "Dellys", "Isser", "Khemis El Khechna", "Legata", "Naciria", "Ouled Aissa", "Ouled Fayet", "Si Mustapha", "Souk El Had", "Thénia"],
-      "36": ["El Tarf", "Ain Kercha", "Ben M'Hidi", "Besbes", "Bouhadjar", "Boutheldja", "Dréan", "El Kala", "Lac des Oiseaux", "Souarekh"],
-      "37": ["Tindouf", "Aouinet Bel Egrâ", "Fenoughil", "Oum El Assel"],
-      "38": ["Tissemsilt", "Ammari", "Belaassel Bouzegza", "Beni Chaib", "Boucaid", "Bouhatem", "Boukhanafis", "Khemisti", "Lazharia", "Layoune", "Maacem", "Sidi Abed", "Sidi Boutouchent", "Sidi Lantri", "Tamalaht", "Theniet El Had"],
-      "39": ["El Oued", "Bayadha", "Debila", "El Ogla", "Guemar", "Hassi Khelifa", "Magrane", "Mih Ouensa", "Oued Souf", "Reguiba", "Robbah", "Taleb Larbi", "Trifaoui"],
-      "40": ["Khenchela", "Ain Touila", "Babar", "Bouhmama", "Chechar", "El Hamma", "El Mahmal", "El Mahres", "El Ouenza", "Hammam Essalihine", "Kais", "Ouled Rechache", "Remila", "Yabous"],
-      "41": ["Souk Ahras", "Ain Zana", "Bir Bouhouche", "Heddada", "Khedara", "M'Daourouch", "Mechroha", "Merahna", "Ouled Driss", "Oum El Adhaïm", "Sedrata", "Taoura", "Zouabi"],
-      "42": ["Tipaza", "Ahmar El Ain", "Bou Ismail", "Cherchell", "Damous", "Fouka", "Gouraya", "Hadjout", "Koléa", "Menaceur", "Nador", "Sidi Amar", "Sidi Ghiles", "Sidi Rached", "Sidi Semiane", "Tipasa"],
-      "43": ["Mila", "Ain Beida", "Ain Mellouk", "Chelghoum Laid", "El Ayadi Barbes", "El Barka", "El Eulma", "Ferdjioua", "Grarem Gouga", "Hamala", "Oued Athmania", "Oued Endja", "Oued Seguen", "Rouached", "Sidi Khelifa", "Tassadane Haddada", "Teleghma", "Terrai Bainen", "Yahia Beniguecha"],
-      "44": ["Aïn Defla", "Arib", "Bathia", "Belaas", "Bir Ould Khelifa", "Birbal", "Birhoum", "Boumedfaa", "Djelida", "Djemaa Ouled Cheikh", "El Amra", "El Attaf", "El Hassania", "El Maine", "Hammam Righa", "Hoceinia", "Khemis Miliana", "Miliana", "Oued Chorfa", "Oued Djemaa", "Rouina", "Tarik Ibn Ziad", "Tiberkanine", "Zeddine"],
-      "45": ["Naâma", "Ain Ben Khelil", "Ain Sefra", "Asla", "Djeniene Bourezg", "El Bier", "Makmen Ben Amer", "Mecheria", "Moghrar", "Sfissifa", "Tiout"],
-      "46": ["Aïn Témouchent", "Ain Kihel", "Aoubellil", "Beni Saf", "Bouzedjar", "El Amria", "El Malah", "Hammam Bouhadjar", "Hassasna", "Oued Berkeche", "Oued Sabah", "Sidi Ben Adda", "Sidi Boumediene", "Sidi Ourial", "Terga"],
-      "47": ["Ghardaïa", "Berriane", "Bounoura", "Dhayet Bendhahoua", "El Atteuf", "El Guerrara", "El Meniaa", "Metlili", "Sebseb", "Zelfana"],
-      "48": ["Relizane", "Ain Rahma", "Ain Tarek", "Ammi Moussa", "Belassel Bouzegza", "Beni Dergoun", "Beni Zentis", "Djidiouia", "El Hamadna", "El Matmar", "El Ouldja", "Had Echkalla", "Hamri", "Kalaa", "Mazouna", "Mendes", "Oued Rhiou", "Oued Sly", "Ramka", "Sidi Khettab", "Sidi Lazreg", "Souk El Had", "Yellel"],
-      "49": ["Timimoun", "Aougrout", "Bordj Badji Mokhtar", "Charouine", "Ouled Said", "Talmine", "Tinerkouk"],
-      "50": ["Bordj Badji Mokhtar", "Tin Zaouatine"],
-      "51": ["Ouled Djellal", "Chaiba", "Sidi Khaled"],
-      "52": ["Béni Abbès", "Kerzaz", "Ouled Khodeir", "Tabelbala"],
-      "53": ["In Salah", "Abalessa", "Foggaret Ezzaouia", "Idles", "In Ghar", "Tazrouk"],
-      "54": ["In Guezzam", "Tin Zaouatine"],
-      "55": ["Touggourt", "El Hadjira", "El Ogla", "Nezla", "Tebesbest", "Zaouia El Abidia"],
-      "56": ["Djanet", "Bordj Omar Driss"],
-      "57": ["El M'Ghair", "Djamaa", "Oum Touyour", "Sidi Khellil"],
-      "58": ["El Meniaa", "Hassi Gara", "Hassi Fehal"]
-    };
+                <!-- Logo with IMAGE -->
+                <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
+                    <div
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500 bg-white">
+                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                    </div>
+                    <div class="flex flex-col">
+                        <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
+                            Phone Haven<span class="text-accent-pink">.</span>
+                        </h2>
+                        <span
+                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                            More than a store, it's a haven for phones
+                        </span>
+                    </div>
+                </a>
 
-    // ========== PRIX DE LIVRAISON ==========
-    const shippingPrices = {
-      "01 - Adrar": 1500, "02 - Chlef": 700, "03 - Laghouat": 900, "04 - Oum El Bouaghi": 800,
-      "05 - Batna": 700, "06 - Béjaïa": 700, "07 - Biskra": 900, "08 - Béchar": 1200,
-      "09 - Blida": 700, "10 - Bouira": 700, "11 - Tamanrasset": 2000, "12 - Tébessa": 850,
-      "13 - Tlemcen": 800, "14 - Tiaret": 800, "15 - Tizi Ouzou": 700, "16 - Alger": 600,
-      "17 - Djelfa": 900, "18 - Jijel": 700, "19 - Sétif": 550, "20 - Saïda": 900,
-      "21 - Skikda": 800, "22 - Sidi Bel Abbès": 800, "23 - Annaba": 700, "24 - Guelma": 850,
-      "25 - Constantine": 650, "26 - Médéa": 800, "27 - Mostaganem": 800, "28 - M'Sila": 700,
-      "29 - Mascara": 800, "30 - Ouargla": 1000, "31 - Oran": 700, "32 - El Bayadh": 1200,
-      "33 - Illizi": 1900, "34 - Bordj Bou Arréridj": 600, "35 - Boumerdès": 700, "36 - El Tarf": 850,
-      "37 - Tindouf": 1700, "38 - Tissemsilt": 850, "39 - El Oued": 1000, "40 - Khenchela": 600,
-      "41 - Souk Ahras": 850, "42 - Tipaza": 600, "43 - Mila": 600, "44 - Aïn Defla": 800,
-      "45 - Naâma": 1200, "46 - Aïn Témouchent": 800, "47 - Ghardaïa": 1000, "48 - Relizane": 800,
-      "49 - Timimoun": 1500, "50 - Bordj Badji Mokhtar": 600, "51 - Ouled Djellal": 900,
-      "52 - Béni Abbès": 1200, "53 - In Salah": 1800, "54 - In Guezzam": 3500,
-      "55 - Touggourt": 1000, "56 - Djanet": 3500, "57 - El M'Ghair": 1800, "58 - El Meniaa": 1000
-    };
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="index.html">Téléphones</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="search.html">Catalogue</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="index.html#new-arrivals">Nouveautés</a>
+                </nav>
 
-    const stopDeskPrices = {
-      "01 - Adrar": 1000, "02 - Chlef": 450, "03 - Laghouat": 600, "04 - Oum El Bouaghi": 500,
-      "05 - Batna": 450, "06 - Béjaïa": 450, "07 - Biskra": 500, "08 - Béchar": 800,
-      "09 - Blida": 450, "10 - Bouira": 450, "11 - Tamanrasset": 1500, "12 - Tébessa": 500,
-      "13 - Tlemcen": 500, "14 - Tiaret": 500, "15 - Tizi Ouzou": 450, "16 - Alger": 400,
-      "17 - Djelfa": 600, "18 - Jijel": 450, "19 - Sétif": 300, "20 - Saïda": 500,
-      "21 - Skikda": 500, "22 - Sidi Bel Abbès": 500, "23 - Annaba": 450, "24 - Guelma": 500,
-      "25 - Constantine": 400, "26 - Médéa": 500, "27 - Mostaganem": 500, "28 - M'Sila": 450,
-      "29 - Mascara": 500, "30 - Ouargla": 600, "31 - Oran": 450, "32 - El Bayadh": 800,
-      "33 - Illizi": 1500, "34 - Bordj Bou Arréridj": 400, "35 - Boumerdès": 450, "36 - El Tarf": 500,
-      "37 - Tindouf": 1000, "38 - Tissemsilt": 500, "39 - El Oued": 600, "40 - Khenchela": 500,
-      "41 - Souk Ahras": 500, "42 - Tipaza": 450, "43 - Mila": 500, "44 - Aïn Defla": 500,
-      "45 - Naâma": 800, "46 - Aïn Témouchent": 500, "47 - Ghardaïa": 600, "48 - Relizane": 500,
-      "49 - Timimoun": 1000, "50 - Bordj Badji Mokhtar": 1500, "51 - Ouled Djellal": 500,
-      "52 - Béni Abbès": 800, "53 - In Salah": 1200, "54 - In Guezzam": 3500,
-      "55 - Touggourt": 600, "56 - Djanet": 3500, "57 - El M'Ghair": 1800, "58 - El Meniaa": 600
-    };
+                <!-- Right Actions -->
+                <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
 
-    // ========== Load Product ==========
-    document.addEventListener('DOMContentLoaded', async () => {
-      if (typeof window.db === 'undefined') {
-        showError('Firebase non initialisé. Veuillez actualiser la page.');
-        return;
-      }
+                    <!-- Desktop Search -->
+                    <div class="hidden md:flex relative items-center">
+                        <span
+                            class="material-symbols-outlined absolute left-3 xs:left-4 text-muted text-lg xs:text-xl pointer-events-none">search</span>
+                        <input
+                            class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
+                            placeholder="Rechercher..." type="text" id="desktop-search" />
+                        <button
+                            class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
+                            id="voice-search-desktop" aria-label="Recherche vocale" title="Recherche vocale">
+                            <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                        </button>
+                    </div>
 
-      const params = new URLSearchParams(window.location.search);
-      const productId = params.get('id');
-      
-      if (!productId) {
-        showError('Produit non spécifié dans l\'URL');
-        return;
-      }
+                    <!-- Wishlist Button -->
+                    <button
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white/20 transition-all active:scale-90 relative"
+                        aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px] text-body"
+                            id="wishlist-icon">favorite_border</span>
+                    </button>
 
-      try {
-        const doc = await db.collection('produits').doc(productId).get();
-        
-        if (!doc.exists) {
-          showError('Produit introuvable dans la base de données');
-          return;
-        }
-        
-        const product = { id: doc.id, ...doc.data() };
-        renderProductPage(product);
-        
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'ViewContent', { 
-            content_name: product.name, 
-            value: product.price, 
-            currency: 'DZD' 
-          });
-        }
-      } catch (error) {
-        console.error('❌ Erreur chargement produit:', error.code, error.message);
-        
-        if (error.code === 'permission-denied') {
-          showError(`
-            🔐 Accès refusé à la base de données<br>
-            <small>Vérifiez les Rules Firebase Console</small><br>
-            Collection: <strong>produits</strong> doit avoir:<br>
-            <code>allow read: if true;</code>
-          `);
-        } else if (error.code === 'not-found') {
-          showError('Produit introuvable. Il a peut-être été supprimé.');
-        } else {
-          showError(`Erreur: ${error.message}<br><button onclick="location.reload()">Réessayer</button>`);
-        }
-      }
-    });
-
-    // ========== Render Product Page ==========
-    function renderProductPage(product) {
-      const container = document.getElementById('productContainer');
-      const price = parseFloat(product.price) || 0;
-      const oldPrice = product.oldPrice ? parseFloat(product.oldPrice) : null;
-      
-      const priceDisplay = oldPrice 
-        ? `<old>${oldPrice.toLocaleString('fr-FR')}</old> ${price.toLocaleString('fr-FR')} DA`
-        : `${price.toLocaleString('fr-FR')} DA`;
-
-      const productDataSafe = JSON.stringify({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image
-      }).replace(/'/g, "\\'");
-
-      container.innerHTML = `
-        <div class="product-detail-page">
-          <!-- Image Column - centrée -->
-          <div class="detail-image-container">
-            <img src="${product.image || 'https://via.placeholder.com/400?text=Produit'}" 
-                 alt="${product.name}" 
-                 class="detail-image" 
-                 loading="lazy"
-                 onerror="this.src='https://via.placeholder.com/400?text=Image+non+disponible'">
-          </div>
-
-          <!-- Info Column -->
-          <div class="detail-info">
-            <a href="index.html" class="back-btn" style="margin-bottom:15px;display:inline-flex;">
-              <i class="fas fa-arrow-left"></i> Retour aux produits
-            </a>
-            
-            <button class="share-btn" onclick="shareProduct('${product.id}', '${encodeURIComponent(product.name)}')">
-              <i class="fas fa-share-alt"></i> Partager ce produit
-            </button>
-            
-            <h1>${product.name}</h1>
-            <p class="product-category">${product.category || 'Général'}</p>
-            <p class="product-description">${product.description || 'Aucune description disponible pour ce produit.'}</p>
-            <div class="detail-price">${priceDisplay}</div>
-            
-            <button class="btn-add-cart" onclick='addToCart("${product.id}", ${productDataSafe})'>
-              <i class="fas fa-shopping-cart"></i> Ajouter au Panier
-            </button>
-            <button class="btn-buy-now" onclick="scrollToOrderForm()">
-              <i class="fas fa-bolt"></i> Commander Maintenant
-            </button>
-
-            <!-- Quick Order Form -->
-            <div class="order-form" id="orderFormSection">
-              <h3><i class="fas fa-truck-fast"></i> Livraison Rapide</h3>
-              <form id="quickOrderForm" onsubmit="submitQuickOrder(event, '${product.id}')">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Prénom *</label>
-                    <input type="text" id="qFirstName" required placeholder="Votre prénom" autocomplete="given-name">
-                  </div>
-                  <div class="form-group">
-                    <label>Nom *</label>
-                    <input type="text" id="qLastName" required placeholder="Votre nom" autocomplete="family-name">
-                  </div>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-lg border border-white/15 text-body transition-all active:scale-90"
+                        aria-label="Menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
+                    </button>
                 </div>
-                
-                <div class="form-group">
-                  <label>Téléphone *</label>
-                  <input type="tel" id="qPhone" required placeholder="05XXXXXXXX" pattern="[0-9]{10}" autocomplete="tel">
-                </div>
-                
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Wilaya *</label>
-                    <select id="qWilaya" required onchange="loadCommunes(this.value); updateShippingPrice();">
-                      <option value="">Sélectionner une wilaya</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>Commune *</label>
-                    <select id="qCommune" required>
-                      <option value="">Sélectionner une commune</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label>Type de livraison *</label>
-                  <select id="qOrderType" required onchange="updateShippingPrice()">
-                    <option value="domicile">🏠 Livraison à domicile</option>
-                    <option value="stopdesk">🏢 Stop Desk (Retrait au bureau)</option>
-                  </select>
-                </div>
-                
-                <div class="shipping-price">
-                  <i class="fas fa-info-circle"></i>
-                  <span>Frais de livraison:</span>
-                  <strong id="shippingPriceDisplay">0 DA</strong>
-                </div>
-                
-                <button type="submit" class="btn-submit-order" id="submitOrderBtn">
-                  <i class="fas fa-check"></i> Confirmer la Commande
-                </button>
-              </form>
             </div>
-          </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="lg:hidden mt-2 xs:mt-3 px-1">
+                <div class="relative">
+                    <span
+                        class="material-symbols-outlined absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 text-muted text-lg xs:text-xl">search</span>
+                    <input
+                        class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 py-2.5 xs:py-3 pl-9 xs:pl-12 pr-10 xs:pr-12 text-xs sm:text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
+                        placeholder="Rechercher un produit..." type="text" id="mobile-search" />
+                    <button
+                        class="absolute right-2 xs:right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-white/20 transition-all text-muted hover:text-accent-pink"
+                        id="voice-search-mobile" aria-label="Recherche vocale" title="Recherche vocale">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] hidden lg:hidden"
+            style="display: none;"></div>
+        <div id="mobile-menu"
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[#1a1233]/95 backdrop-blur-xl border border-white/15 z-[100] lg:hidden shadow-2xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/15">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <!-- Logo with IMAGE in Mobile Menu -->
+                        <div
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                            <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                        </div>
+                        <div class="flex flex-col">
+                            <h2 class="font-display text-base xs:text-lg font-black tracking-tighter text-heading">
+                                Phone Haven<span class="text-accent-pink">.</span>
+                            </h2>
+                            <span
+                                class="text-[8.5px] xs:text-[10px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                                More than a store, it's a haven
+                            </span>
+                        </div>
+                    </a>
+                    <button id="mobile-menu-close"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-white/15 transition-all"
+                        aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px] text-body">close</span>
+                    </button>
+                </div>
+
+                <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
+                    <ul class="flex flex-col gap-1.5 xs:gap-2">
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="index.html"><span class="material-symbols-outlined text-[18px]">smartphone</span>
+                                Téléphones</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
+                                Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="index.html#new-arrivals"><span
+                                    class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
+                        </li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="tracking.html"><span
+                                    class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
+                                Commande</a></li>
+                    </ul>
+
+                    <div class="mt-4 xs:mt-6 pt-4 xs:pt-6 border-t border-white/15">
+                        <p class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-muted mb-2 xs:mb-3 px-2">
+                            Catégories</p>
+                        <div class="flex flex-wrap gap-2 px-2">
+                            <a href="search.html?category=Téléphone"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-secondary hover:text-accent-pink transition-all">📱
+                                Téléphones</a>
+                            <a href="search.html?category=Accessoire"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-accent hover:text-accent transition-all">🎧
+                                Accessoires</a>
+                            <a href="search.html?category=Offres"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-400/30 hover:border-red-500 hover:text-red-400 transition-all">🔥
+                                Offres</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="p-3 xs:p-4 border-t border-white/15 space-y-2 xs:space-y-3">
+                    <div class="flex gap-1.5 xs:gap-2">
+                        <a class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl glass-card text-body hover:text-accent-pink transition-all"
+                            href="#"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">share</span></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      `;
 
-      loadWilayas();
-      updateCartCount();
-    }
+        <main class="flex-1">
 
-    // ========== Helper Functions ==========
-    function showError(msg) {
-      document.getElementById('productContainer').innerHTML = `
-        <div class="error">
-          <i class="fas fa-exclamation-circle"></i>
-          <p style="margin:15px 0;font-size:1.1rem">${msg}</p>
-          <a href="index.html"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
-        </div>
-      `;
-    }
+            <!-- Breadcrumbs -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-5">
+                <div class="max-w-7xl mx-auto">
+                    <nav
+                        class="flex items-center gap-2 text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted">
+                        <a class="link-hover transition-colors" href="index.html">Accueil</a>
+                        <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                        <a id="breadcrumb-category" class="link-hover transition-colors"
+                            href="search.html">Collection</a>
+                        <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                        <span id="breadcrumb-product" class="text-accent-purple">Chargement...</span>
+                    </nav>
+                </div>
+            </section>
 
-    // ========== Chargement des Wilayas ==========
-    function loadWilayas() {
-      const select = document.getElementById('qWilaya');
-      if (!select) return;
-      
-      select.innerHTML = '<option value="">Sélectionner une wilaya</option>';
-      
-      wilayasList.forEach(wilaya => {
-        const option = document.createElement('option');
-        const code = wilaya.split(' - ')[0];
-        option.value = code;
-        option.textContent = wilaya;
-        select.appendChild(option);
-      });
-    }
+            <!-- Product Detail Section -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-4 xs:py-6">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 lg:gap-12">
 
-    // ========== Chargement des Communes ==========
-    function loadCommunes(wilayaCode) {
-      const select = document.getElementById('qCommune');
-      if (!select) return;
-      
-      select.innerHTML = '<option value="">Sélectionner une commune</option>';
-      
-      const communes = communesData[wilayaCode] || [];
-      
-      communes.forEach(commune => {
-        const option = document.createElement('option');
-        option.value = commune;
-        option.textContent = commune;
-        select.appendChild(option);
-      });
-    }
+                        <!-- Product Image Gallery -->
+                        <div class="space-y-4 xs:space-y-6">
+                            <div
+                                class="group relative overflow-hidden rounded-3xl xs:rounded-[2rem] glass-card border border-white/15 shadow-xl aspect-square">
+                                <!-- Loading Skeleton -->
+                                <div id="image-skeleton" class="absolute inset-0 skeleton rounded-3xl"></div>
+                                <!-- Main Image -->
+                                <img id="product-image" alt="Product"
+                                    class="h-full w-full object-cover product-image-zoom lazy-image hidden rounded-3xl"
+                                    src="" loading="lazy" />
+                                <!-- Discount Badge -->
+                                <div id="discount-badge"
+                                    class="hidden absolute top-3 xs:top-4 left-3 xs:left-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-red-500 text-white text-[9px] xs:text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
+                                    -30%
+                                </div>
+                                <!-- Zoom Hint -->
+                                <div
+                                    class="absolute bottom-3 xs:bottom-4 right-3 xs:right-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-black/50 text-body text-[9px] xs:text-[10px] font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                    🔍 Zoom
+                                </div>
+                            </div>
 
-    // ========== Mise à jour du prix de livraison ==========
-    function updateShippingPrice() {
-      const type = document.getElementById('qOrderType')?.value || 'domicile';
-      const wilayaCode = document.getElementById('qWilaya')?.value;
-      
-      const prices = type === 'stopdesk' ? stopDeskPrices : shippingPrices;
-      const wilayaName = wilayasList.find(w => w.startsWith(wilayaCode + ' - '));
-      const price = wilayaName ? (prices[wilayaName] || 0) : 0;
-      
-      document.getElementById('shippingPriceDisplay').textContent = price + ' DA';
-    }
+                            <!-- Mobile: Image Thumbnails -->
+                            <div class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1 lg:hidden">
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-secondary overflow-hidden">
+                                    <img id="thumb-1" class="w-full h-full object-cover" src="" alt="Vue 1">
+                                </button>
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60">
+                                    <img class="w-full h-full object-cover"
+                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80"
+                                        alt="Vue 2">
+                                </button>
+                                <button
+                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60">
+                                    <img class="w-full h-full object-cover"
+                                        src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&q=80"
+                                        alt="Vue 3">
+                                </button>
+                            </div>
+                        </div>
 
-    function scrollToOrderForm() {
-      document.getElementById('orderFormSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+                        <!-- Product Info & Order Form -->
+                        <div class="flex flex-col">
 
-    function shareProduct(id, name) {
-      const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
-      if (navigator.share) {
-        navigator.share({ title: decodeURIComponent(name), text: 'Découvrez ce produit sur Amar Informatique', url }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url).then(() => {
-          const btn = event.currentTarget;
-          const original = btn.innerHTML;
-          btn.innerHTML = '<i class="fas fa-check"></i> Copié!';
-          setTimeout(() => btn.innerHTML = original, 2000);
-        });
-      }
-    }
+                            <!-- ✅ Title & Price - STOCK STATUS SUPPRIMÉ -->
+                            <div class="mb-4 xs:mb-6">
+                                <h1 id="product-title"
+                                    class="font-display text-heading text-xl xs:text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-2">
+                                    <span class="skeleton inline-block w-48 h-6 xs:h-7 rounded"></span>
+                                </h1>
+                                <div class="flex items-baseline gap-3">
+                                    <span id="product-price"
+                                        class="font-display text-accent-purple text-2xl xs:text-3xl sm:text-4xl font-black skeleton w-24 h-8 xs:h-9 rounded"></span>
+                                    <span id="original-price"
+                                        class="text-muted line-through text-sm xs:text-base hidden"></span>
+                                </div>
+                                <!-- ✅ STOCK STATUS COMPLETEMENT SUPPRIMÉ -->
+                            </div>
 
-    // ========== Panier ==========
-    function addToCart(productId, productData) {
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const existing = cart.find(item => item.id === productId);
-      
-      if (existing) {
-        existing.quantity = (existing.quantity || 1) + 1;
-      } else {
-        cart.push({
-          id: productData.id,
-          name: productData.name,
-          price: productData.price,
-          image: productData.image,
-          quantity: 1
-        });
-      }
-      
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      alert('✅ Produit ajouté au panier!');
-    }
+                            <!-- Description -->
+                            <div class="mb-4 xs:mb-6 px-0.5">
+                                <h3
+                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-2 xs:mb-3">
+                                    Description</h3>
+                                <p id="product-description"
+                                    class="text-body text-xs xs:text-sm leading-relaxed font-medium line-clamp-3 xs:line-clamp-none">
+                                    <span class="skeleton inline-block w-full h-3 rounded mb-2"></span>
+                                    <span class="skeleton inline-block w-3/4 h-3 rounded"></span>
+                                </p>
+                                <button id="toggle-description"
+                                    class="text-accent-purple text-xs font-medium mt-2 hidden link-hover">
+                                    Voir plus <span
+                                        class="material-symbols-outlined text-[14px] align-middle">expand_more</span>
+                                </button>
+                            </div>
 
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-      const els = document.querySelectorAll('#cartCount, .cart-count');
-      els.forEach(el => {
-        if (el) {
-          el.textContent = count;
-          el.style.display = count > 0 ? 'flex' : 'none';
-        }
-      });
-    }
+                            <!-- Key Features -->
+                            <div id="features-list" class="mb-4 xs:mb-6 space-y-2 hidden">
+                                <h3
+                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-2 xs:mb-3">
+                                    Caractéristiques</h3>
+                                <div class="grid grid-cols-2 gap-2 xs:gap-3">
+                                    <div class="flex items-center gap-2 text-xs text-body">
+                                        <span
+                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
+                                        <span>Garantie 6 mois</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-body">
+                                        <span
+                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
+                                        <span>100% Original</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-body">
+                                        <span
+                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
+                                        <span>Livraison 58 wilayas</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-body">
+                                        <span
+                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
+                                        <span>Paiement à la livraison</span>
+                                    </div>
+                                </div>
+                            </div>
 
-    // ========== Soumission de commande ==========
-    async function submitQuickOrder(e, productId) {
-      e.preventDefault();
-      const btn = document.getElementById('submitOrderBtn');
-      const original = btn.innerHTML;
-      
-      try {
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
+                            <!-- Order Form Card -->
+                            <div
+                                class="glass border border-secondary/20 rounded-3xl xs:rounded-[2rem] p-4 xs:p-6 shadow-lg">
+                                <div class="flex items-center gap-3 mb-4 xs:mb-6">
+                                    <div
+                                        class="h-10 w-10 xs:h-12 xs:w-12 rounded-xl xs:rounded-2xl bg-secondary/10 text-accent-purple flex items-center justify-center flex-shrink-0">
+                                        <span
+                                            class="material-symbols-outlined text-[20px] xs:text-[24px]">shopping_bag</span>
+                                    </div>
+                                    <h3
+                                        class="font-display text-base xs:text-lg font-black text-heading">
+                                        Commander Maintenant</h3>
+                                </div>
 
-        const doc = await db.collection('produits').doc(productId).get();
-        if (!doc.exists) throw new Error('Produit introuvable');
-        const product = { id: doc.id, ...doc.data() };
+                                <form id="order-form" class="space-y-3 xs:space-y-4">
+                                    <!-- Name & Phone -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
+                                        <div class="space-y-1.5 xs:space-y-2">
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Nom
+                                                Complet *</label>
+                                            <input id="customer-name" type="text" required autocomplete="name"
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all font-medium"
+                                                placeholder="Votre nom" />
+                                        </div>
+                                        <div class="space-y-1.5 xs:space-y-2">
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Téléphone
+                                                *</label>
+                                            <input id="customer-phone" type="tel" required inputmode="tel"
+                                                autocomplete="tel"
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all font-medium"
+                                                placeholder="05/06/07 XX XX XX XX" />
+                                        </div>
+                                    </div>
 
-        const order = {
-          items: [{ 
-            id: product.id, 
-            name: product.name, 
-            price: parseFloat(product.price) || 0, 
-            qty: 1, 
-            image: product.image 
-          }],
-          customer: {
-            firstName: document.getElementById('qFirstName').value,
-            lastName: document.getElementById('qLastName').value,
-            phone: document.getElementById('qPhone').value,
-            wilaya: document.getElementById('qWilaya').options[document.getElementById('qWilaya').selectedIndex]?.text,
-            commune: document.getElementById('qCommune').value,
-            orderType: document.getElementById('qOrderType').value
-          },
-          productDetails: {
-            name: product.name,
-            price: parseFloat(product.price) || 0,
-            category: product.category
-          },
-          shipping: parseInt(document.getElementById('shippingPriceDisplay').textContent) || 0,
-          total: (parseFloat(product.price) || 0) + (parseInt(document.getElementById('shippingPriceDisplay').textContent) || 0),
-          status: 'pending',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          source: 'product-page'
+                                    <!-- Shipping Type -->
+                                    <div class="space-y-1.5 xs:space-y-2">
+                                        <label
+                                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Type
+                                            de Livraison *</label>
+                                        <select id="shipping-type"
+                                            class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                            <option value="stop_desk">🏢 Stop Desk (Bureau)</option>
+                                            <option value="a_domicile">🏠 À Domicile</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Wilaya & Commune -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
+                                        <div class="space-y-1.5 xs:space-y-2">
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Wilaya
+                                                *</label>
+                                            <select id="wilaya" required
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                                <option value="">Sélectionner</option>
+                                            </select>
+                                        </div>
+                                        <div class="space-y-1.5 xs:space-y-2">
+                                            <label
+                                                class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Commune
+                                                *</label>
+                                            <select id="commune" required disabled
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10 disabled:opacity-50">
+                                                <option value="">Sélectionnez d'abord la wilaya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shipping Price Display -->
+                                    <div id="shipping-price-card"
+                                        class="hidden glass border border-accent/30 bg-accent/5 rounded-xl xs:rounded-2xl p-3 xs:p-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <div
+                                                    class="h-8 w-8 xs:h-9 xs:w-9 rounded-lg bg-accent/20 text-accent flex items-center justify-center flex-shrink-0">
+                                                    <span
+                                                        class="material-symbols-outlined text-[18px] xs:text-[20px]">local_shipping</span>
+                                                </div>
+                                                <div class="min-w-0">
+                                                    <p
+                                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-muted truncate">
+                                                        Frais de Livraison</p>
+                                                    <p class="text-body font-semibold text-xs truncate"
+                                                        id="shipping-details">Calcul...</p>
+                                                </div>
+                                            </div>
+                                            <div class="text-right flex-shrink-0 ml-3">
+                                                <p id="shipping-price"
+                                                    class="text-accent font-black text-lg xs:text-xl">0 د.ج</p>
+                                            </div>
+                                        </div>
+                                        <p id="shipping-time"
+                                            class="text-[9px] xs:text-[10px] text-body mt-2 flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[12px]">schedule</span>
+                                            <span class="truncate">--</span>
+                                        </p>
+                                    </div>
+
+                                    <!-- Address -->
+                                    <div class="space-y-1.5 xs:space-y-2">
+                                        <label
+                                            class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Adresse
+                                            Complète *</label>
+                                        <input id="address" type="text" required autocomplete="street-address"
+                                            class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-input placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all font-medium"
+                                            placeholder="Rue, Numéro, Repère..." />
+                                    </div>
+
+                                    <!-- Order Summary -->
+                                    <div id="order-summary"
+                                        class="hidden glass border border-secondary/30 rounded-xl xs:rounded-2xl p-3 xs:p-4 space-y-2">
+                                        <div class="flex justify-between text-xs">
+                                            <span class="text-muted">Produit</span>
+                                            <span id="summary-product-price" class="font-medium">0 د.ج</span>
+                                        </div>
+                                        <div class="flex justify-between text-xs">
+                                            <span class="text-muted">Livraison</span>
+                                            <span id="summary-shipping-price" class="font-medium text-accent">0
+                                                د.ج</span>
+                                        </div>
+                                        <div class="border-t border-white/10 pt-2 flex justify-between">
+                                            <span class="font-black text-heading text-sm">Total à
+                                                payer</span>
+                                            <span id="summary-total"
+                                                class="font-black text-accent-purple text-lg xs:text-xl">0 د.ج</span>
+                                        </div>
+                                        <p class="text-[9px] text-muted text-center">💵 Paiement en espèces à la
+                                            livraison</p>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="sticky-submit pt-2">
+                                        <button id="confirm-btn" type="submit" disabled
+                                            class="w-full group relative flex h-12 xs:h-14 items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-secondary text-white shadow-lg shadow-secondary/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
+                                            <div
+                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                            </div>
+                                            <span
+                                                class="relative font-display text-sm font-black tracking-wide uppercase flex items-center gap-2">
+                                                <span id="btn-text">Sélectionnez la wilaya</span>
+                                                <span
+                                                    class="material-symbols-outlined text-[18px] xs:text-[20px]">arrow_forward</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Trust Badges -->
+                            <div class="mt-4 xs:mt-6 grid grid-cols-3 gap-2 xs:gap-3 text-center">
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl glass-card">
+                                    <span
+                                        class="material-symbols-outlined text-success text-[18px] xs:text-[20px]">verified</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-body">100%
+                                        Original</span>
+                                </div>
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl glass-card">
+                                    <span
+                                        class="material-symbols-outlined text-accent-purple text-[18px] xs:text-[20px]">local_shipping</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-body">58
+                                        Wilayas</span>
+                                </div>
+                                <div
+                                    class="flex flex-col items-center gap-1 xs:gap-1.5 p-2 xs:p-3 rounded-xl glass-card">
+                                    <span
+                                        class="material-symbols-outlined text-accent text-[18px] xs:text-[20px]">payments</span>
+                                    <span
+                                        class="text-[9px] xs:text-[10px] font-medium text-body">Paiement
+                                        Cash</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Products -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 border-t border-white/15">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex items-center justify-between mb-4 xs:mb-6">
+                        <h3 class="font-display text-base xs:text-lg font-black text-heading">Vous
+                            aimerez aussi</h3>
+                        <a href="search.html"
+                            class="text-accent-purple text-xs font-medium link-hover flex items-center gap-1">
+                            Voir tout <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="flex overflow-x-auto gap-3 xs:gap-4 no-scrollbar pb-2 -mx-1 xs:mx-0 px-1 xs:px-0"
+                        id="related-products">
+                        <div class="w-full text-center py-8 text-body text-xs animate-pulse">Chargement...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mobile Sticky Bottom Bar -->
+            <div class="lg:hidden sticky bottom-0 left-0 right-0 z-40">
+                <div class="mx-3 xs:mx-4">
+                    <div class="flex items-center justify-between glass-light rounded-xl xs:rounded-2xl p-2 xs:p-3 shadow-lg">
+                        <a href="index.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
+                            <span
+                                class="material-symbols-outlined text-accent-pink text-[18px] xs:text-[20px]">home</span>
+                            <span
+                                class="text-[8px] xs:text-[9px] font-medium text-body">Accueil</span>
+                        </a>
+                        <a href="search.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
+                            <span
+                                class="material-symbols-outlined text-muted text-[18px] xs:text-[20px]">search</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-muted">Rechercher</span>
+                        </a>
+                        <a href="tracking.html"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all">
+                            <span
+                                class="material-symbols-outlined text-muted text-[18px] xs:text-[20px]">local_shipping</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-muted">Suivi</span>
+                        </a>
+                        <a href="#"
+                            class="flex flex-col items-center gap-0.5 xs:gap-1 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg xs:rounded-xl hover:bg-white/20 transition-all"
+                            onclick="showToast('❤️ Favoris bientôt disponible', 'info')">
+                            <span
+                                class="material-symbols-outlined text-muted text-[18px] xs:text-[20px]">favorite_border</span>
+                            <span class="text-[8px] xs:text-[9px] font-medium text-muted">Favoris</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="bg-black/40 backdrop-blur-2xl border-t border-white/15 pt-10 xs:pt-12 sm:pt-16 pb-6 xs:pb-8 sm:pb-12 px-3 xs:px-4 sm:px-6 md:px-20">
+            <div class="max-w-7xl mx-auto">
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
+                    <div class="col-span-2 flex flex-col gap-3 xs:gap-4 sm:gap-6">
+                        <a href="index.html" class="flex items-center gap-1.5 xs:gap-2">
+                            <!-- Logo with IMAGE in Footer -->
+                            <div
+                                class="flex h-6 w-6 xs:h-7 xs:w-7 sm:h-8 sm:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                                <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                            </div>
+                            <div class="flex flex-col">
+                                <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
+                                    Phone Haven<span class="text-accent-pink">.</span>
+                                </h2>
+                                <span
+                                    class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                                    More than a store, it's a haven for phones
+                                </span>
+                            </div>
+                        </a>
+                        <p class="text-muted max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
+                            📍 Basée à Sétif, Algérie<br>
+                            📱 Smartphones & Accessoires 100% originaux<br>
+                            🚚 Livraison rapide dans les 58 wilayas<br>
+                            💵 Paiement à la livraison disponible
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
+                            Navigation</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="search.html">Catalogue</a></li>
+                            <li><a class="link-hover transition-colors"
+                                    href="index.html#new-arrivals">Nouveautés</a></li>
+                            <li><a class="link-hover transition-colors"
+                                    href="search.html?category=Téléphone">Téléphones</a></li>
+                            <li><a class="link-hover transition-colors"
+                                    href="search.html?category=Accessoire">Accessoires</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
+                            Assistance</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="tracking.html">Suivi Commande</a>
+                            </li>
+                            <li><a class="link-hover transition-colors" href="#">Livraison & Retours</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Nous Contacter</a></li>
+                            <li><a class="link-hover transition-colors" href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4
+                            class="font-display font-black text-[9px] xs:text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-3 xs:mb-4 sm:mb-6 text-body">
+                            Légal</h4>
+                        <ul class="flex flex-col gap-2 xs:gap-3 text-muted text-xs">
+                            <li><a class="link-hover transition-colors" href="#">Confidentialité</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Conditions</a></li>
+                            <li><a class="link-hover transition-colors" href="#">Garantie</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="pt-4 xs:pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 xs:gap-4 text-[8px] xs:text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-muted">
+                    <p>© 2026 Phone Haven. Tous droits réservés.</p>
+                    <div class="flex items-center gap-3 xs:gap-4 sm:gap-6">
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
+                            href="https://instagram.com" target="_blank" aria-label="Instagram">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Instagram</span>
+                        </a>
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
+                            href="https://facebook.com" target="_blank" aria-label="Facebook">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">Facebook</span>
+                        </a>
+                        <a class="link-hover transition-colors flex items-center gap-1.5"
+                            href="https://tiktok.com" target="_blank" aria-label="TikTok">
+                            <svg class="w-4 h-4 xs:w-5 xs:h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                            </svg>
+                            <span class="text-[10px] xs:text-[11px]">TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"
+        class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 xs:space-y-2 max-w-[280px] xs:max-w-[320px]">
+    </div>
+
+    <script>
+        // ✅ Algeria Wilayas Data with ALL 58 wilayas
+        const wilayasData = {
+            "1": { name: "Adrar", code: "01", time: "72-96h", home: 1500, desk: 1000 },
+            "2": { name: "Chlef", code: "02", time: "24-48h", home: 700, desk: 450 },
+            "3": { name: "Laghouat", code: "03", time: "48-72h", home: 900, desk: 600 },
+            "4": { name: "Oum El Bouaghi", code: "04", time: "24-48h", home: 800, desk: 500 },
+            "5": { name: "Batna", code: "05", time: "24-48h", home: 700, desk: 450 },
+            "6": { name: "Béjaïa", code: "06", time: "24-48h", home: 700, desk: 450 },
+            "7": { name: "Biskra", code: "07", time: "48-72h", home: 900, desk: 500 },
+            "8": { name: "Béchar", code: "08", time: "72-96h", home: 1200, desk: 800 },
+            "9": { name: "Blida", code: "09", time: "24-48h", home: 700, desk: 450 },
+            "10": { name: "Bouira", code: "10", time: "24-48h", home: 700, desk: 450 },
+            "11": { name: "Tamanrasset", code: "11", time: "72-96h", home: 2000, desk: 1500 },
+            "12": { name: "Tébessa", code: "12", time: "48-72h", home: 850, desk: 500 },
+            "13": { name: "Tlemcen", code: "13", time: "24-48h", home: 800, desk: 500 },
+            "14": { name: "Tiaret", code: "14", time: "48-72h", home: 800, desk: 500 },
+            "15": { name: "Tizi Ouzou", code: "15", time: "24-48h", home: 700, desk: 450 },
+            "16": { name: "Alger", code: "16", time: "24-48h", home: 600, desk: 400 },
+            "17": { name: "Djelfa", code: "17", time: "48-72h", home: 900, desk: 600 },
+            "18": { name: "Jijel", code: "18", time: "24-48h", home: 700, desk: 450 },
+            "19": { name: "Sétif", code: "19", time: "24-48h", home: 550, desk: 300 },
+            "20": { name: "Saïda", code: "20", time: "48-72h", home: 900, desk: 500 },
+            "21": { name: "Skikda", code: "21", time: "24-48h", home: 800, desk: 500 },
+            "22": { name: "Sidi Bel Abbès", code: "22", time: "24-48h", home: 800, desk: 500 },
+            "23": { name: "Annaba", code: "23", time: "24-48h", home: 700, desk: 450 },
+            "24": { name: "Guelma", code: "24", time: "24-48h", home: 850, desk: 500 },
+            "25": { name: "Constantine", code: "25", time: "24-48h", home: 650, desk: 400 },
+            "26": { name: "Médéa", code: "26", time: "48-72h", home: 800, desk: 500 },
+            "27": { name: "Mostaganem", code: "27", time: "24-48h", home: 800, desk: 500 },
+            "28": { name: "M'Sila", code: "28", time: "48-72h", home: 700, desk: 450 },
+            "29": { name: "Mascara", code: "29", time: "24-48h", home: 800, desk: 500 },
+            "30": { name: "Ouargla", code: "30", time: "72-96h", home: 1000, desk: 600 },
+            "31": { name: "Oran", code: "31", time: "24-48h", home: 700, desk: 450 },
+            "32": { name: "El Bayadh", code: "32", time: "72-96h", home: 1200, desk: 800 },
+            "33": { name: "Illizi", code: "33", time: "72-96h", home: 1900, desk: 1500 },
+            "34": { name: "Bordj Bou Arréridj", code: "34", time: "24-48h", home: 600, desk: 400 },
+            "35": { name: "Boumerdès", code: "35", time: "24-48h", home: 700, desk: 450 },
+            "36": { name: "El Tarf", code: "36", time: "24-48h", home: 850, desk: 500 },
+            "37": { name: "Tindouf", code: "37", time: "72-96h", home: 1700, desk: 1000 },
+            "38": { name: "Tissemsilt", code: "38", time: "48-72h", home: 850, desk: 500 },
+            "39": { name: "El Oued", code: "39", time: "72-96h", home: 1000, desk: 600 },
+            "40": { name: "Khenchela", code: "40", time: "48-72h", home: 600, desk: 500 },
+            "41": { name: "Souk Ahras", code: "41", time: "24-48h", home: 850, desk: 500 },
+            "42": { name: "Tipaza", code: "42", time: "24-48h", home: 600, desk: 450 },
+            "43": { name: "Mila", code: "43", time: "24-48h", home: 600, desk: 500 },
+            "44": { name: "Aïn Defla", code: "44", time: "48-72h", home: 800, desk: 500 },
+            "45": { name: "Naâma", code: "45", time: "72-96h", home: 1200, desk: 800 },
+            "46": { name: "Aïn Témouchent", code: "46", time: "24-48h", home: 800, desk: 500 },
+            "47": { name: "Ghardaïa", code: "47", time: "72-96h", home: 1000, desk: 600 },
+            "48": { name: "Relizane", code: "48", time: "24-48h", home: 800, desk: 500 },
+            "49": { name: "Timimoun", code: "49", time: "72-96h", home: 1500, desk: 1000 },
+            "50": { name: "Bordj Badji Mokhtar", code: "50", time: "72-96h", home: 1600, desk: 1500 },
+            "51": { name: "Ouled Djellal", code: "51", time: "72-96h", home: 900, desk: 500 },
+            "52": { name: "Béni Abbès", code: "52", time: "72-96h", home: 1200, desk: 800 },
+            "53": { name: "In Salah", code: "53", time: "72-96h", home: 1800, desk: 1200 },
+            "54": { name: "In Guezzam", code: "54", time: "72-96h", home: 2200, desk: 1500 },
+            "55": { name: "Touggourt", code: "55", time: "72-96h", home: 1000, desk: 600 },
+            "56": { name: "Djanet", code: "56", time: "72-96h", home: 2000, desk: 1500 },
+            "57": { name: "El M'Ghair", code: "57", time: "72-96h", home: 1000, desk: 600 },
+            "58": { name: "El Meniaa", code: "58", time: "72-96h", home: 1000, desk: 600 }
         };
 
-        await db.collection('commandes').add(order);
-        
-        const orderNum = 'ORD-' + Date.now().toString().slice(-6);
-        alert(`✅ Commande envoyée!\nNuméro de suivi: ${orderNum}\n\nNous vous contacterons bientôt.`);
-        
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'Lead', { value: order.total, currency: 'DZD' });
-        }
-        
-        e.target.reset();
-        document.getElementById('shippingPriceDisplay').textContent = '0 DA';
-        
-      } catch (error) {
-        console.error('❌ Erreur commande:', error);
-        alert('❌ Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter au 0559 46 99 56');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = original;
-      }
-    }
+        // ✅ Complete communes data for all wilayas
+        const communesData = {
+            "Alger": ["Alger Centre", "Sidi M'Hamed", "El Madania", "Belouizdad", "Bab El Oued", "Bologhine", "Casbah", "Oued Koriche", "Bir Mourad Rais", "El Biar", "Bouzareah", "Birkhadem", "El Harrach", "Baraki", "Oued Smar", "Bachdjarah", "Hussein Dey", "Kouba", "Bourouba", "Dar El Beida", "Bab Ezzouar", "Ben Aknoun", "Dely Ibrahim", "El Hammamet", "Rais Hamidou", "Djasr Kasentina", "El Mouradia", "Hydra", "Mohammadia", "Bordj El Kiffan", "El Magharia", "Beni Messous", "Les Eucalyptus", "Birtouta", "Tessala El Merdja", "Ouled Chebel", "Sidi Moussa", "Ain Taya", "Bordj El Bahri", "El Marsa", "Hraoua", "Rouiba", "Reghaia", "Ain Benian", "Staoueli", "Zeralda", "Mahelma", "Rahmania", "Souidania", "Cheraga", "Ouled Fayet", "El Achour", "Draria", "Douera", "Baba Hassen", "Khraicia", "Saoula"],
+            "Oran": ["Oran", "Es Senia", "Bir El Djir", "Arzew", "Gdyel", "Hassi Bounif", "Hassi Mefsoukh", "Sidi Chami", "Boutlelis", "Ain Turk", "El Ancor", "Oued Tlelat", "Tafraoui", "Sidi Ben Yebka", "Mers El Kebir", "Bousfer", "El Kerma", "Hassi Ben Okba", "Ben Freha", "El Braya", "Hassi Ghella", "Turgot", "Messerghin", "Boufatis", "Misserghin", "Ain Kerma", "Zahana", "Tafraoui", "Sidi Chami", "Boutlelis", "Ain Turk", "El Ancor", "Oued Tlelat", "Tafraoui", "Sidi Ben Yebka", "Mers El Kebir", "Bousfer", "El Kerma", "Hassi Ben Okba", "Ben Freha", "El Braya", "Hassi Ghella", "Turgot", "Messerghin", "Boufatis", "Misserghin", "Ain Kerma", "Zahana"],
+            "Sétif": ["Sétif", "El Eulma", "Ain El Kebira", "Béni Ourtilane", "Bouandas", "Bousselam", "Dehamcha", "Djemila", "El Eulma", "Guidjel", "Hammam Guergour", "Hammam Soukhna", "Maoklane", "Mezloug", "Oued El Barad", "Ouled Addouane", "Ouled Sabor", "Rasfa", "Salah Bey", "Serdj El Ghoul", "Tachouda", "Tala Ifacene", "Taya", "Ain Arnat", "Ain Azel", "Ain Lahdjar", "Ain Oulmene", "Ain Roua", "Amoucha", "Babor", "Beni Aziz", "Beni Chebana", "Beni Fouda", "Beni Hocine", "Bir El Arch", "Bouandas", "Bousselam", "Dehamcha", "Djemila", "El Eulma", "Guidjel", "Hammam Guergour", "Hammam Soukhna", "Maoklane", "Mezloug", "Oued El Barad", "Ouled Addouane", "Ouled Sabor", "Rasfa", "Salah Bey", "Serdj El Ghoul", "Tachouda", "Tala Ifacene", "Taya", "Ain Arnat", "Ain Azel", "Ain Lahdjar", "Ain Oulmene", "Ain Roua", "Amoucha", "Babor", "Beni Aziz", "Beni Chebana", "Beni Fouda", "Beni Hocine", "Bir El Arch"],
+            "Constantine": ["Constantine", "El Khroub", "Didouche Mourad", "Zighoud Youcef", "Ain Smara", "Beni Hamiden", "Ouled Rahmoune", "Messaoud Boudjriou", "Ibn Ziad", "Ain Abid", "Hamma Bouziane", "El Haria", "Ouled Aiche", "Sidi Mabrouk", "Ali Mendjeli", "Nouar Beniahia", "El Khroub", "Didouche Mourad", "Zighoud Youcef", "Ain Smara", "Beni Hamiden", "Ouled Rahmoune", "Messaoud Boudjriou", "Ibn Ziad", "Ain Abid", "Hamma Bouziane", "El Haria", "Ouled Aiche", "Sidi Mabrouk", "Ali Mendjeli", "Nouar Beniahia"],
+            "Annaba": ["Annaba", "El Bouni", "Sidi Amar", "El Hadjar", "Berrahal", "Oued El Aneb", "Cheurfa", "Treat", "Seraidi", "Ain Berda", "Chetaibi", "Eulma", "Oued El Aneb", "Cheurfa", "Treat", "Seraidi", "Ain Berda", "Chetaibi", "Eulma", "El Bouni", "Sidi Amar", "El Hadjar", "Berrahal", "Oued El Aneb", "Cheurfa", "Treat", "Seraidi", "Ain Berda", "Chetaibi", "Eulma"],
+            "Tlemcen": ["Tlemcen", "Mansourah", "Remchi", "Ghazaouet", "Maghnia", "Sebdou", "Nedroma", "Hennaya", "Chetouane", "Zenata", "Beni Mester", "Ain Tallout", "El Fehoul", "Sabra", "Souani", "Djebala", "El Gor", "Ouled Mimoun", "Ain Fezza", "Ouled Riyah", "Bensekrane", "Ain Nehala", "Hennaya", "Maghnia", "Hammam Boughrara", "Sidi Djillali", "Bab El Assa", "Terny Beni Hdiel", "Bouhlou", "Souk Tlata", "Fellaoucene", "Azails", "Sebaa Chioukh", "Beni Smiel", "Beni Boussaid", "Mansourah", "Chetouane", "Zenata"],
+            "Béjaïa": ["Bejaia", "Amizour", "Ferraoun", "Taourirt Ighil", "Chellata", "Tamridjet", "Ait Smail", "Akbou", "Seddouk", "Tazmalt", "Adekar", "Ait Maouche", "Beni Mellikeche", "Sidi Ayad", "Toudja", "Darguina", "Sidi-Aich", "El Kseur", "Melbou", "Aokas", "Tichy", "Kemoune", "Amalou", "Ighil Ali", "Fenaia Ilmaten", "Tifra", "Ighram", "Taskriout", "Tibane", "Tala Hamza", "Barbacha", "Beni Ksila", "Ouzellaguen", "Boudjellil", "Ait Rizine", "Souk El Tenine", "Tizi N'Berber", "Oued Ghir", "Bouhamza", "Bouzeguene"],
+            "Batna": ["Batna", "Barika", "Arris", "N'Gaous", "Ain Djasser", "Merouana", "Tazoult", "Ras El Aioun", "Ouled Sellam", "Tighanimine", "Lemsane", "Kimmel", "Seriana", "Menaa", "El Madher", "Fesdis", "Sefiane", "Rahbat", "Tigherghar", "Ain Yagout", "Foum Toub", "Beni Foudhala El Hakania", "Oued El Ma", "Talkhamt", "Bouzina", "Chemora", "Oued Chaaba", "Taxlent", "Gosbat", "Ouled Aouf", "Boumagueur", "Bitam", "Azil Abedelkader", "Ouled Si Slimane", "Zanat El Beida", "M'doukel", "Ouled Fadel", "Timgad", "Chir", "Ouled Ammar", "El Hassi", "Lazrou", "Boumia", "Djerma", "Ain Zaatout", "Boulhilat", "Larbaa", "Seggana", "Ichmoul"],
+            "Biskra": ["Biskra", "Oumache", "Branis", "Chetma", "Ouled Djellal", "Ras El Miaad", "Besbes", "Sidi Khaled", "Doucen", "Ech Chaiba", "Sidi Okba", "M'Chouneche", "El Haouch", "Ain Naga", "Zeribet El Oued", "El Feidh", "El Kantara", "El Outaya", "Djemorah", "Tolga", "Lioua", "Lichana", "Ourlal", "M'Lili", "Foughala", "Bordj Ben Azzouz", "Meziraa", "Bouchakroun", "Mekhadma", "El Ghrous", "El Hadjeb", "Khenguet Sidi Nadji", "M'ziraa"],
+            "Blida": ["Blida", "Chebli", "Bouinan", "Oued Alleug", "Ouled Yaich", "Chrea", "El Affroun", "Chiffa", "Hammam Melouane", "Benkhelil", "Souhane", "Mouzaia", "Soumaa", "Guerrouaou", "Ain Romana", "Djebabra", "Beni Tamou", "Boufarik", "Larbaa", "Oued Djer", "Beni Mered", "Ouled Chebel"],
+            "Bouira": ["Bouira", "El Asnam", "Guerrouma", "Souk El Khemis", "Kadiria", "Hanif", "Dirah", "Ait Laaziz", "Taghzout", "Raouraoua", "Saharidj", "El Hachimia", "Haizer", "Lakhdaria", "Maala", "El Adjiba", "Aghbalou", "Taguedit", "Ain El Hadjar", "Ahl El Ksar", "Bordj Okhriss", "El Hakimia", "Ain Bessem", "Ain Laloui", "Mezdour", "Ain El Turc", "Ath Mansour", "Djebahia", "Bechloul", "Bouderbala", "Zbarbar"],
+            "Tizi Ouzou": ["Tizi Ouzou", "Ain El Hammam", "Iferhounene", "Azazga", "Illoula Oumalou", "Yakouren", "Larbaa Nath Irathen", "Tizi Gheniff", "Bouzeguene", "Ain Zaouia", "Makouda", "Draa El Mizan", "Tizi Rached", "Zekri", "Ouaguenoun", "Ain Boumahdi", "Ait Chafaa", "Freha", "Ait Yahia", "Ait Yahia Moussa", "Souamaa", "Ait Aggouacha", "Ouadhias", "Azeffoun", "Tigzirt", "Ait Aissa Mimoun", "Boghni"],
+            "Adrar": ["Adrar", "Tamest", "Reggane", "Tit", "Tsabit", "Zaouiet Kounta", "Aoulef", "Timokten", "Tamentit", "Fenoughil", "Sali", "Akabli", "In Zghmir", "Sebaa"],
+            "Laghouat": ["Laghouat", "Ksar El Hirane", "Ben Nasser Benchohra", "Sidi Makhlouf", "Hassi R'Mel", "Ain Madhi", "Tadjemout", "Kheneg", "Gueltat Sidi Saad", "Ain Sidi Ali", "Beidha", "Brida", "El Ghicha", "Hadj Mechri", "Sebgag", "Taouiala", "Tadjrouna", "Aflou", "El Assafia", "Oued Morra", "Oued M'Zi", "El Houaita", "Sidi Bouzid"],
+            "Oum El Bouaghi": ["Oum El Bouaghi", "Ain Beida", "Ain M'lila", "Fkirina", "Sigus", "El Belala", "Ain Babouche", "Berriche", "Ouled Hamla", "Dhala", "Ain Fakroun", "Rahia", "Ain Diss", "Zorg", "El Amiria", "Oued Nini", "Meskiana", "El Djazia", "Ain Kercha", "Hanchir Toumghani", "El Fedjoudj Boughrara Saoudi", "Ouled Zouai", "Bir Chouhada", "Ksar Sbahi", "Oued Driss", "Souk Naamane", "Zelai"],
+            "Tébessa": ["Tebessa", "Bir El Ater", "Cheria", "Stah Guentis", "El Aouinet", "El Houidjbet", "Safel El Ouiden", "El Ogla", "Negrine", "Bir El Mokadem", "Morsott", "Bekkaria", "Boulhaf Dir", "Bedjene", "El Ma Labiodh", "Ferkane", "Bir Dheheb", "Naama", "El Mezeraa", "Ain Zerga", "El Kouif"],
+            "Tiaret": ["Tiaret", "Medroussa", "Ain Bouchekif", "Sidi Ali Mellal", "Ain Deheb", "Meghila", "Guertoufa", "Sidi Bakhti", "Medrissa", "Zmalet El Emir Abdelkader", "Madna", "Sebt", "Rahouia", "Mahdia", "Sougueur", "Sidi Hosni", "Djillali Ben Amar", "Frenda", "Ain Kermes", "Ksar Chellala", "Riou", "Terny Beni Hdiel"],
+            "Jijel": ["Jijel", "Taher", "El Milia", "Chekfa", "Chahna", "El Ancer", "Ziama Mansouriah", "Sidi Maarouf", "Bouraoui Belhadef", "Kaous", "Jimla", "Ouled Yahia Khadrouch", "Emir Abdelkader", "Djemaa Beni Habibi", "Sidi Abdelaziz", "Sidi Ghechir", "Boudria Ben Yadjis", "Ouled Rabah", "El Kennar Nouchfi", "Boussif Ouled Askeur", "Selma Benziada", "Ouled Askeur", "El Aouana", "Djimla", "El Ancer", "Ziama Mansouriah", "Sidi Maarouf", "Bouraoui Belhadef", "Kaous", "Jimla", "Ouled Yahia Khadrouch", "Emir Abdelkader", "Djemaa Beni Habibi", "Sidi Abdelaziz", "Sidi Ghechir", "Boudria Ben Yadjis", "Ouled Rabah", "El Kennar Nouchfi", "Boussif Ouled Askeur", "Selma Benziada", "Ouled Askeur", "El Aouana"],
+            "Skikda": ["Skikda", "Azzaba", "El Harrouch", "Collo", "Ouled Attia", "Ben Azzouz", "Ain Zouit", "El Hadaiek", "Ain Bouziane", "Ouled Hebaba", "Sidi Mezghiche", "Emjez Edchich", "Beni Zid", "Ouled Tobe", "Tamalous", "Ain Kechra", "Zitouna", "El Ghedir", "Bouchtata", "Ouldja Boulbalout", "Kerkera", "Zerdazas", "Cheraia", "Kanoua", "Beni Oulbane", "Ain Cherchar", "El Marsa", "Felfela", "Djendel Saadi Mohamed", "Bekkouche Lakhdar", "Bensekrane", "Es Sebt", "Oued Zehour", "Hamadi Krouma", "Ramdane Djamel", "Beni Skour", "Ain Bouziane", "El Hadaiek", "Ain Bouziane", "Ouled Hebaba", "Sidi Mezghiche", "Emjez Edchich", "Beni Zid", "Ouled Tobe", "Tamalous", "Ain Kechra", "Zitouna", "El Ghedir", "Bouchtata", "Ouldja Boulbalout", "Kerkera", "Zerdazas", "Cheraia", "Kanoua", "Beni Oulbane", "Ain Cherchar", "El Marsa", "Felfela", "Djendel Saadi Mohamed", "Bekkouche Lakhdar", "Bensekrane", "Es Sebt", "Oued Zehour", "Hamadi Krouma", "Ramdane Djamel", "Beni Skour"],
+            "Sidi Bel Abbès": ["Sidi Bel Abbes", "Sidi Ali Benyoub", "Sidi Brahim", "Tessala", "Ben Badis", "Mostefa Ben Brahim", "Sfisef", "Ain El Berd", "Moulay Slissen", "Telagh", "Mezaourou", "Boukhanefis", "Tabia", "Tafissour", "Oued Sefioun", "Makedra", "Sidi Lahcene", "Ain Thrid", "Sidi Ali Boussidi", "El Hacaiba", "Bir El Hammam", "Hassi Dahou", "Oued Taourira", "Tighenif", "Tenira", "Dhaya", "Hassi Zehana", "Sidi Khaled", "Redjem Demouche", "Amarnas", "Sidi Ali Benyoub", "Sidi Brahim", "Tessala", "Ben Badis", "Mostefa Ben Brahim", "Sfisef", "Ain El Berd", "Moulay Slissen", "Telagh", "Mezaourou", "Boukhanefis", "Tabia", "Tafissour", "Oued Sefioun", "Makedra", "Sidi Lahcene", "Ain Thrid", "Sidi Ali Boussidi", "El Hacaiba", "Bir El Hammam", "Hassi Dahou", "Oued Taourira", "Tighenif", "Tenira", "Dhaya", "Hassi Zehana", "Sidi Khaled", "Redjem Demouche", "Amarnas"],
+            "Guelma": ["Guelma", "Oued Zenati", "Bouchegouf", "Heliopolis", "Houari Boumediene", "Nechmaya", "Bou Hachana", "Oued Cheham", "Boumahra Ahmed", "Khezara", "Djeballah Khemissi", "Ain Ben Beida", "Bouati Mahmoud", "Oued Fragha", "Ain Reggada", "Oued Hamimine", "Nebail", "Ain Larbi", "Medjez Amar", "Belkheir", "Oued Zenati", "Bouchegouf", "Heliopolis", "Houari Boumediene", "Nechmaya", "Bou Hachana", "Oued Cheham", "Boumahra Ahmed", "Khezara", "Djeballah Khemissi", "Ain Ben Beida", "Bouati Mahmoud", "Oued Fragha", "Ain Reggada", "Oued Hamimine", "Nebail", "Ain Larbi", "Medjez Amar", "Belkheir"],
+            "Médéa": ["Medea", "Boughezoul", "Ksar El Boukhari", "Ain Boucif", "Sidi Ziane", "Ouzera", "Beni Slimane", "Chahbounia", "Ouled Antar", "Aziz", "El Omaria", "Mihoub", "Ain Ouksir", "Tablat", "Deux Bassins", "Derrag", "Bouaiche", "Hannacha", "Sidi Zahar", "Tamesguida", "Bouskene", "Sidi Damiane", "Ouled Hellal", "El Azizia", "Sidi Naamane", "M'Fatha", "Ouled Bouachra", "Chellalat El Adhaoura", "Sidi Zahar", "Tamesguida", "Bouskene", "Sidi Damiane", "Ouled Hellal", "El Azizia", "Sidi Naamane", "M'Fatha", "Ouled Bouachra", "Chellalat El Adhaoura"],
+            "Mostaganem": ["Mostaganem", "Mazagran", "Ain Nouissy", "Hassi Mameche", "Fornaka", "Stidia", "Sayada", "Ain Tedles", "Sidi Ali", "Sidi Lakhdar", "Kheiredine", "Bouguirat", "Sirat", "Ouled Maalah", "Achaacha", "Khadra", "Tazgait", "Safsaf", "Mansourah", "Nekmaria", "Souaflia", "Mesra", "Ouled Boughalem", "Hassi El Ghella", "Touahria", "Benabdelmalek Ramdane", "Ain Boudinar", "El Hassaine", "Mazagran", "Ain Nouissy", "Hassi Mameche", "Fornaka", "Stidia", "Sayada", "Ain Tedles", "Sidi Ali", "Sidi Lakhdar", "Kheiredine", "Bouguirat", "Sirat", "Ouled Maalah", "Achaacha", "Khadra", "Tazgait", "Safsaf", "Mansourah", "Nekmaria", "Souaflia", "Mesra", "Ouled Boughalem", "Hassi El Ghella", "Touahria", "Benabdelmalek Ramdane", "Ain Boudinar", "El Hassaine"],
+            "Mascara": ["Mascara", "Sig", "Mohammadia", "Tizi", "El Bordj", "Ain Fekan", "Benian", "Khalouia", "Nesmot", "Sidi Kada", "Tighennif", "El Menaouer", "Oued El Abtal", "El Ghomri", "Sidi Abdeldjebar", "Hacine", "Zahana", "Bou Hanifia", "Matemore", "Maoussa", "Tizi", "El Bordj", "Ain Fekan", "Benian", "Khalouia", "Nesmot", "Sidi Kada", "Tighennif", "El Menaouer", "Oued El Abtal", "El Ghomri", "Sidi Abdeldjebar", "Hacine", "Zahana", "Bou Hanifia", "Matemore", "Maoussa"],
+            "Ouargla": ["Ouargla", "Touggourt", "Rouissat", "N'Goussa", "Hassi Messaoud", "Sidi Khouiled", "Taibet", "Tamacine", "El Hadjira", "Mnaguer", "Megarine", "El Borma", "Touggourt", "Rouissat", "N'Goussa", "Hassi Messaoud", "Sidi Khouiled", "Taibet", "Tamacine", "El Hadjira", "Mnaguer", "Megarine", "El Borma"],
+            "El Bayadh": ["El Bayadh", "Brezina", "Rogassa", "Sfissifa", "El Abiodh Sidi Cheikh", "Boualem", "Chellala Daghdouga", "Bougtob", "El Kheiter", "Boussemghoun", "Arbaouat", "Brezina", "Rogassa", "Sfissifa", "El Abiodh Sidi Cheikh", "Boualem", "Chellala Daghdouga", "Bougtob", "El Kheiter", "Boussemghoun", "Arbaouat"],
+            "Illizi": ["Illizi", "Djanet", "In Amenas", "Bordj El Haouas", "Debdeb", "Bordj Omar Driss", "In Amenas", "Bordj El Haouas", "Debdeb", "Bordj Omar Driss"],
+            "Bordj Bou Arréridj": ["Bordj Bou Arreridj", "Ras El Oued", "Mansourah", "Medjana", "Ain Taghrout", "Bordj Zemoura", "Djaafra", "El Hamadia", "Teniet En Nasr", "Ouled Brahem", "Rabta", "Bir Kasdali", "El M'hir", "Ben Daoud", "Ouled Djellal", "Tixter", "Ain Tesra", "Sidi Embarek", "Haraza", "Belimour", "Ksour", "Ouled Sidi Brahim", "Taglait", "Colla", "Ghilassa", "Sidi Yahia", "Ain Lahdjar", "Tassamert", "Bordj Ghedir", "Bordj Bou Arreridj", "Ras El Oued", "Mansourah", "Medjana", "Ain Taghrout", "Bordj Zemoura", "Djaafra", "El Hamadia", "Teniet En Nasr", "Ouled Brahem", "Rabta", "Bir Kasdali", "El M'hir", "Ben Daoud", "Ouled Djellal", "Tixter", "Ain Tesra", "Sidi Embarek", "Haraza", "Belimour", "Ksour", "Ouled Sidi Brahim", "Taglait", "Colla", "Ghilassa", "Sidi Yahia", "Ain Lahdjar", "Tassamert", "Bordj Ghedir"],
+            "Boumerdès": ["Boumerdes", "Boudouaou", "Cap Djinet", "Dellys", "Baghlia", "Sidi Daoud", "Isser", "Naciria", "Bordj Menaiel", "Tidjelabine", "Chabet El Ameur", "Thenia", "Bouzegza Keddara", "Ouled Moussa", "Souk El Had", "Hammedi", "Khemis El Khechna", "Corso", "Leghata", "Hammadi", "Taourga", "Ouled Aissa", "Djinet", "Boudouaou", "Cap Djinet", "Dellys", "Baghlia", "Sidi Daoud", "Isser", "Naciria", "Bordj Menaiel", "Tidjelabine", "Chabet El Ameur", "Thenia", "Bouzegza Keddara", "Ouled Moussa", "Souk El Had", "Hammedi", "Khemis El Khechna", "Corso", "Leghata", "Hammadi", "Taourga", "Ouled Aissa", "Djinet"],
+            "El Tarf": ["El Tarf", "Drean", "El Kala", "Bouhadjar", "Bouteldja", "Ben M'Hidi", "Besbes", "Asfour", "Chefia", "Ain El Assel", "Raml Souk", "Zerizer", "Echatt", "Lac des Oiseaux", "Berrihane", "Souarekh", "Drean", "El Kala", "Bouhadjar", "Bouteldja", "Ben M'Hidi", "Besbes", "Asfour", "Chefia", "Ain El Assel", "Raml Souk", "Zerizer", "Echatt", "Lac des Oiseaux", "Berrihane", "Souarekh"],
+            "Tindouf": ["Tindouf", "Oum El Assel"],
+            "Tissemsilt": ["Tissemsilt", "Theniet El Had", "Bordj Bou Naama", "Lazharia", "Khémisti", "Youssoufia", "Bordj El Emir Abdelkader", "Ammari", "Maacem", "Sidi Boutouchent", "Lardjem", "Beni Chaib", "Layoune", "Sidi Lantri", "Tamalaht", "Khemisti", "Theniet El Had", "Bordj Bou Naama", "Lazharia", "Khémisti", "Youssoufia", "Bordj El Emir Abdelkader", "Ammari", "Maacem", "Sidi Boutouchent", "Lardjem", "Beni Chaib", "Layoune", "Sidi Lantri", "Tamalaht"],
+            "El Oued": ["El Oued", "Robbah", "Guemar", "Reguiba", "N'Khassoussa", "Hamraia", "Hassi Khelifa", "Magrane", "Taleb Larbi", "Sidi Aoun", "Trifaoui", "Baya", "Hassi El Gara", "Djamaa", "Sidi Khellil", "M'rara", "Still", "Taghzout", "El Ogla", "El M'Ghair", "Mekhadma", "Sidi Amrane", "Douar El Ma", "Ben Guecha", "Hassi El Gara", "Djamaa", "Sidi Khellil", "M'rara", "Still", "Taghzout", "El Ogla", "El M'Ghair", "Mekhadma", "Sidi Amrane", "Douar El Ma", "Ben Guecha"],
+            "Khenchela": ["Khenchela", "Kais", "Chechar", "El Hamma", "Ain Touila", "Taouzianat", "Babar", "El Oueldja", "Remila", "Chelia", "Djellal", "Ensigha", "Kais", "Chechar", "El Hamma", "Ain Touila", "Taouzianat", "Babar", "El Oueldja", "Remila", "Chelia", "Djellal", "Ensigha"],
+            "Souk Ahras": ["Souk Ahras", "Sedrata", "Hanancha", "Mechroha", "Ouled Driss", "Taoura", "Drea", "Heddada", "Sidi Fredj", "Merahna", "Ouled Moumen", "M'Daourouch", "Oum El Adhaim", "Khedara", "Safel El Ouiden", "Bir Bouhouche", "Zaarouria", "Terraguelt", "Ouled Zenati", "Ain Zana", "Oued Keberit", "Sedrata", "Hanancha", "Mechroha", "Ouled Driss", "Taoura", "Drea", "Heddada", "Sidi Fredj", "Merahna", "Ouled Moumen", "M'Daourouch", "Oum El Adhaim", "Khedara", "Safel El Ouiden", "Bir Bouhouche", "Zaarouria", "Terraguelt", "Ouled Zenati", "Ain Zana", "Oued Keberit"],
+            "Tipaza": ["Tipaza", "Cherchell", "Khemis El Khechna", "Gouraya", "Hadjout", "Bou Ismail", "Ahmer El Ain", "Menaceur", "Larhat", "Sidi Amar", "Sidi Rached", "Douaouda", "Bou Haroun", "Chaiba", "Aghbal", "Bourkika", "Sidi Ghiles", "Hadjout", "Bou Ismail", "Ahmer El Ain", "Menaceur", "Larhat", "Sidi Amar", "Sidi Rached", "Douaouda", "Bou Haroun", "Chaiba", "Aghbal", "Bourkika", "Sidi Ghiles"],
+            "Mila": ["Mila", "Chelghoum Laid", "Ferdjioua", "Tadjenanet", "Oued Endja", "Ain Beida Harriche", "Telerghma", "Rouached", "Benyahia Abderrahmane", "Oued Seguen", "Tiberguent", "Sidi Merouane", "Yahia Beniguecha", "Grarem Gouga", "Ain Mellouk", "Terrai Bainen", "Hamala", "Ouled Khalouf", "Zeghaia", "El Mechira", "Oued Athmenia", "Minar Zarza", "Sidi Khelifa", "Ahmed Rachedi", "Tassala Lematai", "Ouled Askeur", "Chelghoum Laid", "Ferdjioua", "Tadjenanet", "Oued Endja", "Ain Beida Harriche", "Telerghma", "Rouached", "Benyahia Abderrahmane", "Oued Seguen", "Tiberguent", "Sidi Merouane", "Yahia Beniguecha", "Grarem Gouga", "Ain Mellouk", "Terrai Bainen", "Hamala", "Ouled Khalouf", "Zeghaia", "El Mechira", "Oued Athmenia", "Minar Zarza", "Sidi Khelifa", "Ahmed Rachedi", "Tassala Lematai", "Ouled Askeur"],
+            "Aïn Defla": ["Ain Defla", "Khemis Miliana", "Miliana", "Boumedfaa", "El Attaf", "Djelida", "El Amra", "Bordj Emir Khaled", "Hoceinia", "Tarik Ibn Ziad", "Hammam Righa", "Ain Lechiakh", "Oued Chorfa", "Bourached", "El Abadia", "Ain Torki", "Djendel", "Zeddine", "Bir Ould Khelifa", "Ain Soltane", "Mekhatria", "Boumedfaa", "El Attaf", "Djelida", "El Amra", "Bordj Emir Khaled", "Hoceinia", "Tarik Ibn Ziad", "Hammam Righa", "Ain Lechiakh", "Oued Chorfa", "Bourached", "El Abadia", "Ain Torki", "Djendel", "Zeddine", "Bir Ould Khelifa", "Ain Soltane", "Mekhatria"],
+            "Naâma": ["Naama", "Mecheria", "Ain Sefra", "Tiout", "Sfissifa", "Moghrar", "Asla", "Djeniane Bourzeg", "Ain Ben Khelil", "Makman Ben Amer", "El Biod", "Mecheria", "Ain Sefra", "Tiout", "Sfissifa", "Moghrar", "Asla", "Djeniane Bourzeg", "Ain Ben Khelil", "Makman Ben Amer", "El Biod"],
+            "Aïn Témouchent": ["Ain Temouchent", "Beni Saf", "Hammam Bouhadjar", "Ouled Kihal", "El Amria", "Terga", "Chentouf", "Oued Berkeche", "Aghlal", "Touaz", "Sidi Ben Adda", "Tamzoura", "Ain Kihal", "Hassasna", "Chaabat El Ham", "Ain El Arbaa", "Oued Sebbah", "Ain Tolba", "El Malah", "Sidi Boumedienne", "Beni Saf", "Hammam Bouhadjar", "Ouled Kihal", "El Amria", "Terga", "Chentouf", "Oued Berkeche", "Aghlal", "Touaz", "Sidi Ben Adda", "Tamzoura", "Ain Kihal", "Hassasna", "Chaabat El Ham", "Ain El Arbaa", "Oued Sebbah", "Ain Tolba", "El Malah", "Sidi Boumedienne"],
+            "Ghardaïa": ["Ghardaia", "El Meniaa", "Metlili", "Dhayet Bendhahoua", "Berriane", "El Guerrara", "Sebseb", "Zelfana", "Bounoura", "El Atteuf", "Beni Isguen", "El Meniaa", "Metlili", "Dhayet Bendhahoua", "Berriane", "El Guerrara", "Sebseb", "Zelfana", "Bounoura", "El Atteuf", "Beni Isguen"],
+            "Relizane": ["Relizane", "Oued Rhiou", "Mazouna", "Kalaa", "Sidi M'Hamed Ben Ali", "Ammi Moussa", "Zemmoura", "Beni Dergoun", "Djidiouia", "El Hamadna", "Sidi Lazreg", "Ouled Aiche", "Sidi Saada", "Mendes", "Sidi Khettab", "Bendaoud", "Ouled Sidi Mihoub", "Ain Tarek", "Mazouna", "Kalaa", "Sidi M'Hamed Ben Ali", "Ammi Moussa", "Zemmoura", "Beni Dergoun", "Djidiouia", "El Hamadna", "Sidi Lazreg", "Ouled Aiche", "Sidi Saada", "Mendes", "Sidi Khettab", "Bendaoud", "Ouled Sidi Mihoub", "Ain Tarek"],
+            "Timimoun": ["Timimoun", "Charouine", "Ouled Said", "Tinerkouk", "Metarfa", "Ouled Aissa", "Aoulef", "Talmine", "Boudjima", "Tamentit", "Fenoughil", "Zaouiet Kounta", "Ksar Kaddour", "Ouled Rahma", "Tit", "Tinerkouk", "Metarfa", "Ouled Aissa"],
+            "Bordj Badji Mokhtar": ["Bordj Badji Mokhtar", "Timiaouine"],
+            "Ouled Djellal": ["Ouled Djellal", "Sidi Khaled", "Besbes", "Ras El Miaad", "Doucen", "Chaiba", "Ech Chaiba"],
+            "Béni Abbès": ["Beni Abbes", "Igli", "Kerzaz", "Tamtert", "Ksabi", "Ouled Khoudir", "Tabelbala", "El Ouata"],
+            "In Salah": ["In Salah", "In Ghar", "Foggaret Ezzaouia"],
+            "In Guezzam": ["In Guezzam", "Tin Zaouatene"],
+            "Touggourt": ["Touggourt", "Tamacine", "Megarine", "El Hadjira", "Mnaguer", "Taibet", "Sidi Slimane", "M'Rara"],
+            "Djanet": ["Djanet", "Bordj El Haouas"],
+            "El M'Ghair": ["El M'Ghair", "Djamaa", "Sidi Amrane", "Mekhadma", "Oum Touyour"],
+            "El Meniaa": ["El Meniaa", "Hassi Gara", "El Biod"]
+        };
+    </script>
 
-    // ========== Meta Pixel ==========
-    try {
-      if (typeof fbq !== 'undefined') {
-        fbq('track', 'PageView');
-      }
-    } catch(e) {
-      console.log('⚠️ Meta Pixel non chargé:', e.message);
-    }
-  </script>
+    <script type="module">
+        import { getProductById, getProducts, addOrder } from './db-service.js';
+
+        // ===== UTILITY FUNCTIONS =====
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price || 0) + ' د.ج';
+        }
+
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'gradient-bg', warning: 'bg-accent' };
+            toast.className = `glass ${colors[type]} border border-white/15 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl`;
+            toast.innerHTML = `<span class="material-symbols-outlined text-white text-[18px] xs:text-[20px]">${icons[type]}</span><span class="text-white text-xs xs:text-sm font-medium flex-1">${message}</span><button class="text-white/70 hover:text-white transition-colors" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[16px] xs:text-[18px]">close</span></button>`;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, duration);
+        }
+
+        // ===== DOM ELEMENTS =====
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+
+        const productTitle = document.getElementById('product-title');
+        const productPrice = document.getElementById('product-price');
+        const originalPrice = document.getElementById('original-price');
+        const productDescription = document.getElementById('product-description');
+        const productImage = document.getElementById('product-image');
+        const imageSkeleton = document.getElementById('image-skeleton');
+        const discountBadge = document.getElementById('discount-badge');
+        const breadcrumbCategory = document.getElementById('breadcrumb-category');
+        const breadcrumbProduct = document.getElementById('breadcrumb-product');
+        const toggleDescription = document.getElementById('toggle-description');
+        const featuresList = document.getElementById('features-list');
+
+        const orderForm = document.getElementById('order-form');
+        const customerName = document.getElementById('customer-name');
+        const customerPhone = document.getElementById('customer-phone');
+        const shippingType = document.getElementById('shipping-type');
+        const wilayaSelect = document.getElementById('wilaya');
+        const communeSelect = document.getElementById('commune');
+        const address = document.getElementById('address');
+        const confirmBtn = document.getElementById('confirm-btn');
+        const btnText = document.getElementById('btn-text');
+
+        const shippingPriceCard = document.getElementById('shipping-price-card');
+        const shippingPriceEl = document.getElementById('shipping-price');
+        const shippingDetailsEl = document.getElementById('shipping-details');
+        const shippingTimeEl = document.getElementById('shipping-time');
+        const orderSummary = document.getElementById('order-summary');
+        const summaryProductPrice = document.getElementById('summary-product-price');
+        const summaryShippingPrice = document.getElementById('summary-shipping-price');
+        const summaryTotal = document.getElementById('summary-total');
+
+        const relatedContainer = document.getElementById('related-products');
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        let currentProduct = null;
+        let currentShippingPrice = 0;
+        let allCommunes = [];
+
+        // ===== MOBILE MENU =====
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        mobileMenuBtn?.addEventListener('click', openMobileMenu);
+        mobileMenuClose?.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+
+        // ===== VOICE SEARCH =====
+        function initVoiceSearch(button, input) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                button.style.display = 'none'; return;
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR';
+            recognition.interimResults = false;
+
+            button.addEventListener('click', () => {
+                if (button.classList.contains('voice-search-active')) { recognition.stop(); return; }
+                button.classList.add('voice-search-active');
+                showToast('🎤 Écoute en cours...', 'info', 5000);
+                recognition.start();
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    input.value = transcript;
+                    showToast(`🔍 Recherche: "${transcript}"`, 'success', 2000);
+                    setTimeout(() => { window.location.href = `search.html?q=${encodeURIComponent(transcript)}`; }, 1000);
+                };
+                recognition.onerror = () => { showToast('❌ Erreur de reconnaissance', 'error'); button.classList.remove('voice-search-active'); };
+                recognition.onend = () => { button.classList.remove('voice-search-active'); };
+            });
+        }
+
+        // ===== POPULATE WILAYAS =====
+        function populateWilayas() {
+            Object.keys(wilayasData).forEach(id => {
+                const w = wilayasData[id];
+                const option = document.createElement('option');
+                option.value = w.name;
+                option.dataset.id = id;
+                option.dataset.home = w.home;
+                option.dataset.desk = w.desk;
+                option.dataset.time = w.time;
+                option.textContent = `${w.code} - ${w.name}`;
+                wilayaSelect.appendChild(option);
+            });
+        }
+
+        // ===== FETCH COMMUNES =====
+        async function fetchCommunes() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/S450R1/algeria-cities-2025/main/json/cities.json');
+                const data = await response.json();
+                allCommunes = data.communes || [];
+            } catch (error) {
+                console.warn("⚠️ Communes API failed, using fallback data");
+                allCommunes = [];
+            }
+        }
+
+        // ===== UPDATE SHIPPING PRICE =====
+        function updateShippingPrice() {
+            const selectedWilaya = wilayaSelect.value;
+            const selectedCommune = communeSelect.value;
+            const type = shippingType.value;
+
+            if (!selectedWilaya || !selectedCommune) {
+                shippingPriceCard.classList.add('hidden');
+                orderSummary.classList.add('hidden');
+                confirmBtn.disabled = true;
+                btnText.textContent = 'Sélectionnez la commune';
+                return;
+            }
+
+            const wilayaOption = wilayaSelect.options[wilayaSelect.selectedIndex];
+            const homePrice = parseInt(wilayaOption.dataset.home) || 700;
+            const deskPrice = parseInt(wilayaOption.dataset.desk) || 450;
+            const deliveryTime = wilayaOption.dataset.time || '24-48h';
+
+            currentShippingPrice = type === 'a_domicile' ? homePrice : deskPrice;
+            const typeLabel = type === 'a_domicile' ? 'À Domicile' : 'Stop Desk';
+
+            shippingPriceCard.classList.remove('hidden');
+            shippingPriceEl.textContent = formatPrice(currentShippingPrice);
+            shippingPriceEl.classList.add('price-update');
+            setTimeout(() => shippingPriceEl.classList.remove('price-update'), 300);
+
+            shippingDetailsEl.textContent = `${selectedCommune}, ${selectedWilaya} • ${typeLabel}`;
+            shippingTimeEl.querySelector('span:last-child').textContent = `Livraison: ${deliveryTime}`;
+
+            if (currentProduct) {
+                orderSummary.classList.remove('hidden');
+                summaryProductPrice.textContent = formatPrice(currentProduct.price);
+                summaryShippingPrice.textContent = formatPrice(currentShippingPrice);
+                const total = currentProduct.price + currentShippingPrice;
+                summaryTotal.textContent = formatPrice(total);
+            }
+
+            confirmBtn.disabled = false;
+            btnText.textContent = 'Confirmer la Commande';
+        }
+
+        // ===== EVENT LISTENERS =====
+        wilayaSelect.addEventListener('change', async () => {
+            const selectedWilaya = wilayaSelect.value;
+            const wilayaId = wilayaSelect.options[wilayaSelect.selectedIndex]?.dataset.id;
+
+            communeSelect.innerHTML = '<option value="">Chargement...</option>';
+            communeSelect.disabled = true;
+            shippingPriceCard.classList.add('hidden');
+            orderSummary.classList.add('hidden');
+            confirmBtn.disabled = true;
+            btnText.textContent = 'Chargement des communes...';
+
+            if (!selectedWilaya) return;
+
+            let filtered = [];
+            if (allCommunes.length > 0 && wilayaId) {
+                filtered = allCommunes.filter(c => c.wilaya_id == wilayaId);
+            } else if (communesData[selectedWilaya]) {
+                filtered = communesData[selectedWilaya].map(name => ({ commune_name_latin: name }));
+            } else {
+                filtered = ['Centre', 'Nord', 'Sud'].map(name => ({ commune_name_latin: name }));
+            }
+
+            filtered.sort((a, b) => (a.commune_name_latin || a).localeCompare(b.commune_name_latin || b));
+            communeSelect.innerHTML = '<option value="">Sélectionner</option>';
+            filtered.forEach(c => {
+                const name = c.commune_name_latin || c;
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = name;
+                communeSelect.appendChild(option);
+            });
+
+            communeSelect.disabled = false;
+            btnText.textContent = 'Sélectionnez la commune';
+        });
+
+        communeSelect.addEventListener('change', updateShippingPrice);
+        shippingType.addEventListener('change', updateShippingPrice);
+
+        // ===== LOAD PRODUCT =====
+        async function loadProduct() {
+            if (!productId) {
+                showToast('❌ Produit non spécifié', 'error');
+                setTimeout(() => window.location.href = 'index.html', 2000);
+                return;
+            }
+
+            try {
+                const product = await getProductById(productId);
+
+                if (!product) {
+                    showToast('❌ Produit non trouvé', 'error');
+                    setTimeout(() => window.location.href = 'search.html', 2000);
+                    return;
+                }
+
+                currentProduct = product;
+
+                productTitle.textContent = product.name;
+                productTitle.classList.remove('skeleton');
+
+                productPrice.textContent = formatPrice(product.price);
+                productPrice.classList.remove('skeleton');
+
+                if (product.discount && product.originalPrice) {
+                    originalPrice.textContent = formatPrice(product.originalPrice);
+                    originalPrice.classList.remove('hidden');
+                    discountBadge.classList.remove('hidden');
+                }
+
+                productDescription.textContent = product.description || 'Description non disponible.';
+
+                breadcrumbCategory.textContent = product.category || 'Collection';
+                breadcrumbCategory.href = `search.html?category=${encodeURIComponent(product.category || '')}`;
+                breadcrumbProduct.textContent = product.name;
+
+                // ✅ STOCK STATUS SUPPRIMÉ - Plus de code de stock
+
+                document.title = `${product.name} | Phone Haven`;
+                document.querySelector('meta[name="description"]')?.setAttribute('content', `${product.name} - ${product.description?.substring(0, 150)}... | Phone Haven Algérie`);
+
+                if (product.image) {
+                    const img = new Image();
+                    img.onload = () => {
+                        imageSkeleton.classList.add('hidden');
+                        productImage.src = product.image;
+                        productImage.classList.remove('hidden');
+                        setTimeout(() => productImage.classList.add('loaded'), 50);
+                    };
+                    img.onerror = () => {
+                        imageSkeleton.classList.add('hidden');
+                        productImage.src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
+                        productImage.classList.remove('hidden');
+                        productImage.classList.add('loaded');
+                    };
+                    img.src = product.image;
+                    document.getElementById('thumb-1').src = product.image;
+                } else {
+                    imageSkeleton.classList.add('hidden');
+                    productImage.classList.remove('hidden');
+                    productImage.classList.add('loaded');
+                }
+
+                summaryProductPrice.textContent = formatPrice(product.price);
+
+                if (product.description?.length > 150) {
+                    toggleDescription.classList.remove('hidden');
+                    toggleDescription.addEventListener('click', () => {
+                        productDescription.classList.toggle('line-clamp-3');
+                        toggleDescription.innerHTML = productDescription.classList.contains('line-clamp-3')
+                            ? 'Voir plus <span class="material-symbols-outlined text-[14px] align-middle">expand_more</span>'
+                            : 'Voir moins <span class="material-symbols-outlined text-[14px] align-middle">expand_less</span>';
+                    });
+                }
+
+                featuresList.classList.remove('hidden');
+                loadRelatedProducts(product.category);
+
+            } catch (error) {
+                console.error("❌ Error loading product:", error);
+                showToast('⚠️ Erreur de chargement', 'warning');
+                imageSkeleton.classList.add('hidden');
+                productImage.classList.remove('hidden');
+                productImage.classList.add('loaded');
+            }
+        }
+
+        // ===== LOAD RELATED PRODUCTS =====
+        async function loadRelatedProducts(category) {
+            try {
+                const products = await getProducts({ category, limitCount: 6 });
+                const related = products.filter(p => p.id !== productId).slice(0, 4);
+
+                if (related.length === 0) {
+                    relatedContainer.innerHTML = '<div class="text-center py-4 text-body text-xs">Aucun produit similaire</div>';
+                    return;
+                }
+
+                relatedContainer.innerHTML = '';
+                related.forEach(p => {
+                    const card = document.createElement('a');
+                    card.href = `product.html?id=${p.id}`;
+                    card.className = 'flex-shrink-0 w-32 xs:w-36 sm:w-40 group no-underline';
+                    card.innerHTML = `
+                        <div class="relative aspect-square rounded-2xl glass-card overflow-hidden border border-white/15">
+                            <img src="${p.image || 'https://via.placeholder.com/200'}" alt="${p.name}" class="w-full h-full object-cover lazy-image" onload="this.classList.add('loaded')" loading="lazy">
+                            ${p.discount ? '<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-red-500 text-white text-[8px] font-black">-30%</span>' : ''}
+                        </div>
+                        <p class="mt-2 text-[10px] xs:text-xs font-black text-heading line-clamp-2 group-hover:text-secondary transition-colors">${p.name}</p>
+                        <p class="text-accent-purple font-black text-xs">${formatPrice(p.price)}</p>
+                    `;
+                    relatedContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                console.warn("⚠️ Related products failed:", error);
+            }
+        }
+
+        // ===== FORM SUBMISSION =====
+        orderForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!customerName.value.trim() || !customerPhone.value.trim() || !address.value.trim()) {
+                showToast('⚠️ Veuillez remplir tous les champs', 'warning');
+                return;
+            }
+
+            const phoneRegex = /^(05|06|07)\d{8}$/;
+            if (!phoneRegex.test(customerPhone.value.replace(/\s/g, ''))) {
+                showToast('⚠️ Numéro de téléphone invalide', 'warning');
+                customerPhone.focus();
+                return;
+            }
+
+            confirmBtn.disabled = true;
+            const originalText = btnText.textContent;
+            btnText.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">sync</span> Traitement...`;
+
+            const order = {
+                customerName: customerName.value.trim(),
+                customerPhone: customerPhone.value.trim().replace(/\s/g, ''),
+                shippingType: shippingType.value,
+                wilaya: wilayaSelect.value,
+                commune: communeSelect.value,
+                address: address.value.trim(),
+                productId: currentProduct.id,
+                productName: currentProduct.name,
+                productPrice: currentProduct.price,
+                productImage: currentProduct.image,
+                category: currentProduct.category,
+                shippingPrice: currentShippingPrice,
+                total: currentProduct.price + currentShippingPrice,
+                quantity: 1,
+                status: 'Pending',
+                paymentMethod: 'cash_on_delivery',
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                const result = await addOrder(order);
+                showToast('✅ Commande confirmée !', 'success');
+                setTimeout(() => {
+                    window.location.href = `success.html?order=${result.id || 'confirmed'}`;
+                }, 1500);
+
+            } catch (error) {
+                console.error("❌ Error creating order:", error);
+                showToast('❌ Erreur de confirmation, réessayez', 'error');
+                confirmBtn.disabled = false;
+                btnText.textContent = originalText;
+            }
+        });
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            populateWilayas();
+            fetchCommunes();
+            loadProduct();
+
+            const voiceDesktop = document.getElementById('voice-search-desktop');
+            const voiceMobile = document.getElementById('voice-search-mobile');
+            const searchDesktop = document.getElementById('desktop-search');
+            const searchMobile = document.getElementById('mobile-search');
+
+            if (voiceDesktop && searchDesktop) initVoiceSearch(voiceDesktop, searchDesktop);
+            if (voiceMobile && searchMobile) initVoiceSearch(voiceMobile, searchMobile);
+
+            document.querySelector('[aria-label="Favoris"]')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                const icon = document.getElementById('wishlist-icon');
+                if (icon.textContent === 'favorite_border') {
+                    icon.textContent = 'favorite';
+                    icon.classList.add('text-red-500');
+                    showToast('❤️ Ajouté aux favoris', 'success');
+                } else {
+                    icon.textContent = 'favorite_border';
+                    icon.classList.remove('text-red-500');
+                    showToast('🗑️ Retiré des favoris', 'info');
+                }
+            });
+
+            ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800'].forEach(src => {
+                const img = new Image(); img.src = src;
+            });
+        });
+
+        window.addEventListener('online', () => showToast('🌐 Connexion rétablie', 'success'));
+        window.addEventListener('offline', () => showToast('📴 Mode hors ligne', 'warning', 5000));
+    </script>
 </body>
+
 </html>
