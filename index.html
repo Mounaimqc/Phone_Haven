@@ -26,10 +26,13 @@
                         "primary": "#49377E",
                         "secondary": "#C64172",
                         "accent-yellow": "#FFA500",
+                        "accent-pink": "#ffb3c6",
+                        "accent-purple": "#e0d4ff",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
                         "success": "#10b981",
                         "accent": "#f59e0b",
+                        "services": "#06b6d4",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -122,6 +125,11 @@
         .text-secondary {
             color: #C64172;
             text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
+        }
+
+        .text-services {
+            color: #06b6d4;
+            text-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
         }
 
         /* ✅ HOVER EFFECTS */
@@ -434,6 +442,9 @@
                             <a href="search.html?category=Accessoire"
                                 class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-accent hover:text-accent transition-all">🎧
                                 Accessoires</a>
+                            <a href="search.html?category=Services"
+                                class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/20 hover:border-services hover:text-services transition-all">🔧
+                                Services</a>
                             <a href="search.html?category=Offres"
                                 class="px-3 py-1.5 rounded-full text-[11px] font-medium border border-red-400/30 hover:border-red-500 hover:text-red-400 transition-all">🔥
                                 Offres</a>
@@ -594,7 +605,7 @@
                 </div>
             </div>
 
-            <!-- Quick Categories with Images -->
+            <!-- Quick Categories with Images - INCLUDING SERVICES -->
             <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-10">
                 <div class="max-w-7xl mx-auto">
                     <div
@@ -627,6 +638,21 @@
                             <span
                                 class="text-xs xs:text-sm sm:text-base font-black text-body group-hover:text-accent transition-colors tracking-tight">Accessoires</span>
                             <span id="count-accessoire"
+                                class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
+                        </a>
+
+                        <!-- ✅ NEW: Category: Services -->
+                        <a href="search.html?category=Services"
+                            class="flex-shrink-0 group flex flex-col items-center gap-2 xs:gap-3 sm:gap-4 p-3 xs:p-4 sm:p-5 rounded-3xl xs:rounded-[2rem] border-2 border-white/20 hover:border-services hover:bg-services/10 transition-all no-underline shadow-sm hover:shadow-lg">
+                            <div
+                                class="w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-2xl xs:rounded-3xl bg-gradient-to-br from-services/25 to-cyan-500/25 overflow-hidden shadow-lg group-hover:shadow-services/40 transition-all duration-300 group-hover:scale-105">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=300&q=80&auto=format&fit=crop"
+                                    alt="Services" class="w-full h-full object-cover lazy-image"
+                                    onload="this.classList.add('loaded')" loading="lazy">
+                            </div>
+                            <span
+                                class="text-xs xs:text-sm sm:text-base font-black text-body group-hover:text-services transition-colors tracking-tight">🔧 Services</span>
+                            <span id="count-services"
                                 class="text-[10px] xs:text-[11px] text-muted">Chargement...</span>
                         </a>
 
@@ -888,6 +914,8 @@
                                     href="search.html?category=Téléphone">Téléphones</a></li>
                             <li><a class="link-hover transition-colors"
                                     href="search.html?category=Accessoire">Accessoires</a></li>
+                            <li><a class="link-hover transition-colors"
+                                    href="search.html?category=Services">Services</a></li>
                         </ul>
                     </div>
 
@@ -1139,28 +1167,33 @@
             });
         }
 
-        // Update Category Counts
+        // Update Category Counts - INCLUDING SERVICES
         function updateCategoryCounts(products) {
-            const counts = { 'Téléphone': 0, 'Accessoire': 0, 'Offres': 0 };
+            const counts = { 'Téléphone': 0, 'Accessoire': 0, 'Services': 0, 'Offres': 0 };
             products.forEach(p => {
                 if (p.category === 'Téléphone') counts['Téléphone']++;
                 if (p.category === 'Accessoire') counts['Accessoire']++;
+                if (p.category === 'Services') counts['Services']++;
                 if (p.discount || p.price < 50000) counts['Offres']++;
             });
-            ['Téléphone', 'Accessoire', 'Offres'].forEach(cat => {
+            ['Téléphone', 'Accessoire', 'Services', 'Offres'].forEach(cat => {
                 const el = document.getElementById(`count-${cat.toLowerCase()}`);
                 if (el) el.textContent = `+${counts[cat]} produits`;
             });
         }
 
-        // Static Products (Fallback)
+        // Static Products (Fallback) - INCLUDING SERVICES EXAMPLES
         const staticProducts = [
             { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80' },
             { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80' },
             { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80' },
             { id: '4', name: 'AirPods Pro 2', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80' },
             { id: '5', name: 'Chargeur 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80' },
-            { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' }
+            { id: '6', name: 'Coque Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' },
+            // ✅ Services Examples
+            { id: '7', name: 'Réparation Écran', price: 3500, category: 'Services', image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80' },
+            { id: '8', name: 'Déblocage IMEI', price: 2500, category: 'Services', image: 'https://images.unsplash.com/photo-1550751863-88478f3948d1?w=400&q=80' },
+            { id: '9', name: 'Installation Logiciel', price: 1500, category: 'Services', image: 'https://images.unsplash.com/photo-1551654958-a319f3704c54?w=400&q=80' }
         ];
 
         // Initialize
@@ -1169,7 +1202,8 @@
 
             // Preload hero images
             ['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000',
-                'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000'].forEach(src => {
+                'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000',
+                'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=300&q=80'].forEach(src => {
                     const img = new Image();
                     img.src = src;
                 });
