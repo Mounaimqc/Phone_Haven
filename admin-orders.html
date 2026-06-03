@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-<html class="dark" lang="en">
+<!DOCTYPE html>
+<html class="dark" lang="fr">
 
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>Phone Haven / Logistics Terminal</title>
+    <title>Phone Haven / Terminal Logistique</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -145,10 +145,10 @@
             overscroll-behavior-y: contain;
         }
     </style>
-    
+
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
+<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover">
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="lg:hidden"></div>
 
@@ -161,7 +161,7 @@
                     <div class="flex items-center gap-3">
                         <div
                             class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
-                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
+                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Logo Phone Haven">
                         </div>
                         <div class="min-w-0">
                             <h1
@@ -185,14 +185,14 @@
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span
-                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Dashboard</span>
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Tableau de Bord</span>
                     </a>
                     <a href="admin-orders.html"
                         class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span
-                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Orders</span>
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Commandes</span>
                     </a>
                     <a href="admin-products.html"
                         class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
@@ -206,7 +206,7 @@
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span
-                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytics</span>
+                            class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Analytique</span>
                     </a>
                 </nav>
             </div>
@@ -219,15 +219,15 @@
                             class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="min-w-0">
-                        <p class="text-xs font-black text-white truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized
+                        <p class="text-xs font-black text-white truncate">Administrateur</p>
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Autorisé
                         </p>
                     </div>
                 </div>
                 <a href="index.html"
                     class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all clickable">
                     <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    <span class="hidden xs:inline">Lock Session</span>
+                    <span class="hidden xs:inline">Verrouiller Session</span>
                 </a>
             </div>
         </aside>
@@ -252,7 +252,7 @@
                     <div class="relative group flex-1 lg:flex-none">
                         <span
                             class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-white/80 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
-                        <input type="text" placeholder="SEARCH..."
+                        <input type="text" placeholder="RECHERCHER..."
                             class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                     </button>
                     <button
                         class="h-10 lg:h-12 px-4 lg:px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
-                        <span class="hidden sm:inline">Initiate </span>Order
+                        <span class="hidden sm:inline">Initier </span>Commande
                     </button>
                 </div>
             </header>
@@ -280,16 +280,15 @@
                         <div class="flex items-center gap-2 mb-2">
                             <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
                             <span
-                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Real-time</span>
+                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Temps réel</span>
                         </div>
-                        <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Orders
-                            Ledger</h2>
+                        <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Registre des Commandes</h2>
                     </div>
                     <div class="flex gap-2 flex-wrap">
                         <button
-                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Filter</button>
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Filtrer</button>
                         <button
-                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Export</button>
+                            class="h-9 px-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all clickable">Exporter</button>
                     </div>
                 </div>
 
@@ -308,13 +307,13 @@
                                             Client</th>
                                         <th
                                             class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                                            Timeline</th>
+                                            Date</th>
                                         <th
                                             class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                                            Value</th>
+                                            Montant</th>
                                         <th
                                             class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                                            State</th>
+                                            État</th>
                                         <th
                                             class="px-4 lg:px-8 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                                         </th>
@@ -337,7 +336,7 @@
                 <div class="mt-6 lg:mt-8 flex items-center justify-between">
                     <p id="order-count"
                         class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-white/80">
-                        Loading...</p>
+                        Chargement...</p>
                     <div class="flex gap-1.5 lg:gap-2">
                         <button
                             class="size-8 lg:size-9 glass rounded-lg text-white/60 hover:bg-white hover:text-black flex items-center justify-center transition-all clickable">
@@ -410,6 +409,16 @@
             return styles[status] || 'text-white/60 border-white/10';
         }
 
+        function getStatusText(status) {
+            const translations = {
+                'Delivered': 'Livré',
+                'Shipped': 'Expédié',
+                'Pending': 'En attente',
+                'Cancelled': 'Annulé'
+            };
+            return translations[status] || 'Inconnu';
+        }
+
         // Render Table Row (Desktop)
         function renderTableRow(order) {
             const tr = document.createElement('tr');
@@ -421,6 +430,7 @@
 
             const date = formatDate(order.createdAt);
             const statusClass = getStatusStyle(order.status);
+            const statusText = getStatusText(order.status);
 
             tr.innerHTML = `
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs font-black text-white uppercase tracking-widest">
@@ -431,14 +441,14 @@
                         <div class="size-7 lg:size-8 rounded-lg border terminal-border flex items-center justify-center text-[9px] lg:text-[10px] font-black bg-white/5 text-white flex-shrink-0">
                             ${order.customerName ? order.customerName.charAt(0).toUpperCase() : '?'}
                         </div>
-                        <span class="text-[11px] lg:text-xs font-bold text-white tracking-wide truncate max-w-[120px] lg:max-w-none">${order.customerName || 'Anonymous'}</span>
+                        <span class="text-[11px] lg:text-xs font-bold text-white tracking-wide truncate max-w-[120px] lg:max-w-none">${order.customerName || 'Anonyme'}</span>
                     </div>
                 </td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-[9px] lg:text-[10px] font-medium text-white/60 uppercase tracking-widest whitespace-nowrap">${date}</td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-[11px] lg:text-xs font-black text-white whitespace-nowrap">${formatPrice(order.total)}</td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6">
                     <span class="px-2 lg:px-3 py-1 rounded-md border text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] ${statusClass}">
-                        ${order.status || 'Unknown'}
+                        ${statusText}
                     </span>
                 </td>
                 <td class="px-4 lg:px-8 py-4 lg:py-6 text-right">
@@ -454,6 +464,7 @@
         function renderCard(order) {
             const date = formatDate(order.createdAt);
             const statusClass = getStatusStyle(order.status);
+            const statusText = getStatusText(order.status);
             const card = document.createElement('div');
             card.className = 'order-card glass rounded-2xl p-4 terminal-border hover:border-primary/30 transition-all clickable';
             card.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
@@ -465,28 +476,28 @@
                         <span class="text-xs font-black text-white">${order.id?.substring(0, 8).toUpperCase() || 'N/A'}</span>
                     </div>
                     <span class="px-2 py-1 rounded border text-[8px] font-black uppercase tracking-wider ${statusClass} flex-shrink-0">
-                        ${order.status || 'Unknown'}
+                        ${statusText}
                     </span>
                 </div>
                 <div class="flex items-center gap-3 mb-3">
                     <div class="size-8 rounded-lg border terminal-border flex items-center justify-center text-[10px] font-black bg-white/5 flex-shrink-0">
                         ${order.customerName ? order.customerName.charAt(0).toUpperCase() : '?'}
                     </div>
-                    <span class="text-sm font-bold text-white truncate">${order.customerName || 'Anonymous'}</span>
+                    <span class="text-sm font-bold text-white truncate">${order.customerName || 'Anonyme'}</span>
                 </div>
                 <div class="grid grid-cols-2 gap-3 text-[9px]">
                     <div>
-                        <span class="text-white/80 uppercase block mb-0.5">Timeline</span>
+                        <span class="text-white/80 uppercase block mb-0.5">Date</span>
                         <p class="text-white font-medium">${date}</p>
                     </div>
                     <div class="text-right">
-                        <span class="text-white/80 uppercase block mb-0.5">Value</span>
+                        <span class="text-white/80 uppercase block mb-0.5">Montant</span>
                         <p class="text-white font-black">${formatPrice(order.total)}</p>
                     </div>
                 </div>
                 <div class="mt-3 pt-3 border-t terminal-border flex justify-end">
                     <span class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-1">
-                        View Details
+                        Voir Détails
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </span>
                 </div>
@@ -499,13 +510,13 @@
             const isMobile = window.innerWidth < 1024;
 
             if (orders.length === 0) {
-                const emptyMsg = 'Void: No transaction data detected';
+                const emptyMsg = 'Vide: Aucune donnée de transaction détectée';
                 if (isMobile) {
                     cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/90 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</div>`;
                 } else {
                     tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-white/90 font-black text-[10px] tracking-widest uppercase">${emptyMsg}</td></tr>`;
                 }
-                orderCount.textContent = 'LEGER EMPTY';
+                orderCount.textContent = 'REGISTRE VIDE';
                 return;
             }
 
@@ -527,12 +538,12 @@
                 });
             }
 
-            orderCount.textContent = `SYSTEM: ${orders.length} ENTRIES VERIFIED`;
+            orderCount.textContent = `SYSTÈME: ${orders.length} ENTRÉES VÉRIFIÉES`;
         }
 
         // Load orders from database
         async function loadOrders() {
-            const loadingMsg = 'Accessing ledger...';
+            const loadingMsg = 'Accès au registre...';
             tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
             cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
 
@@ -540,8 +551,8 @@
                 const orders = await getOrders();
                 renderOrders(orders);
             } catch (error) {
-                console.error("Error loading orders:", error);
-                const errorMsg = 'Ledger Access Denied: Check Protocol';
+                console.error("Erreur lors du chargement des commandes:", error);
+                const errorMsg = 'Accès au Registre Refusé: Vérifier le Protocole';
                 tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-red-500 font-black text-[10px] tracking-[0.3em]">${errorMsg}</td></tr>`;
                 cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-500 font-black text-[10px] tracking-widest">${errorMsg}</div>`;
             }
