@@ -73,9 +73,10 @@
         }
 
         .active-nav {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(99, 102, 241, 0.15);
             border-left: 3px solid #6366f1;
             color: white !important;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
         }
 
         /* Mobile Optimizations */
@@ -84,18 +85,48 @@
                 display: none;
                 position: fixed;
                 inset: 0;
-                background: rgba(0, 0, 0, 0.6);
+                background: rgba(0, 0, 0, 0.75);
                 z-index: 25;
-                backdrop-filter: blur(4px);
+                backdrop-filter: blur(8px);
                 transition: opacity 0.3s ease;
+                opacity: 0;
             }
 
             #sidebar-overlay.active {
                 display: block;
+                opacity: 1;
             }
 
             .mobile-hidden {
                 transform: translateX(-100%) !important;
+                box-shadow: none !important;
+            }
+
+            #sidebar:not(.mobile-hidden) {
+                box-shadow: 0 0 60px rgba(99, 102, 241, 0.4), 0 0 100px rgba(0, 0, 0, 0.8);
+            }
+
+            /* Enhanced sidebar visibility on mobile */
+            #sidebar {
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(15, 23, 42, 0.98) 100%);
+                backdrop-filter: blur(30px);
+            }
+
+            #sidebar .nav-item {
+                transition: all 0.2s ease;
+            }
+
+            #sidebar .nav-item:hover {
+                background: rgba(99, 102, 241, 0.1);
+                transform: translateX(4px);
+            }
+
+            #sidebar .nav-item .material-symbols-outlined {
+                filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
+            }
+
+            #sidebar h1 {
+                text-shadow: 0 0 20px rgba(188, 160, 255, 0.8);
             }
         }
 
@@ -136,13 +167,29 @@
 
         /* Smooth sidebar transition */
         #sidebar {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
             will-change: transform;
         }
 
         /* Prevent pull-to-refresh on mobile */
         body {
             overscroll-behavior-y: contain;
+        }
+
+        /* Glow effects for mobile menu */
+        @media (max-width: 1023px) {
+            .mobile-glow {
+                animation: pulse-glow 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse-glow {
+                0%, 100% {
+                    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+                }
+                50% {
+                    box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+                }
+            }
         }
     </style>
 
@@ -160,7 +207,7 @@
                 <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
                     <div class="flex items-center gap-3">
                         <div
-                            class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                            class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0 mobile-glow">
                             <img src="images/logo.png" class="h-full w-full object-contain" alt="Logo Phone Haven">
                         </div>
                         <div class="min-w-0">
@@ -174,35 +221,35 @@
                     </div>
                     <!-- Close button for mobile -->
                     <button id="sidebar-close"
-                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white">
+                        class="lg:hidden size-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all">
                         <span class="material-symbols-outlined text-lg">close</span>
                     </button>
                 </div>
 
                 <nav class="space-y-1">
                     <a href="admin-analytics.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="nav-item flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Tableau de Bord</span>
                     </a>
                     <a href="admin-orders.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
+                        class="nav-item flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 active-nav rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">inventory</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Commandes</span>
                     </a>
                     <a href="admin-products.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="nav-item flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">layers</span>
                         <span
                             class="text-[10px] lg:text-xs font-black uppercase tracking-widest hidden sm:inline">Collection</span>
                     </a>
                     <a href="admin-reports.html"
-                        class="flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-all group clickable">
+                        class="nav-item flex items-center gap-3 lg:gap-4 px-3 lg:px-4 py-2.5 lg:py-3 text-white/60 hover:text-white rounded-xl transition-all group clickable">
                         <span
                             class="material-symbols-outlined text-lg lg:text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span
