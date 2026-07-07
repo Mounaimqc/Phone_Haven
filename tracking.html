@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#49377E" />
     <meta name="description" content="Suivi de commande Phone Haven - Suivez votre commande en temps réel en Algérie" />
     <title>Suivi Commande | Phone Haven Algérie</title>
 
@@ -22,11 +22,16 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#6366f1",
-                        "accent": "#f59e0b",
+                        "primary": "#49377E",
+                        "secondary": "#C64172",
+                        "accent-yellow": "#FFA500",
+                        "accent-pink": "#ffb3c6",
+                        "accent-purple": "#e0d4ff",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
                         "success": "#10b981",
+                        "accent": "#f59e0b",
+                        "services": "#06b6d4",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -49,6 +54,18 @@
     </script>
 
     <style>
+        /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
+        .gradient-bg {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         @keyframes float {
 
             0%,
@@ -65,10 +82,40 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* ✅ GLASSMORPHISM */
         .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ✅ STICKY HEADER SCROLLED STATE */
+        #nav-header.scrolled {
+            background-color: rgba(30, 16, 60, 0.85) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ✅ ACCESSIBILITY */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #C64172 !important;
+            outline-offset: 2px;
+        }
+
+        /* ✅ PREMIUM INTERACTIONS */
+        .btn-premium {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(198, 65, 114, 0.5);
+        }
+        .btn-premium:active {
+            transform: translateY(0) scale(0.98);
         }
 
         .no-scrollbar::-webkit-scrollbar {
@@ -174,19 +221,19 @@
 
         .voice-search-active {
             animation: voicePulse 1.5s infinite;
-            background: rgba(99, 102, 241, 0.2);
-            border-color: #6366f1;
+            background: rgba(73, 55, 126, 0.2);
+            border-color: #49377E;
         }
 
         @keyframes voicePulse {
 
             0%,
             100% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+                box-shadow: 0 0 0 0 rgba(73, 55, 126, 0.4);
             }
 
             50% {
-                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+                box-shadow: 0 0 0 10px rgba(73, 55, 126, 0);
             }
         }
 
@@ -194,11 +241,11 @@
 
             0%,
             100% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3);
+                box-shadow: 0 0 0 0 rgba(73, 55, 126, 0.3);
             }
 
             50% {
-                box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+                box-shadow: 0 0 0 12px rgba(73, 55, 126, 0);
             }
         }
 
@@ -280,13 +327,13 @@
 </head>
 
 <body
-    class="font-body text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  selection:bg-primary/30 overscroll-behavior-y-contain bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
+    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] bg-fixed bg-no-repeat bg-cover">
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation (Same as index.html) -->
-        <header
-            class="sticky top-0 z-[100] w-full border-b border-[rgba(255,255,255,0.15)] bg-white/90  backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+        <header id="nav-header"
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo -->
