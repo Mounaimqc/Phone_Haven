@@ -292,7 +292,36 @@
         select:focus,
         textarea:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.3);
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.4);
+        }
+
+        /* ✅ STICKY HEADER SCROLLED STATE */
+        #nav-header.scrolled {
+            background-color: rgba(30, 16, 60, 0.85) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ✅ ACCESSIBILITY */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #C64172 !important;
+            outline-offset: 2px;
+        }
+
+        /* ✅ PREMIUM INTERACTIONS */
+        .btn-premium {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(198, 65, 114, 0.5);
+        }
+        .btn-premium:active {
+            transform: translateY(0) scale(0.98);
         }
     </style>
 </head>
@@ -303,8 +332,8 @@
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation -->
-        <header
-            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+        <header id="nav-header"
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo with IMAGE -->
@@ -503,13 +532,13 @@
 
                         <div class="flex flex-wrap gap-3 xs:gap-4 justify-center lg:justify-start mb-8 xs:mb-10">
                             <a href="#new-arrivals"
-                                class="group flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl glass-card text-accent-purple font-bold hover:bg-white/20 hover:scale-105 transition-all active:scale-95">
+                                class="btn-premium group flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl glass-card text-accent-purple font-bold hover:bg-white/20">
                                 Voir les Produits
                                 <span
                                     class="material-symbols-outlined ml-2 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </a>
                             <a href="search.html"
-                                class="flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-white/30 text-heading font-bold hover:bg-white/10 transition-all active:scale-95">
+                                class="btn-premium flex h-11 xs:h-12 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-white/30 text-heading font-bold hover:bg-white/10">
                                 Catalogue
                             </a>
                         </div>
@@ -606,7 +635,7 @@
             </div>
 
             <!-- Quick Categories with Images - INCLUDING SERVICES -->
-            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8 sm:py-10">
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-12 xs:py-16">
                 <div class="max-w-7xl mx-auto">
                     <div
                         class="flex items-center gap-4 xs:gap-6 sm:gap-8 overflow-x-auto no-scrollbar pb-2 xs:pb-3 -mx-1 xs:mx-0 px-1 xs:px-0">
@@ -719,7 +748,7 @@
             </section>
 
             <!-- New Arrivals -->
-            <section class="py-10 xs:py-12 sm:py-16 border-y border-white/15 bg-white/5"
+            <section class="py-16 xs:py-20 sm:py-24 border-y border-white/10 bg-white/5"
                 id="new-arrivals">
                 <div class="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-20">
                     <div
@@ -766,7 +795,7 @@
 
             <!-- Featured Collection Grid -->
             <section
-                class="glass-card py-12 xs:py-16 sm:py-20 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-20">
+                class="glass-card py-16 xs:py-20 sm:py-24 px-3 xs:px-4 sm:px-6 md:px-20">
                 <div class="max-w-7xl mx-auto">
                     <div
                         class="flex flex-col md:flex-row items-end justify-between gap-3 xs:gap-4 sm:gap-6 mb-8 xs:mb-10 sm:mb-12">
@@ -1090,36 +1119,39 @@
         // Product Card Generator
         function createProductCard(product, variant = 'grid') {
             const isSlider = variant === 'slider';
-            const height = isSlider ? 'h-[320px] xs:h-[360px] sm:h-[400px]' : 'aspect-square';
-            const radius = isSlider ? 'rounded-[1.5rem]' : 'rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem]';
+            const imgHeight = isSlider ? 'h-[200px] xs:h-[240px] sm:h-[260px]' : 'aspect-square';
+            const cardWidth = isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[280px] snap-start' : 'w-full';
 
             return `
-                <a href="product.html?id=${product.id}" class="product-card group flex flex-col no-underline ${isSlider ? 'min-w-[240px] xs:min-w-[260px] sm:min-w-[290px] snap-start' : ''}">
-                    <div class="relative ${height} w-full glass-card ${radius} overflow-hidden border border-white/15 hover:border-secondary/30 transition-all duration-500">
-                        <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
-                            <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full glass-card shadow-lg flex items-center justify-center text-body hover:text-red-400 transition-colors active:scale-90" 
-                                    onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
-                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">favorite_border</span>
-                            </button>
+                <div class="product-card group flex flex-col ${cardWidth} glass-card border border-white/10 rounded-[1.5rem] sm:rounded-[2rem] p-3 shadow-lg hover:shadow-2xl hover:shadow-secondary/15 transition-all duration-300 hover:border-secondary/30">
+                    <a href="product.html?id=${product.id}" class="no-underline flex flex-col h-full justify-between">
+                        <div class="relative ${imgHeight} w-full rounded-xl sm:rounded-2xl overflow-hidden relative mb-3 bg-white/5 border border-white/5">
+                            <div class="absolute top-2 xs:top-3 right-2 xs:right-3 z-10">
+                                <button class="h-7 w-7 xs:h-8 xs:w-8 rounded-full glass border border-white/15 shadow-md flex items-center justify-center text-body hover:text-red-400 transition-all hover:scale-110 active:scale-90" 
+                                        onclick="event.preventDefault(); event.stopPropagation(); showToast('❤️ Ajouté aux favoris', 'success')">
+                                    <span class="material-symbols-outlined text-[14px] xs:text-[16px] pointer-events-none">favorite_border</span>
+                                </button>
+                            </div>
+                            ${product.discount ? `<span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full bg-red-500 text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider z-10 shadow-md">-30%</span>` : ''}
+                            <img src="${product.image}" alt="${product.name}" 
+                                 class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" 
+                                 onload="this.classList.add('loaded')" 
+                                 loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
+                                <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 rounded-lg xs:rounded-xl gradient-bg text-white font-medium text-xs shadow-lg">
+                                    <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>
+                                    <span>Voir détails</span>
+                                </span>
+                            </div>
+                            <span class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 px-2 py-0.5 rounded-full gradient-bg text-white text-[8px] font-black uppercase tracking-wider group-hover:opacity-0 transition-opacity duration-300">${product.category}</span>
                         </div>
-                        <img src="${product.image}" alt="${product.name}" 
-                             class="w-full h-full object-cover lazy-image transition-transform duration-700 group-hover:scale-105" 
-                             onload="this.classList.add('loaded')" 
-                             loading="lazy" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-2 xs:bottom-3 left-2 xs:left-3 right-2 xs:right-3 opacity-0 group-hover:opacity-100 translate-y-1 xs:translate-y-2 group-hover:translate-y-0 transition-all">
-                            <span class="flex items-center justify-center gap-1.5 xs:gap-2 w-full h-9 xs:h-10 rounded-lg xs:rounded-xl gradient-bg text-white font-medium text-xs xs:text-sm shadow-lg">
-                                <span class="material-symbols-outlined text-[14px] xs:text-[16px]">visibility</span>
-                                <span>Voir détails</span>
-                            </span>
+                        <div class="px-1 flex flex-col justify-between flex-grow">
+                            <h3 class="font-display text-heading font-black text-xs xs:text-sm sm:text-base mb-1 line-clamp-1 group-hover:text-accent-pink transition-colors leading-snug">${product.name}</h3>
+                            <p class="text-accent-purple font-black text-sm xs:text-base sm:text-lg mt-auto">${formatPrice(product.price)}</p>
                         </div>
-                        <span class="absolute top-2 xs:top-3 left-2 xs:left-3 px-2 xs:px-2.5 py-0.5 xs:py-1 rounded-full gradient-bg text-white text-[8px] xs:text-[9px] font-black uppercase tracking-wider">${product.category}</span>
-                    </div>
-                    <div class="mt-2 xs:mt-3 px-0.5 xs:px-1">
-                        <h3 class="font-display text-heading font-black text-xs xs:text-sm sm:text-base mb-0.5 xs:mb-1 line-clamp-1 group-hover:text-secondary transition-colors">${product.name}</h3>
-                        <p class="text-accent-pink font-black text-sm xs:text-base sm:text-lg">${formatPrice(product.price)}</p>
-                    </div>
-                </a>
+                    </a>
+                </div>
             `;
         }
 
@@ -1207,6 +1239,18 @@
                     const img = new Image();
                     img.src = src;
                 });
+
+            // Sticky Header Scroll Handler
+            const header = document.getElementById('nav-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 15) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
 
             // Expose functions globally
             window.showToast = showToast;

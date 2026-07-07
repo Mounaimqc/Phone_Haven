@@ -345,6 +345,35 @@
             transform: translateY(-50%);
             z-index: 0;
         }
+
+        /* ✅ STICKY HEADER SCROLLED STATE */
+        #nav-header.scrolled {
+            background-color: rgba(30, 16, 60, 0.85) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ✅ ACCESSIBILITY */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #C64172 !important;
+            outline-offset: 2px;
+        }
+
+        /* ✅ PREMIUM INTERACTIONS */
+        .btn-premium {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(198, 65, 114, 0.5);
+        }
+        .btn-premium:active {
+            transform: translateY(0) scale(0.98);
+        }
     </style>
 </head>
 
@@ -354,8 +383,8 @@
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation -->
-        <header
-            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3">
+        <header id="nav-header"
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo with IMAGE -->
@@ -554,21 +583,21 @@
                                 </div>
                             </div>
 
-                            <!-- Mobile: Image Thumbnails -->
-                            <div class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1 lg:hidden">
-                                <button
-                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-secondary overflow-hidden">
+                            <!-- Image Thumbnails -->
+                            <div class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1">
+                                <button id="thumb-btn-1"
+                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-secondary overflow-hidden transition-all duration-300">
                                     <img id="thumb-1" class="w-full h-full object-cover" src="" alt="Vue 1">
                                 </button>
-                                <button
-                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60">
-                                    <img class="w-full h-full object-cover"
+                                <button id="thumb-btn-2"
+                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60 transition-all duration-300">
+                                    <img id="thumb-2" class="w-full h-full object-cover"
                                         src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80"
                                         alt="Vue 2">
                                 </button>
-                                <button
-                                    class="flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60">
-                                    <img class="w-full h-full object-cover"
+                                <button id="thumb-btn-3"
+                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60 transition-all duration-300">
+                                    <img id="thumb-3" class="w-full h-full object-cover"
                                         src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&q=80"
                                         alt="Vue 3">
                                 </button>
@@ -613,30 +642,46 @@
                             </div>
 
                             <!-- Key Features -->
-                            <div id="features-list" class="mb-4 xs:mb-6 space-y-2 hidden">
+                            <div id="features-list" class="mb-6 hidden">
                                 <h3
-                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-2 xs:mb-3">
+                                    class="text-[9px] xs:text-[10px] font-black uppercase tracking-[0.2em] text-muted mb-3">
                                     Caractéristiques</h3>
-                                <div class="grid grid-cols-2 gap-2 xs:gap-3">
-                                    <div class="flex items-center gap-2 text-xs text-body">
-                                        <span
-                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
-                                        <span>Garantie 6 mois</span>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="flex items-center gap-3 p-3 rounded-2xl glass border border-white/5 shadow-sm">
+                                        <div class="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center text-accent-pink flex-shrink-0">
+                                            <span class="material-symbols-outlined text-base">verified_user</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-[9px] font-black text-muted uppercase tracking-wider">Garantie</p>
+                                            <p class="text-xs text-heading font-bold">Garantie 6 Mois</p>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center gap-2 text-xs text-body">
-                                        <span
-                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
-                                        <span>100% Original</span>
+                                    <div class="flex items-center gap-3 p-3 rounded-2xl glass border border-white/5 shadow-sm">
+                                        <div class="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center text-accent-pink flex-shrink-0">
+                                            <span class="material-symbols-outlined text-base">verified</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-[9px] font-black text-muted uppercase tracking-wider">Authenticité</p>
+                                            <p class="text-xs text-heading font-bold">100% Original</p>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center gap-2 text-xs text-body">
-                                        <span
-                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
-                                        <span>Livraison 58 wilayas</span>
+                                    <div class="flex items-center gap-3 p-3 rounded-2xl glass border border-white/5 shadow-sm">
+                                        <div class="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center text-accent-pink flex-shrink-0">
+                                            <span class="material-symbols-outlined text-base">local_shipping</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-[9px] font-black text-muted uppercase tracking-wider">Livraison</p>
+                                            <p class="text-xs text-heading font-bold">58 Wilayas</p>
+                                        </div>
                                     </div>
-                                    <div class="flex items-center gap-2 text-xs text-body">
-                                        <span
-                                            class="material-symbols-outlined text-accent-purple text-[14px]">check_circle</span>
-                                        <span>Paiement à la livraison</span>
+                                    <div class="flex items-center gap-3 p-3 rounded-2xl glass border border-white/5 shadow-sm">
+                                        <div class="w-8 h-8 rounded-xl bg-secondary/15 flex items-center justify-center text-accent-pink flex-shrink-0">
+                                            <span class="material-symbols-outlined text-base">payments</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-[9px] font-black text-muted uppercase tracking-wider">Paiement</p>
+                                            <p class="text-xs text-heading font-bold">À la livraison</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -683,9 +728,9 @@
                                             class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Type
                                             de Livraison *</label>
                                         <select id="shipping-type"
-                                            class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                            <option value="stop_desk">🏢 Stop Desk (Bureau)</option>
-                                            <option value="a_domicile">🏠 À Domicile</option>
+                                            class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                            <option class="bg-[#1E103C] text-white" value="stop_desk">🏢 Stop Desk (Bureau)</option>
+                                            <option class="bg-[#1E103C] text-white" value="a_domicile">🏠 À Domicile</option>
                                         </select>
                                     </div>
 
@@ -696,8 +741,8 @@
                                                 class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Wilaya
                                                 *</label>
                                             <select id="wilaya" required
-                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                                <option value="">Sélectionner</option>
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
+                                                <option class="bg-[#1E103C] text-white" value="">Sélectionner</option>
                                             </select>
                                         </div>
                                         <div class="space-y-1.5 xs:space-y-2">
@@ -705,8 +750,8 @@
                                                 class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest form-label">Commune
                                                 *</label>
                                             <select id="commune" required disabled
-                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10 disabled:opacity-50">
-                                                <option value="">Sélectionnez d'abord la wilaya</option>
+                                                class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10 disabled:opacity-50">
+                                                <option class="bg-[#1E103C] text-white" value="">Sélectionnez d'abord la wilaya</option>
                                             </select>
                                         </div>
                                     </div>
@@ -838,6 +883,66 @@
                     <div class="flex overflow-x-auto gap-3 xs:gap-4 no-scrollbar pb-2 -mx-1 xs:mx-0 px-1 xs:px-0"
                         id="related-products">
                         <div class="w-full text-center py-8 text-body text-xs animate-pulse">Chargement...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mock Reviews Section -->
+            <section class="px-3 xs:px-4 sm:px-6 md:px-20 py-12 xs:py-16 border-t border-white/10 bg-white/5">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 xs:mb-10">
+                        <div class="flex flex-col gap-1">
+                            <h3 class="font-display text-lg xs:text-xl sm:text-2xl font-black text-heading">Avis Clients</h3>
+                            <p class="text-muted text-xs font-medium">Ce que pensent nos acheteurs vérifiés</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="flex text-[#FFA500] gap-0.5 text-base">★★★★★</div>
+                            <span class="text-heading text-sm font-black">4.9 / 5</span>
+                            <span class="text-muted text-xs font-medium">(28 avis)</span>
+                        </div>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="glass p-5 rounded-2xl border border-white/10 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center font-bold text-xs text-accent-pink uppercase">
+                                        AN
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs sm:text-sm font-bold text-heading">Anis N.</h4>
+                                        <p class="text-[9px] text-muted font-medium">Acheteur vérifié • Sétif</p>
+                                    </div>
+                                </div>
+                                <div class="text-[9px] text-muted">Il y a 3 jours</div>
+                            </div>
+                            <div class="flex text-[#FFA500] gap-0.5 text-xs">★★★★★</div>
+                            <p class="text-body text-xs leading-relaxed font-medium">
+                                Produit conforme et livraison ultra rapide en 24h sur Sétif ! Le téléphone est 100% original, le service client m'a contacté juste après la commande. Je recommande vivement Phone Haven.
+                            </p>
+                        </div>
+
+                        <div class="glass p-5 rounded-2xl border border-white/10 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center font-bold text-xs text-accent-pink uppercase">
+                                        YM
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs sm:text-sm font-bold text-heading">Yacine M.</h4>
+                                        <p class="text-[9px] text-muted font-medium">Acheteur vérifié • Alger</p>
+                                    </div>
+                                </div>
+                                <div class="text-[9px] text-muted">Il y a 1 semaine</div>
+                            </div>
+                            <div class="flex text-[#FFA500] gap-0.5 text-xs">
+                                <span>★★★★</span><span class="text-white/20">★</span>
+                            </div>
+                            <p class="text-body text-xs leading-relaxed font-medium">
+                                Très satisfait de mon achat. Emballage soigné et livraison rapide. Le prix est le meilleur du marché actuellement en Algérie. Les réponses du service WhatsApp sont rapides.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1219,6 +1324,7 @@
             Object.keys(wilayasData).forEach(id => {
                 const w = wilayasData[id];
                 const option = document.createElement('option');
+                option.className = 'bg-[#1E103C] text-white';
                 option.value = w.name;
                 option.dataset.id = id;
                 option.dataset.home = w.home;
@@ -1307,10 +1413,11 @@
             }
 
             filtered.sort((a, b) => (a.commune_name_latin || a).localeCompare(b.commune_name_latin || b));
-            communeSelect.innerHTML = '<option value="">Sélectionner</option>';
+            communeSelect.innerHTML = '<option class="bg-[#1E103C] text-white" value="">Sélectionner</option>';
             filtered.forEach(c => {
                 const name = c.commune_name_latin || c;
                 const option = document.createElement('option');
+                option.className = 'bg-[#1E103C] text-white';
                 option.value = name;
                 option.textContent = name;
                 communeSelect.appendChild(option);
@@ -1322,6 +1429,32 @@
 
         communeSelect.addEventListener('change', updateShippingPrice);
         shippingType.addEventListener('change', updateShippingPrice);
+
+        // ===== GALLERY SWITCHER =====
+        function initGallery() {
+            const mainImg = document.getElementById('product-image');
+            const thumbBtns = document.querySelectorAll('.thumbnail-btn');
+
+            thumbBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const img = btn.querySelector('img');
+                    if (img && mainImg) {
+                        mainImg.src = img.src;
+
+                        // Reset borders and opacity
+                        thumbBtns.forEach(b => {
+                            b.classList.remove('border-secondary');
+                            b.classList.add('border-transparent', 'opacity-60');
+                        });
+
+                        // Active border and opacity
+                        btn.classList.add('border-secondary');
+                        btn.classList.remove('border-transparent', 'opacity-60');
+                    }
+                });
+            });
+        }
 
         // ===== LOAD PRODUCT =====
         async function loadProduct() {
@@ -1503,6 +1636,19 @@
             populateWilayas();
             fetchCommunes();
             loadProduct();
+            initGallery();
+
+            // Sticky Header Scroll Handler
+            const header = document.getElementById('nav-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 15) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
 
             const voiceDesktop = document.getElementById('voice-search-desktop');
             const voiceMobile = document.getElementById('voice-search-mobile');

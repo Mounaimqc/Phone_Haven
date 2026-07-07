@@ -1,26 +1,37 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Phone Haven | Smartphones & Accessoires</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#49377E" />
+    <meta name="description" content="Phone Haven - Commande confirmée avec succès !" />
+    <title>Commande Confirmée | Phone Haven</title>
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#6366f1",
-                        "accent": "#f59e0b",
+                        "primary": "#49377E",
+                        "secondary": "#C64172",
+                        "accent-yellow": "#FFA500",
+                        "accent-pink": "#ffb3c6",
+                        "accent-purple": "#e0d4ff",
                         "background-light": "#ffffff",
                         "background-dark": "#020617",
+                        "success": "#10b981",
+                        "accent": "#f59e0b",
+                        "services": "#06b6d4",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -30,564 +41,523 @@
                         "3xl": "1.5rem",
                         "4xl": "2rem",
                     },
+                    screens: {
+                        'xs': '320px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                    }
                 },
             },
         }
     </script>
+
     <style>
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
+        /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
+        .gradient-bg {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
         }
 
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        .gradient-text {
+            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        /* ✅ GLASSMORPHISM */
         .glass {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        /* ✅ COULEURS TEXTE EN CONTRASTE */
+        .text-heading {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .text-body {
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-accent-pink {
+            color: #ffb3c6;
+            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
+        }
+
+        .text-accent-purple {
+            color: #e0d4ff;
+            text-shadow: 0 0 12px rgba(224, 212, 255, 0.4);
+        }
+
+        .link-hover:hover {
+            color: #ffb3c6 !important;
+            text-shadow: 0 0 15px rgba(255, 179, 198, 0.7) !important;
+            transition: all 0.2s ease;
+        }
+
+        /* ✅ MOBILE MENU */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ✅ ANIMATED CHECKMARK */
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #10b981;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #10b981;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s forwards;
+        }
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 40px #10b981;
+            }
+        }
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
-    
 </head>
 
 <body
-    class="font-body text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  selection:bg-primary/30 bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
+    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] bg-fixed bg-no-repeat bg-cover">
+
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+
         <!-- Premium Navigation -->
         <header
-            class="sticky top-0 z-[100] w-full border-b border-[rgba(255,255,255,0.15)] bg-white/70 dark:bg-background-dark/70 backdrop-blur-xl px-6 md:px-20 py-4">
+            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300"
+            id="nav-header">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
-                <div class="flex items-center gap-10">
-                    <a href="index.html" class="flex items-center gap-2 group">
-                        <div
-                            class="flex h-10 w-10 items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                        </div>
-                        <h2 class="font-display text-2xl font-black tracking-tighter">Phone Haven<span
-                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
-                    </a>
 
-                    <nav class="hidden lg:flex items-center gap-8">
-                        <a class="text-white/80  text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="index.html">Téléphones</a>
-                        <a class="text-white/80  text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="search.html">Catalogue</a>
-                        <a class="text-white/80  text-sm font-medium hover:text-primary dark:hover:text-white transition-all underline-offset-8 hover:underline"
-                            href="index.html#new-arrivals">Nouveautés</a>
-                    </nav>
-                </div>
-
-                <div class="flex items-center gap-2 md:gap-4">
-                    <div class="hidden md:flex relative items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
+                    <div
+                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500 bg-white">
+                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                    </div>
+                    <div class="flex flex-col">
+                        <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
+                            Phone Haven<span class="text-accent-pink">.</span>
+                        </h2>
                         <span
-                            class="material-symbols-outlined absolute left-4 text-white/60 text-xl pointer-events-none">search</span>
-                        <input
-                            class="w-64 rounded-2xl border-none bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  py-2.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all"
-                            placeholder="Rechercher un smartphone..." type="text" />
+                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                            More than a store, it's a haven for phones
+                        </span>
                     </div>
+                </a>
 
-                    <div class="flex items-center bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  rounded-2xl p-1 gap-1">
-                        <button
-                            class="flex h-10 w-10 items-center justify-center rounded-xl hover:bg-white dark:hover:bg-white/10 text-white/90  transition-all shadow-sm hover:shadow-md active:scale-90">
-                            <span class="material-symbols-outlined text-[22px]">favorite</span>
-                        </button>
-                        <button
-                            class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95 hover:brightness-110">
-                            <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
-                        </button>
-                    </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="index.html">Accueil</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="search.html">Catalogue</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="index.html#new-arrivals">Nouveautés</a>
+                    <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                        href="tracking.html">Suivi</a>
+                </nav>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-3">
+                    <!-- Wishlist Button -->
+                    <button
+                        class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white/20 transition-all active:scale-90 relative"
+                        aria-label="Favoris" onclick="showToast('❤️ Ajouté aux favoris', 'success')">
+                        <span
+                            class="material-symbols-outlined text-[18px] xs:text-[20px] sm:text-[22px] text-body">favorite_border</span>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle"
+                        class="hidden sm:flex h-8 w-8 xs:h-9 xs:w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg xs:rounded-xl hover:bg-white/20 transition-all active:scale-90"
+                        aria-label="Changer le thème">
+                        <span class="material-symbols-outlined text-[18px] xs:text-[20px] text-body">dark_mode</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-lg border border-white/15 text-body transition-all active:scale-90"
+                        aria-label="Menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px]">menu</span>
+                    </button>
                 </div>
             </div>
         </header>
 
-        <main class="flex-1">
-            <!-- Hero Section: Modern & Atmospheric -->
-            <section class="relative px-6 md:px-20 py-20 lg:py-32 overflow-hidden">
-                <div
-                    class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] hidden lg:hidden"></div>
+        <div id="mobile-menu"
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[#1a1233]/95 backdrop-blur-xl border border-white/15 z-[100] lg:hidden shadow-2xl">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/15">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div
+                            class="flex h-7 w-7 xs:h-8 xs:w-8 items-center justify-center rounded-xl overflow-hidden shadow-sm bg-white">
+                            <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                        </div>
+                        <div class="flex flex-col">
+                            <h2 class="font-display text-base xs:text-lg font-black tracking-tighter text-heading">
+                                Phone Haven<span class="text-accent-pink">.</span>
+                            </h2>
+                        </div>
+                    </a>
+                    <button id="mobile-menu-close"
+                        class="flex h-9 w-9 xs:h-10 xs:w-10 items-center justify-center rounded-xl hover:bg-white/15 transition-all"
+                        aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-[22px] xs:text-[24px] text-body">close</span>
+                    </button>
                 </div>
-                <div
-                    class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none">
-                </div>
 
-                <!-- Hero Section: Modern & Atmospheric Slider -->
-                <section class="relative overflow-hidden">
-                    <div id="hero-slider"
-                        class="flex transition-transform duration-1000 ease-in-out h-[700px] lg:h-[800px]">
-                        <!-- Slide 1 -->
-                        <div class="min-w-full h-full relative px-6 md:px-20 py-20 lg:py-32 flex items-center">
-                            <div
-                                class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none">
-                            </div>
-                            <div
-                                class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-10">
-                                    <div class="flex flex-col gap-6">
-                                        <div class="flex items-center gap-3">
-                                            <span class="h-px w-8 bg-primary"></span>
-                                            <span
-                                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-bold tracking-[0.3em] uppercase text-[10px]">Derniers
-                                                Modèles 2024</span>
-                                        </div>
-                                        <h1
-                                            class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-6xl md:text-8xl font-black leading-[0.95] tracking-tight">
-                                            Les meilleurs <br /> Smartphones <span
-                                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">ici.</span>
-                                        </h1>
-                                        <p
-                                            class="text-white/80  text-lg md:text-xl max-w-lg leading-relaxed font-medium">
-                                            Découvrez notre sélection de smartphones et accessoires au meilleur prix en
-                                            Algérie.
-                                        </p>
-                                    </div>
-                                    <div class="flex flex-wrap gap-5">
-                                        <a href="search.html"
-                                            class="group relative flex h-16 min-w-[200px] items-center justify-center overflow-hidden rounded-2xl bg-primary px-10 text-white shadow-2xl shadow-primary/30 transition-all active:scale-95">
-                                            <div
-                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                            </div>
-                                            <span class="relative font-display text-base font-black tracking-wide">Voir
-                                                les Téléphones</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="relative hidden lg:block">
-                                    <div
-                                        class="w-full aspect-square bg-slate-200  rounded-[4rem] overflow-hidden shadow-2xl relative group border border-[rgba(255,255,255,0.15)]">
-                                        <img alt="Smartphones"
-                                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop" />
-                                        <div
-                                            class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div
-                            class="min-w-full h-full relative px-6 md:px-20 py-20 lg:py-32 flex items-center bg-[rgba(0,0,0,0.4)] backdrop-blur-2xl">
-                            <div
-                                class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none">
-                            </div>
-                            <div
-                                class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto relative z-10 w-full">
-                                <div class="flex flex-col gap-10">
-                                    <div class="flex flex-col gap-6">
-                                        <div class="flex items-center gap-3">
-                                            <span class="h-px w-8 bg-accent"></span>
-                                            <span
-                                                class="text-accent font-bold tracking-[0.3em] uppercase text-[10px]">Accessoires
-                                                Premium</span>
-                                        </div>
-                                        <h1
-                                            class="font-display text-white text-6xl md:text-8xl font-black leading-[0.95] tracking-tight">
-                                            Accessoires <br /> de <span class="text-accent italic">Qualité.</span>
-                                        </h1>
-                                        <p
-                                            class="text-white/60 text-lg md:text-xl max-w-lg leading-relaxed font-medium">
-                                            Coques, chargeurs, écouteurs et bien plus — tout pour compléter votre
-                                            smartphone.
-                                        </p>
-                                    </div>
-                                    <div class="flex flex-wrap gap-5">
-                                        <a href="search.html"
-                                            class="group relative flex h-16 min-w-[200px] items-center justify-center overflow-hidden rounded-2xl bg-accent px-10 text-white shadow-2xl shadow-accent/30 transition-all active:scale-95">
-                                            <div
-                                                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                            </div>
-                                            <span class="relative font-display text-base font-black tracking-wide">Voir
-                                                les Accessoires</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="relative hidden lg:block">
-                                    <div
-                                        class="w-full aspect-square bg-white/5 rounded-[4rem] overflow-hidden shadow-2xl relative group border border-[rgba(255,255,255,0.15)]">
-                                        <img alt="Accessoires"
-                                            class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            src="https://images.unsplash.com/photo-1606813902891-d17d3c0c8f63?q=80&w=1000&auto=format&fit=crop" />
-                                    </div>
-                                </div>
-                            </div>
+                <nav class="flex-1 p-3 xs:p-4 overflow-y-auto">
+                    <ul class="flex flex-col gap-1.5 xs:gap-2">
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="index.html"><span class="material-symbols-outlined text-[18px]">home</span>
+                                Accueil</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="search.html"><span class="material-symbols-outlined text-[18px]">grid_view</span>
+                                Catalogue</a></li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="index.html#new-arrivals"><span
+                                     class="material-symbols-outlined text-[18px]">new_releases</span> Nouveautés</a>
+                        </li>
+                        <li><a class="flex items-center gap-2.5 xs:gap-3 p-3 xs:p-4 rounded-xl xs:rounded-2xl glass-card text-body font-semibold hover:gradient-bg hover:text-white transition-all text-sm"
+                                href="tracking.html"><span
+                                     class="material-symbols-outlined text-[18px]">local_shipping</span> Suivi
+                                Commande</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <main class="flex-1 max-w-4xl mx-auto px-4 py-8 xs:py-12 sm:py-16 w-full flex items-center justify-center">
+
+            <!-- Success Content Glass Card -->
+            <div class="glass-card rounded-3xl p-6 xs:p-8 sm:p-12 w-full text-center relative overflow-hidden shadow-2xl">
+                <!-- Glowing effect -->
+                <div class="absolute -top-24 -left-24 w-72 h-72 bg-success/20 rounded-full blur-[100px] pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-secondary/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+                <div class="relative z-10 space-y-6 sm:space-y-8">
+                    <!-- Checkmark Animation -->
+                    <div class="success-checkmark">
+                        <div class="checkmark">
+                            <svg class="checkmark__circle" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                            </svg>
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke="#fff" stroke-width="3"/>
                         </div>
                     </div>
 
-                    <!-- Slider Navigation - Fixed for both light and dark backgrounds -->
-                    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex gap-4">
-                        <button id="hero-prev"
-                            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
-                            <span class="material-symbols-outlined font-bold">west</span>
-                        </button>
-                        <button id="hero-next"
-                            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 dark:bg-slate-800/90 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  hover:bg-primary hover:text-white transition-all active:scale-90 shadow-lg backdrop-blur-sm border border-white/20">
-                            <span class="material-symbols-outlined font-bold">east</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- New Arrivals: horizontal slider -->
-                <section class="py-24 border-y border-[rgba(255,255,255,0.15)]" id="new-arrivals">
-                    <div class="max-w-7xl mx-auto px-6 md:px-20">
-                        <div class="flex items-end justify-between mb-16">
-                            <div class="flex flex-col gap-3">
-                                <h2
-                                    class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-4xl font-black tracking-tight">
-                                    Nouveautés</h2>
-                                <p class="text-white/80  font-medium">Les derniers smartphones
-                                    arrivés en stock.</p>
-                            </div>
-                            <div class="flex gap-4">
-                                <button id="new-prev"
-                                    class="group flex h-12 w-12 items-center justify-center rounded-2xl border-2 border-[rgba(255,255,255,0.2)]  hover:border-primary text-white/90  hover:text-primary transition-all active:scale-90">
-                                    <span
-                                        class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">west</span>
-                                </button>
-                                <button id="new-next"
-                                    class="group flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-white shadow-xl shadow-primary/20 transition-all active:scale-90">
-                                    <span
-                                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="flex overflow-x-auto gap-8 no-scrollbar pb-10 -mx-4 px-4 snap-x"
-                            id="new-arrivals-container">
-                            <div class="w-full text-center py-20 text-white/80 font-medium animate-pulse italic">
-                                Chargement des nouveautés...</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Featured Collection Grid -->
-                <section class="bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  py-32 px-6 md:px-20">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-16">
-                            <div class="flex flex-col gap-3">
-                                <div class="flex items-center gap-2 text-accent">
-                                    <span class="material-symbols-outlined text-sm font-bold">star</span>
-                                    <span class="text-[10px] font-black uppercase tracking-widest">Sélection
-                                        Premium</span>
-                                </div>
-                                <h2
-                                    class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  text-4xl font-black tracking-tight">
-                                    Produits Vedettes</h2>
-                                <p class="text-white/80  font-medium">Les modèles les plus
-                                    populaires au meilleur prix.</p>
-                            </div>
-                            <a class="group flex items-center gap-3 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-bold"
-                                href="search.html">
-                                <span
-                                    class="text-sm underline underline-offset-8 decoration-primary/30 group-hover:decoration-primary transition-all">Voir
-                                    tous les produits</span>
-                                <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  transition-transform group-hover:rotate-45">
-                                    <span class="material-symbols-outlined">north_east</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
-                            id="featured-products-container">
-                            <!-- Products will be loaded here -->
-                            <div class="col-span-full text-center py-20 italic text-white/60">Chargement des
-                                produits...</div>
-                        </div>
-                    </div>
-                </section>
-
-                <script type="module">
-                    import { getProducts } from './db-service.js';
-
-                    const newArrivalsContainer = document.getElementById('new-arrivals-container');
-                    const featuredContainer = document.getElementById('featured-products-container');
-                    const heroSlider = document.getElementById('hero-slider');
-                    const heroPrev = document.getElementById('hero-prev');
-                    const heroNext = document.getElementById('hero-next');
-                    const newPrev = document.getElementById('new-prev');
-                    const newNext = document.getElementById('new-next');
-
-                    let currentSlide = 0;
-                    const totalSlides = 2;
-
-                    function updateHero() {
-                        if (heroSlider) heroSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                    }
-
-                    if (heroNext) {
-                        heroNext.addEventListener('click', () => {
-                            currentSlide = (currentSlide + 1) % totalSlides;
-                            updateHero();
-                        });
-                    }
-
-                    if (heroPrev) {
-                        heroPrev.addEventListener('click', () => {
-                            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                            updateHero();
-                        });
-                    }
-
-                    // Auto-slide hero
-                    setInterval(() => {
-                        currentSlide = (currentSlide + 1) % totalSlides;
-                        updateHero();
-                    }, 8000);
-
-                    if (newNext && newArrivalsContainer) {
-                        newNext.addEventListener('click', () => {
-                            newArrivalsContainer.scrollBy({ left: 400, behavior: 'smooth' });
-                        });
-                    }
-
-                    if (newPrev && newArrivalsContainer) {
-                        newPrev.addEventListener('click', () => {
-                            newArrivalsContainer.scrollBy({ left: -400, behavior: 'smooth' });
-                        });
-                    }
-
-                    const staticProducts = [
-                        { id: '1', name: 'Samsung Galaxy S24', price: 95000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80' },
-                        { id: '2', name: 'iPhone 15 Pro', price: 175000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1695048132973-cc2c68c8d3e5?w=400&q=80' },
-                        { id: '3', name: 'Xiaomi 14', price: 72000, category: 'Téléphone', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80' },
-                        { id: '4', name: 'AirPods Pro', price: 28000, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1588156979435-379b9ac4c6f2?w=400&q=80' },
-                        { id: '5', name: 'Chargeur Rapide 65W', price: 4500, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80' },
-                        { id: '6', name: 'Coque Samsung Cuir', price: 2800, category: 'Accessoire', image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&q=80' }
-                    ];
-
-                    async function loadStorefrontProducts() {
-                        try {
-                            const products = await getProducts();
-                            renderStorefront(products.length > 0 ? products : staticProducts);
-                        } catch (error) {
-                            console.error("Error loading storefront products:", error);
-                            renderStorefront(staticProducts);
-                        }
-                    }
-
-                    function formatPrice(price) {
-                        return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-                    }
-
-                    function renderStorefront(products) {
-                        if (products.length === 0) {
-                            newArrivalsContainer.innerHTML = '<div class="w-full text-center py-20 text-white/80">No products available yet.</div>';
-                            featuredContainer.innerHTML = '<div class="w-full text-center py-20 text-white/80">No products available yet.</div>';
-                            return;
-                        }
-
-                        // Render New Arrivals (Horizontal Slider)
-                        newArrivalsContainer.innerHTML = '';
-                        products.slice(0, 6).forEach(product => {
-                            const div = document.createElement('div');
-                            div.className = 'min-w-[320px] snap-start group relative';
-                            div.innerHTML = `
-                        <div class="h-[450px] w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  rounded-[2.5rem] overflow-hidden border border-[rgba(255,255,255,0.15)] transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-primary/20">
-                            <img src="${product.image}" class="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="absolute bottom-8 left-8 right-8 p-6 glass rounded-2xl translate-y-20 group-hover:translate-y-0 transition-all duration-500">
-                                <p class="text-[10px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-2">${product.category}</p>
-                                <h4 class="text-white font-display text-lg font-black leading-tight">${product.name}</h4>
-                                <div class="mt-4 flex items-center justify-between">
-                                    <span class="text-white font-black blur-[0px]">${formatPrice(product.price)}</span>
-                                    <a href="product.html?id=${product.id}" class="h-10 w-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black rounded-xl flex items-center justify-center hover:bg-primary hover:text-white transition-all active:scale-90">
-                                        <span class="material-symbols-outlined text-sm">shopping_cart</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                            newArrivalsContainer.appendChild(div);
-                        });
-
-                        // Render Featured (Grid) - Without star ratings
-                        featuredContainer.innerHTML = '';
-                        products.slice(0, 8).forEach(product => {
-                            const div = document.createElement('div');
-                            div.className = 'group cursor-pointer flex flex-col';
-                            div.onclick = () => window.location.href = `product.html?id=${product.id}`;
-                            div.innerHTML = `
-                        <div class="relative aspect-square mb-6 overflow-hidden rounded-[2.5rem] bg-[rgba(255,255,255,0.04)] backdrop-blur-md border border-[rgba(255,255,255,0.1)] shadow-lg  border border-[rgba(255,255,255,0.15)] hover:border-primary/20 transition-all duration-700">
-                            <div class="absolute inset-x-0 bottom-0 p-6 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out z-10">
-                                <button class="w-full glass text-white font-display font-black py-4 rounded-2xl shadow-xl hover:bg-primary transition-all active:scale-95">
-                                    Quick Order
-                                </button>
-                            </div>
-                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&q=80'}')"></div>
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-                            <button class="absolute bottom-6 right-6 h-14 w-14 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] dark:bg-white text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black rounded-2xl shadow-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 flex items-center justify-center hover:bg-primary hover:text-white active:scale-90">
-                                <span class="material-symbols-outlined font-bold">shopping_bag</span>
-                            </button>
-                        </div>
-                        <div class="px-2">
-                            <h3 class="font-display text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-black  font-black text-xl mb-1 group-hover:text-primary transition-colors">${product.name}</h3>
-                            <div class="flex items-center justify-between">
-                                <p class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-black text-lg">${formatPrice(product.price)}</p>
-                            </div>
-                        </div>
-                    `;
-                            featuredContainer.appendChild(div);
-                        });
-                    }
-
-                    loadStorefrontProducts();
-                </script>
-
-                <!-- Value Props Section -->
-                <section class="py-32 px-6 md:px-20 max-w-7xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-                        <div class="flex flex-col gap-6">
-                            <div
-                                class="h-16 w-16 rounded-3xl bg-primary/10 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center justify-center">
-                                <span class="material-symbols-outlined text-3xl">verified</span>
-                            </div>
-                            <h3 class="font-display text-2xl font-black">Produits 100% Authentiques</h3>
-                            <p class="text-white/80  leading-loose">Tous nos smartphones et
-                                accessoires sont originaux et garantis, avec factures officielles.</p>
-                        </div>
-                        <div class="flex flex-col gap-6 group">
-                            <div
-                                class="h-16 w-16 rounded-3xl bg-accent/10 text-accent flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-500">
-                                <span class="material-symbols-outlined text-3xl">local_shipping</span>
-                            </div>
-                            <h3 class="font-display text-2xl font-black">Livraison dans tout Algérie</h3>
-                            <p class="text-white/80  leading-loose">Livraison rapide dans les 58
-                                wilayas. Livraison gratuite à partir de 15 000 د.ج.</p>
-                        </div>
-                        <div class="flex flex-col gap-6">
-                            <div
-                                class="h-16 w-16 rounded-3xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-3xl">shield_person</span>
-                            </div>
-                            <h3 class="font-display text-2xl font-black">Garantie 2 Ans</h3>
-                            <p class="text-white/80  leading-loose">Tous nos produits sont sous
-                                garantie. En cas de problème, nous réparons ou remplaçons votre appareil.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Premium Newsletter -->
-                <section class="py-24 px-6 md:px-20 mb-32">
-                    <div
-                        class="max-w-7xl mx-auto rounded-[4rem] bg-primary relative overflow-hidden shadow-2xl shadow-primary/30">
-                        <div
-                            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
-                        </div>
-                        <div
-                            class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
-                        </div>
-
-                        <div class="relative z-10 py-20 px-10 text-center">
-                            <h2 class="font-display text-white text-4xl md:text-5xl font-black mb-6">Rejoignez Phone
-                                Haven</h2>
-                            <p class="text-white/80 text-lg mb-12 max-w-xl mx-auto font-medium">Inscrivez-vous pour
-                                recevoir nos offres exclusives et 10% de réduction sur votre première commande.</p>
-                            <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                                <input
-                                    class="flex-1 h-16 rounded-2xl px-6 bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:ring-2 focus:ring-white/50 focus:outline-none transition-all"
-                                    placeholder="your@email.com" required="" type="email" />
-                                <button
-                                    class="h-16 px-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white font-display font-black rounded-2xl hover:bg-[rgba(255,255,255,0.15)] hover:shadow-2xl transition-all active:scale-95 shadow-xl"
-                                    type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-        </main>
-
-        <!-- Footer: Elegant & Information-Rich -->
-        <footer class="bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]  border-t border-[rgba(255,255,255,0.15)] pt-24 pb-12 px-6 md:px-20">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-16 mb-24">
-                    <div class="col-span-2 flex flex-col gap-8">
-                        <a href="index.html" class="flex items-center gap-2 group">
-                            <div
-                                class="flex h-8 w-8 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden shadow-sm">
-                                <img src="images/logo.png" class="h-full w-full object-contain" alt="Phone Haven Logo">
-                            </div>
-                            <h2 class="font-display text-xl font-black tracking-tighter">Phone Haven<span
-                                    class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h2>
-                        </a>
-                        <p class="text-white/80  max-w-xs leading-loose font-medium">
-                            Basée à Alger, Phone Haven est votre destination privilégiée pour les smartphones et
-                            accessoires originaux.
+                    <!-- Success Message -->
+                    <div class="space-y-2">
+                        <h1 class="font-display text-heading text-2xl xs:text-3xl sm:text-4xl font-black tracking-tight">
+                            Merci pour votre commande !
+                        </h1>
+                        <p class="text-body text-xs xs:text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                            Votre commande a été enregistrée avec succès. Notre service client vous contactera par téléphone pour confirmer la livraison.
                         </p>
-                        <div class="flex gap-4">
-                            <a class="h-12 w-12 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  flex items-center justify-center text-white/90  hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined">share</span></a>
-                            <a class="h-12 w-12 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  flex items-center justify-center text-white/90  hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined">public</span></a>
-                            <a class="h-12 w-12 rounded-2xl bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  flex items-center justify-center text-white/90  hover:text-primary transition-all"
-                                href="#"><span class="material-symbols-outlined">podcasts</span></a>
+                    </div>
+
+                    <!-- Order Summary Box -->
+                    <div class="glass p-5 sm:p-6 rounded-2xl text-left border border-white/10 space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <div>
+                                <p class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-muted">Numéro de Commande</p>
+                                <h3 id="order-id" class="font-display font-black text-heading text-sm xs:text-base sm:text-lg">
+                                    Chargement...
+                                </h3>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-muted">Statut</p>
+                                <span class="inline-block px-2.5 py-0.5 rounded-full bg-success/20 text-success text-[10px] font-black uppercase tracking-wide">
+                                    En attente
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Product details -->
+                        <div id="order-item-detail" class="flex gap-4 items-center py-2">
+                            <!-- Image skeleton -->
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl skeleton flex-shrink-0"></div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 w-32 skeleton rounded"></div>
+                                <div class="h-3 w-16 skeleton rounded"></div>
+                            </div>
+                        </div>
+
+                        <!-- Summary prices -->
+                        <div class="border-t border-white/10 pt-3 space-y-2 text-xs xs:text-sm">
+                            <div class="flex justify-between text-muted">
+                                <span>Sous-total produit</span>
+                                <span id="subtotal-price">0 د.ج</span>
+                            </div>
+                            <div class="flex justify-between text-muted">
+                                <span>Livraison (<span id="shipping-dest">--</span>)</span>
+                                <span id="shipping-price" class="text-accent-yellow">0 د.ج</span>
+                            </div>
+                            <div class="border-t border-white/10 pt-2 flex justify-between font-black text-heading text-sm xs:text-base">
+                                <span>Total à payer</span>
+                                <span id="total-price" class="text-accent-pink">0 د.ج</span>
+                            </div>
+                            <div class="text-[9px] sm:text-[10px] text-muted text-center pt-2">
+                                💵 Paiement cash à la livraison (COD)
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <h4 class="font-display font-black text-sm uppercase tracking-[0.2em] mb-8">Navigation</h4>
-                        <ul class="flex flex-col gap-5 text-white/80  text-sm font-medium">
-                            <li><a class="hover:text-primary transition-colors" href="search.html">Catalogue</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="index.html#new-arrivals">Nouveautés</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="search.html?category=Téléphone">Téléphones</a></li>
-                            <li><a class="hover:text-primary transition-colors"
-                                    href="search.html?category=Accessoire">Accessoires</a></li>
-                        </ul>
+                    <!-- Direct Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 xs:gap-4 justify-center">
+                        <a id="track-order-link" href="tracking.html"
+                            class="flex h-11 xs:h-12 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl gradient-bg text-white font-bold hover:opacity-90 hover:scale-[1.02] transition-all active:scale-[0.98] text-xs xs:text-sm shadow-lg">
+                            <span class="material-symbols-outlined mr-2 text-lg">local_shipping</span>
+                            Suivre ma Commande
+                        </a>
+                        <a href="index.html"
+                            class="flex h-11 xs:h-12 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-white/20 text-heading font-bold hover:bg-white/10 hover:scale-[1.02] transition-all active:scale-[0.98] text-xs xs:text-sm">
+                            Continuer mes Achats
+                        </a>
                     </div>
 
-                    <div>
-                        <h4 class="font-display font-black text-sm uppercase tracking-[0.2em] mb-8">Assistance</h4>
-                        <ul class="flex flex-col gap-5 text-white/80  text-sm font-medium">
-                            <li><a class="hover:text-primary transition-colors" href="tracking.html">Track Order</a>
-                            </li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Shipping & Returns</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Inquiry</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-display font-black text-sm uppercase tracking-[0.2em] mb-8">Legal</h4>
-                        <ul class="flex flex-col gap-5 text-white/80  text-sm font-medium">
-                            <li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Terms</a></li>
-                            <li><a class="hover:text-primary transition-colors" href="#">Warranty</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div
-                    class="pt-12 border-t border-slate-100  flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-widest text-white/60">
-                    <p>© 2024 Phone Haven. Tous droits réservés.</p>
-                    <div class="flex gap-10">
-                        <a class="hover:text-primary" href="#">Instagram</a>
-                        <a class="hover:text-primary" href="#">Pinterest</a>
-                        <a class="hover:text-primary" href="#">Facebook</a>
+                    <!-- Help link -->
+                    <div class="pt-2 text-center">
+                        <a href="https://wa.me/213600000000" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-accent-pink text-xs hover:underline">
+                            <span class="material-symbols-outlined text-[14px]">support_agent</span>
+                            Besoin d'aide ? Contactez notre support WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-black/40 backdrop-blur-2xl border-t border-white/15 pt-10 pb-6 px-3 xs:px-4 sm:px-6 md:px-20 mt-12">
+            <div class="max-w-7xl mx-auto text-center space-y-4">
+                <p class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-muted">
+                    © 2026 Phone Haven. Tous droits réservés. Basé à Sétif, Algérie.
+                </p>
+            </div>
         </footer>
     </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-3 xs:top-4 right-3 xs:right-4 z-[200] space-y-1.5 max-w-[320px]"></div>
+
+    <script type="module">
+        import { getOrderById } from './db-service.js';
+
+        // DOM Elements
+        const orderIdEl = document.getElementById('order-id');
+        const itemDetailContainer = document.getElementById('order-item-detail');
+        const subtotalPriceEl = document.getElementById('subtotal-price');
+        const shippingDestEl = document.getElementById('shipping-dest');
+        const shippingPriceEl = document.getElementById('shipping-price');
+        const totalPriceEl = document.getElementById('total-price');
+        const trackOrderLink = document.getElementById('track-order-link');
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        // Mobile Menu Functions
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+        if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Price formatting helper
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-DZ').format(price || 0) + ' د.ج';
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.createElement('div');
+            const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
+            const colors = { success: 'bg-success', error: 'bg-red-500', info: 'gradient-bg', warning: 'bg-accent' };
+
+            toast.className = `glass ${colors[type]} border border-white/15 rounded-xl p-3 xs:p-4 flex items-center gap-2 xs:gap-3 shadow-xl transition-all duration-300`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-white text-[18px]">${icons[type]}</span>
+                <span class="text-white text-xs font-medium flex-1 text-left">${message}</span>
+            `;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-10px)';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // Initialize and Load Order
+        async function init() {
+            // Get order parameter from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
+
+            if (!orderId) {
+                orderIdEl.textContent = 'Non spécifié';
+                itemDetailContainer.innerHTML = `
+                    <div class="text-left text-body text-xs sm:text-sm py-4">
+                        Aucun détail de commande spécifié dans l'URL.
+                    </div>
+                `;
+                return;
+            }
+
+            orderIdEl.textContent = orderId;
+            trackOrderLink.href = `tracking.html?order=${encodeURIComponent(orderId)}`;
+
+            try {
+                // Fetch details from firebase
+                const orderData = await getOrderById(orderId);
+
+                if (!orderData) {
+                    throw new Error("Commande introuvable dans la base de données");
+                }
+
+                // Populate dynamic details
+                orderIdEl.textContent = orderData.orderNumber || orderId;
+                subtotalPriceEl.textContent = formatPrice(orderData.productPrice);
+                shippingDestEl.textContent = `${orderData.commune || ''}, ${orderData.wilaya || ''}`;
+                shippingPriceEl.textContent = formatPrice(orderData.shippingPrice);
+                totalPriceEl.textContent = formatPrice(orderData.total);
+
+                // Populate product item card
+                itemDetailContainer.innerHTML = `
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-white/10 flex-shrink-0 bg-white flex items-center justify-center">
+                        <img src="${orderData.productImage || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=150'}" alt="${orderData.productName}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-display font-black text-heading text-xs xs:text-sm sm:text-base truncate">
+                            ${orderData.productName}
+                        </h4>
+                        <p class="text-muted text-[10px] xs:text-xs">
+                            Quantité : ${orderData.quantity || 1} • Catégorie : ${orderData.category || '--'}
+                        </p>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.warn("⚠️ Firebase fetch error, fallback to visual mock info: ", error);
+                orderIdEl.textContent = orderId;
+
+                // Fallback UI (clean but minimal information state)
+                itemDetailContainer.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-white/50 text-xl">shopping_bag</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h4 class="font-display font-black text-heading text-xs sm:text-sm">Produit commandé</h4>
+                        <p class="text-muted text-[10px]">Chargement des détails depuis le suivi disponible.</p>
+                    </div>
+                `;
+
+                subtotalPriceEl.textContent = '--';
+                shippingDestEl.textContent = 'En attente';
+                shippingPriceEl.textContent = '--';
+                totalPriceEl.textContent = '--';
+            }
+        }
+
+        // Sticky Header scroll styling
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('nav-header');
+            if (window.scrollY > 10) {
+                header.classList.add('bg-black/50', 'shadow-2xl');
+                header.classList.remove('bg-white/10');
+            } else {
+                header.classList.remove('bg-black/50', 'shadow-2xl');
+                header.classList.add('bg-white/10');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 
 </html>
