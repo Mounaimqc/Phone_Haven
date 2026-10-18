@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta name="theme-color" content="#49377E" />
+    <meta name="theme-color" content="#0B0F19" />
     <meta name="description" content="Phone Haven - Détails du produit, commande et livraison en Algérie" />
     <title id="page-title">Produit | Phone Haven Algérie</title>
 
@@ -22,15 +22,20 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#49377E",
-                        "secondary": "#C64172",
-                        "accent-yellow": "#FFA500",
-                        "accent-pink": "#ffb3c6",
-                        "accent-purple": "#e0d4ff",
-                        "background-light": "#ffffff",
-                        "background-dark": "#020617",
+                        "primary": "#FFBA08",
+                        "primary-dark": "#E5A700",
+                        "secondary": "#FF3366",
+                        "secondary-dark": "#E11D48",
+                        "accent-yellow": "#FFBA08",
+                        "accent-pink": "#FF3366",
+                        "accent-purple": "#FFD166",
+                        "background-light": "#0F1424",
+                        "background-dark": "#0B0F19",
+                        "navy-card": "#151B2D",
+                        "navy-surface": "#1A2238",
                         "success": "#10b981",
-                        "accent": "#f59e0b",
+                        "accent": "#FFBA08",
+                        "services": "#06b6d4",
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
@@ -49,13 +54,192 @@
                     }
                 },
             },
-        }
+        };
     </script>
 
     <style>
+        
+        /* ✅ PHONE HAVEN BRAND THEME */
+        :root {
+            --brand-gold: #FFBA08;
+            --brand-coral: #FF3366;
+            --bg-night: #0B0F19;
+            --bg-surface: #141A2B;
+            --bg-card: #182035;
+        }
+
+        body {
+            background-color: #0B0F19 !important;
+            color: #E2E8F0;
+        }
+
+        .tech-pattern-bg {
+            background-color: #0B0F19;
+            background-image: 
+                radial-gradient(ellipse at 80% 10%, rgba(255, 186, 8, 0.09) 0%, transparent 50%),
+                radial-gradient(ellipse at 15% 60%, rgba(255, 51, 102, 0.07) 0%, transparent 50%),
+                url('images/tech-pattern.svg');
+            background-repeat: repeat;
+            background-size: auto, auto, 360px 360px;
+            background-attachment: fixed;
+        }
+
+        /* ✅ SIGNATURE PHONE HAVEN GRADIENT (GOLD TO CORAL) */
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFBA08 0%, #FF8040 50%, #FF3366 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-gold {
+            background: linear-gradient(135deg, #FFD166 0%, #FFBA08 50%, #F59E0B 100%);
+        }
+
+        .gradient-coral {
+            background: linear-gradient(135deg, #FF6B8B 0%, #FF3366 100%);
+        }
+
+        .gradient-hover:hover {
+            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
+        }
+
+        /* ✅ LUXURY GLASS & CARDS */
+        .glass {
+            background: rgba(20, 26, 43, 0.82);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-light {
+            background: rgba(26, 34, 56, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 186, 8, 0.2);
+        }
+
+        .glass-card {
+            background: rgba(21, 28, 46, 0.90);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 186, 8, 0.4);
+            box-shadow: 0 12px 36px rgba(255, 186, 8, 0.12);
+        }
+
+        /* ✅ TEXT COLORS */
+        .text-heading {
+            color: #ffffff !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-body {
+            color: #E2E8F0 !important;
+        }
+
+        .text-muted {
+            color: #94A3B8 !important;
+        }
+
+        .text-accent-yellow {
+            color: #FFBA08 !important;
+            text-shadow: 0 0 14px rgba(255, 186, 8, 0.35);
+        }
+
+        .text-accent-pink {
+            color: #FF3366 !important;
+            text-shadow: 0 0 14px rgba(255, 51, 102, 0.35);
+        }
+
+        .text-accent-purple {
+            color: #FFD166 !important;
+        }
+
+        .text-secondary {
+            color: #FF3366 !important;
+        }
+
+        .text-services {
+            color: #06b6d4 !important;
+        }
+
+        /* ✅ HOVER EFFECTS */
+        .link-hover:hover {
+            color: #FFBA08 !important;
+            text-shadow: 0 0 14px rgba(255, 186, 8, 0.6) !important;
+            transition: all 0.2s ease;
+        }
+
+        /* ✅ INPUTS & FORMS */
+        .form-input {
+            color: #ffffff !important;
+            background-color: rgba(20, 26, 43, 0.85) !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+        }
+
+        .form-input::placeholder {
+            color: #94A3B8 !important;
+        }
+
+        .form-input:focus, input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            border-color: #FFBA08 !important;
+            box-shadow: 0 0 0 3px rgba(255, 186, 8, 0.25) !important;
+        }
+
+        .form-select {
+            color: #ffffff !important;
+            background-color: #141A2B !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
+        }
+
+        .form-select option {
+            color: #ffffff !important;
+            background-color: #141A2B !important;
+        }
+
+        .form-label {
+            color: #E2E8F0 !important;
+        }
+
+        /* ✅ STICKY HEADER SCROLLED */
+        #nav-header.scrolled {
+            background-color: rgba(11, 15, 25, 0.95) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(255, 186, 8, 0.25) !important;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ✅ ACCESSIBILITY */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #FFBA08 !important;
+            outline-offset: 2px;
+        }
+
+        /* ✅ BUTTONS */
+        .btn-premium {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -6px rgba(255, 186, 8, 0.4);
+        }
+        .btn-premium:active {
+            transform: translateY(0) scale(0.98);
+        }
+
         /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
         .gradient-bg {
-            background: linear-gradient(180deg, #49377E 0%, #C64172 100%);
+            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%);
         }
 
         /* ✅ SYSTÈME DE COULEURS DE TEXTE */
@@ -90,7 +274,7 @@
         }
 
         .text-secondary {
-            color: #C64172;
+            color: #FF3366;
             text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
         }
 
@@ -359,7 +543,7 @@
         button:focus-visible,
         a:focus-visible,
         input:focus-visible {
-            outline: 2px solid #C64172 !important;
+            outline: 2px solid #FF3366 !important;
             outline-offset: 2px;
         }
 
@@ -378,28 +562,25 @@
 </head>
 
 <body
-    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen bg-[linear-gradient(135deg,#1E103C_0%,#49377E_50%,#C64172_100%)] bg-fixed bg-no-repeat bg-cover">
+    class="font-body selection:bg-secondary/30 overscroll-behavior-y-contain min-h-screen  bg-fixed bg-no-repeat bg-cover tech-pattern-bg bg-[#0B0F19] text-[#E2E8F0]">
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
         <!-- Premium Navigation -->
-        <header id="nav-header"
-            class="sticky top-0 z-[100] w-full border-b border-white/15 bg-white/10 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
+        <header id="nav-header" class="sticky top-0 z-[100] w-full border-b border-white/10 bg-[#0F1424]/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
             <div class="mx-auto flex max-w-7xl items-center justify-between">
 
                 <!-- Logo with IMAGE -->
-                <a href="index.html" class="flex items-center gap-1.5 xs:gap-2 group">
-                    <div
-                        class="flex h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 items-center justify-center rounded-2xl overflow-hidden shadow-lg group-hover:rotate-12 transition-transform duration-500 bg-white">
-                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain">
+                <a href="index.html" class="flex items-center gap-2 xs:gap-2.5 group">
+                    <div class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-11 sm:w-11 items-center justify-center rounded-2xl overflow-hidden shadow-lg p-0.5 border border-[#FFBA08]/40 bg-[#141A2B] group-hover:border-[#FF3366] transition-all duration-300">
+                        <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain rounded-xl">
                     </div>
                     <div class="flex flex-col">
-                        <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tighter text-heading">
-                            Phone Haven<span class="text-accent-pink">.</span>
+                        <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tight leading-none">
+                            <span class="text-[#FFBA08]">Phone</span><span class="text-[#FF3366] italic ml-0.5">Haven</span>
                         </h2>
-                        <span
-                            class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-accent-yellow font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
-                            More than a store, it's a haven for phones
+                        <span class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-[#FFBA08] font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+                            More than a Store , It's a Haven for Phones
                         </span>
                     </div>
                 </a>
@@ -469,7 +650,7 @@
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99] hidden lg:hidden"
             style="display: none;"></div>
         <div id="mobile-menu"
-            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[#1a1233]/95 backdrop-blur-xl border border-white/15 z-[100] lg:hidden shadow-2xl">
+            class="mobile-menu fixed top-0 left-0 h-full w-[260px] xs:w-[280px] bg-[#0F1424]/95 backdrop-blur-xl border border-white/15 z-[100] lg:hidden shadow-2xl">
             <div class="flex flex-col h-full">
                 <div class="flex items-center justify-between p-4 xs:p-6 border-b border-white/15">
                     <a href="index.html" class="flex items-center gap-2">
@@ -615,7 +796,7 @@
                                 </h1>
                                 <div class="flex items-baseline gap-3">
                                     <span id="product-price"
-                                        class="font-display text-accent-purple text-2xl xs:text-3xl sm:text-4xl font-black skeleton w-24 h-8 xs:h-9 rounded"></span>
+                                        class="font-display text-[#FFBA08] text-2xl xs:text-3xl sm:text-4xl font-black skeleton w-24 h-8 xs:h-9 rounded"></span>
                                     <span id="original-price"
                                         class="text-muted line-through text-sm xs:text-base hidden"></span>
                                 </div>
@@ -729,8 +910,8 @@
                                             de Livraison *</label>
                                         <select id="shipping-type"
                                             class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                            <option class="bg-[#1E103C] text-white" value="stop_desk">🏢 Stop Desk (Bureau)</option>
-                                            <option class="bg-[#1E103C] text-white" value="a_domicile">🏠 À Domicile</option>
+                                            <option class="bg-[#141A2B] text-white" value="stop_desk">🏢 Stop Desk (Bureau)</option>
+                                            <option class="bg-[#141A2B] text-white" value="a_domicile">🏠 À Domicile</option>
                                         </select>
                                     </div>
 
@@ -742,7 +923,7 @@
                                                 *</label>
                                             <select id="wilaya" required
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                                <option class="bg-[#1E103C] text-white" value="">Sélectionner</option>
+                                                <option class="bg-[#141A2B] text-white" value="">Sélectionner</option>
                                             </select>
                                         </div>
                                         <div class="space-y-1.5 xs:space-y-2">
@@ -751,7 +932,7 @@
                                                 *</label>
                                             <select id="commune" required disabled
                                                 class="w-full rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 px-4 py-2.5 xs:py-3 text-sm form-select focus:ring-2 focus:ring-secondary/30 transition-all font-medium appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10 disabled:opacity-50">
-                                                <option class="bg-[#1E103C] text-white" value="">Sélectionnez d'abord la wilaya</option>
+                                                <option class="bg-[#141A2B] text-white" value="">Sélectionnez d'abord la wilaya</option>
                                             </select>
                                         </div>
                                     </div>
@@ -812,16 +993,16 @@
                                             <span class="font-black text-heading text-sm">Total à
                                                 payer</span>
                                             <span id="summary-total"
-                                                class="font-black text-accent-purple text-lg xs:text-xl">0 د.ج</span>
+                                                class="font-black text-[#FFBA08] text-xl xs:text-2xl">0 د.ج</span>
                                         </div>
                                         <p class="text-[9px] text-muted text-center">💵 Paiement en espèces à la
-                                            livraison</p>
+                                             livraison</p>
                                     </div>
 
                                     <!-- Submit Button -->
                                     <div class="sticky-submit pt-2">
                                         <button id="confirm-btn" type="submit" disabled
-                                            class="w-full group relative flex h-12 xs:h-14 items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl bg-secondary text-white shadow-lg shadow-secondary/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
+                                            class="w-full group relative flex h-12 xs:h-14 items-center justify-center overflow-hidden rounded-xl xs:rounded-2xl gradient-bg text-slate-950 font-black shadow-lg shadow-[#FFBA08]/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100">
                                             <div
                                                 class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                                             </div>
@@ -1085,7 +1266,45 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        
+                <!-- Signature Bottom Bar matching Brand Identity Poster -->
+                <div class="mt-8 pt-6 border-t border-[#FFBA08]/30 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-2">
+                            <!-- Facebook -->
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"
+                               class="w-8 h-8 rounded-full bg-[#FFBA08] text-[#0B0F19] flex items-center justify-center font-bold hover:scale-110 hover:bg-white transition-all shadow-md shadow-[#FFBA08]/20">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"
+                               class="w-8 h-8 rounded-full bg-[#FFBA08] text-[#0B0F19] flex items-center justify-center font-bold hover:scale-110 hover:bg-white transition-all shadow-md shadow-[#FFBA08]/20">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <!-- TikTok -->
+                            <a href="https://tiktok.com" target="_blank" aria-label="TikTok"
+                               class="w-8 h-8 rounded-full bg-[#FFBA08] text-[#0B0F19] flex items-center justify-center font-bold hover:scale-110 hover:bg-white transition-all shadow-md shadow-[#FFBA08]/20">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <span class="text-sm font-bold text-white tracking-wide">@PhoneHaven</span>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-bold text-white tracking-wide">Sétif</span>
+                        <div class="w-7 h-7 rounded-full bg-[#FFBA08]/20 text-[#FFBA08] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span>
+                        </div>
+                    </div>
+                </div>
+
+</footer>
     </div>
 
     <!-- Toast Notification Container -->
@@ -1324,7 +1543,7 @@
             Object.keys(wilayasData).forEach(id => {
                 const w = wilayasData[id];
                 const option = document.createElement('option');
-                option.className = 'bg-[#1E103C] text-white';
+                option.className = 'bg-[#141A2B] text-white';
                 option.value = w.name;
                 option.dataset.id = id;
                 option.dataset.home = w.home;
@@ -1413,11 +1632,11 @@
             }
 
             filtered.sort((a, b) => (a.commune_name_latin || a).localeCompare(b.commune_name_latin || b));
-            communeSelect.innerHTML = '<option class="bg-[#1E103C] text-white" value="">Sélectionner</option>';
+            communeSelect.innerHTML = '<option class="bg-[#141A2B] text-white" value="">Sélectionner</option>';
             filtered.forEach(c => {
                 const name = c.commune_name_latin || c;
                 const option = document.createElement('option');
-                option.className = 'bg-[#1E103C] text-white';
+                option.className = 'bg-[#141A2B] text-white';
                 option.value = name;
                 option.textContent = name;
                 communeSelect.appendChild(option);
