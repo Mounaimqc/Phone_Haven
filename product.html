@@ -742,46 +742,51 @@
                 <div class="max-w-7xl mx-auto">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 lg:gap-12">
 
-                        <!-- Product Image Gallery -->
+                        <!-- Product Image Gallery (Instagram 1:1 Format & Multi-Photos) -->
                         <div class="space-y-4 xs:space-y-6">
-                            <div
-                                class="group relative overflow-hidden rounded-3xl xs:rounded-[2rem] glass-card border border-white/15 shadow-xl aspect-square">
+                            <div class="group relative overflow-hidden rounded-3xl xs:rounded-[2.5rem] glass-card border border-white/15 shadow-2xl aspect-square bg-[#101424] flex items-center justify-center">
                                 <!-- Loading Skeleton -->
                                 <div id="image-skeleton" class="absolute inset-0 skeleton rounded-3xl"></div>
-                                <!-- Main Image -->
+                                
+                                <!-- Main Image (1:1 Instagram Square) -->
                                 <img id="product-image" alt="Product"
-                                    class="h-full w-full object-cover product-image-zoom lazy-image hidden rounded-3xl"
+                                    class="h-full w-full object-contain p-3 product-image-zoom lazy-image hidden rounded-3xl transition-opacity duration-300 select-none"
                                     src="" loading="lazy" />
+
                                 <!-- Discount Badge -->
                                 <div id="discount-badge"
-                                    class="hidden absolute top-3 xs:top-4 left-3 xs:left-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-red-500 text-white text-[9px] xs:text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse">
+                                    class="hidden absolute top-3 xs:top-4 left-3 xs:left-4 px-2.5 xs:px-3.5 py-1 xs:py-1.5 rounded-full bg-[#FF3366] text-white text-[9px] xs:text-[10px] font-black uppercase tracking-wider shadow-lg animate-pulse z-10">
                                     -30%
                                 </div>
+
+                                <!-- Instagram Style Photo Counter Badge (e.g. 1/4) -->
+                                <div id="insta-counter"
+                                    class="hidden absolute top-3 xs:top-4 right-3 xs:right-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-wider border border-white/20 shadow-lg z-10">
+                                    <span id="insta-counter-current">1</span>/<span id="insta-counter-total">1</span>
+                                </div>
+
+                                <!-- Prev & Next Carousel Buttons -->
+                                <button id="gallery-prev-btn" type="button" aria-label="Photo précédente"
+                                    class="hidden absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#FFBA08] text-white hover:text-slate-950 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 z-20">
+                                    <span class="material-symbols-outlined text-lg">chevron_left</span>
+                                </button>
+                                <button id="gallery-next-btn" type="button" aria-label="Photo suivante"
+                                    class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#FFBA08] text-white hover:text-slate-950 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 z-20">
+                                    <span class="material-symbols-outlined text-lg">chevron_right</span>
+                                </button>
+
+                                <!-- Dot Indicators -->
+                                <div id="gallery-dots" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/10 z-10"></div>
+
                                 <!-- Zoom Hint -->
-                                <div
-                                    class="absolute bottom-3 xs:bottom-4 right-3 xs:right-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-black/50 text-body text-[9px] xs:text-[10px] font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                                    🔍 Zoom
+                                <div class="absolute bottom-3 xs:bottom-4 right-3 xs:right-4 px-2 xs:px-3 py-1 xs:py-1.5 rounded-full bg-black/50 text-slate-300 text-[9px] xs:text-[10px] font-medium backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+                                    🔍 1:1 Instagram
                                 </div>
                             </div>
 
-                            <!-- Image Thumbnails -->
-                            <div class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1">
-                                <button id="thumb-btn-1"
-                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-secondary overflow-hidden transition-all duration-300">
-                                    <img id="thumb-1" class="w-full h-full object-cover" src="" alt="Vue 1">
-                                </button>
-                                <button id="thumb-btn-2"
-                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60 transition-all duration-300">
-                                    <img id="thumb-2" class="w-full h-full object-cover"
-                                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80"
-                                        alt="Vue 2">
-                                </button>
-                                <button id="thumb-btn-3"
-                                    class="thumbnail-btn flex-shrink-0 w-16 xs:w-20 h-16 xs:h-20 rounded-xl glass-card border-2 border-transparent overflow-hidden opacity-60 transition-all duration-300">
-                                    <img id="thumb-3" class="w-full h-full object-cover"
-                                        src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=200&q=80"
-                                        alt="Vue 3">
-                                </button>
+                            <!-- Dynamic Thumbnails Strip -->
+                            <div id="product-thumbnails-container" class="flex gap-2 xs:gap-3 overflow-x-auto no-scrollbar pb-1">
+                                <!-- Thumbnails will be injected dynamically -->
                             </div>
                         </div>
 
@@ -1188,7 +1193,7 @@
                             </div>
                         </a>
                         <p class="text-muted max-w-xs text-xs xs:text-sm leading-relaxed font-medium">
-                            📍 Boutiques à Bejaia & Sétif, Algérie<br>
+                            📍 Boutique à Sétif, Algérie<br>
                             📱 Smartphones & Accessoires 100% originaux<br>
                             📞 WhatsApp : <a href="https://wa.me/213667425172" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-bold hover:underline">+213 667 42 51 72</a><br>
                             🚚 Livraison rapide 58 wilayas · Paiement à la réception
@@ -1332,7 +1337,7 @@
                             <span>📞 +213 667 42 51 72</span>
                         </a>
                         <div class="flex items-center gap-2">
-                            <span class="text-sm font-bold text-white tracking-wide">Bejaia · Sétif</span>
+                            <span class="text-sm font-bold text-white tracking-wide">Sétif, Algérie</span>
                             <div class="w-7 h-7 rounded-full bg-[#FFBA08]/20 text-[#FFBA08] flex items-center justify-center">
                                 <span class="material-symbols-outlined text-[18px]">location_on</span>
                             </div>
@@ -1685,30 +1690,121 @@
         communeSelect.addEventListener('change', updateShippingPrice);
         shippingType.addEventListener('change', updateShippingPrice);
 
-        // ===== GALLERY SWITCHER =====
-        function initGallery() {
+        // ===== DYNAMIC INSTAGRAM 1:1 MULTI-PHOTO GALLERY =====
+        let productGalleryImages = [];
+        let currentPhotoIndex = 0;
+
+        function setupProductGallery(images, productName = 'Produit') {
+            productGalleryImages = images && images.length > 0 
+                ? images 
+                : ['https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80'];
+            currentPhotoIndex = 0;
+
             const mainImg = document.getElementById('product-image');
-            const thumbBtns = document.querySelectorAll('.thumbnail-btn');
+            const thumbsContainer = document.getElementById('product-thumbnails-container');
+            const counterPill = document.getElementById('insta-counter');
+            const counterCurrent = document.getElementById('insta-counter-current');
+            const counterTotal = document.getElementById('insta-counter-total');
+            const prevBtn = document.getElementById('gallery-prev-btn');
+            const nextBtn = document.getElementById('gallery-next-btn');
+            const dotsContainer = document.getElementById('gallery-dots');
 
-            thumbBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const img = btn.querySelector('img');
-                    if (img && mainImg) {
-                        mainImg.src = img.src;
+            const total = productGalleryImages.length;
 
-                        // Reset borders and opacity
-                        thumbBtns.forEach(b => {
-                            b.classList.remove('border-secondary');
-                            b.classList.add('border-transparent', 'opacity-60');
-                        });
+            // Update main photo
+            function showPhoto(idx) {
+                if (idx < 0) idx = total - 1;
+                if (idx >= total) idx = 0;
+                currentPhotoIndex = idx;
 
-                        // Active border and opacity
-                        btn.classList.add('border-secondary');
-                        btn.classList.remove('border-transparent', 'opacity-60');
+                mainImg.style.opacity = '0.3';
+                setTimeout(() => {
+                    mainImg.src = productGalleryImages[currentPhotoIndex];
+                    mainImg.style.opacity = '1';
+                }, 100);
+
+                if (counterCurrent) counterCurrent.textContent = (currentPhotoIndex + 1);
+
+                // Update active thumbnail
+                const thumbBtns = thumbsContainer?.querySelectorAll('.thumbnail-btn') || [];
+                thumbBtns.forEach((btn, i) => {
+                    if (i === currentPhotoIndex) {
+                        btn.classList.add('border-[#FFBA08]', 'scale-105');
+                        btn.classList.remove('border-transparent', 'opacity-50');
+                    } else {
+                        btn.classList.remove('border-[#FFBA08]', 'scale-105');
+                        btn.classList.add('border-transparent', 'opacity-50');
                     }
                 });
-            });
+
+                // Update dots
+                const dots = dotsContainer?.querySelectorAll('.gallery-dot') || [];
+                dots.forEach((dot, i) => {
+                    if (i === currentPhotoIndex) {
+                        dot.className = 'gallery-dot w-5 h-1.5 rounded-full bg-[#FFBA08] transition-all';
+                    } else {
+                        dot.className = 'gallery-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all';
+                    }
+                });
+            }
+
+            // Carousel controls visibility
+            if (total > 1) {
+                counterPill?.classList.remove('hidden');
+                if (counterTotal) counterTotal.textContent = total;
+                prevBtn?.classList.remove('hidden');
+                nextBtn?.classList.remove('hidden');
+                dotsContainer?.classList.remove('hidden');
+
+                // Generate dots
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    for (let i = 0; i < total; i++) {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.className = i === 0 ? 'gallery-dot w-5 h-1.5 rounded-full bg-[#FFBA08] transition-all' : 'gallery-dot w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all';
+                        dot.onclick = () => showPhoto(i);
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                prevBtn.onclick = () => showPhoto(currentPhotoIndex - 1);
+                nextBtn.onclick = () => showPhoto(currentPhotoIndex + 1);
+            } else {
+                counterPill?.classList.add('hidden');
+                prevBtn?.classList.add('hidden');
+                nextBtn?.classList.add('hidden');
+                dotsContainer?.classList.add('hidden');
+            }
+
+            // Generate thumbnails
+            if (thumbsContainer) {
+                thumbsContainer.innerHTML = '';
+                productGalleryImages.forEach((url, i) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = `thumbnail-btn flex-shrink-0 w-16 xs:w-20 aspect-square rounded-2xl glass-card border-2 ${i === 0 ? 'border-[#FFBA08]' : 'border-transparent opacity-50'} overflow-hidden transition-all duration-300 bg-[#101424] p-1`;
+                    btn.innerHTML = `<img class="w-full h-full object-contain" src="${url}" alt="${productName} - Vue ${i + 1}">`;
+                    btn.onclick = () => showPhoto(i);
+                    thumbsContainer.appendChild(btn);
+                });
+            }
+
+            // Initial photo load
+            const imgLoader = new Image();
+            imgLoader.onload = () => {
+                imageSkeleton?.classList.add('hidden');
+                mainImg.src = productGalleryImages[0];
+                mainImg.classList.remove('hidden');
+                setTimeout(() => mainImg.classList.add('loaded'), 50);
+            };
+            imgLoader.onerror = () => {
+                imageSkeleton?.classList.add('hidden');
+                mainImg.src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
+                mainImg.classList.remove('hidden');
+                mainImg.classList.add('loaded');
+            };
+            imgLoader.src = productGalleryImages[0];
         }
 
         // ===== LOAD PRODUCT =====
@@ -1753,27 +1849,12 @@
                 document.title = `${product.name} | Phone Haven`;
                 document.querySelector('meta[name="description"]')?.setAttribute('content', `${product.name} - ${product.description?.substring(0, 150)}... | Phone Haven Algérie`);
 
-                if (product.image) {
-                    const img = new Image();
-                    img.onload = () => {
-                        imageSkeleton.classList.add('hidden');
-                        productImage.src = product.image;
-                        productImage.classList.remove('hidden');
-                        setTimeout(() => productImage.classList.add('loaded'), 50);
-                    };
-                    img.onerror = () => {
-                        imageSkeleton.classList.add('hidden');
-                        productImage.src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80';
-                        productImage.classList.remove('hidden');
-                        productImage.classList.add('loaded');
-                    };
-                    img.src = product.image;
-                    document.getElementById('thumb-1').src = product.image;
-                } else {
-                    imageSkeleton.classList.add('hidden');
-                    productImage.classList.remove('hidden');
-                    productImage.classList.add('loaded');
-                }
+                // Load Instagram 1:1 Multi-Photo Gallery
+                const galleryImages = (Array.isArray(product.images) && product.images.length > 0)
+                    ? product.images
+                    : (product.image ? [product.image] : []);
+                
+                setupProductGallery(galleryImages, product.name);
 
                 summaryProductPrice.textContent = formatPrice(product.price);
 
@@ -1891,7 +1972,7 @@
             populateWilayas();
             fetchCommunes();
             loadProduct();
-            initGallery();
+            // Gallery initialized dynamically in loadProduct()
 
             // Sticky Header Scroll Handler
             const header = document.getElementById('nav-header');
