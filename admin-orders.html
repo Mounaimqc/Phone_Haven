@@ -88,10 +88,10 @@
         }
 
         .active-nav {
-            background: rgba(99, 102, 241, 0.15);
-            border-left: 3px solid #6366f1;
-            color: white !important;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            background: rgba(255, 186, 8, 0.15) !important;
+            border-left: 3px solid #FFBA08 !important;
+            color: #FFBA08 !important;
+            box-shadow: 0 0 20px rgba(255, 186, 8, 0.25);
         }
 
         /* Mobile Optimizations */
@@ -402,12 +402,12 @@
                     <div class="flex items-center gap-3">
                         <div
                             class="size-9 lg:size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0 mobile-glow">
-                            <img src="images/logo.png" class="h-full w-full object-contain" alt="Logo Phone Haven">
+                            <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Logo Phone Haven">
                         </div>
                         <div class="min-w-0">
                             <h1
                                 class="font-display font-black text-white text-base lg:text-lg tracking-tighter truncate">
-                                Phone Haven<span class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h1>
+                                Phone Haven<span class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span></h1>
                             <p
                                 class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-white/80 hidden sm:block">
                                 Terminal</p>
@@ -461,7 +461,7 @@
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-black text-white truncate">Administrateur</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Autorisé
+                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Autorisé
                         </p>
                     </div>
                 </div>
@@ -476,7 +476,7 @@
         <!-- Main Workspace -->
         <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255, 186, 8, 0.04),transparent)] pointer-events-none">
             </div>
 
             <!-- Header: Responsive -->
@@ -493,7 +493,7 @@
                     <div class="relative group flex-1 lg:flex-none">
                         <span
                             class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-white/80 group-focus-within:text-white transition-colors text-lg lg:text-xl">search</span>
-                        <input type="text" placeholder="RECHERCHER..."
+                        <input type="text" id="order-search" placeholder="Rechercher par client, tél, wilaya, ID..."
                             class="w-full lg:w-96 bg-white/5 border terminal-border rounded-xl pl-10 lg:pl-12 pr-3 lg:pr-4 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-white placeholder:text-slate-600 focus:ring-0 focus:border-primary/50 transition-all">
                     </div>
                 </div>
@@ -521,7 +521,7 @@
                         <div class="flex items-center gap-2 mb-2">
                             <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
                             <span
-                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Temps réel</span>
+                                class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Temps réel</span>
                         </div>
                         <h2 class="font-display text-2xl lg:text-4xl font-black text-white tracking-tighter">Registre des Commandes</h2>
                     </div>
@@ -663,39 +663,59 @@
         // Render Table Row (Desktop)
         function renderTableRow(order) {
             const tr = document.createElement('tr');
-            tr.className = 'group hover:bg-white/5 transition-all cursor-pointer clickable';
+            tr.className = 'group hover:bg-white/5 transition-all cursor-pointer border-b border-white/5';
             tr.onclick = (e) => {
-                e.preventDefault();
+                if (e.target.closest('a') || e.target.closest('button')) return;
                 window.location.href = `admin-order-details.html?id=${order.id}`;
             };
 
             const date = formatDate(order.createdAt);
             const statusClass = getStatusStyle(order.status);
             const statusText = getStatusText(order.status);
+            const cleanPhone = (order.customerPhone || '').replace(/\D/g, '').replace(/^0/, '213');
 
             tr.innerHTML = `
-                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs font-black text-white uppercase tracking-widest">
-                    <span class="text-white/90">ID_</span> ${order.id?.substring(0, 8).toUpperCase() || 'N/A'}
+                <td class="px-4 lg:px-6 py-4 text-xs font-black text-white uppercase tracking-wider font-mono">
+                    #${order.id?.substring(0, 8).toUpperCase() || 'N/A'}
                 </td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6">
-                    <div class="flex items-center gap-2 lg:gap-3">
-                        <div class="size-7 lg:size-8 rounded-lg border terminal-border flex items-center justify-center text-[9px] lg:text-[10px] font-black bg-white/5 text-white flex-shrink-0">
+                <td class="px-4 lg:px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <div class="size-8 rounded-xl bg-[#141A2B] border border-white/10 flex items-center justify-center text-xs font-black text-[#FFBA08] flex-shrink-0">
                             ${order.customerName ? order.customerName.charAt(0).toUpperCase() : '?'}
                         </div>
-                        <span class="text-[11px] lg:text-xs font-bold text-white tracking-wide truncate max-w-[120px] lg:max-w-none">${order.customerName || 'Anonyme'}</span>
+                        <div class="min-w-0">
+                            <p class="text-xs font-black text-white truncate">${order.customerName || 'Anonyme'}</p>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span class="text-[11px] font-mono text-slate-400">${order.customerPhone || ''}</span>
+                                ${cleanPhone ? `
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" onclick="event.stopPropagation()"
+                                       class="p-1 rounded-md bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 transition-all text-[10px] flex items-center"
+                                       title="Contacter sur WhatsApp">
+                                        <span class="material-symbols-outlined text-[13px]">chat</span>
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
                     </div>
                 </td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[9px] lg:text-[10px] font-medium text-white/60 uppercase tracking-widest whitespace-nowrap">${date}</td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6 text-[11px] lg:text-xs font-black text-white whitespace-nowrap">${formatPrice(order.total)}</td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6">
-                    <span class="px-2 lg:px-3 py-1 rounded-md border text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] ${statusClass}">
+                <td class="px-4 lg:px-6 py-4 text-xs font-bold text-slate-300">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px]">
+                        📍 ${order.wilaya || 'Algérie'}
+                    </span>
+                </td>
+                <td class="px-4 lg:px-6 py-4 text-[11px] font-medium text-slate-400 whitespace-nowrap">${date}</td>
+                <td class="px-4 lg:px-6 py-4 text-xs font-black text-[#FFBA08] whitespace-nowrap">${formatPrice(order.total)}</td>
+                <td class="px-4 lg:px-6 py-4">
+                    <span class="px-2.5 py-1 rounded-full border text-[9px] font-black uppercase tracking-wider ${statusClass}">
                         ${statusText}
                     </span>
                 </td>
-                <td class="px-4 lg:px-8 py-4 lg:py-6 text-right">
-                    <button class="text-white/80 group-hover:text-white transition-colors clickable">
-                        <span class="material-symbols-outlined text-sm">open_in_new</span>
-                    </button>
+                <td class="px-4 lg:px-6 py-4 text-right">
+                    <a href="admin-order-details.html?id=${order.id}" 
+                       class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-[#FFBA08] text-slate-300 hover:text-slate-950 transition-all text-xs font-bold">
+                        <span>Détails</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
                 </td>
             `;
             return tr;
@@ -737,7 +757,7 @@
                     </div>
                 </div>
                 <div class="mt-3 pt-3 border-t terminal-border flex justify-end">
-                    <span class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-1">
+                    <span class="text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white flex items-center gap-1">
                         Voir Détails
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </span>
@@ -782,20 +802,79 @@
             orderCount.textContent = `SYSTÈME: ${orders.length} ENTRÉES VÉRIFIÉES`;
         }
 
+        let allOrdersList = [];
+        let activeStatusFilter = 'all';
+
+        function updateOrderStats(orders) {
+            const total = orders.length;
+            const pending = orders.filter(o => o.status === 'Pending').length;
+            const shipped = orders.filter(o => o.status === 'Shipped').length;
+            const delivered = orders.filter(o => o.status === 'Delivered').length;
+            const cancelled = orders.filter(o => o.status === 'Cancelled').length;
+
+            const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            setText('stats-total-orders', total);
+            setText('stats-pending-orders', pending);
+            setText('stats-delivered-orders', delivered);
+            setText('count-all', total);
+            setText('count-pending', pending);
+            setText('count-shipped', shipped);
+            setText('count-delivered', delivered);
+            setText('count-cancelled', cancelled);
+        }
+
+        function filterAndRender() {
+            const query = (document.getElementById('order-search')?.value || '').toLowerCase().trim();
+            let filtered = allOrdersList;
+
+            if (activeStatusFilter !== 'all') {
+                filtered = filtered.filter(o => o.status === activeStatusFilter);
+            }
+
+            if (query) {
+                filtered = filtered.filter(o => 
+                    (o.customerName && o.customerName.toLowerCase().includes(query)) ||
+                    (o.customerPhone && o.customerPhone.includes(query)) ||
+                    (o.wilaya && o.wilaya.toLowerCase().includes(query)) ||
+                    (o.id && o.id.toLowerCase().includes(query))
+                );
+            }
+
+            renderOrders(filtered);
+        }
+
+        // Search listener
+        document.getElementById('order-search')?.addEventListener('input', filterAndRender);
+
+        // Filter buttons
+        document.querySelectorAll('.order-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.order-filter-btn').forEach(b => {
+                    b.classList.remove('bg-[#FFBA08]', 'text-slate-950', 'shadow-md');
+                    b.classList.add('bg-white/5', 'text-slate-300');
+                });
+                btn.classList.add('bg-[#FFBA08]', 'text-slate-950', 'shadow-md');
+                btn.classList.remove('bg-white/5', 'text-slate-300');
+                activeStatusFilter = btn.getAttribute('data-status') || 'all';
+                filterAndRender();
+            });
+        });
+
         // Load orders from database
         async function loadOrders() {
-            const loadingMsg = 'Accès au registre...';
-            tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</td></tr>`;
-            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-white/80 uppercase font-black text-[10px] tracking-widest animate-pulse">${loadingMsg}</div>`;
+            const loadingMsg = 'Chargement des commandes en direct...';
+            tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-[#FFBA08] uppercase font-black text-xs tracking-wider animate-pulse">${loadingMsg}</td></tr>`;
+            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-[#FFBA08] uppercase font-black text-xs tracking-wider animate-pulse">${loadingMsg}</div>`;
 
             try {
-                const orders = await getOrders();
-                renderOrders(orders);
+                allOrdersList = await getOrders();
+                updateOrderStats(allOrdersList);
+                filterAndRender();
             } catch (error) {
                 console.error("Erreur lors du chargement des commandes:", error);
-                const errorMsg = 'Accès au Registre Refusé: Vérifier le Protocole';
-                tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-red-500 font-black text-[10px] tracking-[0.3em]">${errorMsg}</td></tr>`;
-                cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-500 font-black text-[10px] tracking-widest">${errorMsg}</div>`;
+                const errorMsg = 'Erreur d\'accès au registre des commandes';
+                tableBody.innerHTML = `<tr><td colspan="6" class="px-8 py-20 text-center text-red-400 font-bold text-xs tracking-wider">${errorMsg}</td></tr>`;
+                cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-400 font-bold text-xs tracking-wider">${errorMsg}</div>`;
             }
         }
 

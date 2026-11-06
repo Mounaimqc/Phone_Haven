@@ -88,9 +88,10 @@
         }
 
         .active-nav {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 3px solid #6366f1;
-            color: white !important;
+            background: rgba(255, 186, 8, 0.15) !important;
+            border-left: 3px solid #FFBA08 !important;
+            color: #FFBA08 !important;
+            box-shadow: 0 0 20px rgba(255, 186, 8, 0.25);
         }
 
         .glow-text {
@@ -340,8 +341,8 @@
 </style>
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#0B0F19_0%,#FFBA08_50%,#FF3366_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
-    <div class="flex h-full w-full tech-pattern-bg bg-[#0B0F19] text-[#E2E8F0]">
+<body class="selection:bg-[#FFBA08]/30 antialiased overflow-hidden h-screen text-white bg-[#0B0F19] text-[#E2E8F0] tech-pattern-bg">
+    <div class="flex h-full w-full">
         <!-- Sidebar -->
         <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
             <div class="p-8">
@@ -352,7 +353,7 @@
                     </div>
                     <div>
                         <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
-                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
+                                class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
                         <p class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80">Centre Analytique</p>
                     </div>
                 </div>
@@ -418,7 +419,7 @@
 
                     <!-- Date Range Selector -->
                     <div class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border terminal-border">
-                        <span class="material-symbols-outlined text-sm text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">calendar_today</span>
+                        <span class="material-symbols-outlined text-sm text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">calendar_today</span>
                         <select id="date-range"
                             class="bg-transparent text-[10px] font-black uppercase tracking-widest text-white focus:outline-none cursor-pointer">
                             <option value="7" class="bg-terminal-card">7 derniers jours</option>
@@ -450,7 +451,7 @@
 
                     <!-- Refresh Button -->
                     <button onclick="refreshData()"
-                        class="size-11 rounded-xl bg-primary/20 flex items-center justify-center text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white border border-primary/30 hover:bg-primary hover:text-white transition-all"
+                        class="size-11 rounded-xl bg-primary/20 flex items-center justify-center text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white border border-primary/30 hover:bg-primary hover:text-white transition-all"
                         title="Actualiser les données">
                         <span class="material-symbols-outlined text-lg" id="refresh-icon">refresh</span>
                     </button>
@@ -463,7 +464,7 @@
                 <div id="loading-state" class="flex flex-col items-center justify-center h-64">
                     <div
                         class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-4 loading-pulse">
-                        <span class="material-symbols-outlined text-3xl text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white animate-spin">sync</span>
+                        <span class="material-symbols-outlined text-3xl text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white animate-spin">sync</span>
                     </div>
                     <p class="text-white/60 text-sm font-medium">Chargement des données analytiques...</p>
                 </div>
@@ -544,7 +545,7 @@
                             <p class="text-[10px] font-black text-white/80 uppercase tracking-widest">Unités écoulées
                             </p>
                             <div class="mt-4 h-1 w-full bg-[rgba(0,0,0,0.4)] backdrop-blur-2xl rounded-full overflow-hidden">
-                                <div id="products-progress" class="h-full bg-indigo-400 transition-all duration-700"
+                                <div id="products-progress" class="h-full bg-[#FFBA08] transition-all duration-700"
                                     style="width: 0%"></div>
                             </div>
                         </div>
@@ -576,7 +577,7 @@
                             <div class="flex flex-col xs:flex-row xs:items-center justify-between mb-6 xs:mb-10 gap-4">
                                 <div>
                                     <h3
-                                        class="text-[10px] font-black uppercase tracking-[0.3em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-2 flex items-center gap-3">
+                                        class="text-[10px] font-black uppercase tracking-[0.3em] text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-2 flex items-center gap-3">
                                         <span class="size-2 bg-primary rounded-full animate-pulse"></span>
                                         Évolution du Chiffre d'Affaires
                                     </h3>
@@ -619,7 +620,7 @@
                         <!-- Category Distribution -->
                         <div class="bg-black/40 p-6 xs:p-10 rounded-[2.5rem] terminal-border glass flex flex-col">
                             <h3
-                                class="text-[10px] font-black uppercase tracking-[0.3em] text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-6 xs:mb-10 flex items-center gap-3">
+                                class="text-[10px] font-black uppercase tracking-[0.3em] text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white mb-6 xs:mb-10 flex items-center gap-3">
                                 <span class="size-2 bg-primary rounded-full"></span>
                                 Répartition par Catégorie
                             </h3>
@@ -630,7 +631,7 @@
                                     <circle class="text-white/5" cx="100" cy="100" fill="transparent" r="80"
                                         stroke="currentColor" stroke-width="20"></circle>
                                     <!-- Dynamic segments will be added here -->
-                                    <circle id="cat-segment-1" class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white" cx="100" cy="100" fill="transparent"
+                                    <circle id="cat-segment-1" class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white" cx="100" cy="100" fill="transparent"
                                         r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="502"
                                         stroke-width="22" stroke-linecap="round" class="transition-all duration-700">
                                     </circle>
@@ -638,7 +639,7 @@
                                         r="80" stroke="currentColor" stroke-dasharray="502" stroke-dashoffset="502"
                                         stroke-width="22" stroke-linecap="round" class="transition-all duration-700">
                                     </circle>
-                                    <circle id="cat-segment-3" class="text-indigo-400" cx="100" cy="100"
+                                    <circle id="cat-segment-3" class="text-[#FFBA08]" cx="100" cy="100"
                                         fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502"
                                         stroke-dashoffset="502" stroke-width="22" stroke-linecap="round"
                                         class="transition-all duration-700"></circle>
@@ -724,7 +725,7 @@
                             <h3 class="font-display text-xl xs:text-2xl font-black text-white tracking-tighter">
                                 Dernières Commandes</h3>
                             <a href="admin-orders.html"
-                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-xs font-bold hover:underline flex items-center gap-1">
+                                class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white text-xs font-bold hover:underline flex items-center gap-1">
                                 Voir tout <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </a>
                         </div>
@@ -1025,7 +1026,7 @@
 
             // Render legend
             elements.categoryLegend.innerHTML = '';
-            const colors = ['bg-primary', 'bg-accent', 'bg-indigo-400', 'bg-emerald-400', 'bg-pink-400'];
+            const colors = ['bg-primary', 'bg-accent', 'bg-[#FFBA08]', 'bg-emerald-400', 'bg-pink-400'];
 
             categoryData.forEach((cat, index) => {
                 const percent = ((cat.value / total) * 100).toFixed(1);
@@ -1123,7 +1124,7 @@
                 const statusColors = {
                     'Pending': 'bg-slate-400/10 text-white/60',
                     'Processing': 'bg-accent/10 text-accent',
-                    'Shipped': 'bg-primary/10 text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white',
+                    'Shipped': 'bg-primary/10 text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white',
                     'Delivered': 'bg-success/10 text-success'
                 };
                 const statusLabels = {

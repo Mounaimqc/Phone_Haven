@@ -89,9 +89,10 @@
         }
 
         .active-nav {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 3px solid #6366f1;
-            color: white !important;
+            background: rgba(255, 186, 8, 0.15) !important;
+            border-left: 3px solid #FFBA08 !important;
+            color: #FFBA08 !important;
+            box-shadow: 0 0 20px rgba(255, 186, 8, 0.25);
         }
     </style>
     
@@ -276,8 +277,8 @@
 </style>
 </head>
 
-<body class="selection:bg-primary/30 antialiased overflow-hidden h-screen bg-[linear-gradient(135deg,#0B0F19_0%,#FFBA08_50%,#FF3366_100%)] text-white selection:bg-white/30 min-h-screen bg-fixed bg-no-repeat bg-cover"
-    <div class="flex h-full w-full tech-pattern-bg bg-[#0B0F19] text-[#E2E8F0]">
+<body class="selection:bg-[#FFBA08]/30 antialiased overflow-hidden h-screen text-white bg-[#0B0F19] text-[#E2E8F0] tech-pattern-bg">
+    <div class="flex h-full w-full">
         <!-- Sidebar -->
         <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
             <div class="p-8">
@@ -288,7 +289,7 @@
                     </div>
                     <div>
                         <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
-                                class="text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
+                                class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
                         <p class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80">Logistics Node Alpha
                         </p>
                     </div>
@@ -330,7 +331,7 @@
                     </div>
                     <div>
                         <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized</p>
                     </div>
                 </div>
                 <a href="index.html"
@@ -357,7 +358,7 @@
                     </button>
                     <div class="flex items-center gap-3 px-4 py-2 bg-primary/10 border border-primary/20 rounded-xl">
                         <span class="size-2 rounded-full bg-primary animate-ping"></span>
-                        <span class="text-[9px] font-black uppercase tracking-widest text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">System Online</span>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">System Online</span>
                     </div>
                 </div>
             </header>
@@ -438,12 +439,12 @@
                             <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 240">
                                 <defs>
                                     <linearGradient id="glow" x1="0" x2="0" y1="0" y2="1">
-                                        <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"></stop>
-                                        <stop offset="100%" stop-color="#6366f1" stop-opacity="0"></stop>
+                                        <stop offset="0%" stop-color="#FFBA08" stop-opacity="0.3"></stop>
+                                        <stop offset="100%" stop-color="#FFBA08" stop-opacity="0"></stop>
                                     </linearGradient>
                                 </defs>
                                 <path d="M0,200 Q150,180 300,120 T600,80 T800,40 V240 H0 Z" fill="url(#glow)"></path>
-                                <path d="M0,200 Q150,180 300,120 T600,80 T800,40" fill="none" stroke="#6366f1"
+                                <path d="M0,200 Q150,180 300,120 T600,80 T800,40" fill="none" stroke="#FFBA08"
                                     stroke-width="4" stroke-linecap="round"
                                     class="drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]"></path>
                                 <line stroke="rgba(255,255,255,0.05)" x1="0" x2="800" y1="120" y2="120"></line>
@@ -593,7 +594,7 @@
                             <td class="px-10 py-6">
                                 <span class="px-3 py-1 border rounded-md ${statusClass} text-[9px] font-black uppercase tracking-widest">${order.status}</span>
                             </td>
-                            <td class="px-10 py-6 text-xs font-black text-right text-[#e0d4ff] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">${formatPrice(order.total)}</td>
+                            <td class="px-10 py-6 text-xs font-black text-right text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">${formatPrice(order.total)}</td>
                         `;
                         recentOrdersBody.appendChild(tr);
                     });

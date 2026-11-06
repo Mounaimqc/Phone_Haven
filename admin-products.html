@@ -772,40 +772,106 @@
                                         <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Sector</label>
                                         <select id="product-category"
                                             class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-select appearance-none bg-[url('image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                            <option value="Téléphone">Téléphone</option>
-                                            <option value="Accessoire">Accessoire</option>
-                                            <option value="Services">Services</option>
+                                            <option value="Téléphone">📱 Téléphone</option>
+                                            <option value="Accessoire">🎧 Accessoire</option>
+                                            <option value="Services">🛠️ Services</option>
+                                            <option value="Offres">🔥 Offres</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <!-- Description -->
                                 <div>
-                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Specification</label>
+                                    <label class="block text-[9px] lg:text-[10px] font-black uppercase tracking-widest form-label mb-2 px-1 text-slate-300">Description du Produit</label>
                                     <textarea id="product-description"
-                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold resize-none form-input"
-                                        placeholder="TECHNICAL OVERVIEW..." rows="3"></textarea>
+                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-xs font-medium resize-none form-input bg-[#0B0F19] border border-white/15 focus:border-[#FFBA08] text-white"
+                                        placeholder="Caractéristiques techniques, état (neuf/scellé), garantie, couleur..." rows="3"></textarea>
                                 </div>
 
-                                <!-- Image Upload -->
-                                <div>
-                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Visual Asset</label>
-                                    <div class="flex items-center gap-4 lg:gap-5 p-3 lg:p-4 bg-white/5 border terminal-border rounded-xl lg:rounded-2xl">
-                                        <div id="image-preview-container"
-                                            class="size-14 lg:size-16 rounded-xl bg-black border terminal-border flex items-center justify-center overflow-hidden shrink-0">
-                                            <span class="material-symbols-outlined text-body font-semibold text-lg lg:text-xl"
-                                                id="preview-placeholder">image</span>
-                                            <img id="image-preview" class="w-full h-full object-cover hidden" alt="Preview" />
+                                <!-- Multi-Photo Management & Instagram 1:1 Sizing -->
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between px-1">
+                                        <label class="block text-[9px] lg:text-[10px] font-black uppercase tracking-widest form-label text-[#FFBA08] flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-[16px]">photo_library</span>
+                                            <span>Photos du Produit (Multi-Photos)</span>
+                                        </label>
+                                        <span id="photo-counter-badge" class="px-2 py-0.5 rounded-full bg-[#FFBA08]/15 border border-[#FFBA08]/30 text-[#FFBA08] text-[9px] font-black uppercase tracking-wider">
+                                            0 photo
+                                        </span>
+                                    </div>
+
+                                    <!-- Instagram 1:1 Live Preview Frame -->
+                                    <div class="relative rounded-2xl border border-white/15 bg-[#101424] p-3 overflow-hidden shadow-xl">
+                                        <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-[10px] font-bold text-slate-400">
+                                            <span class="flex items-center gap-1 text-[#FFBA08]">
+                                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                                <span>Aperçu Post Instagram (1:1 Carré)</span>
+                                            </span>
+                                            <span class="text-[9px] uppercase tracking-wider text-slate-400">Photo Principale</span>
                                         </div>
-                                        <div class="flex-1 min-w-0">
-                                            <input id="product-image-file" class="hidden" type="file" accept="image/*" />
-                                            <button type="button"
-                                                onclick="document.getElementById('product-image-file').click()"
-                                                class="w-full py-2 bg-white/10 text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-accent-purple border border-secondary/20 rounded-lg hover:bg-secondary/20 transition-all clickable">
-                                                <span class="hidden xs:inline">Upload </span>File
-                                            </button>
+
+                                        <!-- Instagram 1:1 Aspect Ratio Box -->
+                                        <div class="relative w-full aspect-square rounded-xl bg-[#0B0F19] border border-white/10 flex items-center justify-center overflow-hidden group">
+                                            <div id="insta-empty-state" class="flex flex-col items-center justify-center p-4 text-center">
+                                                <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 mb-2">
+                                                    <span class="material-symbols-outlined text-3xl">add_photo_alternate</span>
+                                                </div>
+                                                <p class="text-xs font-bold text-slate-300">Aucune photo sélectionnée</p>
+                                                <p class="text-[10px] text-slate-500 mt-0.5">Ajoutez une ou plusieurs photos ci-dessous</p>
+                                            </div>
+
+                                            <img id="insta-main-preview" class="w-full h-full object-contain p-2 hidden transition-all duration-300" alt="Instagram Main Preview" />
+
+                                            <div id="insta-preview-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 pointer-events-none hidden">
+                                                <span class="px-3 py-1.5 rounded-full bg-[#FFBA08] text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-lg">
+                                                    ★ Couverture du Produit
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <!-- Add Photos Controls -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        <!-- File Upload Button (Multiple Files Supported) -->
+                                        <input id="product-images-file" class="hidden" type="file" accept="image/*" multiple />
+                                        <button type="button"
+                                            onclick="document.getElementById('product-images-file').click()"
+                                            class="w-full py-2.5 px-3 bg-white/10 hover:bg-[#FFBA08]/20 text-[#FFBA08] border border-[#FFBA08]/30 rounded-xl font-black text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-sm">
+                                            <span class="material-symbols-outlined text-[16px]">upload_file</span>
+                                            <span>+ Ajouter Fichiers</span>
+                                        </button>
+
+                                        <!-- Add by URL Button -->
+                                        <button type="button" id="btn-toggle-url-input"
+                                            class="w-full py-2.5 px-3 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 rounded-xl font-bold text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-95">
+                                            <span class="material-symbols-outlined text-[16px]">link</span>
+                                            <span>+ Ajouter par Lien</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- URL Input (collapsible) -->
+                                    <div id="url-input-container" class="hidden p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
+                                        <div class="flex gap-2">
+                                            <input type="url" id="image-url-manual" placeholder="https://exemple.com/photo.jpg"
+                                                class="flex-1 bg-[#0B0F19] border border-white/15 rounded-lg px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:border-[#FFBA08] focus:outline-none" />
+                                            <button type="button" id="btn-add-url"
+                                                class="px-3 py-2 bg-[#FFBA08] text-slate-950 font-black text-xs uppercase tracking-wider rounded-lg hover:bg-white transition-all shadow-sm">
+                                                Ajouter
+                                            </button>
+                                        </div>
+                                        <p class="text-[9px] text-slate-400">Collez un lien d'image direct (Cloudinary, Unsplash, etc.)</p>
+                                    </div>
+
+                                    <!-- Thumbnails Gallery Strip of all added images -->
+                                    <div id="photos-gallery-container" class="space-y-2">
+                                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 px-1">
+                                            Galerie du produit (<span id="photos-count-text">0</span> photos)
+                                        </p>
+                                        <div id="photos-gallery-list" class="grid grid-cols-4 sm:grid-cols-4 gap-2 max-h-48 overflow-y-auto p-1 rounded-xl bg-black/30 border border-white/5">
+                                            <!-- Dynamically injected thumbnails -->
+                                        </div>
+                                    </div>
+
                                     <input type="hidden" id="product-image-url">
                                 </div>
 
@@ -958,7 +1024,10 @@
             tr.innerHTML = `
                 <td class="px-6 lg:px-10 py-5 lg:py-6">
                     <div class="flex items-center gap-4 lg:gap-5">
-                        <div class="size-12 lg:size-14 rounded-xl lg:rounded-2xl bg-black border terminal-border bg-cover bg-center overflow-hidden rotate-2 group-hover:rotate-0 transition-transform flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
+                        <div class="relative size-12 lg:size-14 aspect-square rounded-xl lg:rounded-2xl bg-[#0B0F19] border border-white/15 overflow-hidden flex-shrink-0 group-hover:border-[#FFBA08] transition-colors">
+        <img src="${product.image || (product.images && product.images[0]) || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}" class="w-full h-full object-contain p-1" alt="${product.name}">
+        ${(product.images && product.images.length > 1) ? `<span class="absolute bottom-0 right-0 px-1 py-0.2 rounded-tl-md bg-[#FFBA08] text-slate-950 font-black text-[8px] leading-tight">📷${product.images.length}</span>` : ''}
+    </div>
                         <div class="min-w-0">
                             <p class="text-[10px] lg:text-[11px] font-black text-heading uppercase tracking-widest leading-none mb-1 truncate">${product.name}</p>
                             <p class="text-[8px] lg:text-[9px] font-black text-body uppercase tracking-[0.2em]">ID: ${product.id?.substring(0, 6) || 'N/A'}</p>
@@ -997,7 +1066,10 @@
             
             card.innerHTML = `
                 <div class="flex items-start gap-4">
-                    <div class="size-16 rounded-xl bg-black border terminal-border bg-cover bg-center flex-shrink-0" style="background-image: url('${product.image || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}')"></div>
+                    <div class="relative size-16 aspect-square rounded-xl bg-[#0B0F19] border border-white/15 overflow-hidden flex-shrink-0">
+        <img src="${product.image || (product.images && product.images[0]) || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}" class="w-full h-full object-contain p-1" alt="${product.name}">
+        ${(product.images && product.images.length > 1) ? `<span class="absolute bottom-0 right-0 px-1.5 py-0.5 rounded-tl-md bg-[#FFBA08] text-slate-950 font-black text-[9px] leading-tight">📷 ${product.images.length}</span>` : ''}
+    </div>
                     <div class="flex-1 min-w-0">
                         <div class="flex justify-between items-start mb-2">
                             <h4 class="text-sm font-black text-heading uppercase tracking-widest truncate">${product.name}</h4>
@@ -1131,24 +1203,156 @@
             renderProducts(filtered);
         });
 
-        // Image Preview Handling
-        const imageFileInput = document.getElementById('product-image-file');
-        const imagePreview = document.getElementById('image-preview');
-        const previewPlaceholder = document.getElementById('preview-placeholder');
-        const imageUrlInput = document.getElementById('product-image-url');
+        // ==========================================
+        // MULTI-PHOTO & INSTAGRAM 1:1 STATE & LOGIC
+        // ==========================================
+        let currentPhotos = []; // Array of { id, type: 'url'|'file', url, file, preview }
 
-        imageFileInput?.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    imagePreview.src = e.target.result;
-                    imagePreview.classList.remove('hidden');
-                    previewPlaceholder?.classList.add('hidden');
-                };
-                reader.readAsDataURL(file);
+        const multiFileInput = document.getElementById('product-images-file');
+        const instaMainPreview = document.getElementById('insta-main-preview');
+        const instaEmptyState = document.getElementById('insta-empty-state');
+        const instaPreviewOverlay = document.getElementById('insta-preview-overlay');
+        const photosGalleryList = document.getElementById('photos-gallery-list');
+        const photoCounterBadge = document.getElementById('photo-counter-badge');
+        const photosCountText = document.getElementById('photos-count-text');
+        const btnToggleUrlInput = document.getElementById('btn-toggle-url-input');
+        const urlInputContainer = document.getElementById('url-input-container');
+        const imageUrlManual = document.getElementById('image-url-manual');
+        const btnAddUrl = document.getElementById('btn-add-url');
+
+        // Toggle URL input field
+        btnToggleUrlInput?.addEventListener('click', () => {
+            urlInputContainer?.classList.toggle('hidden');
+            if (!urlInputContainer?.classList.contains('hidden')) {
+                imageUrlManual?.focus();
             }
         });
+
+        // Add image by manual URL
+        btnAddUrl?.addEventListener('click', () => {
+            const val = imageUrlManual?.value?.trim();
+            if (!val) {
+                showToast('⚠️ Veuillez saisir un lien d\'image valide', 'warning');
+                return;
+            }
+            addPhotoItem({
+                id: 'url_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                type: 'url',
+                url: val,
+                preview: val
+            });
+            imageUrlManual.value = '';
+            urlInputContainer.classList.add('hidden');
+        });
+
+        // Add multiple files from disk
+        multiFileInput?.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files || []);
+            if (files.length === 0) return;
+
+            files.forEach((file) => {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    addPhotoItem({
+                        id: 'file_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                        type: 'file',
+                        file: file,
+                        preview: ev.target.result
+                    });
+                };
+                reader.readAsDataURL(file);
+            });
+            // Reset input so user can add more files again
+            multiFileInput.value = '';
+        });
+
+        function addPhotoItem(photo) {
+            currentPhotos.push(photo);
+            renderPhotosUI();
+        }
+
+        function removePhotoItem(id) {
+            currentPhotos = currentPhotos.filter(p => p.id !== id);
+            renderPhotosUI();
+        }
+
+        function setPhotoAsPrimary(id) {
+            const idx = currentPhotos.findIndex(p => p.id === id);
+            if (idx > 0) {
+                const [selected] = currentPhotos.splice(idx, 1);
+                currentPhotos.unshift(selected); // Move to first position (Cover)
+                renderPhotosUI();
+                showToast('★ Photo définie comme couverture', 'success');
+            }
+        }
+
+        function renderPhotosUI() {
+            const count = currentPhotos.length;
+            if (photoCounterBadge) photoCounterBadge.textContent = count + (count > 1 ? ' photos' : ' photo');
+            if (photosCountText) photosCountText.textContent = count;
+
+            // Update Instagram 1:1 Main Preview
+            if (count > 0) {
+                const primary = currentPhotos[0];
+                instaMainPreview.src = primary.preview;
+                instaMainPreview.classList.remove('hidden');
+                instaEmptyState.classList.add('hidden');
+                instaPreviewOverlay.classList.remove('hidden');
+            } else {
+                instaMainPreview.classList.add('hidden');
+                instaEmptyState.classList.remove('hidden');
+                instaPreviewOverlay.classList.add('hidden');
+            }
+
+            // Update Gallery Grid
+            if (photosGalleryList) {
+                photosGalleryList.innerHTML = '';
+                if (count === 0) {
+                    photosGalleryList.innerHTML = '<div class="col-span-4 py-3 text-center text-[10px] text-slate-500 font-medium">Aucune photo dans la galerie</div>';
+                    return;
+                }
+
+                currentPhotos.forEach((photo, idx) => {
+                    const isCover = (idx === 0);
+                    const thumb = document.createElement('div');
+                    thumb.className = `relative aspect-square rounded-xl overflow-hidden border-2 ${isCover ? 'border-[#FFBA08] ring-2 ring-[#FFBA08]/30' : 'border-white/10 hover:border-white/30'} bg-black/40 group`;
+
+                    thumb.innerHTML = `
+                        <img src="${photo.preview}" class="w-full h-full object-contain p-1" alt="Thumbnail ${idx + 1}" />
+                        
+                        <!-- Badges & Position -->
+                        ${isCover 
+                            ? '<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded-md bg-[#FFBA08] text-slate-950 font-black text-[8px] uppercase tracking-wider shadow">★ Couv</span>'
+                            : `<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded-md bg-black/70 text-white font-mono text-[8px]">#${idx + 1}</span>`
+                        }
+
+                        <!-- Action buttons on hover -->
+                        <div class="absolute inset-0 bg-black/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1 p-1">
+                            ${!isCover ? `
+                                <button type="button" class="btn-make-cover w-full py-1 rounded bg-[#FFBA08] hover:bg-white text-slate-950 text-[8px] font-black uppercase tracking-wider transition-all" data-id="${photo.id}">
+                                    ★ Couverture
+                                </button>
+                            ` : ''}
+                            <button type="button" class="btn-delete-photo w-full py-1 rounded bg-red-500 hover:bg-red-600 text-white text-[8px] font-black uppercase tracking-wider transition-all" data-id="${photo.id}">
+                                Supprimer
+                            </button>
+                        </div>
+                    `;
+
+                    // Attach buttons
+                    thumb.querySelector('.btn-make-cover')?.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        setPhotoAsPrimary(photo.id);
+                    });
+                    thumb.querySelector('.btn-delete-photo')?.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        removePhotoItem(photo.id);
+                    });
+
+                    photosGalleryList.appendChild(thumb);
+                });
+            }
+        }
 
         // Form Editing Functions
         function startEditing(product) {
@@ -1158,18 +1362,25 @@
             document.getElementById('product-category').value = product.category || 'Téléphone';
             document.getElementById('product-description').value = product.description || '';
 
-            imageUrlInput.value = product.image || '';
-            if (product.image) {
-                imagePreview.src = product.image;
-                imagePreview.classList.remove('hidden');
-                previewPlaceholder?.classList.add('hidden');
-            } else {
-                imagePreview.classList.add('hidden');
-                previewPlaceholder?.classList.remove('hidden');
-            }
+            // Load all product images into multi-photo state
+            currentPhotos = [];
+            const loadedImages = (Array.isArray(product.images) && product.images.length > 0)
+                ? product.images
+                : (product.image ? [product.image] : []);
 
-            formTitle.textContent = 'Modify Data';
-            submitBtn.innerHTML = '<span class="hidden xs:inline">Update </span>Repository';
+            loadedImages.forEach((imgUrl, idx) => {
+                currentPhotos.push({
+                    id: 'existing_' + idx + '_' + Date.now(),
+                    type: 'url',
+                    url: imgUrl,
+                    preview: imgUrl
+                });
+            });
+
+            renderPhotosUI();
+
+            formTitle.textContent = 'Modifier le Produit';
+            submitBtn.innerHTML = '<span class="hidden xs:inline">Mettre à jour </span>Produit';
             cancelEditBtn.classList.remove('hidden');
 
             if (window.innerWidth < 1024) {
@@ -1182,11 +1393,10 @@
         function resetForm() {
             productForm.reset();
             editingIdInput.value = '';
-            imageUrlInput.value = '';
-            imagePreview.classList.add('hidden');
-            previewPlaceholder?.classList.remove('hidden');
-            formTitle.textContent = 'Schema Input';
-            submitBtn.innerHTML = '<span class="hidden xs:inline">Verify & </span>Save';
+            currentPhotos = [];
+            renderPhotosUI();
+            formTitle.textContent = 'Ajouter un Produit';
+            submitBtn.innerHTML = '<span class="hidden xs:inline">Enregistrer le </span>Produit';
             cancelEditBtn.classList.add('hidden');
         }
 
@@ -1197,47 +1407,74 @@
             }
         });
 
-        // Form Submit Handler
+        // Form Submit Handler with Multiple Photos Upload & Save
         productForm?.addEventListener('submit', async (e) => {
             e.preventDefault();
             const editingId = editingIdInput.value;
-            const file = imageFileInput?.files[0];
+
+            if (currentPhotos.length === 0) {
+                showToast('⚠️ Veuillez ajouter au moins une photo pour le produit', 'warning');
+                return;
+            }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing...';
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px] mr-1 align-middle">sync</span> Traitement des photos...';
 
             try {
-                const name = document.getElementById('product-name').value;
+                const name = document.getElementById('product-name').value.trim();
                 const price = parseFloat(document.getElementById('product-price').value);
                 const category = document.getElementById('product-category').value;
-                const description = document.getElementById('product-description').value;
+                const description = document.getElementById('product-description').value.trim();
 
-                let imageUrl = imageUrlInput.value;
+                // Upload any local files to Cloudinary and collect final image URLs
+                const finalImageUrls = [];
 
-                if (file) {
-                    console.log("Cloudinary: Protocol initiating...");
-                    imageUrl = await uploadImage(file);
+                for (let i = 0; i < currentPhotos.length; i++) {
+                    const item = currentPhotos[i];
+                    if (item.type === 'file' && item.file) {
+                        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[16px] mr-1 align-middle">sync</span> Envoi photo ${i + 1}/${currentPhotos.length}...`;
+                        try {
+                            const uploadedUrl = await uploadImage(item.file);
+                            finalImageUrls.push(uploadedUrl);
+                        } catch (uploadErr) {
+                            console.warn("Échec upload Cloudinary, repli vers aperçu:", uploadErr);
+                            // Fallback to base64 preview if Cloudinary is unavailable
+                            finalImageUrls.push(item.preview);
+                        }
+                    } else if (item.url) {
+                        finalImageUrls.push(item.url);
+                    } else if (item.preview) {
+                        finalImageUrls.push(item.preview);
+                    }
                 }
 
-                const productData = { name, price, category, description, image: imageUrl };
+                // Construct product data: array 'images' + primary 'image' for 100% backward compatibility
+                const productData = {
+                    name,
+                    price,
+                    category,
+                    description,
+                    images: finalImageUrls,
+                    image: finalImageUrls[0] || ''
+                };
 
                 if (editingId) {
                     await updateProduct(editingId, productData);
-                    showToast('✓ ENTRY MODIFIED.', 'success');
+                    showToast('✓ Produit modifié avec succès.', 'success');
                 } else {
                     await addProduct(productData);
-                    showToast('✓ ENTRY LOGGED.', 'success');
+                    showToast('✓ Produit ajouté avec succès.', 'success');
                 }
                 resetForm();
                 loadProducts();
             } catch (error) {
-                console.error("Protocol failure:", error);
-                showToast(`✗ Error: ${error.message}`, 'error');
+                console.error("Erreur enregistrement produit:", error);
+                showToast(`✗ Erreur: ${error.message}`, 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = editingId ?
-                    '<span class="hidden xs:inline">Update </span>Repository' :
-                    '<span class="hidden xs:inline">Verify & </span>Save';
+                    '<span class="hidden xs:inline">Mettre à jour </span>Produit' :
+                    '<span class="hidden xs:inline">Enregistrer le </span>Produit';
             }
         });
 
