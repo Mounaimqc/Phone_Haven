@@ -1484,7 +1484,7 @@
     </script>
 
     <script type="module">
-        import { getProductById, getProducts, addOrder } from './db-service.js';
+        import { getProductById, getProducts, addOrder, getShippingRates } from './db-service.js';
 
         // ===== UTILITY FUNCTIONS =====
         function formatPrice(price) {
@@ -1589,20 +1589,54 @@
             });
         }
 
-        // ===== POPULATE WILAYAS =====
-        function populateWilayas() {
+        // ===== POPULATE WILAYAS WITH DYNAMIC ADMIN RATES =====
+        function applyWilayasOptions(customRates = {}) {
+            const currentSelected = wilayaSelect.value;
+            wilayaSelect.innerHTML = '<option value="">Sélectionnez votre wilaya</option>';
             Object.keys(wilayasData).forEach(id => {
                 const w = wilayasData[id];
+                const custom = customRates[id] || customRates[w.name];
+                const homePrice = (custom && custom.home !== undefined && custom.home !== '') ? parseInt(custom.home) : w.home;
+                const deskPrice = (custom && custom.desk !== undefined && custom.desk !== '') ? parseInt(custom.desk) : w.desk;
+                const deliveryTime = (custom && custom.time) ? custom.time : w.time;
+
                 const option = document.createElement('option');
                 option.className = 'bg-[#141A2B] text-white';
                 option.value = w.name;
                 option.dataset.id = id;
-                option.dataset.home = w.home;
-                option.dataset.desk = w.desk;
-                option.dataset.time = w.time;
+                option.dataset.home = homePrice;
+                option.dataset.desk = deskPrice;
+                option.dataset.time = deliveryTime;
                 option.textContent = `${w.code} - ${w.name}`;
+                if (w.name === currentSelected) option.selected = true;
                 wilayaSelect.appendChild(option);
             });
+            if (currentSelected) {
+                updateShippingPrice();
+            }
+        }
+
+        async function populateWilayas() {
+            let customRates = {};
+            try {
+                const cached = localStorage.getItem('phonehaven_shipping_rates');
+                if (cached) customRates = JSON.parse(cached);
+            } catch (e) {}
+
+            applyWilayasOptions(customRates);
+
+            // Fetch live rates from Firestore in background
+            try {
+                if (typeof getShippingRates === 'function') {
+                    getShippingRates().then(rates => {
+                        if (rates && Object.keys(rates).length > 0) {
+                            applyWilayasOptions(rates);
+                        }
+                    }).catch(err => console.debug("Offline rates in use"));
+                }
+            } catch (err) {
+                console.debug("Firestore rates sync bypassed");
+            }
         }
 
         // ===== FETCH COMMUNES =====

@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tarifs de Livraison 58 Wilayas | Phone Haven Admin</title>
+    <script src="auth-gate.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FFBA08",
+                        "primary-dark": "#E5A700",
+                        "secondary": "#FF3366",
+                        "secondary-dark": "#E11D48",
+                        "accent-yellow": "#FFBA08",
+                        "accent-pink": "#FF3366",
+                        "accent-purple": "#FFD166",
+                        "background-dark": "#070B14",
+                        "card-dark": "#101626",
+                        "border-dark": "rgba(255, 255, 255, 0.08)"
+                    },
+                    fontFamily: {
+                        display: ["Outfit", "sans-serif"],
+                        sans: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #070B14;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(16, 22, 38, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .active-nav {
+            background: linear-gradient(135deg, rgba(255, 186, 8, 0.2) 0%, rgba(255, 51, 102, 0.15) 100%);
+            border: 1px solid rgba(255, 186, 8, 0.4);
+            color: #FFBA08 !important;
+            box-shadow: 0 0 20px -5px rgba(255, 186, 8, 0.3);
+        }
+
+        .wilaya-card {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .wilaya-card:hover {
+            border-color: rgba(255, 186, 8, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .wilaya-modified {
+            border-color: rgba(255, 186, 8, 0.6) !important;
+            background: rgba(255, 186, 8, 0.04) !important;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070B14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E2638;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFBA08;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#070B14] text-slate-100 flex flex-col antialiased">
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-[100] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- ===== SIDEBAR ===== -->
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-64 bg-[#0B0F19] border-r border-white/10 flex flex-col justify-between transition-transform duration-300 -translate-x-full lg:translate-x-0 lg:static">
+            <div class="p-5">
+                <div class="flex items-center justify-between gap-3 mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FFBA08] to-[#FF3366] p-0.5 shadow-lg shadow-amber-500/20">
+                            <div class="w-full h-full bg-[#0B0F19] rounded-[10px] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[#FFBA08] text-xl">admin_panel_settings</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="font-display font-black text-white text-base tracking-tight">
+                                Phone Haven<span class="text-[#FF3366]">.</span>
+                            </h1>
+                            <p class="text-[9px] font-black uppercase tracking-[0.25em] text-white/40">Administration</p>
+                        </div>
+                    </div>
+                    <button id="sidebar-close" class="lg:hidden text-white/50 hover:text-white p-1 rounded-lg hover:bg-white/5">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <nav class="space-y-1.5">
+                    <a href="admin-analytics.html"
+                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Tableau de Bord</span>
+                    </a>
+                    <a href="admin-orders.html"
+                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory_2</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Commandes</span>
+                    </a>
+                    <a href="admin-products.html"
+                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Catalogue</span>
+                    </a>
+                    <a href="admin-shipping.html"
+                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl active-nav font-bold transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">local_shipping</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Tarifs Livraison</span>
+                    </a>
+                    <a href="admin-reports.html"
+                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">Rapports</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Profile & Logout -->
+            <div class="p-4 border-t border-white/10 bg-black/30">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-[#FFBA08]/20 border border-[#FFBA08]/40 flex items-center justify-center text-[#FFBA08] font-black text-sm">
+                            PH
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white leading-tight">Admin Principal</p>
+                            <p class="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Connecté
+                            </p>
+                        </div>
+                    </div>
+                    <button id="logout-btn" title="Se déconnecter"
+                        class="p-2 rounded-lg bg-white/5 hover:bg-red-500/20 text-white/60 hover:text-red-400 transition-all">
+                        <span class="material-symbols-outlined text-lg">logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+            <!-- Topbar -->
+            <header class="sticky top-0 z-30 bg-[#070B14]/80 backdrop-blur-xl border-b border-white/10 px-4 sm:px-8 py-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <button id="sidebar-open" class="lg:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <h2 class="font-display font-black text-lg sm:text-2xl text-white tracking-tight">
+                                Tarifs de Livraison
+                            </h2>
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#FFBA08]/15 text-[#FFBA08] border border-[#FFBA08]/30">
+                                58 Wilayas
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400 hidden sm:block">
+                            Gérez et personnalisez les frais de livraison à domicile et stop-desk pour chaque wilaya d'Algérie.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Top Actions -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button id="bulk-modal-btn"
+                        class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-base text-[#FFBA08]">tune</span>
+                        <span class="hidden sm:inline">Actions Groupées</span>
+                    </button>
+                    <button id="reset-all-btn"
+                        class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/5 hover:bg-red-500/10 border border-white/10 hover:border-red-500/30 text-white/80 hover:text-red-300 text-xs font-bold flex items-center gap-2 transition-all">
+                        <span class="material-symbols-outlined text-base">restart_alt</span>
+                        <span class="hidden md:inline">Par défaut</span>
+                    </button>
+                    <button id="save-all-btn"
+                        class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#FFBA08] to-[#FF3366] hover:opacity-95 text-slate-950 text-xs font-black flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
+                        <span class="material-symbols-outlined text-base">save</span>
+                        <span>Enregistrer</span>
+                        <span id="modified-count-badge" class="hidden px-1.5 py-0.2 rounded-full bg-slate-950 text-[#FFBA08] text-[10px] font-black">0</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="p-4 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
+                <!-- Stat Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="glass-panel rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between text-white/50 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Couverture</span>
+                            <span class="material-symbols-outlined text-[#FFBA08]">public</span>
+                        </div>
+                        <p class="font-display font-black text-xl sm:text-2xl text-white">58 Wilayas</p>
+                        <p class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">check_circle</span> 100% de l'Algérie
+                        </p>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between text-white/50 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Moyenne Domicile</span>
+                            <span class="material-symbols-outlined text-blue-400">home</span>
+                        </div>
+                        <p id="stat-avg-home" class="font-display font-black text-xl sm:text-2xl text-white">850 DA</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Livraison chez le client</p>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between text-white/50 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Moyenne Stop Desk</span>
+                            <span class="material-symbols-outlined text-purple-400">store</span>
+                        </div>
+                        <p id="stat-avg-desk" class="font-display font-black text-xl sm:text-2xl text-white">530 DA</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Retrait en bureau de poste / agence</p>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-4 sm:p-5">
+                        <div class="flex items-center justify-between text-white/50 mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider">Statut Sync</span>
+                            <span id="sync-icon" class="material-symbols-outlined text-emerald-400">cloud_done</span>
+                        </div>
+                        <p id="sync-status" class="font-display font-black text-xl sm:text-2xl text-emerald-400">Synchronisé</p>
+                        <p id="modified-subtext" class="text-[11px] text-slate-400 mt-1">Aucune modif non sauvée</p>
+                    </div>
+                </div>
+
+                <!-- Filter & Search Bar -->
+                <div class="glass-panel rounded-2xl p-4 sm:p-5 space-y-4">
+                    <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                        <!-- Search Box -->
+                        <div class="relative flex-1">
+                            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-lg">search</span>
+                            <input id="search-wilaya" type="text" placeholder="Rechercher par numéro (ex: 19, 16) ou nom (ex: Sétif, Alger)..."
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/10 focus:border-[#FFBA08] focus:ring-1 focus:ring-[#FFBA08] text-white placeholder-white/30 text-xs sm:text-sm transition-all" />
+                        </div>
+
+                        <!-- Quick Count info -->
+                        <div class="text-xs text-slate-400 px-1 flex items-center gap-2">
+                            <span>Affichage :</span>
+                            <span id="showing-count" class="font-bold text-white">58</span>
+                            <span>sur 58 wilayas</span>
+                        </div>
+                    </div>
+
+                    <!-- Region Filter Pills -->
+                    <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+                        <span class="text-[11px] font-bold uppercase text-white/40 mr-1 hidden sm:inline">Régions :</span>
+                        <button data-filter="all" class="region-filter active px-3 py-1.5 rounded-lg text-xs font-bold bg-[#FFBA08] text-slate-950 transition-all">
+                            Toutes (58)
+                        </button>
+                        <button data-filter="centre" class="region-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                            Nord & Centre
+                        </button>
+                        <button data-filter="est" class="region-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                            Est
+                        </button>
+                        <button data-filter="ouest" class="region-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                            Ouest
+                        </button>
+                        <button data-filter="sud" class="region-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                            Sud & Grand Sud
+                        </button>
+                        <button data-filter="modified" class="region-filter px-3 py-1.5 rounded-lg text-xs font-bold bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                            ⭐ Personnalisées
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wilayas Grid -->
+                <div id="wilayas-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <!-- Wilaya cards inserted dynamically by JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- ===== BULK ACTION MODAL ===== -->
+    <div id="bulk-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-panel max-w-lg w-full rounded-3xl p-6 sm:p-8 space-y-6 border border-white/15 animate-fade-in">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-[#FFBA08]/15 text-[#FFBA08] flex items-center justify-center material-symbols-outlined">
+                        tune
+                    </span>
+                    <div>
+                        <h3 class="font-display font-black text-lg text-white">Modification Groupée</h3>
+                        <p class="text-xs text-slate-400">Appliquez un changement de prix à plusieurs wilayas</p>
+                    </div>
+                </div>
+                <button id="bulk-modal-close" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/60 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-white/60 mb-2">Cible des modifications</label>
+                    <select id="bulk-target" class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/15 text-white text-xs sm:text-sm">
+                        <option value="all">Toutes les 58 Wilayas</option>
+                        <option value="centre">Région Nord & Centre</option>
+                        <option value="est">Région Est</option>
+                        <option value="ouest">Région Ouest</option>
+                        <option value="sud">Région Sud & Sahara</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-white/60 mb-2">Action Tarif Domicile</label>
+                        <select id="bulk-home-action" class="w-full px-3 py-2 rounded-xl bg-black/50 border border-white/15 text-white text-xs">
+                            <option value="none">Ne pas modifier</option>
+                            <option value="set">Fixer à un montant</option>
+                            <option value="add">Augmenter de (+)</option>
+                            <option value="sub">Diminuer de (-)</option>
+                        </select>
+                        <input id="bulk-home-val" type="number" placeholder="Montant en DA" class="mt-2 w-full px-3 py-2 rounded-xl bg-black/50 border border-white/15 text-white text-xs" />
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-white/60 mb-2">Action Stop Desk</label>
+                        <select id="bulk-desk-action" class="w-full px-3 py-2 rounded-xl bg-black/50 border border-white/15 text-white text-xs">
+                            <option value="none">Ne pas modifier</option>
+                            <option value="set">Fixer à un montant</option>
+                            <option value="add">Augmenter de (+)</option>
+                            <option value="sub">Diminuer de (-)</option>
+                        </select>
+                        <input id="bulk-desk-val" type="number" placeholder="Montant en DA" class="mt-2 w-full px-3 py-2 rounded-xl bg-black/50 border border-white/15 text-white text-xs" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-white/60 mb-2">Délai estimé (optionnel)</label>
+                    <input id="bulk-time-val" type="text" placeholder="Ex: 24-48h, 48-72h (laisser vide pour ne pas toucher)" class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/15 text-white text-xs" />
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                <button id="bulk-cancel-btn" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold">
+                    Annuler
+                </button>
+                <button id="bulk-apply-btn" class="px-5 py-2.5 rounded-xl bg-[#FFBA08] text-slate-950 font-black text-xs hover:bg-[#E5A700] transition-all">
+                    Appliquer aux wilayas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { getShippingRates, saveShippingRates, clearAdminAuth } from './db-service.js';
+
+        // 58 Wilayas Default Dataset
+        const defaultWilayas = {
+        "1": {
+                "name": "Adrar",
+                "code": "01",
+                "time": "72-96h",
+                "home": 1500,
+                "desk": 1000
+        },
+        "2": {
+                "name": "Chlef",
+                "code": "02",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "3": {
+                "name": "Laghouat",
+                "code": "03",
+                "time": "48-72h",
+                "home": 900,
+                "desk": 600
+        },
+        "4": {
+                "name": "Oum El Bouaghi",
+                "code": "04",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "5": {
+                "name": "Batna",
+                "code": "05",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "6": {
+                "name": "Béjaïa",
+                "code": "06",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "7": {
+                "name": "Biskra",
+                "code": "07",
+                "time": "48-72h",
+                "home": 900,
+                "desk": 500
+        },
+        "8": {
+                "name": "Béchar",
+                "code": "08",
+                "time": "72-96h",
+                "home": 1200,
+                "desk": 800
+        },
+        "9": {
+                "name": "Blida",
+                "code": "09",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "10": {
+                "name": "Bouira",
+                "code": "10",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "11": {
+                "name": "Tamanrasset",
+                "code": "11",
+                "time": "72-96h",
+                "home": 2000,
+                "desk": 1500
+        },
+        "12": {
+                "name": "Tébessa",
+                "code": "12",
+                "time": "48-72h",
+                "home": 850,
+                "desk": 500
+        },
+        "13": {
+                "name": "Tlemcen",
+                "code": "13",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "14": {
+                "name": "Tiaret",
+                "code": "14",
+                "time": "48-72h",
+                "home": 800,
+                "desk": 500
+        },
+        "15": {
+                "name": "Tizi Ouzou",
+                "code": "15",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "16": {
+                "name": "Alger",
+                "code": "16",
+                "time": "24-48h",
+                "home": 600,
+                "desk": 400
+        },
+        "17": {
+                "name": "Djelfa",
+                "code": "17",
+                "time": "48-72h",
+                "home": 900,
+                "desk": 600
+        },
+        "18": {
+                "name": "Jijel",
+                "code": "18",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "19": {
+                "name": "Sétif",
+                "code": "19",
+                "time": "24-48h",
+                "home": 550,
+                "desk": 300
+        },
+        "20": {
+                "name": "Saïda",
+                "code": "20",
+                "time": "48-72h",
+                "home": 900,
+                "desk": 500
+        },
+        "21": {
+                "name": "Skikda",
+                "code": "21",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "22": {
+                "name": "Sidi Bel Abbès",
+                "code": "22",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "23": {
+                "name": "Annaba",
+                "code": "23",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "24": {
+                "name": "Guelma",
+                "code": "24",
+                "time": "24-48h",
+                "home": 850,
+                "desk": 500
+        },
+        "25": {
+                "name": "Constantine",
+                "code": "25",
+                "time": "24-48h",
+                "home": 650,
+                "desk": 400
+        },
+        "26": {
+                "name": "Médéa",
+                "code": "26",
+                "time": "48-72h",
+                "home": 800,
+                "desk": 500
+        },
+        "27": {
+                "name": "Mostaganem",
+                "code": "27",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "28": {
+                "name": "M'Sila",
+                "code": "28",
+                "time": "48-72h",
+                "home": 700,
+                "desk": 450
+        },
+        "29": {
+                "name": "Mascara",
+                "code": "29",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "30": {
+                "name": "Ouargla",
+                "code": "30",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        },
+        "31": {
+                "name": "Oran",
+                "code": "31",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "32": {
+                "name": "El Bayadh",
+                "code": "32",
+                "time": "72-96h",
+                "home": 1200,
+                "desk": 800
+        },
+        "33": {
+                "name": "Illizi",
+                "code": "33",
+                "time": "72-96h",
+                "home": 1900,
+                "desk": 1500
+        },
+        "34": {
+                "name": "Bordj Bou Arréridj",
+                "code": "34",
+                "time": "24-48h",
+                "home": 600,
+                "desk": 400
+        },
+        "35": {
+                "name": "Boumerdès",
+                "code": "35",
+                "time": "24-48h",
+                "home": 700,
+                "desk": 450
+        },
+        "36": {
+                "name": "El Tarf",
+                "code": "36",
+                "time": "24-48h",
+                "home": 850,
+                "desk": 500
+        },
+        "37": {
+                "name": "Tindouf",
+                "code": "37",
+                "time": "72-96h",
+                "home": 1700,
+                "desk": 1000
+        },
+        "38": {
+                "name": "Tissemsilt",
+                "code": "38",
+                "time": "48-72h",
+                "home": 850,
+                "desk": 500
+        },
+        "39": {
+                "name": "El Oued",
+                "code": "39",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        },
+        "40": {
+                "name": "Khenchela",
+                "code": "40",
+                "time": "48-72h",
+                "home": 600,
+                "desk": 500
+        },
+        "41": {
+                "name": "Souk Ahras",
+                "code": "41",
+                "time": "24-48h",
+                "home": 850,
+                "desk": 500
+        },
+        "42": {
+                "name": "Tipaza",
+                "code": "42",
+                "time": "24-48h",
+                "home": 600,
+                "desk": 450
+        },
+        "43": {
+                "name": "Mila",
+                "code": "43",
+                "time": "24-48h",
+                "home": 600,
+                "desk": 500
+        },
+        "44": {
+                "name": "Aïn Defla",
+                "code": "44",
+                "time": "48-72h",
+                "home": 800,
+                "desk": 500
+        },
+        "45": {
+                "name": "Naâma",
+                "code": "45",
+                "time": "72-96h",
+                "home": 1200,
+                "desk": 800
+        },
+        "46": {
+                "name": "Aïn Témouchent",
+                "code": "46",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "47": {
+                "name": "Ghardaïa",
+                "code": "47",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        },
+        "48": {
+                "name": "Relizane",
+                "code": "48",
+                "time": "24-48h",
+                "home": 800,
+                "desk": 500
+        },
+        "49": {
+                "name": "Timimoun",
+                "code": "49",
+                "time": "72-96h",
+                "home": 1500,
+                "desk": 1000
+        },
+        "50": {
+                "name": "Bordj Badji Mokhtar",
+                "code": "50",
+                "time": "72-96h",
+                "home": 1600,
+                "desk": 1500
+        },
+        "51": {
+                "name": "Ouled Djellal",
+                "code": "51",
+                "time": "72-96h",
+                "home": 900,
+                "desk": 500
+        },
+        "52": {
+                "name": "Béni Abbès",
+                "code": "52",
+                "time": "72-96h",
+                "home": 1200,
+                "desk": 800
+        },
+        "53": {
+                "name": "In Salah",
+                "code": "53",
+                "time": "72-96h",
+                "home": 1800,
+                "desk": 1200
+        },
+        "54": {
+                "name": "In Guezzam",
+                "code": "54",
+                "time": "72-96h",
+                "home": 2200,
+                "desk": 1500
+        },
+        "55": {
+                "name": "Touggourt",
+                "code": "55",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        },
+        "56": {
+                "name": "Djanet",
+                "code": "56",
+                "time": "72-96h",
+                "home": 2000,
+                "desk": 1500
+        },
+        "57": {
+                "name": "El M'Ghair",
+                "code": "57",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        },
+        "58": {
+                "name": "El Meniaa",
+                "code": "58",
+                "time": "72-96h",
+                "home": 1000,
+                "desk": 600
+        }
+};
+
+        // Region mapping for easy filtering
+        const regions = {
+            centre: ["16", "09", "42", "35", "15", "10", "26", "44"],
+            est: ["19", "25", "23", "21", "04", "05", "06", "18", "24", "12", "34", "36", "40", "41", "43"],
+            ouest: ["31", "13", "27", "22", "29", "46", "48", "02", "14", "20", "38"],
+            sud: ["01", "03", "07", "08", "11", "17", "28", "30", "32", "33", "37", "39", "45", "47", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58"]
+        };
+
+        function getRegionName(code) {
+            if (regions.centre.includes(code)) return { key: 'centre', label: 'Centre' };
+            if (regions.est.includes(code)) return { key: 'est', label: 'Est' };
+            if (regions.ouest.includes(code)) return { key: 'ouest', label: 'Ouest' };
+            return { key: 'sud', label: 'Sud' };
+        }
+
+        // Active State
+        let currentRates = {};
+        let modifiedWilayas = new Set();
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Toast notifications
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bgColors = {
+                success: 'bg-emerald-500/90 border-emerald-400 text-white',
+                error: 'bg-red-500/90 border-red-400 text-white',
+                warning: 'bg-[#FFBA08]/90 border-amber-300 text-slate-950',
+                info: 'bg-[#101626]/90 border-[#FFBA08]/40 text-white'
+            };
+            const icons = {
+                success: 'check_circle',
+                error: 'error',
+                warning: 'warning',
+                info: 'info'
+            };
+
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-2xl border shadow-2xl backdrop-blur-xl ${bgColors[type] || bgColors.info} animate-fade-in pointer-events-auto transition-all`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-lg">${icons[type] || 'info'}</span>
+                <span class="text-xs font-bold flex-1">${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-10px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Initialize rates
+        async function initRates() {
+            // 1. Start with copy of defaults
+            Object.keys(defaultWilayas).forEach(id => {
+                currentRates[id] = { ...defaultWilayas[id] };
+            });
+
+            // 2. Load from localStorage if present
+            try {
+                const cached = localStorage.getItem('phonehaven_shipping_rates');
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    mergeRates(parsed);
+                }
+            } catch (e) {}
+
+            renderCards();
+            updateStats();
+
+            // 3. Sync from Firestore
+            try {
+                const remote = await getShippingRates();
+                if (remote && Object.keys(remote).length > 0) {
+                    mergeRates(remote);
+                    renderCards();
+                    updateStats();
+                }
+            } catch (err) {
+                console.warn("Firestore offline, local rates used");
+            }
+        }
+
+        function mergeRates(saved) {
+            Object.keys(saved).forEach(id => {
+                if (currentRates[id]) {
+                    const def = defaultWilayas[id];
+                    const item = saved[id];
+                    if (item.home !== undefined) currentRates[id].home = Number(item.home);
+                    if (item.desk !== undefined) currentRates[id].desk = Number(item.desk);
+                    if (item.time) currentRates[id].time = item.time;
+
+                    if (def && (currentRates[id].home !== def.home || currentRates[id].desk !== def.desk || currentRates[id].time !== def.time)) {
+                        modifiedWilayas.add(id);
+                    }
+                }
+            });
+        }
+
+        // Render Wilayas
+        function renderCards() {
+            const container = document.getElementById('wilayas-container');
+            container.innerHTML = '';
+
+            const ids = Object.keys(defaultWilayas);
+            let visibleCount = 0;
+
+            ids.forEach(id => {
+                const def = defaultWilayas[id];
+                const cur = currentRates[id] || { ...def };
+                const regionInfo = getRegionName(def.code);
+
+                const isModified = (cur.home !== def.home || cur.desk !== def.desk || cur.time !== def.time);
+
+                // Filter logic
+                if (currentFilter === 'modified' && !isModified) return;
+                if (currentFilter !== 'all' && currentFilter !== 'modified' && regionInfo.key !== currentFilter) return;
+
+                // Search logic
+                if (searchQuery) {
+                    const matchName = def.name.toLowerCase().includes(searchQuery);
+                    const matchCode = def.code.includes(searchQuery);
+                    if (!matchName && !matchCode) return;
+                }
+
+                visibleCount++;
+
+                const card = document.createElement('div');
+                card.className = `wilaya-card glass-panel rounded-2xl p-4 sm:p-5 border ${isModified ? 'wilaya-modified' : 'border-white/10'} flex flex-col justify-between gap-4`;
+                card.id = `card-wilaya-${id}`;
+
+                card.innerHTML = `
+                    <!-- Header -->
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-display font-black text-sm text-[#FFBA08]">
+                                ${def.code}
+                            </span>
+                            <div>
+                                <h4 class="font-display font-bold text-base text-white leading-tight">${def.name}</h4>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${regionInfo.label}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-1.5">
+                            ${isModified ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#FFBA08]/20 text-[#FFBA08] border border-[#FFBA08]/30">Modifié</span>' : ''}
+                            <button onclick="window.resetSingleWilaya('${id}')" title="Rétablir le tarif par défaut"
+                                class="p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/10 transition-all text-xs">
+                                <span class="material-symbols-outlined text-base">refresh</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Price Inputs -->
+                    <div class="grid grid-cols-2 gap-3 pt-2 border-t border-white/5">
+                        <!-- Home delivery price -->
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-xs text-blue-400">home</span> Domicile (DA)
+                            </label>
+                            <div class="relative flex items-center">
+                                <input type="number" step="50" min="0" value="${cur.home}"
+                                    id="input-home-${id}"
+                                    onchange="window.updateWilayaRate('${id}', 'home', this.value)"
+                                    class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-white font-bold text-xs sm:text-sm focus:border-[#FFBA08] focus:ring-1 focus:ring-[#FFBA08]" />
+                            </div>
+                            <p class="text-[9px] text-white/40">Défaut: ${def.home} DA</p>
+                        </div>
+
+                        <!-- Desk delivery price -->
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold uppercase text-slate-400 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-xs text-purple-400">store</span> Stop Desk (DA)
+                            </label>
+                            <div class="relative flex items-center">
+                                <input type="number" step="50" min="0" value="${cur.desk}"
+                                    id="input-desk-${id}"
+                                    onchange="window.updateWilayaRate('${id}', 'desk', this.value)"
+                                    class="w-full px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-white font-bold text-xs sm:text-sm focus:border-[#FFBA08] focus:ring-1 focus:ring-[#FFBA08]" />
+                            </div>
+                            <p class="text-[9px] text-white/40">Défaut: ${def.desk} DA</p>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Time -->
+                    <div class="flex items-center justify-between text-xs pt-2 border-t border-white/5 text-slate-400">
+                        <span class="flex items-center gap-1 text-[11px]">
+                            <span class="material-symbols-outlined text-xs text-amber-400">schedule</span> Délai :
+                        </span>
+                        <input type="text" value="${cur.time}"
+                            id="input-time-${id}"
+                            onchange="window.updateWilayaRate('${id}', 'time', this.value)"
+                            class="w-24 text-right px-2 py-1 rounded-lg bg-black/30 border border-white/10 text-white text-xs focus:border-[#FFBA08]" />
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            document.getElementById('showing-count').textContent = visibleCount;
+        }
+
+        // Update single wilaya
+        window.updateWilayaRate = function(id, field, value) {
+            if (!currentRates[id]) currentRates[id] = { ...defaultWilayas[id] };
+
+            if (field === 'home' || field === 'desk') {
+                currentRates[id][field] = Math.max(0, parseInt(value) || 0);
+            } else {
+                currentRates[id][field] = value.trim() || defaultWilayas[id].time;
+            }
+
+            const def = defaultWilayas[id];
+            const isMod = (currentRates[id].home !== def.home || currentRates[id].desk !== def.desk || currentRates[id].time !== def.time);
+            if (isMod) {
+                modifiedWilayas.add(id);
+            } else {
+                modifiedWilayas.delete(id);
+            }
+
+            const card = document.getElementById(`card-wilaya-${id}`);
+            if (card) {
+                card.classList.toggle('wilaya-modified', isMod);
+            }
+
+            updateStats();
+            markUnsaved();
+        };
+
+        // Reset single wilaya
+        window.resetSingleWilaya = function(id) {
+            const def = defaultWilayas[id];
+            if (!def) return;
+            currentRates[id] = { ...def };
+            modifiedWilayas.delete(id);
+
+            const inputHome = document.getElementById(`input-home-${id}`);
+            const inputDesk = document.getElementById(`input-desk-${id}`);
+            const inputTime = document.getElementById(`input-time-${id}`);
+            if (inputHome) inputHome.value = def.home;
+            if (inputDesk) inputDesk.value = def.desk;
+            if (inputTime) inputTime.value = def.time;
+
+            const card = document.getElementById(`card-wilaya-${id}`);
+            if (card) card.classList.remove('wilaya-modified');
+
+            updateStats();
+            markUnsaved();
+            showToast(`${def.name} réinitialisé aux tarifs par défaut`, 'info');
+        };
+
+        // Update stats
+        function updateStats() {
+            let totalHome = 0;
+            let totalDesk = 0;
+            let count = 0;
+
+            Object.keys(currentRates).forEach(id => {
+                totalHome += currentRates[id].home || 0;
+                totalDesk += currentRates[id].desk || 0;
+                count++;
+            });
+
+            const avgHome = count ? Math.round(totalHome / count) : 0;
+            const avgDesk = count ? Math.round(totalDesk / count) : 0;
+
+            document.getElementById('stat-avg-home').textContent = `${avgHome} DA`;
+            document.getElementById('stat-avg-desk').textContent = `${avgDesk} DA`;
+
+            const badge = document.getElementById('modified-count-badge');
+            if (modifiedWilayas.size > 0) {
+                badge.textContent = modifiedWilayas.size;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function markUnsaved() {
+            const syncStatus = document.getElementById('sync-status');
+            const syncIcon = document.getElementById('sync-icon');
+            const subtext = document.getElementById('modified-subtext');
+
+            if (modifiedWilayas.size > 0) {
+                syncStatus.textContent = 'Modifications en attente';
+                syncStatus.className = 'font-display font-black text-xl sm:text-2xl text-amber-400';
+                syncIcon.textContent = 'sync_problem';
+                syncIcon.className = 'material-symbols-outlined text-amber-400 animate-pulse';
+                subtext.textContent = `${modifiedWilayas.size} wilaya(s) modifiée(s) non enregistrée(s)`;
+            } else {
+                syncStatus.textContent = 'Synchronisé';
+                syncStatus.className = 'font-display font-black text-xl sm:text-2xl text-emerald-400';
+                syncIcon.textContent = 'cloud_done';
+                syncIcon.className = 'material-symbols-outlined text-emerald-400';
+                subtext.textContent = 'Tous les tarifs sont à jour';
+            }
+        }
+
+        // Save All Handler
+        document.getElementById('save-all-btn').addEventListener('click', async () => {
+            const saveBtn = document.getElementById('save-all-btn');
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span> Enregistrement...';
+
+            try {
+                // Build clean rates object
+                const ratesToSave = {};
+                Object.keys(currentRates).forEach(id => {
+                    const r = currentRates[id];
+                    ratesToSave[id] = {
+                        home: Number(r.home) || 0,
+                        desk: Number(r.desk) || 0,
+                        time: r.time || '24-48h'
+                    };
+                });
+
+                await saveShippingRates(ratesToSave);
+
+                showToast('✅ Tarifs de livraison enregistrés et synchronisés avec succès !', 'success');
+
+                const syncStatus = document.getElementById('sync-status');
+                const syncIcon = document.getElementById('sync-icon');
+                const subtext = document.getElementById('modified-subtext');
+
+                syncStatus.textContent = 'Enregistré';
+                syncStatus.className = 'font-display font-black text-xl sm:text-2xl text-emerald-400';
+                syncIcon.textContent = 'check_circle';
+                syncIcon.className = 'material-symbols-outlined text-emerald-400';
+                subtext.textContent = `Actif sur toute la boutique en ligne`;
+
+            } catch (err) {
+                console.error('Error saving shipping rates:', err);
+                showToast('❌ Erreur de sauvegarde en ligne, enregistré localement', 'warning');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<span class="material-symbols-outlined text-base">save</span> Enregistrer';
+                updateStats();
+            }
+        });
+
+        // Reset All
+        document.getElementById('reset-all-btn').addEventListener('click', () => {
+            if (!confirm('Voulez-vous vraiment réinitialiser toutes les 58 wilayas aux tarifs d\'origine ?')) return;
+
+            Object.keys(defaultWilayas).forEach(id => {
+                currentRates[id] = { ...defaultWilayas[id] };
+            });
+            modifiedWilayas.clear();
+            renderCards();
+            updateStats();
+            markUnsaved();
+            showToast('Toutes les wilayas ont été remises aux tarifs par défaut', 'info');
+        });
+
+        // Filters
+        document.querySelectorAll('.region-filter').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.region-filter').forEach(b => {
+                    b.classList.remove('bg-[#FFBA08]', 'text-slate-950');
+                    b.classList.add('bg-white/5', 'text-white/70');
+                });
+                btn.classList.add('bg-[#FFBA08]', 'text-slate-950');
+                btn.classList.remove('bg-white/5', 'text-white/70');
+
+                currentFilter = btn.dataset.filter;
+                renderCards();
+            });
+        });
+
+        // Search Input
+        document.getElementById('search-wilaya').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderCards();
+        });
+
+        // Bulk Modal Actions
+        const bulkModal = document.getElementById('bulk-modal');
+        document.getElementById('bulk-modal-btn').addEventListener('click', () => {
+            bulkModal.classList.remove('hidden');
+            bulkModal.classList.add('flex');
+        });
+
+        const closeBulkModal = () => {
+            bulkModal.classList.add('hidden');
+            bulkModal.classList.remove('flex');
+        };
+        document.getElementById('bulk-modal-close').addEventListener('click', closeBulkModal);
+        document.getElementById('bulk-cancel-btn').addEventListener('click', closeBulkModal);
+
+        document.getElementById('bulk-apply-btn').addEventListener('click', () => {
+            const targetRegion = document.getElementById('bulk-target').value;
+            const homeAction = document.getElementById('bulk-home-action').value;
+            const homeVal = parseInt(document.getElementById('bulk-home-val').value) || 0;
+            const deskAction = document.getElementById('bulk-desk-action').value;
+            const deskVal = parseInt(document.getElementById('bulk-desk-val').value) || 0;
+            const timeVal = document.getElementById('bulk-time-val').value.trim();
+
+            let affected = 0;
+            Object.keys(currentRates).forEach(id => {
+                const def = defaultWilayas[id];
+                const region = getRegionName(def.code).key;
+
+                if (targetRegion !== 'all' && region !== targetRegion) return;
+
+                // Home
+                if (homeAction === 'set') currentRates[id].home = Math.max(0, homeVal);
+                if (homeAction === 'add') currentRates[id].home += homeVal;
+                if (homeAction === 'sub') currentRates[id].home = Math.max(0, currentRates[id].home - homeVal);
+
+                // Desk
+                if (deskAction === 'set') currentRates[id].desk = Math.max(0, deskVal);
+                if (deskAction === 'add') currentRates[id].desk += deskVal;
+                if (deskAction === 'sub') currentRates[id].desk = Math.max(0, currentRates[id].desk - deskVal);
+
+                // Time
+                if (timeVal) currentRates[id].time = timeVal;
+
+                modifiedWilayas.add(id);
+                affected++;
+            });
+
+            closeBulkModal();
+            renderCards();
+            updateStats();
+            markUnsaved();
+            showToast(`Action appliquée à ${affected} wilaya(s) avec succès`, 'success');
+        });
+
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        document.getElementById('sidebar-open')?.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+        document.getElementById('sidebar-close')?.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        // Logout
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            clearAdminAuth();
+            window.location.href = 'admin-login.html';
+        });
+
+        // Initial Load
+        initRates();
+    </script>
+</body>
+
+</html>

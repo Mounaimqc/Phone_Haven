@@ -7,6 +7,7 @@
 import {
     collection,
     addDoc,
+    setDoc,
     getDocs,
     getDoc,
     doc,
@@ -899,3 +900,59 @@ export default {
     // Firebase
     db
 };
+
+// ============================================
+// 🚚 SHIPPING & WILAYAS RATES
+// ============================================
+
+/**
+ * Get customized shipping rates for wilayas
+ * @returns {Promise<Object>} Map of wilayaId -> { home, desk, time }
+ */
+export async function getShippingRates() {
+    try {
+        const docRef = doc(db, 'settings', 'shipping');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && docSnap.data().rates) {
+            const rates = docSnap.data().rates;
+            try {
+                localStorage.setItem('phonehaven_shipping_rates', JSON.stringify(rates));
+            } catch (e) {}
+            return rates;
+        }
+    } catch (err) {
+        console.warn('⚠️ Erreur lecture Firestore tarifs livraison, fallback local:', err);
+    }
+    try {
+        const cached = localStorage.getItem('phonehaven_shipping_rates');
+        if (cached) return JSON.parse(cached);
+    } catch (e) {}
+    return {};
+}
+
+/**
+ * Save customized shipping rates for wilayas
+ * @param {Object} rates - Map of wilayaId -> { home, desk, time }
+ * @returns {Promise<boolean>}
+ */
+export async function saveShippingRates(rates) {
+    try {
+        const docRef = doc(db, 'settings', 'shipping');
+        await setDoc(docRef, {
+            rates: rates,
+            updatedAt: serverTimestamp()
+        }, { merge: true });
+        try {
+            localStorage.setItem('phonehaven_shipping_rates', JSON.stringify(rates));
+        } catch (e) {}
+        return true;
+    } catch (err) {
+        console.warn('⚠️ Erreur sauvegarde Firestore tarifs livraison, sauvegarde locale uniquement:', err);
+        try {
+            localStorage.setItem('phonehaven_shipping_rates', JSON.stringify(rates));
+            return true;
+        } catch (e) {
+            throw err;
+        }
+    }
+}
