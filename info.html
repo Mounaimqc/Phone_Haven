@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="theme-color" content="#0B0F19" />
+    <meta name="description"
+        content="Centre d'aide, Livraison, Garantie, FAQ et Conditions - Phone Haven Sétif Algérie" />
+    <title>Centre d'Aide & Informations Légales | Phone Haven Algérie</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FFBA08",
+                        "primary-dark": "#E5A700",
+                        "secondary": "#FF3366",
+                        "secondary-dark": "#E11D48",
+                        "accent-yellow": "#FFBA08",
+                        "accent-pink": "#FF3366",
+                        "accent-purple": "#FFD166",
+                        "background-light": "#0F1424",
+                        "background-dark": "#0B0F19",
+                        "card-dark": "#141A2B",
+                        "surface-dark": "#182035",
+                        "border-dark": "rgba(255, 255, 255, 0.1)",
+                        "text-main": "#F8FAFC",
+                        "text-muted": "#94A3B8"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Outfit", "sans-serif"],
+                        "arabic": ["Cairo", "Tahoma", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        :root {
+            --brand-gold: #FFBA08;
+            --brand-coral: #FF3366;
+            --bg-night: #0B0F19;
+            --bg-surface: #141A2B;
+            --bg-card: #182035;
+        }
+
+        body {
+            background-color: #0B0F19 !important;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(20, 26, 43, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(255, 186, 8, 0.15) 0%, rgba(255, 51, 102, 0.15) 100%);
+            border-color: #FFBA08;
+            color: #FFBA08;
+        }
+
+        .tab-btn.active .tab-icon {
+            color: #FFBA08;
+        }
+    </style>
+
+    <!-- TikTok Pixel Code Start -->
+    <script>
+        !function (w, d, t) {
+            w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e }, ttq.load = function (e, n) { var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script"); n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e) };
+            ttq.load('DBO591RC77UASCMH9H40');
+            ttq.page();
+        }(window, document, 'ttq');
+    </script>
+    <!-- TikTok Pixel Code End -->
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#0B0F19] text-[#E2E8F0]">
+
+    <!-- Header Navigation -->
+    <header id="nav-header" class="sticky top-0 z-[100] w-full border-b border-white/10 bg-[#0F1424]/90 backdrop-blur-xl px-3 xs:px-4 sm:px-6 md:px-20 py-2.5 xs:py-3 transition-all duration-300">
+        <div class="mx-auto flex max-w-7xl items-center justify-between">
+            <!-- Logo with IMAGE -->
+            <a href="index.html" class="flex items-center gap-2 xs:gap-2.5 group">
+                <div class="flex h-8 w-8 xs:h-9 xs:w-9 sm:h-11 sm:w-11 items-center justify-center rounded-2xl overflow-hidden shadow-lg p-0.5 border border-[#FFBA08]/40 bg-[#141A2B] group-hover:border-[#FF3366] transition-all duration-300">
+                    <img src="images/logo.jpeg" alt="Phone Haven Logo" class="h-full w-full object-contain rounded-xl">
+                </div>
+                <div class="flex flex-col">
+                    <h2 class="font-display text-base xs:text-lg sm:text-xl font-black tracking-tight leading-none">
+                        <span class="text-[#FFBA08]">Phone</span><span class="text-[#FF3366] italic ml-0.5">Haven</span>
+                    </h2>
+                    <span class="text-[8.5px] xs:text-[10px] sm:text-[11px] text-[#FFBA08] font-medium whitespace-nowrap mt-0.5 tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+                        More than a Store , It's a Haven for Phones
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
+                <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                    href="index.html">Accueil</a>
+                <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                    href="search.html">Catalogue</a>
+                <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                    href="index.html#new-arrivals">Nouveautés</a>
+                <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline flex items-center gap-1.5"
+                    href="index.html#coverage-section">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Livraison 58 Wilayas
+                </a>
+                <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
+                    href="tracking.html">Suivi</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="https://wa.me/213667425172" target="_blank" rel="noopener noreferrer"
+                   class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-xs hover:bg-emerald-500/25 transition-all">
+                    <span>💬 WhatsApp</span>
+                </a>
+                <a href="search.html" class="px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-amber-500 text-black font-bold text-xs sm:text-sm hover:scale-105 transition-all shadow-md shadow-primary/20">
+                    Boutique
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <div class="relative py-10 xs:py-14 sm:py-16 px-4 sm:px-6 md:px-20 border-b border-white/10 bg-gradient-to-b from-[#101628] to-[#0B0F19] overflow-hidden">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-primary/30 text-primary text-xs font-bold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-md">
+                <span class="material-symbols-outlined text-sm">support_agent</span>
+                <span>Centre d'Aide & Transparence</span>
+            </div>
+            <h1 class="text-3xl xs:text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                Informations, <span class="gradient-text">Garantie & Support</span>
+            </h1>
+            <p class="text-gray-400 text-xs xs:text-sm sm:text-base mt-3 max-w-2xl mx-auto leading-relaxed">
+                Toutes les réponses à vos questions sur nos livraisons en 58 wilayas, notre garantie de 6 mois, nos réparations et nos engagements clients.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content Tabs -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 xs:px-4 sm:px-6 md:px-12 lg:px-20 py-8 sm:py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Sidebar Navigation Tabs -->
+            <aside class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-28">
+                <div class="glass-card rounded-2xl p-3 sm:p-4 border border-white/10 shadow-xl space-y-1.5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-3 py-2">Assistance Client</p>
+                    
+                    <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-3 rounded-xl border border-transparent text-xs sm:text-sm font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="livraison">
+                        <span class="material-symbols-outlined text-lg tab-icon text-primary">local_shipping</span>
+                        <span class="flex-1">Livraison & Retours</span>
+                    </button>
+
+                    <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-3 rounded-xl border border-transparent text-xs sm:text-sm font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="garantie">
+                        <span class="material-symbols-outlined text-lg tab-icon text-accent">verified_user</span>
+                        <span class="flex-1">Garantie & SAV</span>
+                    </button>
+
+                    <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-3 rounded-xl border border-transparent text-xs sm:text-sm font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="faq">
+                        <span class="material-symbols-outlined text-lg tab-icon text-emerald-400">help</span>
+                        <span class="flex-1">Foire Aux Questions</span>
+                    </button>
+
+                    <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-3 rounded-xl border border-transparent text-xs sm:text-sm font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="contact">
+                        <span class="material-symbols-outlined text-lg tab-icon text-cyan-400">contact_phone</span>
+                        <span class="flex-1">Nous Contacter</span>
+                    </button>
+
+                    <div class="pt-3 mt-2 border-t border-white/10">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-3 py-2">Mentions Légales</p>
+                        
+                        <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-xs font-semibold text-gray-400 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="confidentialite">
+                            <span class="material-symbols-outlined text-base tab-icon">lock</span>
+                            <span class="flex-1">Confidentialité</span>
+                        </button>
+
+                        <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-xs font-semibold text-gray-400 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="conditions">
+                            <span class="material-symbols-outlined text-base tab-icon">description</span>
+                            <span class="flex-1">Conditions de Vente</span>
+                        </button>
+
+                        <button type="button" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl border border-transparent text-xs font-semibold text-gray-400 hover:bg-white/5 hover:text-white transition-all text-left" data-tab="mentions">
+                            <span class="material-symbols-outlined text-base tab-icon">gavel</span>
+                            <span class="flex-1">Mentions Légales</span>
+                        </button>
+                    </div>
+
+                    <!-- Direct WhatsApp Assistance Card -->
+                    <div class="mt-4 p-3.5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 text-center">
+                        <div class="w-8 h-8 mx-auto mb-2 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                            💬
+                        </div>
+                        <p class="text-xs font-bold text-white">Besoin d'aide immédiate ?</p>
+                        <p class="text-[11px] text-gray-400 mt-0.5">Assistance 7j/7 sur WhatsApp</p>
+                        <a href="https://wa.me/213667425172" target="_blank" rel="noopener noreferrer"
+                           class="mt-2.5 inline-block w-full py-2 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs transition-all shadow-md shadow-emerald-500/20">
+                            Discuter au +213 667 42 51 72
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Panel Content -->
+            <section class="lg:col-span-8 xl:col-span-9">
+
+                <!-- TAB 1: LIVRAISON & RETOURS -->
+                <div id="tab-content-livraison" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-2xl">
+                                🚚
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Livraison & Retours</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Expédition rapide et sécurisée dans les 58 wilayas d'Algérie</p>
+                            </div>
+                        </div>
+
+                        <!-- Key Highlights Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                                <div class="text-primary font-black text-xl mb-1">58 Wilayas</div>
+                                <div class="text-xs text-gray-400">Couverture nationale intégrale à domicile ou en Stop Desk.</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                                <div class="text-emerald-400 font-black text-xl mb-1">Gratuite dès 15 000 DA</div>
+                                <div class="text-xs text-gray-400">Livraison offerte sur toute commande égale ou supérieure à 15 000 DA.</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+                                <div class="text-accent font-black text-xl mb-1">1 à 3 Jours</div>
+                                <div class="text-xs text-gray-400">Délais rapides : 24h-48h pour le Nord, 48h-72h pour le Sud.</div>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Text Content -->
+                        <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
+                            <div class="p-4 rounded-2xl bg-[#121829] border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2 flex items-center gap-2">
+                                    <span>📦</span> Expédition et Délais de Livraison
+                                </h3>
+                                <p>
+                                    Nous livrons dans les <strong>58 wilayas d'Algérie</strong> grâce à nos partenaires logistiques certifiés (Yalidine Express, Pro Colis). 
+                                    Les délais constatés sont généralement de <strong>24 à 48 heures</strong> pour Sétif, Alger, Constantine, Oran et les wilayas du Nord et Hauts-Plateaux, et de <strong>48 à 72 heures</strong> pour les wilayas du Sud et Sahara.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#121829] border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2 flex items-center gap-2">
+                                    <span>🛡️</span> Paiement à la Livraison & Vérification du Colis
+                                </h3>
+                                <p>
+                                    Chez Phone Haven, votre sérénité est primordiale. Vous bénéficiez du <strong>paiement en espèces à la livraison (main à main)</strong>. 
+                                    <strong>Vous pouvez vérifier votre commande à la réception</strong> en présence du livreur avant de payer afin de vous assurer de la conformité du modèle, des accessoires et de son parfait état.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#121829] border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2 flex items-center gap-2">
+                                    <span>🔄</span> Politique de Retour & Échange sous 48 Heures
+                                </h3>
+                                <p>
+                                    Un retour ou un échange est possible sous un délai de <strong>48 heures (2 jours ouvrables)</strong> suivant la date de réception du colis, à condition que :
+                                </p>
+                                <ul class="list-disc pl-5 mt-2 space-y-1.5 text-gray-400">
+                                    <li>L'appareil ou accessoire soit dans son <strong>emballage d'origine intact et scellé</strong> (non ouvert pour les produits scellés d'usine).</li>
+                                    <li>L'article soit complet avec l'ensemble des câbles, manuels, adaptateurs et accessoires fournis.</li>
+                                    <li>Le produit ne présente aucune trace d'usure, rayure, choc ou utilisation anormale.</li>
+                                    <li>L'article soit impérativement accompagné de la <strong>facture d'achat ou du bon de livraison Phone Haven</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- CTA to Interactive Coverage Map -->
+                        <div class="mt-8 p-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Consulter les tarifs exacts de votre wilaya</h4>
+                                <p class="text-xs text-gray-400">Explorez notre carte interactive des 58 wilayas.</p>
+                            </div>
+                            <a href="index.html#coverage-section" class="px-5 py-2.5 rounded-xl bg-primary text-black font-bold text-xs hover:bg-amber-400 transition-all">
+                                Voir la Carte Interactive →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: GARANTIE & SAV -->
+                <div id="tab-content-garantie" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent text-2xl">
+                                🛡️
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Garantie & Service Après-Vente</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Produits 100% originaux certifiés avec garantie de 6 mois</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold mb-6 flex items-center gap-3">
+                            <span class="text-2xl">✅</span>
+                            <span>Engagement d'authenticité : Tous les smartphones et accessoires vendus sur Phone Haven sont 100 % originaux et neufs.</span>
+                        </div>
+
+                        <div class="space-y-6 text-sm text-gray-300 leading-relaxed">
+                            <div class="p-5 rounded-2xl bg-[#121829] border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2 text-primary">Durée & Portée de la Garantie</h3>
+                                <p>
+                                    Tous nos appareils bénéficient d'une <strong>garantie de 6 mois</strong> à compter de la date de livraison. 
+                                    En cas de défaut de fabrication matériel ou de panne anormale survenue dans le cadre d'un usage normal, 
+                                    notre équipe technique qualifiée procède soit à <strong>la réparation immédiate avec des pièces certifiées</strong>, 
+                                    soit au <strong>remplacement direct de l'appareil</strong> par un produit neuf équivalent.
+                                </p>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-[#121829] border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2 text-accent">Ce que la Garantie NE COUVRE PAS</h3>
+                                <p class="mb-3 text-gray-400">
+                                    Conformément aux normes constructeurs, la garantie légale s'applique exclusivement aux défauts de fabrication et exclut formellement :
+                                </p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-400">
+                                    <li><strong>La casse physique :</strong> écran fissuré, bris de vitre arrière, déformation du châssis suite à une chute ou pression.</li>
+                                    <li><strong>Les dommages causés par des liquides :</strong> oxydation, infiltration d'eau ou humidité interne (même sur les appareils certifiés IP68).</li>
+                                    <li><strong>La mauvaise utilisation :</strong> utilisation d'un chargeur contrefait ou non homologué, surtension électrique, brûlure du port de charge.</li>
+                                    <li><strong>Toute intervention tierce :</strong> démontage, tentative de réparation hors de notre atelier, ou modification logicielle non officielle (flash non autorisé, root).</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+                                <h3 class="font-bold text-white text-base mb-2">📜 Conservez votre Facture</h3>
+                                <p class="text-gray-400">
+                                    Pour toute prise en charge sous garantie ou demande auprès du service après-vente (SAV), la présentation de votre <strong>facture d'achat d'origine ou bon de livraison numéroté</strong> est strictement obligatoire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 text-center sm:text-left p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <p class="font-bold text-white text-sm">Une question concernant votre garantie ou une panne ?</p>
+                                <p class="text-xs text-gray-400">Contactez directement notre responsable SAV à Sétif.</p>
+                            </div>
+                            <a href="https://wa.me/213667425172" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-accent text-white font-bold text-xs hover:bg-rose-600 transition-all shadow-lg shadow-accent/20">
+                                Support SAV WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: FAQ -->
+                <div id="tab-content-faq" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl">
+                                ❓
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Foire Aux Questions (FAQ)</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Retrouvez les réponses aux questions les plus courantes de nos clients</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Accordion Items -->
+                        <div class="space-y-3.5">
+                            <!-- Q1 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]" open>
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Les produits vendus sont-ils 100% originaux ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    <strong>Oui, 100 % originaux et certifiés.</strong> Nous ne commercialisons aucune contrefaçon, clone ou copie. Tous nos téléphones et accessoires sont authentiques, neufs sous emballage d'origine, et fournis avec facture détaillée.
+                                </div>
+                            </details>
+
+                            <!-- Q2 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]">
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Comment puis-je commander ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    Vous pouvez commander très simplement :<br>
+                                    1. <strong>Directement sur notre site web</strong> en sélectionnant votre produit et en renseignant votre nom, téléphone et wilaya.<br>
+                                    2. <strong>Par message WhatsApp</strong> au <a href="https://wa.me/213667425172" class="text-primary font-bold hover:underline">+213 667 42 51 72</a> en nous envoyant la photo ou le nom de l'appareil souhaité. Notre équipe confirme votre commande en quelques minutes.
+                                </div>
+                            </details>
+
+                            <!-- Q3 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]">
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Puis-je payer à la livraison ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    <strong>Oui !</strong> Le paiement se fait exclusivement en espèces à la livraison (main à main) après réception et vérification de votre produit par vous-même auprès du livreur.
+                                </div>
+                            </details>
+
+                            <!-- Q4 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]">
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Proposez-vous des réparations pour smartphones ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    <strong>Oui, notre atelier de réparation professionnel à Sétif</strong> prend en charge tous types d'interventions :
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-400">
+                                        <li>Changement d'écran tactile et dalle OLED / LCD d'origine.</li>
+                                        <li>Remplacement de batterie haute capacité avec diagnostic d'autonomie.</li>
+                                        <li>Réparation de connecteurs de charge Type-C / Lightning.</li>
+                                        <li>Remplacement de caméras, haut-parleurs, micros et boutons.</li>
+                                        <li>Désoxydation après contact avec l'eau et maintenance logicielle.</li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <!-- Q5 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]">
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Où se trouve votre boutique physique ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    Notre boutique est située à <strong>Sétif, Algérie</strong> (Centre-Ville). Vous êtes les bienvenus tous les jours pour découvrir nos produits en exposition, tester les appareils ou déposer un téléphone en réparation.
+                                </div>
+                            </details>
+
+                            <!-- Q6 -->
+                            <details class="group p-4 rounded-2xl bg-[#121829] border border-white/10 transition-all open:border-primary/40 open:bg-[#141C33]">
+                                <summary class="font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-3">
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-primary">Q.</span> Quels sont les frais de livraison pour ma wilaya ?
+                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+                                </summary>
+                                <div class="mt-3 text-xs sm:text-sm text-gray-300 leading-relaxed pl-6 border-l-2 border-primary/40">
+                                    Les tarifs varient selon la wilaya et le mode (À Domicile ou Stop Desk). Vous pouvez consulter en temps réel l'ensemble des 58 wilayas sur notre <strong><a href="index.html#coverage-section" class="text-primary hover:underline">Carte Interactive des Tarifs</a></strong>. La livraison est <strong>gratuite à partir de 15 000 DA</strong> !
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: NOUS CONTACTER -->
+                <div id="tab-content-contact" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl">
+                                📞
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Nous Contacter</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Notre équipe est à votre écoute 7j/7 pour vous conseiller et vous accompagner</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Channels Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <!-- WhatsApp -->
+                            <div class="p-5 rounded-2xl bg-[#121829] border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl flex-shrink-0">
+                                    💬
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">WhatsApp Support Direct</h3>
+                                    <p class="text-xs text-gray-400 mt-0.5">Assistance rapide, devis & commandes en direct.</p>
+                                    <div class="mt-2.5">
+                                        <a href="https://wa.me/213667425172" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-emerald-400 font-extrabold text-sm hover:underline">
+                                            <span>+213 667 42 51 72</span>
+                                            <span>→</span>
+                                        </a>
+                                    </div>
+                                    <span class="inline-block mt-1 text-[10px] text-gray-400 font-medium">Disponible 7j/7 · 09h00 - 22h00</span>
+                                </div>
+                            </div>
+
+                            <!-- Magasin Sétif -->
+                            <div class="p-5 rounded-2xl bg-[#121829] border border-primary/30 hover:border-primary/60 transition-all flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-primary/20 text-primary flex items-center justify-center text-2xl flex-shrink-0">
+                                    📍
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">Boutique Phone Haven</h3>
+                                    <p class="text-xs text-gray-400 mt-0.5">Sétif Centre-Ville, Algérie</p>
+                                    <div class="mt-2 text-xs text-gray-300 space-y-1">
+                                        <p><strong>Samedi au Jeudi :</strong> 09h00 – 20h00</p>
+                                        <p><strong>Vendredi :</strong> 15h00 – 20h00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Networks & Linktree -->
+                        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+                            <h3 class="font-bold text-white text-base mb-3">Rejoignez-nous sur nos Réseaux Sociaux</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <a href="https://www.tiktok.com/@phone.haven19" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-2.5 text-xs font-bold text-white transition-all">
+                                    <span class="text-primary font-black">TikTok</span>
+                                    <span class="text-[10px] text-gray-400 ml-auto">@phone.haven19</span>
+                                </a>
+                                <a href="https://www.instagram.com/phone_haven_19" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-2.5 text-xs font-bold text-white transition-all">
+                                    <span class="text-accent font-black">Instagram</span>
+                                    <span class="text-[10px] text-gray-400 ml-auto">@phone_haven_19</span>
+                                </a>
+                                <a href="https://www.facebook.com/phonehaven9" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-2.5 text-xs font-bold text-white transition-all">
+                                    <span class="text-blue-400 font-black">Facebook</span>
+                                    <span class="text-[10px] text-gray-400 ml-auto">phonehaven9</span>
+                                </a>
+                                <a href="https://linktr.ee/phonehaven19" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 flex items-center gap-2.5 text-xs font-bold text-emerald-400 transition-all">
+                                    <span>🌐 Linktree</span>
+                                    <span class="text-[10px] text-emerald-300 ml-auto">Tous nos liens</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 5: CONFIDENTIALITÉ -->
+                <div id="tab-content-confidentialite" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-2xl">
+                                🔒
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Politique de Confidentialité</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Protection et respect de vos données personnelles</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5 text-sm text-gray-300 leading-relaxed">
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-amber-300">
+                                ⚖️ <strong>Note d'information légale :</strong> La présente politique est rédigée dans le respect des règles de confidentialité et des bonnes pratiques relatives au commerce électronique en Algérie (notamment la Loi 18-07 relative à la protection des données à caractère personnel).
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">1. Données collectées</h3>
+                                <p class="text-gray-400">
+                                    Lors de la passation d'une commande sur le site Phone Haven, nous recueillons uniquement les informations indispensables au traitement et à l'acheminement de vos achats : <strong>Nom et prénom, numéro de téléphone portable, wilaya, commune et adresse de livraison</strong>.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">2. Finalité du traitement</h3>
+                                <p class="text-gray-400">
+                                    Vos coordonnées sont strictement utilisées pour :
+                                    <br>• Confirmer votre commande par téléphone ou WhatsApp.
+                                    <br>• Imprimer le bordereau d'expédition et permettre au transporteur de vous contacter à l'arrivée du colis.
+                                    <br>• Assurer le suivi après-vente et l'application de votre garantie de 6 mois.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">3. Non-divulgation à des tiers</h3>
+                                <p class="text-gray-400">
+                                    Phone Haven ne vend, ne loue, ni ne cède vos données personnelles à des tiers à des fins publicitaires. Vos coordonnées ne sont transmises qu'aux transporteurs partenaires dans l'unique but de livrer votre commande.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">4. Vos droits d'accès et de rectification</h3>
+                                <p class="text-gray-400">
+                                    Conformément à la réglementation, vous disposez d'un droit permanent d'accès, de modification ou de suppression de vos informations personnelles. Vous pouvez exercer ce droit à tout moment en nous envoyant un message WhatsApp au <strong>+213 667 42 51 72</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 6: CONDITIONS GÉNÉRALES -->
+                <div id="tab-content-conditions" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-2xl">
+                                📜
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Conditions Générales de Vente (CGV)</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Règles et engagements applicables aux commandes Phone Haven</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-5 text-sm text-gray-300 leading-relaxed">
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">Article 1 – Objet et Champ d'application</h3>
+                                <p class="text-gray-400">
+                                    Les présentes Conditions Générales régissent les ventes conclues entre la boutique Phone Haven (Sétif, Algérie) et toute personne effectuant un achat via le site web, par WhatsApp ou directement en boutique.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">Article 2 – Commandes et Validation</h3>
+                                <p class="text-gray-400">
+                                    Toute commande passée en ligne est sujette à une vérification téléphonique préalable. Une commande n'est définitivement expédiée qu'après confirmation explicite par le client. Phone Haven se réserve le droit d'annuler toute commande en cas de coordonnées incomplètes ou erronées.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">Article 3 – Prix et Disponibilité</h3>
+                                <p class="text-gray-400">
+                                    Les prix des produits sont indiqués en <strong>Dinars Algériens (DA / DZD)</strong>. Les tarifs applicables sont ceux affichés au moment de la passation de commande, sous réserve de disponibilité des stocks.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">Article 4 – Paiement et Réception</h3>
+                                <p class="text-gray-400">
+                                    Le règlement s'effectue intégralement en espèces lors de la livraison du colis (Paiement à la livraison). Le client est autorisé et invité à vérifier l'état du produit en présence du transporteur avant de procéder au paiement.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="font-bold text-white text-base mb-1.5">Article 5 – Droit Applicable et Règlement des Litiges</h3>
+                                <p class="text-gray-400">
+                                    Les présentes conditions sont soumises à la législation algérienne. En cas de différend ou de réclamation, une solution amiable est toujours privilégiée via notre service client à Sétif.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 7: MENTIONS LÉGALES -->
+                <div id="tab-content-mentions" class="tab-panel hidden space-y-6">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white text-2xl">
+                                ⚖️
+                            </div>
+                            <div>
+                                <h2 class="text-2xl sm:text-3xl font-black text-white">Mentions Légales</h2>
+                                <p class="text-xs sm:text-sm text-gray-400">Informations administratives et éditeur du site</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-300 leading-relaxed">
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+                                <p><strong>Dénomination commerciale :</strong> Phone Haven (More than a Store, It's a Haven for Phones)</p>
+                                <p><strong>Activité :</strong> Vente au détail de smartphones, accessoires et services de maintenance & réparation</p>
+                                <p><strong>Siège & Boutique :</strong> Sétif, Algérie</p>
+                                <p><strong>Téléphone & WhatsApp :</strong> <a href="https://wa.me/213667425172" class="text-primary hover:underline">+213 667 42 51 72</a></p>
+                                <p><strong>Email officiel :</strong> contact.phonehaven19@gmail.com</p>
+                                <p><strong>Hébergement du site :</strong> Vercel Inc. (Plateforme Cloud sécurisée)</p>
+                            </div>
+
+                            <p class="text-xs text-gray-400 mt-4 leading-normal">
+                                <strong>Propriété intellectuelle :</strong> L'ensemble des logos, graphismes, textes et éléments visuels composant la marque Phone Haven sont protégés. Toute reproduction sans accord écrit préalable est interdite.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/40 backdrop-blur-2xl border-t border-white/15 pt-10 pb-8 px-4 sm:px-6 md:px-20 mt-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-xl overflow-hidden bg-white p-0.5">
+                    <img src="images/logo.jpeg" alt="Phone Haven" class="h-full w-full object-contain">
+                </div>
+                <div>
+                    <h3 class="font-display font-black text-white text-base">Phone Haven<span class="text-accent">.</span></h3>
+                    <p class="text-[11px] text-gray-400">Sétif, Algérie · Livraison express 58 wilayas</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-400">
+                <a href="info.html?tab=livraison" class="hover:text-primary transition-colors">Livraison & Retours</a>
+                <a href="info.html?tab=garantie" class="hover:text-primary transition-colors">Garantie</a>
+                <a href="info.html?tab=faq" class="hover:text-primary transition-colors">FAQ</a>
+                <a href="info.html?tab=contact" class="hover:text-primary transition-colors">Contact</a>
+                <a href="info.html?tab=confidentialite" class="hover:text-primary transition-colors">Confidentialité</a>
+                <a href="info.html?tab=conditions" class="hover:text-primary transition-colors">Conditions</a>
+            </div>
+
+            <p class="text-xs text-gray-500">© 2026 Phone Haven. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Script for Tab Switching & Hash Navigation -->
+    <script>
+        function setTab(tabName) {
+            // Hide all tab panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Remove active style from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Target panel & button
+            const targetPanel = document.getElementById('tab-content-' + tabName);
+            const targetBtn = document.querySelector('.tab-btn[data-tab=\"' + tabName + '\"]');
+
+            if (targetPanel) {
+                targetPanel.classList.remove('hidden');
+                if (targetBtn) targetBtn.classList.add('active');
+                window.scrollTo({ top: 120, behavior: 'smooth' });
+            } else {
+                // Default fallback to livraison
+                document.getElementById('tab-content-livraison').classList.remove('hidden');
+                document.querySelector('.tab-btn[data-tab=\"livraison\"]').classList.add('active');
+            }
+        }
+
+        // Tab button click listeners
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.getAttribute('data-tab');
+                history.replaceState(null, null, '?tab=' + tab);
+                setTab(tab);
+            });
+        });
+
+        // Initialize from URL params or hash
+        function initTabFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const tabParam = params.get('tab');
+            const hashParam = window.location.hash ? window.location.hash.replace('#', '') : null;
+            const chosen = tabParam || hashParam || 'livraison';
+            setTab(chosen);
+        }
+
+        window.addEventListener('DOMContentLoaded', initTabFromUrl);
+    </script>
+</body>
+
+</html>
