@@ -568,25 +568,82 @@ export async function cancelOrder(id) {
  * @param {string} phone - Customer phone number
  * @returns {Promise<Array>}
  */
+/**
+ * Get orders by customer phone number (with multi-format matching & memory sorting)
+ * @param {string} phone - Customer phone number
+ * @returns {Promise<Array>}
+ */
 export async function getOrdersByPhone(phone) {
+    if (!phone) return [];
     try {
+        const rawPhone = phone.toString().trim();
+        const rawDigits = rawPhone.replace(/\D/g, '');
+        if (!rawDigits) return [];
+
+        // Build list of possible phone formats stored in DB
+        const variants = new Set();
+        variants.add(rawPhone);
+        variants.add(rawPhone.replace(/\s+/g, ''));
+        variants.add(rawDigits);
+
+        let core9 = rawDigits;
+        if (rawDigits.startsWith('213') && rawDigits.length >= 11) {
+            core9 = rawDigits.slice(3);
+        } else if (rawDigits.startsWith('0') && rawDigits.length === 10) {
+            core9 = rawDigits.slice(1);
+        }
+
+        if (core9.length === 9) {
+            variants.add('0' + core9);
+            variants.add('+213' + core9);
+            variants.add('213' + core9);
+            variants.add(core9);
+        }
+
         const ordersCol = collection(db, 'orders');
-        const q = query(
-            ordersCol, 
-            where('customerPhone', '==', phone),
-            orderBy('createdAt', 'desc'),
-            limit(20)
-        );
-        const snapshot = await getDocs(q);
-        
-        return snapshot.docs.map(doc => ({ 
+        const variantArr = Array.from(variants).slice(0, 10);
+        let foundDocs = [];
+
+        // Try 'in' query without orderBy (avoids composite index requirement in Firestore)
+        try {
+            const q = query(
+                ordersCol,
+                where('customerPhone', 'in', variantArr),
+                limit(30)
+            );
+            const snapshot = await getDocs(q);
+            foundDocs = snapshot.docs;
+        } catch (inErr) {
+            console.debug("Firestore 'in' query failed, falling back to equality checks:", inErr);
+            for (const v of variantArr) {
+                try {
+                    const qSingle = query(ordersCol, where('customerPhone', '==', v), limit(20));
+                    const snapSingle = await getDocs(qSingle);
+                    snapSingle.docs.forEach(d => {
+                        if (!foundDocs.some(existing => existing.id === d.id)) {
+                            foundDocs.push(d);
+                        }
+                    });
+                } catch (e) {}
+            }
+        }
+
+        const orders = foundDocs.map(doc => ({ 
             id: doc.id, 
             ...doc.data(),
             createdAt: toDate(doc.data().createdAt)
         }));
-        
+
+        // Sort descending by date in memory
+        orders.sort((a, b) => {
+            const tA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const tB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return tB - tA;
+        });
+
+        return orders;
     } catch (error) {
-        console.error("❌ Error fetching customer orders:", error);
+        console.error("❌ Error fetching customer orders by phone:", error);
         return [];
     }
 }

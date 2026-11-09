@@ -748,21 +748,25 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6">
                                 <div class="space-y-2 xs:space-y-3">
                                     <label
-                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/60 ml-1">
-                                        Numéro de Commande
+                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-primary ml-1 flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">phone_iphone</span>
+                                        Numéro de Téléphone (Recommandé)
                                     </label>
-                                    <input id="tracking-order-id"
-                                        class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
-                                        placeholder="Ex: PH-2026-XXXX" type="text" />
+                                    <input id="tracking-phone"
+                                        class="w-full bg-[rgba(255,255,255,0.06)] backdrop-blur-lg border border-[rgba(255,255,255,0.15)] rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all placeholder:text-slate-400 text-white"
+                                        placeholder="06 XX XX XX XX / 05 / 07..." type="tel" />
+                                    <p class="text-[10px] text-gray-400 ml-1">Le numéro de téléphone utilisé lors de votre commande.</p>
                                 </div>
                                 <div class="space-y-2 xs:space-y-3">
                                     <label
-                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/60 ml-1">
-                                        Téléphone (Optionnel)
+                                        class="text-[9px] xs:text-[10px] font-black uppercase tracking-widest text-white/70 ml-1 flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">receipt_long</span>
+                                        Numéro de Commande (Optionnel)
                                     </label>
-                                    <input id="tracking-phone"
-                                        class="w-full bg-[rgba(255,255,255,0.04)] backdrop-blur-lg border border-[rgba(255,255,255,0.1)]  border-none rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-400"
-                                        placeholder="05XX XX XX XX" type="tel" />
+                                    <input id="tracking-order-id"
+                                        class="w-full bg-[rgba(255,255,255,0.06)] backdrop-blur-lg border border-[rgba(255,255,255,0.15)] rounded-xl xs:rounded-2xl py-3 xs:py-4 px-4 xs:px-6 text-sm font-medium focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all placeholder:text-slate-400 text-white"
+                                        placeholder="Ex: PH-2026-XXXX" type="text" />
+                                    <p class="text-[10px] text-gray-400 ml-1">Facultatif si vous avez saisi votre numéro de téléphone.</p>
                                 </div>
                             </div>
 
@@ -785,6 +789,22 @@
             <!-- Tracking Results (Hidden by default) -->
             <div id="tracking-results" class="hidden px-3 xs:px-4 sm:px-6 md:px-20 py-6 xs:py-8">
                 <div class="max-w-4xl mx-auto space-y-6 xs:space-y-8">
+                    <!-- Multiple Orders Selection (If multiple orders found for this phone) -->
+                    <div id="multiple-orders-container" class="hidden glass rounded-3xl xs:rounded-[2rem] border border-primary/40 bg-gradient-to-br from-[#1A233A]/80 to-[#101626]/80 p-5 sm:p-6 shadow-2xl">
+                        <div class="flex items-center justify-between gap-3 mb-4 border-b border-white/10 pb-3">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-8 h-8 rounded-xl bg-primary/20 text-primary flex items-center justify-center font-bold text-base">📱</span>
+                                <div>
+                                    <h4 class="font-display font-black text-white text-sm sm:text-base">Commandes trouvées</h4>
+                                    <p class="text-[11px] text-gray-400">Cliquez sur une commande pour afficher son suivi détaillé en temps réel.</p>
+                                </div>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-primary/20 text-primary font-bold border border-primary/30" id="multiple-orders-count">0</span>
+                        </div>
+                        <div id="multiple-orders-list" class="space-y-2.5">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
 
                     <!-- Order Header Card -->
                     <div class="glass rounded-3xl xs:rounded-[2rem] border border-[rgba(255,255,255,0.15)] p-6 xs:p-8">
@@ -1114,7 +1134,7 @@
     </div>
 
     <script type="module">
-        import { getOrderById } from './db-service.js';
+        import { getOrderById, getOrdersByPhone } from './db-service.js';
 
         // Elements
         const trackBtn = document.getElementById('track-btn');
@@ -1283,9 +1303,9 @@
             let id = orderInput.value.trim().replace('#', '').toUpperCase();
             const phone = phoneInput.value.trim();
 
-            if (!id) {
-                showToast('⚠️ Veuillez entrer un numéro de commande', 'warning');
-                orderInput.focus();
+            if (!id && !phone) {
+                showToast('⚠️ Veuillez entrer votre numéro de téléphone ou de commande', 'warning');
+                if (phoneInput) phoneInput.focus();
                 return;
             }
 
@@ -1295,55 +1315,130 @@
             trackBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px] xs:text-[20px]">sync</span><span class="font-display text-xs xs:text-sm font-black tracking-wide">Recherche...</span>`;
 
             try {
-                const order = await getOrderById(id);
+                let orders = [];
 
-                if (!order || (phone && order.customerPhone !== phone)) {
-                    showToast('❌ Commande non trouvée', 'error');
-                    resultsContainer.classList.add('hidden');
-                    emptyState.classList.remove('hidden');
-                    return;
+                // 1. Recherche prioritaire par numéro de téléphone si renseigné
+                if (phone) {
+                    orders = await getOrdersByPhone(phone);
                 }
 
-                renderOrder(order);
-                resultsContainer.classList.remove('hidden');
-                emptyState.classList.add('hidden');
-                resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                showToast('✅ Commande trouvée !', 'success');
+                // 2. Recherche par numéro de commande si ID renseigné
+                if (id) {
+                    try {
+                        const orderById = await getOrderById(id);
+                        if (orderById) {
+                            if (phone) {
+                                // Vérifier si le téléphone correspond
+                                const normPhone = phone.replace(/\D/g, '').slice(-9);
+                                const orderNormPhone = (orderById.customerPhone || '').replace(/\D/g, '').slice(-9);
+                                if (normPhone && orderNormPhone && normPhone === orderNormPhone) {
+                                    orders = [orderById];
+                                } else if (!orders.length) {
+                                    orders = [orderById];
+                                }
+                            } else {
+                                orders = [orderById];
+                            }
+                        }
+                    } catch (idErr) {
+                        console.debug("Lookup by ID error:", idErr);
+                    }
+                }
 
-            } catch (error) {
-                console.error("Tracking error:", error);
-                showToast('⚠️ Erreur de connexion, réessayez', 'error');
-                // Demo mode: show sample order for testing
-                if (id === 'DEMO' || id === 'TEST') {
-                    const demoOrder = {
+                // Fallback démo pour les tests (si besoin)
+                if ((!orders || orders.length === 0) && (id === 'DEMO' || id === 'TEST' || phone === '0667425172')) {
+                    orders = [{
                         id: 'PH-DEMO-2026',
                         status: 'Shipped',
                         createdAt: new Date(),
                         total: 45000,
-                        customerName: 'Ahmed Benali',
-                        customerPhone: '0667425172',
-                        address: 'Rue des Frères Bouadou',
+                        customerName: 'Client Phone Haven',
+                        customerPhone: phone || '0667425172',
+                        address: 'Boulevard 1er Novembre',
                         commune: 'Sétif',
                         wilaya: 'Sétif',
-                        productName: 'Samsung Galaxy A54',
+                        productName: 'Samsung Galaxy A54 5G',
                         productImage: 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=400&q=80',
                         category: 'Téléphone',
                         quantity: 1
-                    };
-                    renderOrder(demoOrder);
-                    resultsContainer.classList.remove('hidden');
-                    emptyState.classList.add('hidden');
-                    resultsContainer.scrollIntoView({ behavior: 'smooth' });
-                    showToast('🎭 Mode démo activé', 'info');
+                    }];
                 }
+
+                if (!orders || orders.length === 0) {
+                    showToast('❌ Aucune commande trouvée pour ces coordonnées', 'error');
+                    resultsContainer.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
+                    emptyState.scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+
+                // Gestion des commandes multiples pour ce téléphone
+                const multiContainer = document.getElementById('multiple-orders-container');
+                const multiList = document.getElementById('multiple-orders-list');
+                const multiCount = document.getElementById('multiple-orders-count');
+
+                if (orders.length > 1 && multiContainer && multiList) {
+                    multiCount.textContent = `${orders.length} commandes`;
+                    window.allTrackedOrders = orders;
+
+                    multiList.innerHTML = orders.map((ord, idx) => `
+                        <div class="p-3.5 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-white/10 transition-all cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+                             onclick="window.selectSpecificOrder('${ord.id}')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg overflow-hidden bg-black/20 flex-shrink-0 border border-white/10">
+                                    <img src="${ord.productImage || 'images/logo.jpeg'}" class="w-full h-full object-cover" alt="${ord.productName || 'Produit'}">
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-white text-xs sm:text-sm">${ord.orderNumber || ord.id.substring(0, 12).toUpperCase()}</span>
+                                        <span class="text-[9px] px-2 py-0.5 rounded-full border ${getStatusClass(ord.status)} font-semibold">${getStatusLabel(ord.status)}</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-400 mt-0.5">${ord.productName || 'Produit'} · ${formatDate(ord.createdAt)}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 self-end sm:self-center">
+                                <span class="font-bold text-primary text-xs sm:text-sm">${formatPrice(ord.total)}</span>
+                                <span class="text-xs text-primary font-bold">Sélectionner →</span>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    multiContainer.classList.remove('hidden');
+                } else if (multiContainer) {
+                    multiContainer.classList.add('hidden');
+                }
+
+                // Afficher la première commande (la plus récente)
+                renderOrder(orders[0]);
+                resultsContainer.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                showToast(orders.length > 1 ? `✅ ${orders.length} commandes trouvées !` : '✅ Commande trouvée !', 'success');
+
+            } catch (error) {
+                console.error("Tracking error:", error);
+                showToast('⚠️ Erreur de connexion, réessayez', 'error');
             } finally {
                 trackBtn.disabled = false;
                 trackBtn.innerHTML = originalBtnContent;
             }
         }
 
+        // Sélectionner une commande parmi plusieurs
+        window.selectSpecificOrder = function(orderId) {
+            if (!window.allTrackedOrders) return;
+            const selected = window.allTrackedOrders.find(o => o.id === orderId);
+            if (selected) {
+                renderOrder(selected);
+                const headerCard = document.querySelector('#tracking-results .glass');
+                if (headerCard) headerCard.scrollIntoView({ behavior: 'smooth' });
+                showToast('Affichage de la commande ' + (selected.orderNumber || selected.id.substring(0, 10)), 'info');
+            }
+        };
+
         // Theme Toggle
         function initThemeToggle() {
+
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
@@ -1414,9 +1509,12 @@
 
             // Handle URL params for direct order tracking
             const urlParams = new URL(window.location.href).searchParams;
-            if (urlParams.has('order')) {
+            if (urlParams.has('phone')) {
+                phoneInput.value = urlParams.get('phone');
+                setTimeout(trackOrder, 400);
+            } else if (urlParams.has('order')) {
                 orderInput.value = urlParams.get('order');
-                setTimeout(trackOrder, 500);
+                setTimeout(trackOrder, 400);
             }
         });
 
