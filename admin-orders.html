@@ -8,7 +8,7 @@
     <title>Phone Haven / Terminal Logistique</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -424,27 +424,27 @@
                     <a href="admin-analytics.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Tableau de Bord</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_dashboard">Tableau de Bord</span>
                     </a>
                     <a href="admin-orders.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl active-nav font-bold transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory_2</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Commandes</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_orders">Commandes</span>
                     </a>
                     <a href="admin-products.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Catalogue</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_products">Catalogue</span>
                     </a>
                     <a href="admin-shipping.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">local_shipping</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Tarifs Livraison</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_shipping">Tarifs Livraison</span>
                     </a>
                     <a href="admin-reports.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Rapports</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_reports">Rapports</span>
                     </a>
                 </nav>
             </div>
@@ -506,6 +506,12 @@
                     <button
                         class="h-10 lg:h-12 px-4 lg:px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all shadow-2xl shadow-white/5 active:scale-95 whitespace-nowrap clickable">
                         <span class="hidden sm:inline">Initier </span>Commande
+                    </button>
+                
+                    <!-- Language Switcher -->
+                    <button id="admin-lang-toggle" class="flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                        <span class="text-sm">🇩🇿</span>
+                        <span class="hidden sm:inline">العربية</span>
                     </button>
                 </div>
             </header>
@@ -591,6 +597,8 @@
     </div>
 
     <script type="module">
+        import { initAdminLanguage } from './admin-i18n.js';
+        initAdminLanguage();
         import { getOrders } from './db-service.js';
 
         const tableBody = document.getElementById('orders-table-body');

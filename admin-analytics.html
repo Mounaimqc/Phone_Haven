@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
-<html class="dark" lang="en">
+<!DOCTYPE html>
+<html class="dark" lang="fr" dir="ltr">
 
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Phone Haven / Analytics Node</title>
+    <title>Tableau de Bord & Analytique | Phone Haven Admin</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -31,73 +31,19 @@
                         "background-dark": "#0B0F19",
                         "navy-card": "#151B2D",
                         "navy-surface": "#1A2238",
-                        "success": "#10b981",
-                        "accent": "#FFBA08",
-                        "services": "#06b6d4",
+                        "success": "#10B981"
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
-                        "body": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "3xl": "1.5rem",
-                        "4xl": "2rem",
-                    },
-                    screens: {
-                        'xs': '320px',
-                        'sm': '640px',
-                        'md': '768px',
-                        'lg': '1024px',
-                        'xl': '1280px',
+                        "sans": ["Inter", "sans-serif"],
+                        "arabic": ["Cairo", "Tahoma", "sans-serif"]
                     }
-                },
-            },
+                }
+            }
         };
     </script>
+
     <style>
-        body {
-            background-color: #020617;
-            font-family: 'Inter', sans-serif;
-            color: #f8fafc;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .terminal-border {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .font-display {
-            font-family: 'Outfit', sans-serif;
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .active-nav {
-            background: rgba(255, 186, 8, 0.15) !important;
-            border-left: 3px solid #FFBA08 !important;
-            color: #FFBA08 !important;
-            box-shadow: 0 0 20px rgba(255, 186, 8, 0.25);
-        }
-    </style>
-    
-<style>
-        /* ✅ PHONE HAVEN BRAND THEME */
         :root {
             --brand-gold: #FFBA08;
             --brand-coral: #FF3366;
@@ -111,331 +57,233 @@
             color: #E2E8F0;
         }
 
-        .tech-pattern-bg {
-            background-color: #0B0F19;
-            background-image: 
-                radial-gradient(ellipse at 80% 10%, rgba(255, 186, 8, 0.09) 0%, transparent 50%),
-                radial-gradient(ellipse at 15% 60%, rgba(255, 51, 102, 0.07) 0%, transparent 50%),
-                url('images/tech-pattern.svg');
-            background-repeat: repeat;
-            background-size: auto, auto, 360px 360px;
-            background-attachment: fixed;
+        .font-arabic, html[dir="rtl"] body {
+            font-family: 'Cairo', 'Inter', sans-serif !important;
         }
 
-        /* ✅ SIGNATURE PHONE HAVEN GRADIENT (GOLD TO CORAL) */
-        .gradient-bg {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
+        .terminal-border {
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF8040 50%, #FF3366 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .active-nav {
+            background: linear-gradient(90deg, rgba(255, 186, 8, 0.15) 0%, rgba(255, 51, 102, 0.05) 100%);
+            border-left: 3px solid #FFBA08;
+            color: #FFBA08;
         }
 
-        .gradient-gold {
-            background: linear-gradient(135deg, #FFD166 0%, #FFBA08 50%, #F59E0B 100%);
+        html[dir="rtl"] .active-nav {
+            border-left: none;
+            border-right: 3px solid #FFBA08;
+            background: linear-gradient(270deg, rgba(255, 186, 8, 0.15) 0%, rgba(255, 51, 102, 0.05) 100%);
         }
 
-        .gradient-coral {
-            background: linear-gradient(135deg, #FF6B8B 0%, #FF3366 100%);
-        }
-
-        .gradient-hover:hover {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
-        }
-
-        /* ✅ LUXURY GLASS & CARDS */
         .glass {
-            background: rgba(20, 26, 43, 0.82);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
-        .glass-light {
-            background: rgba(26, 34, 56, 0.88);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 186, 8, 0.2);
+        .glow-gold {
+            box-shadow: 0 0 25px rgba(255, 186, 8, 0.2);
         }
-
-        .glass-card {
-            background: rgba(21, 28, 46, 0.90);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(255, 186, 8, 0.4);
-            box-shadow: 0 12px 36px rgba(255, 186, 8, 0.12);
-        }
-
-        /* ✅ TEXT COLORS */
-        .text-heading {
-            color: #ffffff !important;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .text-body {
-            color: #E2E8F0 !important;
-        }
-
-        .text-muted {
-            color: #94A3B8 !important;
-        }
-
-        .text-accent-yellow {
-            color: #FFBA08 !important;
-            text-shadow: 0 0 14px rgba(255, 186, 8, 0.35);
-        }
-
-        .text-accent-pink {
-            color: #FF3366 !important;
-            text-shadow: 0 0 14px rgba(255, 51, 102, 0.35);
-        }
-
-        .text-accent-purple {
-            color: #FFD166 !important;
-        }
-
-        .text-secondary {
-            color: #FF3366 !important;
-        }
-
-        .text-services {
-            color: #06b6d4 !important;
-        }
-
-        /* ✅ HOVER EFFECTS */
-        .link-hover:hover {
-            color: #FFBA08 !important;
-            text-shadow: 0 0 14px rgba(255, 186, 8, 0.6) !important;
-            transition: all 0.2s ease;
-        }
-
-        /* ✅ INPUTS & FORMS */
-        .form-input {
-            color: #ffffff !important;
-            background-color: rgba(20, 26, 43, 0.85) !important;
-            border-color: rgba(255, 255, 255, 0.12) !important;
-        }
-
-        .form-input::placeholder {
-            color: #94A3B8 !important;
-        }
-
-        .form-input:focus, input:focus, select:focus, textarea:focus {
-            outline: none !important;
-            border-color: #FFBA08 !important;
-            box-shadow: 0 0 0 3px rgba(255, 186, 8, 0.25) !important;
-        }
-
-        .form-select {
-            color: #ffffff !important;
-            background-color: #141A2B !important;
-            border-color: rgba(255, 255, 255, 0.12) !important;
-        }
-
-        .form-select option {
-            color: #ffffff !important;
-            background-color: #141A2B !important;
-        }
-
-        .form-label {
-            color: #E2E8F0 !important;
-        }
-
-        /* ✅ STICKY HEADER SCROLLED */
-        #nav-header.scrolled {
-            background-color: rgba(11, 15, 25, 0.95) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-            border-bottom: 1px solid rgba(255, 186, 8, 0.25) !important;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-
-        /* ✅ ACCESSIBILITY */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible {
-            outline: 2px solid #FFBA08 !important;
-            outline-offset: 2px;
-        }
-
-        /* ✅ BUTTONS */
-        .btn-premium {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px -6px rgba(255, 186, 8, 0.4);
-        }
-        .btn-premium:active {
-            transform: translateY(0) scale(0.98);
-        }
-</style>
+    </style>
 </head>
 
-<body class="selection:bg-[#FFBA08]/30 antialiased overflow-hidden h-screen text-white bg-[#0B0F19] text-[#E2E8F0] tech-pattern-bg">
-    <div class="flex h-full w-full">
-        <!-- Sidebar -->
-        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20">
+<body class="bg-background-dark text-slate-100 font-sans antialiased overflow-x-hidden">
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-72 bg-black border-r terminal-border flex flex-col z-20 transition-all duration-300">
             <div class="p-8">
+                <!-- Brand Header -->
                 <div class="flex items-center gap-3 mb-10">
                     <div
-                        class="size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
+                        class="size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3">
                         <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
                     </div>
                     <div>
-                        <h1 class="font-display font-black text-white text-lg tracking-tighter">Phone Haven<span
-                                class="text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white italic">.</span>Terminal</h1>
-                        <p class="text-[9px] font-black uppercase tracking-[0.3em] text-white/80">Logistics Node Alpha
+                        <h1 class="font-display font-black text-white text-lg tracking-tighter">
+                            <span>Phone Haven</span><span class="text-primary italic">.</span>
+                        </h1>
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-white/60" data-i18n="brand_sub">
+                            Terminal Logistique Sétif
                         </p>
                     </div>
                 </div>
 
+                <!-- Navigation Links -->
                 <nav class="space-y-1.5">
                     <a href="admin-analytics.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl active-nav font-bold transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Tableau de Bord</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_dashboard">Tableau de Bord</span>
                     </a>
                     <a href="admin-orders.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory_2</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Commandes</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_orders">Commandes</span>
                     </a>
                     <a href="admin-products.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Catalogue</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_products">Catalogue</span>
                     </a>
                     <a href="admin-shipping.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">local_shipping</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Tarifs Livraison</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_shipping">Tarifs Livraison (58)</span>
                     </a>
                     <a href="admin-reports.html"
                         class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
-                        <span class="text-xs font-bold uppercase tracking-wider">Rapports</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_reports">Rapports</span>
                     </a>
                 </nav>
             </div>
 
+            <!-- Admin Profile & Logout -->
             <div class="mt-auto p-8 border-t terminal-border bg-slate-900/50">
                 <div class="flex items-center gap-4 mb-6">
-                    <div class="size-10 rounded-full border terminal-border overflow-hidden p-0.5">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A"
-                            class="w-full h-full object-cover rounded-full">
+                    <div class="size-10 rounded-full border border-primary/40 overflow-hidden p-0.5 bg-primary/10 flex items-center justify-center text-primary font-bold">
+                        PH
                     </div>
                     <div>
-                        <p class="text-xs font-black text-white">Administrator</p>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">Authorized</p>
+                        <p class="text-xs font-black text-white" data-i18n="admin_user">Administrateur</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-primary" data-i18n="admin_authorized">Session Active</p>
                     </div>
                 </div>
                 <a href="index.html"
-                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
-                    <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    Lock Session
+                    class="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[10px] font-black uppercase tracking-widest hover:bg-red-500/20 hover:text-red-400 border border-white/5 transition-all">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    <span data-i18n="lock_session">Déconnexion</span>
                 </a>
             </div>
         </aside>
 
-        <!-- Main Workspace -->
+        <!-- Main Content Area -->
         <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative overflow-hidden">
             <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none">
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,186,8,0.04),transparent)] pointer-events-none">
             </div>
 
+            <!-- Top Header with Language Switcher -->
             <header
-                class="h-20 border-b terminal-border px-10 flex items-center justify-between sticky top-0 z-10 glass">
-                <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50">Node_Alpha // Dashboard</h2>
-                <div class="flex items-center gap-6">
-                    <button
-                        class="size-12 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white transition-all">
-                        <span class="material-symbols-outlined">sync</span>
+                class="h-20 border-b terminal-border px-6 sm:px-10 flex items-center justify-between sticky top-0 z-10 glass">
+                <div class="flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                    <h2 class="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-white/80" data-i18n="dashboard_title">
+                        Tableau de Bord // Analytique
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <!-- 🌐 BILINGUAL LANGUAGE SWITCHER (FR / AR) -->
+                    <button id="admin-lang-toggle"
+                        class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                        <span class="text-sm">🇩🇿</span>
+                        <span>العربية</span>
                     </button>
-                    <div class="flex items-center gap-3 px-4 py-2 bg-primary/10 border border-primary/20 rounded-xl">
-                        <span class="size-2 rounded-full bg-primary animate-ping"></span>
-                        <span class="text-[9px] font-black uppercase tracking-widest text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">System Online</span>
+
+                    <!-- Refresh Button -->
+                    <button id="refresh-dashboard-btn"
+                        class="size-10 sm:size-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+                        title="Actualiser">
+                        <span class="material-symbols-outlined text-lg">sync</span>
+                    </button>
+
+                    <!-- Status Indicator -->
+                    <div class="hidden sm:flex items-center gap-2.5 px-3.5 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                        <span class="size-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-emerald-400" data-i18n="system_online">
+                            Système en Ligne
+                        </span>
                     </div>
                 </div>
             </header>
 
-            <div class="p-10 flex-1 overflow-y-auto space-y-10">
+            <div class="p-6 sm:p-10 flex-1 overflow-y-auto space-y-8 sm:space-y-10">
                 <!-- Metrics Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Metric 1: Inventory -->
                     <div
-                        class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
+                        class="bg-black/40 p-6 sm:p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-300">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">inventory_2</span>
-                            Inventory Control
+                            class="text-[10px] font-black uppercase tracking-[0.15em] text-white/70 mb-5 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm text-primary">inventory_2</span>
+                            <span data-i18n="kpi_inventory">Articles en Stock</span>
                         </p>
                         <div class="flex items-end justify-between">
-                            <h3 class="font-display text-4xl font-black text-white tracking-tighter"
-                                id="total-products-stat">0</h3>
-                            <span class="text-[10px] font-black text-emerald-400">+12.5%</span>
+                            <h3 class="font-display text-3xl sm:text-4xl font-black text-white tracking-tighter"
+                                id="total-products-stat">--</h3>
+                            <span class="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">+12%</span>
                         </div>
                     </div>
+
+                    <!-- Metric 2: Total Orders -->
                     <div
-                        class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
+                        class="bg-black/40 p-6 sm:p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-300">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">receipt_long</span>
-                            Total Transactions
+                            class="text-[10px] font-black uppercase tracking-[0.15em] text-white/70 mb-5 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm text-accent">receipt_long</span>
+                            <span data-i18n="kpi_orders">Total des Commandes</span>
                         </p>
                         <div class="flex items-end justify-between">
-                            <h3 class="font-display text-4xl font-black text-white tracking-tighter"
-                                id="total-orders-stat">0</h3>
-                            <span class="text-[10px] font-black text-emerald-400">+8.2%</span>
+                            <h3 class="font-display text-3xl sm:text-4xl font-black text-white tracking-tighter"
+                                id="total-orders-stat">--</h3>
+                            <span class="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">+8.2%</span>
                         </div>
                     </div>
+
+                    <!-- Metric 3: Gross Revenue -->
                     <div
-                        class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
+                        class="bg-black/40 p-6 sm:p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-300">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">payments</span>
-                            Gross Revenue
+                            class="text-[10px] font-black uppercase tracking-[0.15em] text-white/70 mb-5 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm text-emerald-400">payments</span>
+                            <span data-i18n="kpi_revenue">Chiffre d'Affaires Brut</span>
                         </p>
                         <div class="flex items-end justify-between">
-                            <h3 class="font-display text-2xl font-black text-white tracking-tighter"
-                                id="total-revenue-stat">0 د.ج</h3>
-                            <span class="text-[10px] font-black text-emerald-400">+4.1%</span>
+                            <h3 class="font-display text-xl sm:text-2xl font-black text-white tracking-tighter"
+                                id="total-revenue-stat">0 DA</h3>
+                            <span class="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">+4.1%</span>
                         </div>
                     </div>
+
+                    <!-- Metric 4: Average Order Value -->
                     <div
-                        class="bg-black/40 p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-500">
+                        class="bg-black/40 p-6 sm:p-8 rounded-3xl terminal-border group hover:border-primary/50 transition-all duration-300">
                         <p
-                            class="text-[10px] font-black uppercase tracking-[0.2em] text-white/80 mb-6 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">analytics</span>
-                            Average Yield
+                            class="text-[10px] font-black uppercase tracking-[0.15em] text-white/70 mb-5 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm text-amber-400">analytics</span>
+                            <span data-i18n="kpi_avg_order">Panier Moyen</span>
                         </p>
                         <div class="flex items-end justify-between">
-                            <h3 class="font-display text-2xl font-black text-white tracking-tighter"
-                                id="avg-order-stat">0 د.ج</h3>
-                            <span class="text-[10px] font-black text-emerald-400">+2.3%</span>
+                            <h3 class="font-display text-xl sm:text-2xl font-black text-white tracking-tighter"
+                                id="avg-order-stat">0 DA</h3>
+                            <span class="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">+2.3%</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Main Analysis Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-2 bg-black/40 p-10 rounded-[3rem] terminal-border flex flex-col h-[500px]">
-                        <div class="flex justify-between items-center mb-10">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Volume Trajectory Chart -->
+                    <div class="lg:col-span-2 bg-black/40 p-6 sm:p-10 rounded-[2.5rem] terminal-border flex flex-col h-[460px] sm:h-[500px]">
+                        <div class="flex justify-between items-center mb-8">
                             <div>
-                                <h3 class="font-display text-2xl font-black text-white tracking-tighter">Volume
-                                    Trajectory</h3>
-                                <p class="text-[10px] font-black uppercase tracking-widest text-white/80 mt-1">Growth
-                                    analysis over 6 month horizon</p>
+                                <h3 class="font-display text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="volume_trajectory">
+                                    Évolution des Ventes
+                                </h3>
+                                <p class="text-[10px] font-bold uppercase tracking-wider text-white/60 mt-1" data-i18n="volume_subtitle">
+                                    Analyse des performances et de la croissance sur 6 mois
+                                </p>
                             </div>
                             <div
-                                class="size-10 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] shadow-xl rounded-xl flex items-center justify-center text-black">
-                                <span class="material-symbols-outlined">trending_up</span>
+                                class="size-10 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-lg">trending_up</span>
                             </div>
                         </div>
+
+                        <!-- Vector SVG Chart -->
                         <div class="flex-1 relative">
                             <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 240">
                                 <defs>
@@ -446,98 +294,115 @@
                                 </defs>
                                 <path d="M0,200 Q150,180 300,120 T600,80 T800,40 V240 H0 Z" fill="url(#glow)"></path>
                                 <path d="M0,200 Q150,180 300,120 T600,80 T800,40" fill="none" stroke="#FFBA08"
-                                    stroke-width="4" stroke-linecap="round"
-                                    class="drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]"></path>
-                                <line stroke="rgba(255,255,255,0.05)" x1="0" x2="800" y1="120" y2="120"></line>
-                                <line stroke="rgba(255,255,255,0.05)" x1="0" x2="800" y1="60" y2="60"></line>
-                                <line stroke="rgba(255,255,255,0.05)" x1="0" x2="800" y1="180" y2="180"></line>
+                                    stroke-width="3.5" stroke-linecap="round"></path>
+                                <line stroke="rgba(255,255,255,0.06)" x1="0" x2="800" y1="120" y2="120"></line>
+                                <line stroke="rgba(255,255,255,0.06)" x1="0" x2="800" y1="60" y2="60"></line>
+                                <line stroke="rgba(255,255,255,0.06)" x1="0" x2="800" y1="180" y2="180"></line>
                             </svg>
                             <div
-                                class="flex justify-between mt-6 text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
-                                <span>Period_A</span>
-                                <span>Period_B</span>
-                                <span>Period_C</span>
-                                <span>Period_D</span>
-                                <span>Period_E</span>
-                                <span>Current</span>
+                                class="flex justify-between mt-6 text-[10px] font-black uppercase tracking-wider text-white/70">
+                                <span data-i18n="period_1">Mois -5</span>
+                                <span data-i18n="period_2">Mois -4</span>
+                                <span data-i18n="period_3">Mois -3</span>
+                                <span data-i18n="period_4">Mois -2</span>
+                                <span data-i18n="period_5">Mois -1</span>
+                                <span data-i18n="period_current" class="text-primary font-bold">En cours</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-black/40 p-10 rounded-[3rem] terminal-border">
-                        <h3 class="font-display text-2xl font-black text-white tracking-tighter mb-10">Client
-                            Segmentation</h3>
-                        <div class="space-y-8">
-                            <div>
-                                <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
-                                    <span>Elite Tier</span>
-                                    <span class="text-white">15.4%</span>
+                    <!-- Client Segmentation -->
+                    <div class="bg-black/40 p-6 sm:p-10 rounded-[2.5rem] terminal-border flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display text-xl sm:text-2xl font-black text-white tracking-tight mb-8" data-i18n="client_segmentation">
+                                Segmentation Clients
+                            </h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <div
+                                        class="flex justify-between text-[10px] font-black uppercase tracking-wider text-white/70 mb-2">
+                                        <span data-i18n="elite_tier">Clients VIP (+50 000 DA)</span>
+                                        <span class="text-primary font-bold">15.4%</span>
+                                    </div>
+                                    <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full" style="width: 15.4%"></div>
+                                    </div>
                                 </div>
-                                <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                    <div class="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-                                        style="width: 15%"></div>
+                                <div>
+                                    <div
+                                        class="flex justify-between text-[10px] font-black uppercase tracking-wider text-white/70 mb-2">
+                                        <span data-i18n="recurring_tier">Clients Fidèles</span>
+                                        <span class="text-emerald-400 font-bold">45.2%</span>
+                                    </div>
+                                    <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-emerald-400 rounded-full" style="width: 45.2%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div
+                                        class="flex justify-between text-[10px] font-black uppercase tracking-wider text-white/70 mb-2">
+                                        <span data-i18n="new_tier">Nouveaux Clients</span>
+                                        <span class="text-accent font-bold">39.4%</span>
+                                    </div>
+                                    <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-accent rounded-full" style="width: 39.4%"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
-                                    <span>Recurring</span>
-                                    <span class="text-white">45.2%</span>
-                                </div>
-                                <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                    <div class="h-full bg-emerald-400 rounded-full" style="width: 45%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div
-                                    class="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60 mb-3">
-                                    <span>New Entries</span>
-                                    <span class="text-white">32.9%</span>
-                                </div>
-                                <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                    <div class="h-full bg-amber-400 rounded-full" style="width: 33%"></div>
-                                </div>
-                            </div>
-                            <div class="mt-12 p-6 glass rounded-2xl">
-                                <p class="text-[9px] font-black uppercase tracking-widest text-white/80 mb-2 italic">
-                                    Recommendation Engine</p>
-                                <p class="text-xs text-white/80 leading-relaxed font-medium">Focus acquisition protocols
-                                    on Elite Tier clients to optimize yield trajectory in Q3.</p>
-                            </div>
+                        </div>
+
+                        <!-- Recommendations Engine -->
+                        <div class="mt-8 p-5 bg-white/5 border border-white/10 rounded-2xl">
+                            <p class="text-[9px] font-black uppercase tracking-widest text-primary mb-1.5 flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-xs">tips_and_updates</span>
+                                <span data-i18n="recommendation_title">Conseils & Recommandations</span>
+                            </p>
+                            <p class="text-xs text-white/80 leading-relaxed font-medium" data-i18n="recommendation_text">
+                                Privilégier le réassort des smartphones les plus vendus et fidéliser les clients réguliers avec des offres personnalisées.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Recent Node Activity -->
-                <div class="bg-black/40 rounded-[3rem] terminal-border overflow-hidden pb-10">
-                    <div class="p-10 border-b terminal-border flex justify-between items-center bg-white/5">
-                        <h3 class="font-display text-2xl font-black text-white tracking-tighter">Recent Transmissions
-                        </h3>
+                <!-- Recent Orders Activity -->
+                <div class="bg-black/40 rounded-[2.5rem] terminal-border overflow-hidden pb-8">
+                    <div class="p-6 sm:p-8 border-b terminal-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/5">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <h3 class="font-display text-xl sm:text-2xl font-black text-white tracking-tight" data-i18n="recent_transmissions">
+                                Commandes Récentes
+                            </h3>
+                        </div>
                         <a href="admin-orders.html"
-                            class="h-10 px-6 bg-[rgba(255,255,255,0.06)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-black text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all flex items-center">Open
-                            Full Ledger</a>
+                            class="h-10 px-5 bg-white/5 hover:bg-primary hover:text-black border border-white/10 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-1.5"
+                            data-i18n="open_ledger">
+                            Toutes les commandes →
+                        </a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
                             <thead>
-                                <tr class="border-b terminal-border">
-                                    <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
-                                        Node_ID</th>
-                                    <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
-                                        Client</th>
-                                    <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80">
-                                        State</th>
-                                    <th
-                                        class="px-10 py-5 text-[10px] font-black uppercase tracking-widest text-white/80 text-right">
-                                        Value</th>
+                                <tr class="border-b terminal-border text-white/60">
+                                    <th class="px-6 sm:px-10 py-4 text-[10px] font-black uppercase tracking-widest" data-i18n="th_id">
+                                        Réf. Commande
+                                    </th>
+                                    <th class="px-6 sm:px-10 py-4 text-[10px] font-black uppercase tracking-widest" data-i18n="th_client">
+                                        Client & Wilaya
+                                    </th>
+                                    <th class="px-6 sm:px-10 py-4 text-[10px] font-black uppercase tracking-widest" data-i18n="th_status">
+                                        Statut
+                                    </th>
+                                    <th class="px-6 sm:px-10 py-4 text-[10px] font-black uppercase tracking-widest text-right" data-i18n="th_value">
+                                        Montant
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="recent-orders-body" class="divide-y terminal-border">
-                                <!-- Data Injected -->
+                                <tr>
+                                    <td colspan="4" class="px-10 py-8 text-center text-xs text-white/50" data-i18n="loading_orders">
+                                        Chargement des commandes...
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -548,65 +413,119 @@
 
     <script type="module">
         import { getProducts, getOrders } from './db-service.js';
+        import { initAdminLanguage, formatPriceI18n, getStatusLabelI18n, getAdminLanguage, t } from './admin-i18n.js';
 
+        // Elements
         const totalProductsLabel = document.getElementById('total-products-stat');
         const totalOrdersLabel = document.getElementById('total-orders-stat');
         const totalRevenueLabel = document.getElementById('total-revenue-stat');
         const avgOrderLabel = document.getElementById('avg-order-stat');
         const recentOrdersBody = document.getElementById('recent-orders-body');
+        const refreshBtn = document.getElementById('refresh-dashboard-btn');
 
-        function formatPrice(price) {
-            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-        }
+        let cachedProducts = [];
+        let cachedOrders = [];
 
         async function loadDashboard() {
             try {
+                if (refreshBtn) {
+                    refreshBtn.classList.add('animate-spin');
+                }
+
                 const [products, orders] = await Promise.all([
                     getProducts(),
                     getOrders()
                 ]);
 
-                if (totalProductsLabel) totalProductsLabel.textContent = products.length;
-                if (totalOrdersLabel) totalOrdersLabel.textContent = orders.length;
+                cachedProducts = products || [];
+                cachedOrders = orders || [];
 
-                const validOrders = orders.filter(o => o.status !== 'Cancelled');
-                const totalRevenue = validOrders.reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
-                if (totalRevenueLabel) totalRevenueLabel.textContent = formatPrice(totalRevenue);
-
-                const avgOrder = validOrders.length > 0 ? totalRevenue / validOrders.length : 0;
-                if (avgOrderLabel) avgOrderLabel.textContent = formatPrice(avgOrder);
-
-                if (recentOrdersBody) {
-                    recentOrdersBody.innerHTML = '';
-                    orders.slice(0, 5).forEach(order => {
-                        const tr = document.createElement('tr');
-                        tr.className = 'hover:bg-white/5 transition-all cursor-pointer group';
-                        tr.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
-
-                        const statusClass = {
-                            'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
-                            'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
-                            'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5'
-                        }[order.status] || 'text-white/60 border-white/10';
-
-                        tr.innerHTML = `
-                            <td class="px-10 py-6 text-xs font-black text-white uppercase tracking-widest">#${order.id.substring(0, 8).toUpperCase()}</td>
-                            <td class="px-10 py-6 text-xs font-bold text-white/80">${order.customerName}</td>
-                            <td class="px-10 py-6">
-                                <span class="px-3 py-1 border rounded-md ${statusClass} text-[9px] font-black uppercase tracking-widest">${order.status}</span>
-                            </td>
-                            <td class="px-10 py-6 text-xs font-black text-right text-[#FFBA08] drop-shadow-[0_0_12px_rgba(188,160,255,0.6)] hover:text-white">${formatPrice(order.total)}</td>
-                        `;
-                        recentOrdersBody.appendChild(tr);
-                    });
-                }
+                renderMetricsAndTable();
 
             } catch (error) {
                 console.error("Error loading dashboard:", error);
+            } finally {
+                if (refreshBtn) {
+                    setTimeout(() => refreshBtn.classList.remove('animate-spin'), 400);
+                }
             }
         }
 
-        loadDashboard();
+        function renderMetricsAndTable() {
+            const currentLang = getAdminLanguage();
+
+            // Total products & orders
+            if (totalProductsLabel) totalProductsLabel.textContent = cachedProducts.length;
+            if (totalOrdersLabel) totalOrdersLabel.textContent = cachedOrders.length;
+
+            // Revenue calculation
+            const validOrders = cachedOrders.filter(o => o.status !== 'Cancelled');
+            const totalRevenue = validOrders.reduce((sum, o) => sum + (parseFloat(o.total) || 0), 0);
+            if (totalRevenueLabel) totalRevenueLabel.textContent = formatPriceI18n(totalRevenue, currentLang);
+
+            // Average order calculation
+            const avgOrder = validOrders.length > 0 ? totalRevenue / validOrders.length : 0;
+            if (avgOrderLabel) avgOrderLabel.textContent = formatPriceI18n(avgOrder, currentLang);
+
+            // Recent orders table
+            if (recentOrdersBody) {
+                recentOrdersBody.innerHTML = '';
+                if (cachedOrders.length === 0) {
+                    recentOrdersBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="px-10 py-8 text-center text-xs text-white/50">
+                                ${t('no_orders', currentLang)}
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                cachedOrders.slice(0, 6).forEach(order => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-white/5 transition-all cursor-pointer group';
+                    tr.onclick = () => window.location.href = `admin-order-details.html?id=${order.id}`;
+
+                    const statusClass = {
+                        'Pending': 'text-amber-400 border-amber-400/25 bg-amber-400/10',
+                        'Confirmed': 'text-blue-400 border-blue-400/25 bg-blue-400/10',
+                        'Delivered': 'text-emerald-400 border-emerald-400/25 bg-emerald-400/10',
+                        'Shipped': 'text-cyan-400 border-cyan-400/25 bg-cyan-400/10',
+                        'Cancelled': 'text-red-400 border-red-400/25 bg-red-400/10'
+                    }[order.status] || 'text-white/60 border-white/10';
+
+                    const displayStatus = getStatusLabelI18n(order.status, currentLang);
+                    const formattedOrderPrice = formatPriceI18n(order.total, currentLang);
+                    const clientInfo = `${order.customerName || 'Client'}${order.wilaya ? ' · ' + order.wilaya : ''}`;
+                    const orderRef = order.orderNumber || ('#' + (order.id ? order.id.substring(0, 8).toUpperCase() : '----'));
+
+                    tr.innerHTML = `
+                        <td class="px-6 sm:px-10 py-5 text-xs font-black text-white uppercase tracking-wider font-mono">${orderRef}</td>
+                        <td class="px-6 sm:px-10 py-5 text-xs font-semibold text-white/90">${clientInfo}</td>
+                        <td class="px-6 sm:px-10 py-5">
+                            <span class="px-3 py-1 border rounded-lg ${statusClass} text-[10px] font-bold uppercase tracking-wider">${displayStatus}</span>
+                        </td>
+                        <td class="px-6 sm:px-10 py-5 text-xs font-black text-right text-primary font-mono">${formattedOrderPrice}</td>
+                    `;
+                    recentOrdersBody.appendChild(tr);
+                });
+            }
+        }
+
+        // Initialize Language and listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminLanguage();
+            loadDashboard();
+
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', loadDashboard);
+            }
+
+            // Listen for language changes and re-render dynamic tables & prices immediately
+            window.addEventListener('adminLanguageChanged', () => {
+                renderMetricsAndTable();
+            });
+        });
     </script>
 </body>
 
