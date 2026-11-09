@@ -10,7 +10,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -71,6 +71,10 @@
         body {
             background-color: #0B0F19 !important;
             color: #E2E8F0;
+        }
+
+        html[dir="rtl"] body, html[dir="rtl"] {
+            font-family: 'Cairo', sans-serif !important;
         }
 
         .tech-pattern-bg {
@@ -587,6 +591,12 @@
                             <span class="material-symbols-outlined text-[18px] xs:text-[20px]">mic</span>
                         </button>
                     </div>
+
+                    <!-- Client Language Switcher Button (FR / AR) -->
+                    <button class="client-lang-toggle flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                        <span class="text-sm">🇩🇿</span>
+                        <span class="hidden sm:inline">العربية</span>
+                    </button>
 
                     <!-- Wishlist Button -->
                     <button
@@ -1135,6 +1145,7 @@
 
     <script type="module">
         import { getOrderById, getOrdersByPhone } from './db-service.js';
+        import { getClientLanguage, getStatusLabelClient, formatPriceClient } from './client-i18n.js';
 
         // Elements
         const trackBtn = document.getElementById('track-btn');
@@ -1190,35 +1201,76 @@
         // Get Status Class
         function getStatusClass(status) {
             const map = {
-                'Pending': 'status-pending',
-                'Processing': 'status-processing',
-                'Shipped': 'status-shipped',
-                'Delivered': 'status-delivered'
+                'Pending': 'text-amber-400 border-amber-400/30 bg-amber-400/10',
+                'Confirmed': 'text-sky-400 border-sky-400/30 bg-sky-400/10',
+                'InTransit': 'text-blue-400 border-blue-400/30 bg-blue-400/10',
+                'Shipped': 'text-blue-400 border-blue-400/30 bg-blue-400/10',
+                'OutForDelivery': 'text-purple-400 border-purple-400/30 bg-purple-400/10',
+                'Delivered': 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10',
+                'Cancelled': 'text-rose-400 border-rose-400/30 bg-rose-400/10'
             };
-            return map[status] || 'status-pending';
+            return map[status] || 'text-amber-400 border-amber-400/30 bg-amber-400/10';
         }
 
-        // Get Status Label (French)
+        // Get Status Label (French / Arabic)
         function getStatusLabel(status) {
+            const lang = getClientLanguage();
+            const isAr = lang === 'ar';
             const map = {
-                'Pending': 'En attente',
-                'Processing': 'En préparation',
-                'Shipped': 'En transit',
-                'Delivered': 'Livrée ✅'
+                'Pending': isAr ? 'قيد الانتظار 🕒' : 'En attente 🕒',
+                'Confirmed': isAr ? 'مؤكدة ✅' : 'Confirmé ✅',
+                'InTransit': isAr ? 'في الطريق 🚚' : 'En route 🚚',
+                'Shipped': isAr ? 'في الطريق 🚚' : 'En route 🚚',
+                'OutForDelivery': isAr ? 'جاري التوصيل 📦' : 'En livraison 📦',
+                'Delivered': isAr ? 'تم التسليم 🎉' : 'Livré 🎉',
+                'Cancelled': isAr ? 'ملغاة ❌' : 'Annulé ❌'
             };
             return map[status] || status;
         }
 
         // Render Stepper
         function renderStepper(currentStatus) {
+            const lang = getClientLanguage();
+            const isAr = lang === 'ar';
+
+            // Normalize
+            let normStatus = currentStatus || 'Pending';
+            if (normStatus === 'Shipped') normStatus = 'InTransit';
+
             const steps = [
-                { key: 'Pending', label: 'Confirmée', icon: 'check_circle', desc: 'Commande reçue' },
-                { key: 'Processing', label: 'Préparation', icon: 'package_2', desc: 'En cours d\'emballage' },
-                { key: 'Shipped', label: 'Expédiée', icon: 'local_shipping', desc: 'En route vers vous' },
-                { key: 'Delivered', label: 'Livrée', icon: 'done_all', desc: 'Commande livrée' }
+                { 
+                    key: 'Pending', 
+                    label: isAr ? 'قيد الانتظار' : 'En attente', 
+                    icon: 'hourglass_empty', 
+                    desc: isAr ? 'تم تسجيل الطلب' : 'Commande reçue' 
+                },
+                { 
+                    key: 'Confirmed', 
+                    label: isAr ? 'مؤكدة' : 'Confirmé', 
+                    icon: 'check_circle', 
+                    desc: isAr ? 'تم تأكيد الطلب هاتفياً' : 'Confirmé avec le client' 
+                },
+                { 
+                    key: 'InTransit', 
+                    label: isAr ? 'في الطريق' : 'En route', 
+                    icon: 'local_shipping', 
+                    desc: isAr ? 'الشحنة غادرت سطيف' : 'Colis expédié' 
+                },
+                { 
+                    key: 'OutForDelivery', 
+                    label: isAr ? 'جاري التوصيل' : 'En livraison', 
+                    icon: 'directions_bike', 
+                    desc: isAr ? 'الموزع في طريقه إليك' : 'Livreur en approche' 
+                },
+                { 
+                    key: 'Delivered', 
+                    label: isAr ? 'تم التسليم' : 'Livré', 
+                    icon: 'done_all', 
+                    desc: isAr ? 'تم استلام المنتج بنجاح' : 'Colis remis en main propre' 
+                }
             ];
 
-            const statusIndex = steps.findIndex(s => s.key === currentStatus);
+            const statusIndex = steps.findIndex(s => s.key === normStatus);
             const progressionLine = statusIndex >= 0 ? (statusIndex / (steps.length - 1)) * 100 : 0;
 
             stepper.innerHTML = `
@@ -1582,6 +1634,7 @@
             </a>
         </div>
     </aside>
+    <script type="module" src="client-i18n.js"></script>
 </body>
 
 </html>

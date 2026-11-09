@@ -647,9 +647,12 @@
 
         function getStatusStyle(status) {
             const styles = {
-                'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
-                'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
                 'Pending': 'text-amber-400 border-amber-400/20 bg-amber-400/5',
+                'Confirmed': 'text-sky-400 border-sky-400/20 bg-sky-400/5',
+                'InTransit': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
+                'Shipped': 'text-blue-400 border-blue-400/20 bg-blue-400/5',
+                'OutForDelivery': 'text-purple-400 border-purple-400/20 bg-purple-400/5',
+                'Delivered': 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5',
                 'Cancelled': 'text-rose-400 border-rose-400/20 bg-rose-400/5'
             };
             return styles[status] || 'text-white/60 border-white/10';
@@ -657,12 +660,15 @@
 
         function getStatusText(status) {
             const translations = {
-                'Delivered': 'Livré',
-                'Shipped': 'Expédié',
                 'Pending': 'En attente',
+                'Confirmed': 'Confirmé',
+                'InTransit': 'En route',
+                'Shipped': 'En route',
+                'OutForDelivery': 'En livraison',
+                'Delivered': 'Livré',
                 'Cancelled': 'Annulé'
             };
-            return translations[status] || 'Inconnu';
+            return translations[status] || status || 'Inconnu';
         }
 
         // Render Table Row (Desktop)

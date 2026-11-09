@@ -79,10 +79,35 @@ export const translations = {
 
         // Statuses
         status_Pending: "En attente",
-        status_Confirmed: "Confirmée",
-        status_Shipped: "Expédiée",
-        status_Delivered: "Livrée",
-        status_Cancelled: "Annulée"
+        status_Confirmed: "Confirmé",
+        status_InTransit: "En route",
+        status_Shipped: "En route",
+        status_OutForDelivery: "En livraison",
+        status_Delivered: "Livré",
+        status_Cancelled: "Annulé",
+
+        // Order Details Page
+        order_details_title: "Détails de la Commande",
+        order_details_sub: "Gestion et mise à jour du statut",
+        cust_info_title: "Informations du Client",
+        cust_name_label: "Nom & Prénom",
+        cust_phone_label: "Numéro de Téléphone",
+        cust_address_label: "Adresse de Livraison",
+        cust_location_label: "Wilaya & Commune",
+        cust_shipping_label: "Mode de Livraison",
+        shipping_home: "À Domicile",
+        shipping_desk: "Point Relais (Stop Desk)",
+        order_item_title: "Produit Commandé",
+        order_total_label: "Montant Total",
+        order_status_title: "Statut de la Commande",
+        order_status_label: "Modifier l'état :",
+        btn_update_status: "Mettre à jour le Statut",
+        btn_whatsapp: "WhatsApp",
+        btn_call: "Appeler",
+        btn_print: "Imprimer la Facture",
+        order_history_note: "Informations & Recommandations",
+        order_history_text: "Veillez à contacter le client par WhatsApp ou téléphone pour confirmer la commande avant l'expédition.",
+        order_updated_toast: "✓ Statut de la commande mis à jour avec succès !"
     },
     ar: {
         // Sidebar & General
@@ -160,9 +185,34 @@ export const translations = {
         // Statuses
         status_Pending: "قيد الانتظار",
         status_Confirmed: "مؤكدة",
-        status_Shipped: "تم الشحن",
-        status_Delivered: "تم التوصيل",
-        status_Cancelled: "ملغاة"
+        status_InTransit: "في الطريق",
+        status_Shipped: "في الطريق",
+        status_OutForDelivery: "جاري التوصيل",
+        status_Delivered: "تم التسليم",
+        status_Cancelled: "ملغاة",
+
+        // Order Details Page
+        order_details_title: "تفاصيل الطلب",
+        order_details_sub: "إدارة ومتابعة وتحديث حالة الطلب",
+        cust_info_title: "بيانات ومعلومات الزبون",
+        cust_name_label: "الاسم الكامل",
+        cust_phone_label: "رقم الهاتف",
+        cust_address_label: "عنوان التوصيل",
+        cust_location_label: "الولاية والبلدية",
+        cust_shipping_label: "طريقة التوصيل",
+        shipping_home: "توصيل للمنزل",
+        shipping_desk: "استلام من المكتب (Stop Desk)",
+        order_item_title: "المنتج المطلوب",
+        order_total_label: "المبلغ الإجمالي",
+        order_status_title: "حالة الطلب الحالية",
+        order_status_label: "تعديل حالة الطلب :",
+        btn_update_status: "تحديث الحالة",
+        btn_whatsapp: "واتساب",
+        btn_call: "اتصال",
+        btn_print: "طباعة الفاتورة",
+        order_history_note: "إرشادات وتنبيهات",
+        order_history_text: "يرجى الاتصال بالزبون عبر الهاتف أو واتساب لتأكيد الطلبية قبل شحنها.",
+        order_updated_toast: "✓ تم تحديث حالة الطلب بنجاح !"
     }
 };
 

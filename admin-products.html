@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="fr" dir="ltr">
 
 <head>
     <script src="auth-gate.js"></script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>Phone Haven / Inventory Node</title>
+    <title>Catalogue & Inventaire | Phone Haven Admin</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
-    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+    <link rel="icon" href="images/logo.jpeg" type="image/x-icon">
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -28,34 +29,22 @@
                         "accent-purple": "#FFD166",
                         "background-light": "#0F1424",
                         "background-dark": "#0B0F19",
-                        "navy-card": "#151B2D",
-                        "navy-surface": "#1A2238",
-                        "success": "#10b981",
-                        "accent": "#FFBA08",
-                        "services": "#06b6d4",
+                        "card-dark": "#141A2B",
+                        "surface-dark": "#182035",
+                        "border-dark": "rgba(255, 255, 255, 0.08)",
+                        "success": "#10B981"
                     },
                     fontFamily: {
                         "display": ["Outfit", "sans-serif"],
-                        "body": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "3xl": "1.5rem",
-                        "4xl": "2rem",
-                    },
-                    screens: {
-                        'xs': '320px',
-                        'sm': '640px',
-                        'md': '768px',
-                        'lg': '1024px',
-                        'xl': '1280px',
+                        "sans": ["Inter", "sans-serif"],
+                        "arabic": ["Cairo", "Tahoma", "sans-serif"]
                     }
-                },
-            },
+                }
+            }
         };
     </script>
+
     <style>
-        
-        /* ✅ PHONE HAVEN BRAND THEME */
         :root {
             --brand-gold: #FFBA08;
             --brand-coral: #FF3366;
@@ -69,881 +58,351 @@
             color: #E2E8F0;
         }
 
-        .tech-pattern-bg {
-            background-color: #0B0F19;
-            background-image: 
-                radial-gradient(ellipse at 80% 10%, rgba(255, 186, 8, 0.09) 0%, transparent 50%),
-                radial-gradient(ellipse at 15% 60%, rgba(255, 51, 102, 0.07) 0%, transparent 50%),
-                url('images/tech-pattern.svg');
-            background-repeat: repeat;
-            background-size: auto, auto, 360px 360px;
-            background-attachment: fixed;
-        }
-
-        /* ✅ SIGNATURE PHONE HAVEN GRADIENT (GOLD TO CORAL) */
-        .gradient-bg {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF8040 50%, #FF3366 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .gradient-gold {
-            background: linear-gradient(135deg, #FFD166 0%, #FFBA08 50%, #F59E0B 100%);
-        }
-
-        .gradient-coral {
-            background: linear-gradient(135deg, #FF6B8B 0%, #FF3366 100%);
-        }
-
-        .gradient-hover:hover {
-            background: linear-gradient(135deg, #FFBA08 0%, #FF3366 100%) !important;
-        }
-
-        /* ✅ LUXURY GLASS & CARDS */
-        .glass {
-            background: rgba(20, 26, 43, 0.82);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .glass-light {
-            background: rgba(26, 34, 56, 0.88);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 186, 8, 0.2);
-        }
-
-        .glass-card {
-            background: rgba(21, 28, 46, 0.90);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(255, 186, 8, 0.4);
-            box-shadow: 0 12px 36px rgba(255, 186, 8, 0.12);
-        }
-
-        /* ✅ TEXT COLORS */
-        .text-heading {
-            color: #ffffff !important;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .text-body {
-            color: #E2E8F0 !important;
-        }
-
-        .text-muted {
-            color: #94A3B8 !important;
-        }
-
-        .text-accent-yellow {
-            color: #FFBA08 !important;
-            text-shadow: 0 0 14px rgba(255, 186, 8, 0.35);
-        }
-
-        .text-accent-pink {
-            color: #FF3366 !important;
-            text-shadow: 0 0 14px rgba(255, 51, 102, 0.35);
-        }
-
-        .text-accent-purple {
-            color: #FFD166 !important;
-        }
-
-        .text-secondary {
-            color: #FF3366 !important;
-        }
-
-        .text-services {
-            color: #06b6d4 !important;
-        }
-
-        /* ✅ HOVER EFFECTS */
-        .link-hover:hover {
-            color: #FFBA08 !important;
-            text-shadow: 0 0 14px rgba(255, 186, 8, 0.6) !important;
-            transition: all 0.2s ease;
-        }
-
-        /* ✅ INPUTS & FORMS */
-        .form-input {
-            color: #ffffff !important;
-            background-color: rgba(20, 26, 43, 0.85) !important;
-            border-color: rgba(255, 255, 255, 0.12) !important;
-        }
-
-        .form-input::placeholder {
-            color: #94A3B8 !important;
-        }
-
-        .form-input:focus, input:focus, select:focus, textarea:focus {
-            outline: none !important;
-            border-color: #FFBA08 !important;
-            box-shadow: 0 0 0 3px rgba(255, 186, 8, 0.25) !important;
-        }
-
-        .form-select {
-            color: #ffffff !important;
-            background-color: #141A2B !important;
-            border-color: rgba(255, 255, 255, 0.12) !important;
-        }
-
-        .form-select option {
-            color: #ffffff !important;
-            background-color: #141A2B !important;
-        }
-
-        .form-label {
-            color: #E2E8F0 !important;
-        }
-
-        /* ✅ STICKY HEADER SCROLLED */
-        #nav-header.scrolled {
-            background-color: rgba(11, 15, 25, 0.95) !important;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-            border-bottom: 1px solid rgba(255, 186, 8, 0.25) !important;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-
-        /* ✅ ACCESSIBILITY */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible {
-            outline: 2px solid #FFBA08 !important;
-            outline-offset: 2px;
-        }
-
-        /* ✅ BUTTONS */
-        .btn-premium {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px -6px rgba(255, 186, 8, 0.4);
-        }
-        .btn-premium:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        /* ✅ DÉGRADÉ LINÉAIRE DESCENDANT PRINCIPAL */
-        .gradient-bg {
-            background: linear-gradient(180deg, #101626 0%, #0B0F19 100%);
-        }
-
-        /* ✅ SYSTÈME DE COULEURS DE TEXTE */
-        .text-heading {
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        .text-body {
-            color: #ffffff;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .text-muted {
-            color: rgba(255, 255, 255, 0.75);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .text-accent-yellow {
-            color: #FFA500;
-            text-shadow: 0 1px 4px rgba(255, 165, 0, 0.4);
-        }
-
-        .text-accent-pink {
-            color: #ffb3c6;
-            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
-        }
-
-        .text-accent-purple {
-            color: #e0d4ff;
-            text-shadow: 0 0 12px rgba(224, 212, 255, 0.4);
-        }
-
-        .text-secondary {
-            color: #FF3366;
-            text-shadow: 0 2px 8px rgba(198, 65, 114, 0.3);
-        }
-
-        .text-services {
-            color: #06b6d4;
-            text-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
-        }
-
-        /* ✅ FORM INPUT STYLES */
-        .form-input {
-            color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.08) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #FFA500 !important;
-            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.3) !important;
-        }
-
-        /* ✅ SELECT OPTIONS - TEXTE NOIR SUR BLANC */
-        .form-select {
-            color: #1f2937 !important;
-            background-color: #ffffff !important;
-            font-weight: 500;
-        }
-
-        .form-select option {
-            color: #1f2937 !important;
-            background-color: #ffffff !important;
-            padding: 8px;
-        }
-
-        .form-label {
-            color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ✅ GLASSMORPHISM */
-        .glass {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .glass-light {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        .font-arabic, html[dir="rtl"] body {
+            font-family: 'Cairo', 'Inter', sans-serif !important;
         }
 
         .terminal-border {
-            border-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* ✅ HOVER EFFECTS */
-        .link-hover:hover {
-            color: #ffb3c6 !important;
-            text-shadow: 0 0 15px rgba(255, 179, 198, 0.7) !important;
-            transition: all 0.2s ease;
-        }
-
-        /* ✅ SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* ✅ MOBILE SIDEBAR */
-        #sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 25;
-            backdrop-filter: blur(4px);
-        }
-
-        #sidebar-overlay.active {
-            display: block;
-        }
-
-        .mobile-hidden {
-            transform: translateX(-100%) !important;
-        }
-
-        #sidebar {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        /* ✅ UTILS - Hidden class */
-        .hidden {
-            display: none !important;
-        }
-
-        /* ✅ MOBILE OPTIMIZATIONS */
-        @media (max-width: 1023px) {
-            .sticky {
-                position: relative !important;
-                top: auto !important;
-            }
-
-            /* Touch targets - always visible actions on mobile */
-            .mobile-actions {
-                opacity: 1 !important;
-                display: flex !important;
-                gap: 8px;
-            }
-
-            .mobile-actions button {
-                min-width: 40px;
-                height: 36px;
-                font-size: 14px;
-            }
-
-            .desktop-actions {
-                display: none !important;
-            }
-
-            /* Hide hover-only actions on mobile */
-            .group-hover\:opacity-100 {
-                opacity: 1 !important;
-            }
-
-            /* Card layout fixes - Stack columns on mobile */
-            .lg\:grid-cols-12 {
-                grid-template-columns: 1fr !important;
-            }
-
-            .lg\:col-span-4,
-            .lg\:col-span-8 {
-                grid-column: span 1 !important;
-            }
-
-            .order-2 {
-                order: 1 !important;
-            }
-
-            .order-1 {
-                order: 2 !important;
-            }
-
-            /* Touch targets for all interactive elements */
-            button,
-            a,
-            [role="button"],
-            .clickable,
-            select,
-            input,
-            textarea,
-            .edit-btn,
-            .delete-btn {
-                min-height: 44px;
-                min-width: 44px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            input,
-            select,
-            textarea {
-                font-size: 16px !important;
-            }
-
-            /* Card hover effects on touch - use active state instead */
-            .hover\:bg-white\/10:hover,
-            .hover\:bg-white\/10:active {
-                background: rgba(255, 255, 255, 0.15) !important;
-            }
-
-            .product-card:active {
-                transform: scale(0.98) !important;
-            }
-        }
-
-        /* ✅ DESKTOP: Show hover actions, hide mobile actions */
-        @media (min-width: 1024px) {
-            .mobile-actions {
-                display: none !important;
-            }
-
-            .desktop-actions {
-                display: flex !important;
-            }
-        }
-
-        /* ✅ RESPONSIVE TYPOGRAPHY */
-        @media (max-width: 640px) {
-            .text-responsive {
-                font-size: 0.875rem;
-            }
-
-            .btn-responsive {
-                padding: 0.75rem 1rem;
-                font-size: 0.875rem;
-            }
-
-            .card-responsive {
-                border-radius: 1rem;
-            }
-        }
-
-        /* ✅ ANIMATIONS */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .card-hover {
-            transition: all 0.2s ease;
-        }
-
-        .card-hover:active {
-            transform: scale(0.99);
-        }
-
-        .product-card {
-            transition: all 0.2s ease;
-        }
-
-        .product-card:active {
-            transform: scale(0.98);
-        }
-
-        /* ✅ PREVENT PULL-TO-REFRESH */
-        body {
-            overscroll-behavior-y: contain;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* ✅ ACTIVE NAV STATE */
         .active-nav {
-            background: rgba(255, 255, 255, 0.1) !important;
-            border-left: 3px solid #FFA500 !important;
-            color: #ffffff !important;
+            background: linear-gradient(90deg, rgba(255, 186, 8, 0.15) 0%, rgba(255, 51, 102, 0.05) 100%);
+            border-left: 3px solid #FFBA08;
+            color: #FFBA08;
         }
 
-        /* ✅ ACTION BUTTONS - Mobile friendly */
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            border-radius: 0.5rem;
+        html[dir="rtl"] .active-nav {
+            border-left: none;
+            border-right: 3px solid #FFBA08;
+            background: linear-gradient(270deg, rgba(255, 186, 8, 0.15) 0%, rgba(255, 51, 102, 0.05) 100%);
         }
 
-        .action-btn:active {
-            transform: scale(0.95);
+        .glass {
+            background: rgba(18, 24, 40, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
-        .edit-btn-mobile {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+        /* Instagram 1:1 square photo container */
+        .photo-square {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
         }
 
-        .edit-btn-mobile:active {
-            background: rgba(73, 55, 126, 0.5);
-        }
-
-        .delete-btn-mobile {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        .delete-btn-mobile:active {
-            background: rgba(239, 68, 68, 0.5);
-        }
-
-        /* ✅ BURGER MENU BUTTON - Visible text colors */
-        #mobile-menu-btn {
-            color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.15) !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-
-        #mobile-menu-btn:hover {
-            color: #ffb3c6 !important;
-            background: rgba(255, 255, 255, 0.2) !important;
-            text-shadow: 0 0 12px rgba(255, 179, 198, 0.5);
-        }
-
-        #mobile-menu-btn .material-symbols-outlined {
-            color: #ffffff !important;
-        }
-
-        #mobile-menu-btn:hover .material-symbols-outlined {
-            color: #ffb3c6 !important;
+        /* Mobile drawer */
+        @media (max-width: 1023px) {
+            #sidebar.mobile-hidden {
+                transform: translateX(-100%);
+            }
+            html[dir="rtl"] #sidebar.mobile-hidden {
+                transform: translateX(100%);
+            }
         }
     </style>
 </head>
 
-<body class="font-body selection:bg-secondary/30 antialiased overflow-hidden h-screen gradient-bg text-white min-h-screen bg-fixed bg-no-repeat bg-cover tech-pattern-bg bg-[#0B0F19] text-[#E2E8F0]">
+<body class="bg-background-dark text-slate-100 font-sans antialiased overflow-x-hidden">
+    <!-- Overlay for mobile drawer -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
 
-    <!-- Overlay for mobile sidebar -->
-    <div id="sidebar-overlay" class="lg:hidden"></div>
-
-    <!-- Log Console (Minimal) -->
-    <div id="debug-console"
-        class="fixed bottom-4 right-4 w-64 h-32 bg-black/90 text-accent-purple text-[9px] p-3 rounded-2xl border terminal-border z-[100] opacity-0 hover:opacity-100 transition-opacity pointer-events-none hidden lg:block">
-        <div class="flex justify-between items-center mb-2">
-            <span class="font-black uppercase tracking-widest text-muted">Sys_Log</span>
-        </div>
-        <div id="log-content" class="overflow-y-auto h-full pr-2"></div>
-    </div>
-
-    <script>
-        (function () {
-            const logContent = document.getElementById('log-content');
-            const oldLog = console.log;
-            console.log = function (...args) {
-                const div = document.createElement('div');
-                div.className = 'mb-1 opacity-70';
-                div.textContent = `> ${args.join(' ')}`;
-                if (logContent) {
-                    logContent.appendChild(div);
-                    logContent.scrollTop = logContent.scrollHeight;
-                }
-                oldLog.apply(console, args);
-            };
-        })();
-    </script>
-
-    <div class="flex h-full w-full">
-        <!-- Sidebar: Responsive -->
-        <aside id="sidebar"
-            class="w-72 bg-black/80 backdrop-blur-xl border-r terminal-border flex flex-col z-30 fixed lg:static inset-y-0 left-0 mobile-hidden lg:translate-x-0">
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="fixed lg:static top-0 bottom-0 left-0 w-72 bg-black border-r terminal-border flex flex-col z-40 mobile-hidden lg:transform-none transition-transform duration-300">
             <div class="p-6 lg:p-8">
-                <div class="flex items-center justify-between lg:justify-start gap-3 mb-8 lg:mb-10">
+                <!-- Brand Header -->
+                <div class="flex items-center justify-between mb-8">
                     <div class="flex items-center gap-3">
-                        <div
-                            class="size-9 lg:size-10 bg-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg rotate-3 flex-shrink-0">
+                        <div class="size-10 bg-white/5 border border-white/15 rounded-xl flex items-center justify-center overflow-hidden shadow-lg p-0.5">
                             <img src="images/logo.jpeg" class="h-full w-full object-contain" alt="Phone Haven Logo">
                         </div>
-                        <div class="min-w-0">
-                            <h1 class="font-display font-black text-heading text-base lg:text-lg tracking-tighter truncate">
-                                Phone Haven<span class="text-accent-pink">.</span>
+                        <div>
+                            <h1 class="font-display font-black text-white text-lg tracking-tight">
+                                <span>Phone Haven</span><span class="text-primary">.</span>
                             </h1>
-                            <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.3em] text-muted hidden sm:block">
-                                Terminal</p>
+                            <p class="text-[9px] font-bold uppercase tracking-wider text-white/50" data-i18n="brand_sub">
+                                Sétif, Algérie
+                            </p>
                         </div>
                     </div>
-                    <button id="sidebar-close"
-                        class="lg:hidden size-9 rounded-lg bg-white/10 flex items-center justify-center text-body hover:text-accent-pink transition-all clickable">
-                        <span class="material-symbols-outlined text-lg">close</span>
+                    <button id="sidebar-close" class="lg:hidden p-1 text-white/60 hover:text-white">
+                        <span class="material-symbols-outlined">close</span>
                     </button>
                 </div>
 
+                <!-- Navigation Links -->
                 <nav class="space-y-1.5">
-                    <a href="admin-analytics.html"
-                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
+                    <a href="admin-analytics.html" class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 font-bold transition-all group">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">grid_view</span>
                         <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_dashboard">Tableau de Bord</span>
                     </a>
-                    <a href="admin-orders.html"
-                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
+                    <a href="admin-orders.html" class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">inventory_2</span>
                         <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_orders">Commandes</span>
                     </a>
-                    <a href="admin-products.html"
-                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl active-nav font-bold transition-all group clickable">
+                    <a href="admin-products.html" class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl active-nav font-bold transition-all group">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">layers</span>
                         <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_products">Catalogue</span>
                     </a>
-                    <a href="admin-shipping.html"
-                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
+                    <a href="admin-shipping.html" class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">local_shipping</span>
-                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_shipping">Tarifs Livraison</span>
+                        <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_shipping">Tarifs Livraison (58)</span>
                     </a>
-                    <a href="admin-reports.html"
-                        class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group clickable">
+                    <a href="admin-reports.html" class="flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-white/60 hover:text-white hover:bg-white/5 transition-all group">
                         <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">monitoring</span>
                         <span class="text-xs font-bold uppercase tracking-wider" data-i18n="nav_reports">Rapports</span>
                     </a>
                 </nav>
             </div>
 
-            <div class="mt-auto p-4 lg:p-8 border-t terminal-border bg-black/20">
-                <div class="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
-                    <div class="size-9 lg:size-10 rounded-full border terminal-border overflow-hidden p-0.5 flex-shrink-0 bg-white">
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhp8Epte8pKh71ywy5-wKIdHmKUuFRbGqprrpne_80HelXtRzJQ1En_culjfm4GXlwKe1gyhO_FRMchav2XxPfTKCacNNIMbRlqr38awOFlmqIXpDGBpsWkenT2SA88R5Aaz6Un4bg84wzHshHazNUp4P0DtChzanW86_GL7Pz-Q9c7SzUQBRkxM99tRs0m9ZUxq5AjDytacGHfcJLr7le2K4GsjNet1dz2j7ahCZt4RN2ujMpIjz7-fEUBbHrNgjdU1TAB8dV4A"
-                            class="w-full h-full object-cover rounded-full" alt="Admin">
+            <!-- Admin Profile & Logout -->
+            <div class="mt-auto p-6 lg:p-8 border-t terminal-border bg-slate-900/50">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="size-9 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold text-xs">
+                        PH
                     </div>
-                    <div class="min-w-0">
-                        <p class="text-xs font-black text-heading truncate">Administrator</p>
-                        <p class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-accent-purple">Authorized</p>
+                    <div>
+                        <p class="text-xs font-bold text-white" data-i18n="admin_user">Administrateur</p>
+                        <p class="text-[9px] font-bold uppercase tracking-widest text-emerald-400" data-i18n="admin_authorized">Session Active</p>
                     </div>
                 </div>
-                <a href="index.html"
-                    class="flex h-10 lg:h-12 w-full items-center justify-center gap-2 rounded-xl bg-white/10 text-body text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-secondary hover:text-white transition-all clickable">
-                    <span class="material-symbols-outlined text-sm">exit_to_app</span>
-                    <span class="hidden xs:inline">Lock Session</span>
+                <a href="index.html" class="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-white/5 text-white/60 text-[10px] font-black uppercase tracking-widest hover:bg-red-500/20 hover:text-red-400 border border-white/5 transition-all">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    <span data-i18n="lock_session">Déconnexion</span>
                 </a>
             </div>
         </aside>
 
-        <!-- Main Workspace -->
-        <main class="flex-1 flex flex-col bg-black/40 backdrop-blur-2xl relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.05),transparent)] pointer-events-none"></div>
-
-            <!-- Header: Responsive -->
-            <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-10 flex items-center justify-between sticky top-0 z-20 glass">
-                <div class="flex items-center gap-3 lg:gap-8 w-full">
-                    <!-- Mobile Menu Button - FIXED COLORS -->
-                    <button id="mobile-menu-btn"
-                        class="lg:hidden size-10 rounded-xl flex items-center justify-center transition-all clickable">
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col bg-[rgba(0,0,0,0.6)] backdrop-blur-2xl relative min-w-0">
+            <!-- Header Bar -->
+            <header class="h-16 lg:h-20 border-b terminal-border px-4 lg:px-8 flex items-center justify-between sticky top-0 z-20 glass gap-3">
+                <div class="flex items-center gap-3 lg:gap-4 flex-1">
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-white/5 text-white/70 hover:text-white">
                         <span class="material-symbols-outlined text-xl">menu</span>
                     </button>
 
-                    <!-- Title + Search -->
-                    <div class="flex-1 min-w-0">
-                        <h2 class="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-muted hidden xs:block">
-                            Node_Alpha // Inventory</h2>
-                        <div class="relative w-full lg:w-80 mt-1 lg:mt-0">
-                            <span class="material-symbols-outlined absolute left-3 lg:left-4 top-1/2 -translate-y-1/2 text-muted text-lg lg:text-sm">search</span>
-                            <input id="product-search"
-                                class="w-full pl-10 lg:pl-11 pr-3 lg:pr-4 py-2 lg:py-2 bg-white/10 border-white/15 rounded-xl text-[9px] lg:text-[11px] font-bold tracking-wide form-input placeholder:text-muted focus:ring-secondary focus:border-secondary"
-                                placeholder="SEARCH..." type="text" />
-                        </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                        <h2 class="text-sm lg:text-base font-black text-white uppercase tracking-wider" data-i18n="products_page_title">
+                            Catalogue & Inventaire
+                        </h2>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="relative ml-2 sm:ml-6 flex-1 max-w-xs lg:max-w-md hidden sm:block">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-lg">search</span>
+                        <input type="text" id="product-search" placeholder="Rechercher par nom, catégorie..."
+                            class="w-full bg-white/5 border terminal-border rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 transition-all">
                     </div>
                 </div>
 
-                <!-- Actions -->
-                <div class="flex items-center gap-2 lg:gap-6 flex-shrink-0 ml-2 lg:ml-0">
-                    <button id="add-product-shortcut"
-                        class="h-10 lg:h-11 px-4 lg:px-6 bg-white/10 backdrop-blur-xl border border-white/15 text-heading text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-secondary hover:text-white transition-all shadow-lg whitespace-nowrap clickable">
-                        <span class="hidden sm:inline">New </span>Entry
-                    </button>
-                    <div class="size-10 lg:size-11 rounded-xl bg-white/10 flex items-center justify-center text-body border terminal-border flex-shrink-0">
-                        <span class="material-symbols-outlined text-lg lg:text-lg">settings_input_component</span>
-                    </div>
-                
-                    <!-- Language Switcher -->
-                    <button id="admin-lang-toggle" class="flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <!-- Language Switcher Button -->
+                    <button id="admin-lang-toggle" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
                         <span class="text-sm">🇩🇿</span>
                         <span class="hidden sm:inline">العربية</span>
                     </button>
+
+                    <!-- Add product quick scroll -->
+                    <a href="#product-form" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-primary to-amber-500 hover:from-amber-400 hover:to-primary text-slate-950 font-bold text-xs transition-all shadow-md shadow-primary/20 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-base">add</span>
+                        <span class="hidden sm:inline">Nouveau Produit</span>
+                    </a>
                 </div>
             </header>
 
-            <!-- Content Area -->
-            <div class="p-4 lg:p-10 flex-1 overflow-y-auto">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+            <!-- Page Body: Two Columns Layout -->
+            <div class="p-4 sm:p-6 lg:p-8 flex-1 overflow-y-auto space-y-6">
 
-                    <!-- Form Terminal: Becomes top section on mobile -->
-                    <div class="lg:col-span-4 order-2 lg:order-1">
-                        <div class="bg-black/40 p-6 lg:p-8 rounded-2xl lg:rounded-[3rem] terminal-border glass">
-                            <h4 class="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-accent-purple mb-6 lg:mb-8 flex items-center gap-3">
-                                <span class="size-2 bg-secondary rounded-full animate-pulse"></span>
-                                <span id="form-title" class="text-heading">Schema Input</span>
-                            </h4>
-                            <form id="product-form" class="space-y-5 lg:space-y-6">
-                                <input type="hidden" id="editing-id">
+                <!-- Top Stats Counter Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="p-4 rounded-2xl bg-black/40 border terminal-border">
+                        <span class="text-[10px] font-bold text-white/60 uppercase">Total Produits</span>
+                        <div class="text-2xl font-black text-white mt-1" id="stat-total-products">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-black/40 border terminal-border">
+                        <span class="text-[10px] font-bold text-secondary uppercase">📱 Téléphones</span>
+                        <div class="text-2xl font-black text-white mt-1" id="stat-phones">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-black/40 border terminal-border">
+                        <span class="text-[10px] font-bold text-accent uppercase">🎧 Accessoires</span>
+                        <div class="text-2xl font-black text-white mt-1" id="stat-accessories">0</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-black/40 border terminal-border">
+                        <span class="text-[10px] font-bold text-emerald-400 uppercase">🛠️ Services & Offres</span>
+                        <div class="text-2xl font-black text-white mt-1" id="stat-services">0</div>
+                    </div>
+                </div>
 
-                                <!-- Product Name -->
-                                <div>
-                                    <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Designation</label>
-                                    <input id="product-name" required
-                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-input"
-                                        placeholder="UNIT LABEL..." type="text" />
-                                </div>
+                <!-- Main Work Grid: Form (Left) & Products List (Right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-                                <!-- Price + Category Row -->
-                                <div class="grid grid-cols-2 gap-3 lg:gap-4">
-                                    <div>
-                                        <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Valuation</label>
-                                        <input id="product-price" required
-                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-input"
-                                            placeholder="0" type="number" step="1" inputmode="numeric" />
-                                    </div>
-                                    <div>
-                                        <label class="block text-[8px] lg:text-[9px] font-black uppercase tracking-widest form-label mb-2 px-1">Sector</label>
-                                        <select id="product-category"
-                                            class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-[11px] lg:text-xs font-bold form-select appearance-none bg-[url('image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxZjI5MzciIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgOWwtNyA3LTctNyIvPjwvc3ZnPg==')] bg-no-repeat bg-[right_12px_center] bg-[length:16px] pr-10">
-                                            <option value="Téléphone">📱 Téléphone</option>
-                                            <option value="Accessoire">🎧 Accessoire</option>
-                                            <option value="Services">🛠️ Services</option>
-                                            <option value="Offres">🔥 Offres</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Description -->
-                                <div>
-                                    <label class="block text-[9px] lg:text-[10px] font-black uppercase tracking-widest form-label mb-2 px-1 text-slate-300">Description du Produit</label>
-                                    <textarea id="product-description"
-                                        class="w-full rounded-xl lg:rounded-2xl px-4 lg:px-5 py-3 lg:py-3.5 text-xs font-medium resize-none form-input bg-[#0B0F19] border border-white/15 focus:border-[#FFBA08] text-white"
-                                        placeholder="Caractéristiques techniques, état (neuf/scellé), garantie, couleur..." rows="3"></textarea>
-                                </div>
-
-                                <!-- Multi-Photo Management & Instagram 1:1 Sizing -->
-                                <div class="space-y-3">
-                                    <div class="flex items-center justify-between px-1">
-                                        <label class="block text-[9px] lg:text-[10px] font-black uppercase tracking-widest form-label text-[#FFBA08] flex items-center gap-1.5">
-                                            <span class="material-symbols-outlined text-[16px]">photo_library</span>
-                                            <span>Photos du Produit (Multi-Photos)</span>
-                                        </label>
-                                        <span id="photo-counter-badge" class="px-2 py-0.5 rounded-full bg-[#FFBA08]/15 border border-[#FFBA08]/30 text-[#FFBA08] text-[9px] font-black uppercase tracking-wider">
-                                            0 photo
-                                        </span>
-                                    </div>
-
-                                    <!-- Instagram 1:1 Live Preview Frame -->
-                                    <div class="relative rounded-2xl border border-white/15 bg-[#101424] p-3 overflow-hidden shadow-xl">
-                                        <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-[10px] font-bold text-slate-400">
-                                            <span class="flex items-center gap-1 text-[#FFBA08]">
-                                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                                <span>Aperçu Post Instagram (1:1 Carré)</span>
-                                            </span>
-                                            <span class="text-[9px] uppercase tracking-wider text-slate-400">Photo Principale</span>
-                                        </div>
-
-                                        <!-- Instagram 1:1 Aspect Ratio Box -->
-                                        <div class="relative w-full aspect-square rounded-xl bg-[#0B0F19] border border-white/10 flex items-center justify-center overflow-hidden group">
-                                            <div id="insta-empty-state" class="flex flex-col items-center justify-center p-4 text-center">
-                                                <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 mb-2">
-                                                    <span class="material-symbols-outlined text-3xl">add_photo_alternate</span>
-                                                </div>
-                                                <p class="text-xs font-bold text-slate-300">Aucune photo sélectionnée</p>
-                                                <p class="text-[10px] text-slate-500 mt-0.5">Ajoutez une ou plusieurs photos ci-dessous</p>
-                                            </div>
-
-                                            <img id="insta-main-preview" class="w-full h-full object-contain p-2 hidden transition-all duration-300" alt="Instagram Main Preview" />
-
-                                            <div id="insta-preview-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 pointer-events-none hidden">
-                                                <span class="px-3 py-1.5 rounded-full bg-[#FFBA08] text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-lg">
-                                                    ★ Couverture du Produit
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Add Photos Controls -->
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                        <!-- File Upload Button (Multiple Files Supported) -->
-                                        <input id="product-images-file" class="hidden" type="file" accept="image/*" multiple />
-                                        <button type="button"
-                                            onclick="document.getElementById('product-images-file').click()"
-                                            class="w-full py-2.5 px-3 bg-white/10 hover:bg-[#FFBA08]/20 text-[#FFBA08] border border-[#FFBA08]/30 rounded-xl font-black text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow-sm">
-                                            <span class="material-symbols-outlined text-[16px]">upload_file</span>
-                                            <span>+ Ajouter Fichiers</span>
-                                        </button>
-
-                                        <!-- Add by URL Button -->
-                                        <button type="button" id="btn-toggle-url-input"
-                                            class="w-full py-2.5 px-3 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/15 rounded-xl font-bold text-[10px] uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all active:scale-95">
-                                            <span class="material-symbols-outlined text-[16px]">link</span>
-                                            <span>+ Ajouter par Lien</span>
-                                        </button>
-                                    </div>
-
-                                    <!-- URL Input (collapsible) -->
-                                    <div id="url-input-container" class="hidden p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                                        <div class="flex gap-2">
-                                            <input type="url" id="image-url-manual" placeholder="https://exemple.com/photo.jpg"
-                                                class="flex-1 bg-[#0B0F19] border border-white/15 rounded-lg px-3 py-2 text-xs text-white placeholder:text-slate-600 focus:border-[#FFBA08] focus:outline-none" />
-                                            <button type="button" id="btn-add-url"
-                                                class="px-3 py-2 bg-[#FFBA08] text-slate-950 font-black text-xs uppercase tracking-wider rounded-lg hover:bg-white transition-all shadow-sm">
-                                                Ajouter
-                                            </button>
-                                        </div>
-                                        <p class="text-[9px] text-slate-400">Collez un lien d'image direct (Cloudinary, Unsplash, etc.)</p>
-                                    </div>
-
-                                    <!-- Thumbnails Gallery Strip of all added images -->
-                                    <div id="photos-gallery-container" class="space-y-2">
-                                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 px-1">
-                                            Galerie du produit (<span id="photos-count-text">0</span> photos)
-                                        </p>
-                                        <div id="photos-gallery-list" class="grid grid-cols-4 sm:grid-cols-4 gap-2 max-h-48 overflow-y-auto p-1 rounded-xl bg-black/30 border border-white/5">
-                                            <!-- Dynamically injected thumbnails -->
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" id="product-image-url">
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="pt-4 lg:pt-6 flex gap-3">
-                                    <button id="submit-btn"
-                                        class="flex-1 h-12 lg:h-14 bg-secondary text-white text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-xl lg:rounded-2xl hover:brightness-110 shadow-lg shadow-secondary/20 transition-all clickable"
-                                        type="submit">
-                                        <span class="hidden xs:inline">Verify & </span>Save
-                                    </button>
-                                    <button id="cancel-edit-btn"
-                                        class="hidden w-12 lg:w-14 h-12 lg:h-14 bg-white/10 text-body border terminal-border rounded-xl lg:rounded-2xl hover:text-accent-pink transition-all flex items-center justify-center clickable"
-                                        type="button">
-                                        <span class="material-symbols-outlined text-lg">close</span>
-                                    </button>
-                                </div>
-                            </form>
+                    <!-- ==================== LEFT: PRODUCT FORM ==================== -->
+                    <div class="lg:col-span-5 xl:col-span-4 bg-black/50 border terminal-border rounded-3xl p-5 sm:p-6 glass shadow-2xl sticky top-24">
+                        <div class="flex items-center justify-between border-b terminal-border pb-4 mb-5">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-lg bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">📦</span>
+                                <h3 id="form-title" class="font-display font-black text-white text-base">
+                                    Ajouter un Produit
+                                </h3>
+                            </div>
+                            <span id="edit-badge" class="hidden px-2 py-0.5 rounded text-[9px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                                Mode Édition
+                            </span>
                         </div>
+
+                        <form id="product-form" class="space-y-4">
+                            <input type="hidden" id="editing-id">
+
+                            <!-- Product Name -->
+                            <div>
+                                <label class="block text-[11px] font-bold text-white/80 mb-1.5">
+                                    Nom du Produit <span class="text-red-400">*</span>
+                                </label>
+                                <input id="product-name" required type="text"
+                                    placeholder="Ex: Samsung Galaxy S24 Ultra 256GB"
+                                    class="w-full bg-white/5 border terminal-border rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all">
+                            </div>
+
+                            <!-- Price & Stock Row -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] font-bold text-white/80 mb-1.5">
+                                        Prix de Vente (DA) <span class="text-red-400">*</span>
+                                    </label>
+                                    <input id="product-price" required type="number" step="1" min="0"
+                                        placeholder="Ex: 45000"
+                                        class="w-full bg-white/5 border terminal-border rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-bold text-white/80 mb-1.5">
+                                        Stock Disponible
+                                    </label>
+                                    <input id="product-stock" type="number" min="0" value="10"
+                                        placeholder="10"
+                                        class="w-full bg-white/5 border terminal-border rounded-xl px-3.5 py-2.5 text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label class="block text-[11px] font-bold text-white/80 mb-1.5">
+                                    Catégorie <span class="text-red-400">*</span>
+                                </label>
+                                <select id="product-category"
+                                    class="w-full bg-[#121829] border terminal-border rounded-xl px-3.5 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-primary transition-all cursor-pointer">
+                                    <option value="Téléphone">📱 Téléphone (Smartphones)</option>
+                                    <option value="Accessoire">🎧 Accessoire (Écouteurs, Chargeurs...)</option>
+                                    <option value="Services">🛠️ Services & Réparations</option>
+                                    <option value="Offres">🔥 Offres & Promotions Spéciales</option>
+                                </select>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <label class="block text-[11px] font-bold text-white/80 mb-1.5">
+                                    Description & Fiche Technique
+                                </label>
+                                <textarea id="product-description" rows="3"
+                                    placeholder="Caractéristiques, état, garantie, accessoires inclus..."
+                                    class="w-full bg-white/5 border terminal-border rounded-xl px-3.5 py-2.5 text-xs font-medium text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all"></textarea>
+                            </div>
+
+                            <!-- 📸 MULTIPLE IMAGES (INSTAGRAM 1:1 SQUARE FORMAT) -->
+                            <div class="space-y-2 pt-1 border-t terminal-border">
+                                <div class="flex items-center justify-between">
+                                    <label class="block text-[11px] font-bold text-primary flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">photo_library</span>
+                                        Photos du Produit (Format carré 1:1 Instagram)
+                                    </label>
+                                    <span class="text-[10px] text-gray-400" id="photos-counter">0 photo</span>
+                                </div>
+
+                                <!-- Drag & Drop File Selector -->
+                                <div class="p-3.5 rounded-xl border border-dashed border-white/20 hover:border-primary/60 bg-white/5 transition-all text-center">
+                                    <input type="file" id="product-images-file" multiple accept="image/*" class="hidden">
+                                    <button type="button" onclick="document.getElementById('product-images-file').click()"
+                                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-bold text-xs transition-all cursor-pointer">
+                                        <span class="material-symbols-outlined text-base text-primary">add_photo_alternate</span>
+                                        <span>Choisir des photos</span>
+                                    </button>
+                                    <p class="text-[10px] text-gray-400 mt-1">Vous pouvez sélectionner plusieurs photos à la fois.</p>
+                                </div>
+
+                                <!-- Gallery Preview Grid (Instagram 1:1 format) -->
+                                <div id="photos-gallery-preview" class="grid grid-cols-4 gap-2 pt-1 empty:hidden">
+                                    <!-- Miniatures carrées injectées ici -->
+                                </div>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="pt-3 flex gap-2">
+                                <button type="submit" id="submit-btn"
+                                    class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-primary to-amber-500 hover:from-amber-400 hover:to-primary text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-1.5 cursor-pointer">
+                                    <span class="material-symbols-outlined text-base">save</span>
+                                    <span id="submit-btn-text">Enregistrer le Produit</span>
+                                </button>
+                                <button type="button" id="cancel-edit-btn" class="hidden px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold transition-all cursor-pointer">
+                                    Annuler
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
-                    <!-- Ledger Terminal: Products List -->
-                    <div class="lg:col-span-8 order-1 lg:order-2">
-                        <div class="bg-black/40 rounded-2xl lg:rounded-[3rem] terminal-border overflow-hidden">
-                            <div class="p-6 lg:p-10 border-b terminal-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/5">
-                                <h3 class="font-display text-xl lg:text-2xl font-black text-heading tracking-tighter">
-                                    Global Ledger</h3>
-                                <div class="flex items-center px-3 lg:px-4 py-2 bg-success/10 border border-success/20 rounded-xl">
-                                    <span id="product-count"
-                                        class="text-[8px] lg:text-[9px] font-black uppercase tracking-widest text-success flex items-center gap-2">
-                                        <span class="size-1.5 bg-success rounded-full"></span>
-                                        <span class="hidden xs:inline">Node </span>Online
-                                    </span>
-                                </div>
+                    <!-- ==================== RIGHT: PRODUCTS LIST ==================== -->
+                    <div class="lg:col-span-7 xl:col-span-8 space-y-4">
+                        <!-- Filters & View Toggle Bar -->
+                        <div class="p-3 sm:p-4 rounded-2xl bg-black/40 border terminal-border flex flex-wrap items-center justify-between gap-3">
+                            <!-- Category Filter Chips -->
+                            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+                                <button type="button" class="category-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-primary text-black" data-cat="all">
+                                    Tous (<span id="count-all">0</span>)
+                                </button>
+                                <button type="button" class="category-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/5 text-gray-300 hover:bg-white/10" data-cat="Téléphone">
+                                    📱 Téléphones
+                                </button>
+                                <button type="button" class="category-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/5 text-gray-300 hover:bg-white/10" data-cat="Accessoire">
+                                    🎧 Accessoires
+                                </button>
+                                <button type="button" class="category-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/5 text-gray-300 hover:bg-white/10" data-cat="Services">
+                                    🛠️ Services
+                                </button>
+                                <button type="button" class="category-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/5 text-gray-300 hover:bg-white/10" data-cat="Offres">
+                                    🔥 Offres
+                                </button>
                             </div>
 
-                            <!-- Desktop Table View -->
-                            <div id="table-view">
-                                <div class="overflow-x-auto">
-                                    <table class="w-full text-left min-w-[600px]">
-                                        <thead>
-                                            <tr class="border-b terminal-border">
-                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-muted">
-                                                    Asset</th>
-                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-muted hidden sm:table-cell">
-                                                    Sector</th>
-                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-muted">
-                                                    Valuation</th>
-                                                <th class="px-6 lg:px-10 py-4 lg:py-5 text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-muted text-right">
-                                                    Operation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="products-table-body" class="divide-y terminal-border">
-                                            <!-- Data Injected -->
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <!-- Mobile search bar fallback -->
+                            <div class="w-full sm:hidden">
+                                <input type="text" id="product-search-mobile" placeholder="Rechercher..."
+                                    class="w-full bg-white/5 border terminal-border rounded-xl px-3 py-2 text-xs text-white">
                             </div>
+                        </div>
 
-                            <!-- Mobile Card View -->
-                            <div id="card-view" class="p-4 space-y-3">
-                                <!-- Cards injected by JS -->
+                        <!-- Products Container -->
+                        <div class="bg-black/40 rounded-3xl border terminal-border overflow-hidden shadow-2xl">
+                            <!-- Table View (Desktop) -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="border-b terminal-border text-white/50 bg-white/5">
+                                            <th class="px-5 py-3.5 text-[10px] font-bold uppercase tracking-wider">Photo & Produit</th>
+                                            <th class="px-5 py-3.5 text-[10px] font-bold uppercase tracking-wider">Catégorie</th>
+                                            <th class="px-5 py-3.5 text-[10px] font-bold uppercase tracking-wider">Prix</th>
+                                            <th class="px-5 py-3.5 text-[10px] font-bold uppercase tracking-wider">Stock</th>
+                                            <th class="px-5 py-3.5 text-[10px] font-bold uppercase tracking-wider text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="products-table-body" class="divide-y terminal-border">
+                                        <!-- Products dynamically populated -->
+                                        <tr>
+                                            <td colspan="5" class="py-12 text-center text-xs text-gray-400">
+                                                Chargement du catalogue...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -952,506 +411,248 @@
         </main>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-[#121829] border border-white/15 rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl space-y-4">
+            <div class="w-12 h-12 rounded-full bg-red-500/20 text-red-400 mx-auto flex items-center justify-center text-2xl">
+                🗑️
+            </div>
+            <h4 class="font-display font-black text-white text-lg">Supprimer ce produit ?</h4>
+            <p class="text-xs text-gray-400">Cette action est définitive. Le produit sera retiré du catalogue.</p>
+            <div class="flex gap-2 pt-2">
+                <button id="cancel-delete-btn" class="flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs transition-all">
+                    Annuler
+                </button>
+                <button id="confirm-delete-btn" class="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-xs transition-all shadow-lg shadow-red-500/30">
+                    Supprimer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script type="module">
-        import { initAdminLanguage } from './admin-i18n.js';
-        initAdminLanguage();
+        import { initAdminLanguage, formatPriceI18n, getAdminLanguage, t } from './admin-i18n.js';
         import { getProducts, addProduct, updateProduct, deleteProduct, uploadImage } from './db-service.js';
 
-        // DOM Elements
+        // Elements
+        const productsTableBody = document.getElementById('products-table-body');
+        const productForm = document.getElementById('product-form');
+        const formTitle = document.getElementById('form-title');
+        const editBadge = document.getElementById('edit-badge');
+        const submitBtnText = document.getElementById('submit-btn-text');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const editingIdInput = document.getElementById('editing-id');
+        const searchInput = document.getElementById('product-search');
+        const searchInputMobile = document.getElementById('product-search-mobile');
+        const imagesFileInput = document.getElementById('product-images-file');
+        const galleryPreview = document.getElementById('photos-gallery-preview');
+        const photosCounter = document.getElementById('photos-counter');
+        const deleteModal = document.getElementById('delete-modal');
+        const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+
+        // Stats
+        const statTotal = document.getElementById('stat-total-products');
+        const statPhones = document.getElementById('stat-phones');
+        const statAccessories = document.getElementById('stat-accessories');
+        const statServices = document.getElementById('stat-services');
+        const countAll = document.getElementById('count-all');
+
+        let allProducts = [];
+        let activeCategoryFilter = 'all';
+        let currentPhotos = []; // { type: 'file'|'url', file, url, preview }
+        let productToDeleteId = null;
+
+        // Mobile drawer handlers
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebar-overlay');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const sidebarClose = document.getElementById('sidebar-close');
 
-        // Mobile Sidebar Toggle
-        function toggleSidebar(show) {
-            if (show) {
+        function toggleSidebar(open) {
+            if (open) {
                 sidebar.classList.remove('mobile-hidden');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                overlay.classList.remove('hidden');
             } else {
                 sidebar.classList.add('mobile-hidden');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
+                overlay.classList.add('hidden');
             }
         }
-
-        mobileMenuBtn?.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(true); });
-        sidebarClose?.addEventListener('click', (e) => { e.stopPropagation(); toggleSidebar(false); });
+        mobileMenuBtn?.addEventListener('click', () => toggleSidebar(true));
+        sidebarClose?.addEventListener('click', () => toggleSidebar(false));
         overlay?.addEventListener('click', () => toggleSidebar(false));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleSidebar(false); });
 
-        // Product Elements
-        const tableBody = document.getElementById('products-table-body');
-        const cardView = document.getElementById('card-view');
-        const tableView = document.getElementById('table-view');
-        const productForm = document.getElementById('product-form');
-        const productCount = document.getElementById('product-count');
-        const submitBtn = document.getElementById('submit-btn');
-        const cancelEditBtn = document.getElementById('cancel-edit-btn');
-        const formTitle = document.getElementById('form-title');
-        const editingIdInput = document.getElementById('editing-id');
-        const searchInput = document.getElementById('product-search');
-
-        let productsList = [];
-
-        // Helpers
-        function formatPrice(price) {
-            return new Intl.NumberFormat('fr-DZ').format(price) + ' د.ج';
-        }
-
-        // Load Products
-        async function loadProducts() {
-            const loadingMsg = 'Awaiting Decryption...';
-            tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-body text-[10px] font-black uppercase tracking-widest">${loadingMsg}</td></tr>`;
-            cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-body text-[10px] font-black uppercase tracking-widest">${loadingMsg}</div>`;
-
+        // Load and Render Products
+        async function fetchProducts() {
             try {
-                productsList = await getProducts();
-                renderProducts(productsList);
-            } catch (error) {
-                console.error("Link Failure:", error);
-                const errorMsg = 'Protocol Breach detected.';
-                tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-red-400 text-[10px] font-black uppercase tracking-widest">${errorMsg}</td></tr>`;
-                cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-red-400 text-[10px] font-black uppercase tracking-widest">${errorMsg}</div>`;
+                allProducts = await getProducts();
+                updateStats();
+                renderProductList();
+            } catch (err) {
+                console.error("Error loading products:", err);
+                productsTableBody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-red-400 text-xs">Erreur de chargement.</td></tr>`;
             }
         }
 
-        // Get category color
-        function getCategoryColor(category) {
-            const colors = {
-                'Téléphone': 'text-secondary',
-                'Accessoire': 'text-accent',
-                'Services': 'text-services',
-                'Offres': 'text-red-400'
-            };
-            return colors[category] || 'text-body';
+        function updateStats() {
+            if (statTotal) statTotal.textContent = allProducts.length;
+            if (countAll) countAll.textContent = allProducts.length;
+            if (statPhones) statPhones.textContent = allProducts.filter(p => p.category === 'Téléphone').length;
+            if (statAccessories) statAccessories.textContent = allProducts.filter(p => p.category === 'Accessoire').length;
+            if (statServices) statServices.textContent = allProducts.filter(p => p.category === 'Services' || p.category === 'Offres').length;
         }
 
-        // Render Table Row (Desktop)
-        function renderTableRow(product) {
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-white/10 transition-all group clickable';
-            const categoryColor = getCategoryColor(product.category);
-            
-            tr.innerHTML = `
-                <td class="px-6 lg:px-10 py-5 lg:py-6">
-                    <div class="flex items-center gap-4 lg:gap-5">
-                        <div class="relative size-12 lg:size-14 aspect-square rounded-xl lg:rounded-2xl bg-[#0B0F19] border border-white/15 overflow-hidden flex-shrink-0 group-hover:border-[#FFBA08] transition-colors">
-        <img src="${product.image || (product.images && product.images[0]) || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}" class="w-full h-full object-contain p-1" alt="${product.name}">
-        ${(product.images && product.images.length > 1) ? `<span class="absolute bottom-0 right-0 px-1 py-0.2 rounded-tl-md bg-[#FFBA08] text-slate-950 font-black text-[8px] leading-tight">📷${product.images.length}</span>` : ''}
-    </div>
-                        <div class="min-w-0">
-                            <p class="text-[10px] lg:text-[11px] font-black text-heading uppercase tracking-widest leading-none mb-1 truncate">${product.name}</p>
-                            <p class="text-[8px] lg:text-[9px] font-black text-body uppercase tracking-[0.2em]">ID: ${product.id?.substring(0, 6) || 'N/A'}</p>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[9px] lg:text-[10px] font-black ${categoryColor} uppercase tracking-widest hidden sm:table-cell">${product.category}</td>
-                <td class="px-6 lg:px-10 py-5 lg:py-6 text-[10px] lg:text-[11px] font-black text-success tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</td>
-                <td class="px-6 lg:px-10 py-5 lg:py-6 text-right">
-                    <div class="desktop-actions justify-end gap-2 lg:gap-3 opacity-0 group-hover:opacity-100 transition-all">
-                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-accent-pink transition-all edit-btn clickable" data-id="${product.id}" aria-label="Edit ${product.name}">
-                            <span class="material-symbols-outlined text-lg">edit</span>
-                        </button>
-                        <button class="size-9 lg:size-10 bg-white/10 text-body border terminal-border rounded-xl hover:text-red-400 transition-all delete-btn clickable" data-id="${product.id}" aria-label="Delete ${product.name}">
-                            <span class="material-symbols-outlined text-lg">delete</span>
-                        </button>
-                    </div>
-                    <div class="mobile-actions justify-end gap-2">
-                        <button class="action-btn edit-btn-mobile edit-btn clickable px-3" data-id="${product.id}" aria-label="Edit">
-                            <span class="material-symbols-outlined text-sm">edit</span>
-                        </button>
-                        <button class="action-btn delete-btn-mobile delete-btn clickable px-3" data-id="${product.id}" aria-label="Delete">
-                            <span class="material-symbols-outlined text-sm">delete</span>
-                        </button>
-                    </div>
-                </td>
-            `;
-            return tr;
-        }
+        function renderProductList() {
+            const currentLang = getAdminLanguage();
+            const query = (searchInput?.value || searchInputMobile?.value || '').toLowerCase().trim();
 
-        // Render Card (Mobile)
-        function renderCard(product) {
-            const card = document.createElement('div');
-            card.className = 'product-card glass rounded-2xl p-4 terminal-border hover:border-secondary/30 transition-all clickable';
-            const categoryColor = getCategoryColor(product.category);
-            
-            card.innerHTML = `
-                <div class="flex items-start gap-4">
-                    <div class="relative size-16 aspect-square rounded-xl bg-[#0B0F19] border border-white/15 overflow-hidden flex-shrink-0">
-        <img src="${product.image || (product.images && product.images[0]) || 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100&q=80'}" class="w-full h-full object-contain p-1" alt="${product.name}">
-        ${(product.images && product.images.length > 1) ? `<span class="absolute bottom-0 right-0 px-1.5 py-0.5 rounded-tl-md bg-[#FFBA08] text-slate-950 font-black text-[9px] leading-tight">📷 ${product.images.length}</span>` : ''}
-    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-sm font-black text-heading uppercase tracking-widest truncate">${product.name}</h4>
-                            <span class="text-success font-black text-sm tracking-tighter whitespace-nowrap">${formatPrice(product.price)}</span>
-                        </div>
-                        <p class="text-[9px] font-black ${categoryColor} uppercase tracking-widest mb-3">${product.category}</p>
-                        <div class="flex gap-2 mobile-actions">
-                            <button class="action-btn edit-btn-mobile edit-btn clickable flex-1 text-[10px] font-black uppercase tracking-widest" data-id="${product.id}">
-                                <span class="material-symbols-outlined text-base mr-1">edit</span>Edit
-                            </button>
-                            <button class="action-btn delete-btn-mobile delete-btn clickable flex-1 text-[10px] font-black uppercase tracking-widest" data-id="${product.id}">
-                                <span class="material-symbols-outlined text-base mr-1">delete</span>Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
+            let filtered = allProducts;
+            if (activeCategoryFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === activeCategoryFilter);
+            }
+            if (query) {
+                filtered = filtered.filter(p => 
+                    (p.name && p.name.toLowerCase().includes(query)) ||
+                    (p.category && p.category.toLowerCase().includes(query))
+                );
+            }
 
-        // Main Render Function
-        function renderProducts(products) {
-            const isMobile = window.innerWidth < 1024;
-
-            if (products.length === 0) {
-                const emptyMsg = 'Repository Vacant.';
-                if (isMobile) {
-                    tableView.classList.add('hidden');
-                    cardView.classList.remove('hidden');
-                    cardView.style.display = 'block';
-                    cardView.innerHTML = `<div class="glass rounded-2xl p-8 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</div>`;
-                } else {
-                    cardView.classList.add('hidden');
-                    cardView.style.display = 'none';
-                    tableView.classList.remove('hidden');
-                    tableView.style.display = 'block';
-                    tableBody.innerHTML = `<tr><td colspan="5" class="px-10 py-20 text-center text-body text-[10px] font-black uppercase tracking-widest">${emptyMsg}</td></tr>`;
-                }
-                productCount.innerHTML = `<span class="size-1.5 bg-muted rounded-full"></span> Node Empty`;
+            if (filtered.length === 0) {
+                productsTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="py-12 text-center text-xs text-gray-400">
+                            Aucun produit correspondant.
+                        </td>
+                    </tr>
+                `;
                 return;
             }
 
-            if (isMobile) {
-                tableView.classList.add('hidden');
-                cardView.classList.remove('hidden');
-                cardView.style.display = 'block';
-                cardView.innerHTML = '';
-                products.forEach(product => {
-                    cardView.appendChild(renderCard(product));
-                });
-            } else {
-                cardView.classList.add('hidden');
-                cardView.style.display = 'none';
-                tableView.classList.remove('hidden');
-                tableView.style.display = 'block';
-                tableBody.innerHTML = '';
-                products.forEach(product => {
-                    tableBody.appendChild(renderTableRow(product));
-                });
-            }
+            productsTableBody.innerHTML = filtered.map(product => {
+                const primaryImage = product.image || (product.images && product.images[0]) || 'images/logo.jpeg';
+                const imageCount = (product.images && product.images.length) || (product.image ? 1 : 0);
+                const stock = Number(product.stock ?? 10);
+                const isOutOfStock = stock <= 0;
 
-            productCount.innerHTML = `<span class="size-1.5 bg-success rounded-full animate-pulse"></span> Indexing ${products.length} Units`;
-            attachEventListeners(products);
-        }
+                const catBadge = {
+                    'Téléphone': 'bg-secondary/10 text-secondary border-secondary/20',
+                    'Accessoire': 'bg-accent/10 text-accent border-accent/20',
+                    'Services': 'bg-primary/10 text-primary border-primary/20',
+                    'Offres': 'bg-red-400/10 text-red-400 border-red-400/20'
+                }[product.category] || 'bg-white/10 text-gray-300 border-white/10';
 
-        // Attach Edit/Delete Listeners
-        function attachEventListeners(products) {
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                const newBtn = btn.cloneNode(true);
-                btn.parentNode.replaceChild(newBtn, btn);
-                newBtn.onclick = async (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    const id = newBtn.getAttribute('data-id');
-                    const product = productsList.find(p => p.id === id);
-                    const productName = product?.name || 'this item';
-                    if (confirm(`⚠️ TERMINATE "${productName}"?`)) {
-                        try {
-                            await deleteProduct(id);
-                            showToast('✓ Entry terminated.', 'success');
-                            loadProducts();
-                        } catch (err) {
-                            showToast('✗ Delete failed: ' + err.message, 'error');
-                        }
-                    }
-                };
-            });
+                return `
+                    <tr class="hover:bg-white/5 transition-colors group">
+                        <!-- Product & Photo (Instagram 1:1) -->
+                        <td class="px-5 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="relative size-14 rounded-xl overflow-hidden bg-black/40 border border-white/10 flex-shrink-0">
+                                    <img src="${primaryImage}" class="w-full h-full photo-square" alt="${product.name}">
+                                    ${imageCount > 1 ? `<span class="absolute bottom-1 right-1 bg-black/80 text-[9px] font-bold text-white px-1 rounded">${imageCount}</span>` : ''}
+                                </div>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-xs sm:text-sm text-white truncate max-w-[200px] sm:max-w-xs">${product.name}</h4>
+                                    <p class="text-[10px] text-gray-400 truncate max-w-[180px]">${product.description || 'Sans description'}</p>
+                                </div>
+                            </div>
+                        </td>
 
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                const newBtn = btn.cloneNode(true);
-                btn.parentNode.replaceChild(newBtn, btn);
-                newBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    const id = newBtn.getAttribute('data-id');
-                    const product = productsList.find(p => p.id === id);
-                    if (product) {
-                        startEditing(product);
-                        showToast(`✏️ Editing: ${product.name}`, 'info');
-                    }
-                };
-            });
-        }
+                        <!-- Category -->
+                        <td class="px-5 py-4">
+                            <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold border ${catBadge}">
+                                ${product.category || 'Standard'}
+                            </span>
+                        </td>
 
-        // Toast notification
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            const colors = { 
-                success: 'bg-success/20 border-success/30 text-success', 
-                error: 'bg-red-500/20 border-red-400/30 text-red-400', 
-                info: 'bg-secondary/20 border-secondary/30 text-accent-purple' 
-            };
-            toast.className = `fixed top-4 right-4 z-[200] glass ${colors[type]} border rounded-xl px-4 py-3 text-sm font-medium shadow-lg animate-pulse`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
+                        <!-- Price -->
+                        <td class="px-5 py-4 font-mono font-bold text-xs sm:text-sm text-white">
+                            ${formatPriceI18n(product.price, currentLang)}
+                        </td>
 
-        // Search Implementation
-        searchInput?.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = productsList.filter(p =>
-                p.name?.toLowerCase().includes(query) ||
-                p.category?.toLowerCase().includes(query) ||
-                p.id?.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
-        });
+                        <!-- Stock Status -->
+                        <td class="px-5 py-4">
+                            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold ${isOutOfStock ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}">
+                                <span class="size-1.5 rounded-full ${isOutOfStock ? 'bg-red-400' : 'bg-emerald-400'}"></span>
+                                <span>${isOutOfStock ? 'Rupture' : stock + ' en stock'}</span>
+                            </span>
+                        </td>
 
-        // ==========================================
-        // MULTI-PHOTO & INSTAGRAM 1:1 STATE & LOGIC
-        // ==========================================
-        let currentPhotos = []; // Array of { id, type: 'url'|'file', url, file, preview }
-
-        const multiFileInput = document.getElementById('product-images-file');
-        const instaMainPreview = document.getElementById('insta-main-preview');
-        const instaEmptyState = document.getElementById('insta-empty-state');
-        const instaPreviewOverlay = document.getElementById('insta-preview-overlay');
-        const photosGalleryList = document.getElementById('photos-gallery-list');
-        const photoCounterBadge = document.getElementById('photo-counter-badge');
-        const photosCountText = document.getElementById('photos-count-text');
-        const btnToggleUrlInput = document.getElementById('btn-toggle-url-input');
-        const urlInputContainer = document.getElementById('url-input-container');
-        const imageUrlManual = document.getElementById('image-url-manual');
-        const btnAddUrl = document.getElementById('btn-add-url');
-
-        // Toggle URL input field
-        btnToggleUrlInput?.addEventListener('click', () => {
-            urlInputContainer?.classList.toggle('hidden');
-            if (!urlInputContainer?.classList.contains('hidden')) {
-                imageUrlManual?.focus();
-            }
-        });
-
-        // Add image by manual URL
-        btnAddUrl?.addEventListener('click', () => {
-            const val = imageUrlManual?.value?.trim();
-            if (!val) {
-                showToast('⚠️ Veuillez saisir un lien d\'image valide', 'warning');
-                return;
-            }
-            addPhotoItem({
-                id: 'url_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
-                type: 'url',
-                url: val,
-                preview: val
-            });
-            imageUrlManual.value = '';
-            urlInputContainer.classList.add('hidden');
-        });
-
-        // Add multiple files from disk
-        multiFileInput?.addEventListener('change', (e) => {
-            const files = Array.from(e.target.files || []);
-            if (files.length === 0) return;
-
-            files.forEach((file) => {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    addPhotoItem({
-                        id: 'file_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
-                        type: 'file',
-                        file: file,
-                        preview: ev.target.result
-                    });
-                };
-                reader.readAsDataURL(file);
-            });
-            // Reset input so user can add more files again
-            multiFileInput.value = '';
-        });
-
-        function addPhotoItem(photo) {
-            currentPhotos.push(photo);
-            renderPhotosUI();
-        }
-
-        function removePhotoItem(id) {
-            currentPhotos = currentPhotos.filter(p => p.id !== id);
-            renderPhotosUI();
-        }
-
-        function setPhotoAsPrimary(id) {
-            const idx = currentPhotos.findIndex(p => p.id === id);
-            if (idx > 0) {
-                const [selected] = currentPhotos.splice(idx, 1);
-                currentPhotos.unshift(selected); // Move to first position (Cover)
-                renderPhotosUI();
-                showToast('★ Photo définie comme couverture', 'success');
-            }
-        }
-
-        function renderPhotosUI() {
-            const count = currentPhotos.length;
-            if (photoCounterBadge) photoCounterBadge.textContent = count + (count > 1 ? ' photos' : ' photo');
-            if (photosCountText) photosCountText.textContent = count;
-
-            // Update Instagram 1:1 Main Preview
-            if (count > 0) {
-                const primary = currentPhotos[0];
-                instaMainPreview.src = primary.preview;
-                instaMainPreview.classList.remove('hidden');
-                instaEmptyState.classList.add('hidden');
-                instaPreviewOverlay.classList.remove('hidden');
-            } else {
-                instaMainPreview.classList.add('hidden');
-                instaEmptyState.classList.remove('hidden');
-                instaPreviewOverlay.classList.add('hidden');
-            }
-
-            // Update Gallery Grid
-            if (photosGalleryList) {
-                photosGalleryList.innerHTML = '';
-                if (count === 0) {
-                    photosGalleryList.innerHTML = '<div class="col-span-4 py-3 text-center text-[10px] text-slate-500 font-medium">Aucune photo dans la galerie</div>';
-                    return;
-                }
-
-                currentPhotos.forEach((photo, idx) => {
-                    const isCover = (idx === 0);
-                    const thumb = document.createElement('div');
-                    thumb.className = `relative aspect-square rounded-xl overflow-hidden border-2 ${isCover ? 'border-[#FFBA08] ring-2 ring-[#FFBA08]/30' : 'border-white/10 hover:border-white/30'} bg-black/40 group`;
-
-                    thumb.innerHTML = `
-                        <img src="${photo.preview}" class="w-full h-full object-contain p-1" alt="Thumbnail ${idx + 1}" />
-                        
-                        <!-- Badges & Position -->
-                        ${isCover 
-                            ? '<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded-md bg-[#FFBA08] text-slate-950 font-black text-[8px] uppercase tracking-wider shadow">★ Couv</span>'
-                            : `<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded-md bg-black/70 text-white font-mono text-[8px]">#${idx + 1}</span>`
-                        }
-
-                        <!-- Action buttons on hover -->
-                        <div class="absolute inset-0 bg-black/70 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1 p-1">
-                            ${!isCover ? `
-                                <button type="button" class="btn-make-cover w-full py-1 rounded bg-[#FFBA08] hover:bg-white text-slate-950 text-[8px] font-black uppercase tracking-wider transition-all" data-id="${photo.id}">
-                                    ★ Couverture
+                        <!-- Actions -->
+                        <td class="px-5 py-4 text-right">
+                            <div class="flex items-center justify-end gap-1.5">
+                                <button type="button" onclick="window.editProductTrigger('${product.id}')"
+                                    class="p-2 rounded-lg bg-white/5 hover:bg-primary hover:text-black text-white/70 transition-all cursor-pointer" title="Modifier">
+                                    <span class="material-symbols-outlined text-sm">edit</span>
                                 </button>
-                            ` : ''}
-                            <button type="button" class="btn-delete-photo w-full py-1 rounded bg-red-500 hover:bg-red-600 text-white text-[8px] font-black uppercase tracking-wider transition-all" data-id="${photo.id}">
-                                Supprimer
-                            </button>
-                        </div>
-                    `;
-
-                    // Attach buttons
-                    thumb.querySelector('.btn-make-cover')?.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        setPhotoAsPrimary(photo.id);
-                    });
-                    thumb.querySelector('.btn-delete-photo')?.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        removePhotoItem(photo.id);
-                    });
-
-                    photosGalleryList.appendChild(thumb);
-                });
-            }
+                                <button type="button" onclick="window.deleteProductTrigger('${product.id}')"
+                                    class="p-2 rounded-lg bg-white/5 hover:bg-red-500 hover:text-white text-white/70 transition-all cursor-pointer" title="Supprimer">
+                                    <span class="material-symbols-outlined text-sm">delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
-        // Form Editing Functions
-        function startEditing(product) {
-            editingIdInput.value = product.id;
-            document.getElementById('product-name').value = product.name || '';
-            document.getElementById('product-price').value = product.price || '';
-            document.getElementById('product-category').value = product.category || 'Téléphone';
-            document.getElementById('product-description').value = product.description || '';
-
-            // Load all product images into multi-photo state
-            currentPhotos = [];
-            const loadedImages = (Array.isArray(product.images) && product.images.length > 0)
-                ? product.images
-                : (product.image ? [product.image] : []);
-
-            loadedImages.forEach((imgUrl, idx) => {
-                currentPhotos.push({
-                    id: 'existing_' + idx + '_' + Date.now(),
-                    type: 'url',
-                    url: imgUrl,
-                    preview: imgUrl
-                });
+        // Multiple Photos Upload & Preview (Instagram 1:1)
+        imagesFileInput?.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files || []);
+            files.forEach(file => {
+                const preview = URL.createObjectURL(file);
+                currentPhotos.push({ type: 'file', file, preview });
             });
-
-            renderPhotosUI();
-
-            formTitle.textContent = 'Modifier le Produit';
-            submitBtn.innerHTML = '<span class="hidden xs:inline">Mettre à jour </span>Produit';
-            cancelEditBtn.classList.remove('hidden');
-
-            if (window.innerWidth < 1024) {
-                document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        cancelEditBtn?.addEventListener('click', resetForm);
-
-        function resetForm() {
-            productForm.reset();
-            editingIdInput.value = '';
-            currentPhotos = [];
-            renderPhotosUI();
-            formTitle.textContent = 'Ajouter un Produit';
-            submitBtn.innerHTML = '<span class="hidden xs:inline">Enregistrer le </span>Produit';
-            cancelEditBtn.classList.add('hidden');
-        }
-
-        document.getElementById('add-product-shortcut')?.addEventListener('click', () => {
-            resetForm();
-            if (window.innerWidth < 1024) {
-                document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            renderPhotosPreview();
+            imagesFileInput.value = '';
         });
 
-        // Form Submit Handler with Multiple Photos Upload & Save
+        function renderPhotosPreview() {
+            if (!galleryPreview) return;
+            photosCounter.textContent = `${currentPhotos.length} photo${currentPhotos.length > 1 ? 's' : ''}`;
+            galleryPreview.innerHTML = currentPhotos.map((item, idx) => `
+                <div class="relative group rounded-xl overflow-hidden border border-white/15 bg-black/40">
+                    <img src="${item.preview || item.url}" class="w-full photo-square" alt="Photo ${idx + 1}">
+                    ${idx === 0 ? '<span class="absolute top-1 left-1 bg-primary text-black text-[8px] font-bold px-1 rounded">Principale</span>' : ''}
+                    <button type="button" onclick="window.removePhotoItem(${idx})"
+                        class="absolute top-1 right-1 size-5 rounded-full bg-red-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        ×
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.removePhotoItem = function(index) {
+            currentPhotos.splice(index, 1);
+            renderPhotosPreview();
+        };
+
+        // Form Submit: Add or Update
         productForm?.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            const name = document.getElementById('product-name').value.trim();
+            const price = parseFloat(document.getElementById('product-price').value) || 0;
+            const category = document.getElementById('product-category').value;
+            const stock = parseInt(document.getElementById('product-stock').value, 10) || 0;
+            const description = document.getElementById('product-description').value.trim();
             const editingId = editingIdInput.value;
 
-            if (currentPhotos.length === 0) {
-                showToast('⚠️ Veuillez ajouter au moins une photo pour le produit', 'warning');
-                return;
-            }
-
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px] mr-1 align-middle">sync</span> Traitement des photos...';
+            submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm mr-1">sync</span> Enregistrement...`;
 
             try {
-                const name = document.getElementById('product-name').value.trim();
-                const price = parseFloat(document.getElementById('product-price').value);
-                const category = document.getElementById('product-category').value;
-                const description = document.getElementById('product-description').value.trim();
-
-                // Upload any local files to Cloudinary and collect final image URLs
+                // Upload local files to Cloudinary / base64 fallback
                 const finalImageUrls = [];
-
                 for (let i = 0; i < currentPhotos.length; i++) {
                     const item = currentPhotos[i];
                     if (item.type === 'file' && item.file) {
-                        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[16px] mr-1 align-middle">sync</span> Envoi photo ${i + 1}/${currentPhotos.length}...`;
                         try {
-                            const uploadedUrl = await uploadImage(item.file);
-                            finalImageUrls.push(uploadedUrl);
-                        } catch (uploadErr) {
-                            console.warn("Échec upload Cloudinary, repli vers aperçu:", uploadErr);
-                            // Fallback to base64 preview if Cloudinary is unavailable
+                            const url = await uploadImage(item.file);
+                            finalImageUrls.push(url);
+                        } catch (uErr) {
                             finalImageUrls.push(item.preview);
                         }
                     } else if (item.url) {
@@ -1461,59 +662,129 @@
                     }
                 }
 
-                // Construct product data: array 'images' + primary 'image' for 100% backward compatibility
+                if (finalImageUrls.length === 0) {
+                    finalImageUrls.push('images/logo.jpeg');
+                }
+
                 const productData = {
                     name,
                     price,
                     category,
+                    stock,
                     description,
                     images: finalImageUrls,
-                    image: finalImageUrls[0] || ''
+                    image: finalImageUrls[0]
                 };
 
                 if (editingId) {
                     await updateProduct(editingId, productData);
-                    showToast('✓ Produit modifié avec succès.', 'success');
                 } else {
                     await addProduct(productData);
-                    showToast('✓ Produit ajouté avec succès.', 'success');
                 }
+
                 resetForm();
-                loadProducts();
-            } catch (error) {
-                console.error("Erreur enregistrement produit:", error);
-                showToast(`✗ Erreur: ${error.message}`, 'error');
+                await fetchProducts();
+
+            } catch (err) {
+                console.error("Save product error:", err);
+                alert("Erreur lors de l'enregistrement du produit.");
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = editingId ?
-                    '<span class="hidden xs:inline">Mettre à jour </span>Produit' :
-                    '<span class="hidden xs:inline">Enregistrer le </span>Produit';
+                submitBtn.innerHTML = originalBtnHtml;
             }
         });
 
-        // Re-render on resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                renderProducts(productsList);
-            }, 150);
+        // Edit Product Trigger
+        window.editProductTrigger = function(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+
+            editingIdInput.value = product.id;
+            document.getElementById('product-name').value = product.name || '';
+            document.getElementById('product-price').value = product.price || 0;
+            document.getElementById('product-category').value = product.category || 'Téléphone';
+            document.getElementById('product-stock').value = product.stock ?? 10;
+            document.getElementById('product-description').value = product.description || '';
+
+            currentPhotos = [];
+            if (product.images && product.images.length > 0) {
+                product.images.forEach(url => currentPhotos.push({ type: 'url', url }));
+            } else if (product.image) {
+                currentPhotos.push({ type: 'url', url: product.image });
+            }
+            renderPhotosPreview();
+
+            formTitle.textContent = "Modifier le Produit";
+            editBadge.classList.remove('hidden');
+            submitBtnText.textContent = "Mettre à jour";
+            cancelEditBtn.classList.remove('hidden');
+
+            document.getElementById('product-form').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        function resetForm() {
+            editingIdInput.value = '';
+            productForm.reset();
+            currentPhotos = [];
+            renderPhotosPreview();
+            formTitle.textContent = "Ajouter un Produit";
+            editBadge.classList.add('hidden');
+            submitBtnText.textContent = "Enregistrer le Produit";
+            cancelEditBtn.classList.add('hidden');
+        }
+
+        cancelEditBtn?.addEventListener('click', resetForm);
+
+        // Delete Product
+        window.deleteProductTrigger = function(id) {
+            productToDeleteId = id;
+            deleteModal.classList.remove('hidden');
+        };
+
+        cancelDeleteBtn?.addEventListener('click', () => {
+            productToDeleteId = null;
+            deleteModal.classList.add('hidden');
         });
 
-        // Initialize
+        confirmDeleteBtn?.addEventListener('click', async () => {
+            if (!productToDeleteId) return;
+            try {
+                await deleteProduct(productToDeleteId);
+                deleteModal.classList.add('hidden');
+                productToDeleteId = null;
+                await fetchProducts();
+            } catch (err) {
+                console.error("Delete error:", err);
+                alert("Erreur lors de la suppression.");
+            }
+        });
+
+        // Search & Category Filters
+        searchInput?.addEventListener('input', renderProductList);
+        searchInputMobile?.addEventListener('input', renderProductList);
+
+        document.querySelectorAll('.category-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-filter-btn').forEach(b => {
+                    b.classList.remove('bg-primary', 'text-black');
+                    b.classList.add('bg-white/5', 'text-gray-300');
+                });
+                btn.classList.add('bg-primary', 'text-black');
+                btn.classList.remove('bg-white/5', 'text-gray-300');
+
+                activeCategoryFilter = btn.getAttribute('data-cat');
+                renderProductList();
+            });
+        });
+
+        // Initialize Language and fetch
         document.addEventListener('DOMContentLoaded', () => {
-            const isMobile = window.innerWidth < 1024;
-            if (isMobile) {
-                tableView.classList.add('hidden');
-                cardView.classList.remove('hidden');
-                cardView.style.display = 'block';
-            } else {
-                cardView.classList.add('hidden');
-                cardView.style.display = 'none';
-                tableView.classList.remove('hidden');
-                tableView.style.display = 'block';
-            }
-            loadProducts();
+            initAdminLanguage();
+            fetchProducts();
+
+            window.addEventListener('adminLanguageChanged', () => {
+                renderProductList();
+            });
         });
     </script>
 </body>

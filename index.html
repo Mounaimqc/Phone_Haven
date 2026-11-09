@@ -11,7 +11,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -72,6 +72,10 @@
         body {
             background-color: #0B0F19 !important;
             color: #E2E8F0;
+        }
+
+        html[dir="rtl"] body, html[dir="rtl"] {
+            font-family: 'Cairo', sans-serif !important;
         }
 
         .tech-pattern-bg {
@@ -564,18 +568,18 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center gap-4 md:gap-6 lg:gap-8">
                     <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
-                        href="index.html">Accueil</a>
+                        href="index.html" data-i18n="nav_home">Accueil</a>
                     <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
-                        href="search.html">Catalogue</a>
+                        href="search.html" data-i18n="nav_catalog">Catalogue</a>
                     <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
-                        href="index.html#new-arrivals">Nouveautés</a>
+                        href="index.html#new-arrivals" data-i18n="nav_new">Nouveautés</a>
                     <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline flex items-center gap-1.5"
                         href="#coverage-section">
                         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Livraison 58 Wilayas
+                        <span data-i18n="nav_coverage">Livraison 58 Wilayas</span>
                     </a>
                     <a class="text-body text-xs sm:text-sm font-medium link-hover transition-all underline-offset-8 hover:underline"
-                        href="tracking.html">Suivi</a>
+                        href="tracking.html" data-i18n="nav_tracking">Suivi</a>
                 </nav>
 
                 <!-- Right Actions -->
@@ -587,8 +591,14 @@
                             class="material-symbols-outlined absolute left-3 xs:left-4 text-muted text-lg xs:text-xl pointer-events-none">search</span>
                         <input
                             class="w-40 xs:w-48 lg:w-64 rounded-xl xs:rounded-2xl border-none bg-white/10 backdrop-blur-lg border border-white/15 py-2 xs:py-2.5 pl-9 xs:pl-12 pr-10 xs:pr-10 text-xs sm:text-sm text-body placeholder:text-muted focus:ring-2 focus:ring-secondary/30 transition-all"
-                            placeholder="Rechercher..." type="text" id="desktop-search" />
+                            placeholder="Rechercher..." type="text" id="desktop-search" data-i18n="nav_search_placeholder" />
                     </div>
+
+                    <!-- Client Language Switcher Button (FR / AR) -->
+                    <button class="client-lang-toggle flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                        <span class="text-sm">🇩🇿</span>
+                        <span class="hidden sm:inline">العربية</span>
+                    </button>
 
                     <!-- Wishlist Button -->
                     <button
@@ -699,6 +709,10 @@
                 </nav>
 
                 <div class="p-3 xs:p-4 border-t border-white/15 space-y-2 xs:space-y-3">
+                    <button class="client-lang-toggle w-full flex items-center justify-center gap-2 p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer">
+                        <span class="text-sm">🇩🇿</span>
+                        <span>العربية</span>
+                    </button>
                     <div class="flex gap-1.5 xs:gap-2">
                         <button id="theme-toggle-mobile"
                             class="flex-1 flex items-center justify-center gap-1.5 xs:gap-2 p-2.5 xs:p-3 rounded-xl xs:rounded-2xl glass-card text-body hover:text-accent-pink transition-all"
@@ -726,27 +740,27 @@
                         <!-- Location & Store Badge -->
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[#FFBA08]/30 mb-4 sm:mb-6 shadow-lg shadow-[#FFBA08]/10">
                             <span class="w-2.5 h-2.5 bg-[#FFBA08] rounded-full animate-pulse"></span>
-                            <span class="text-[#FFBA08] text-[11px] xs:text-xs sm:text-sm font-bold uppercase tracking-wider">
+                            <span class="text-[#FFBA08] text-[11px] xs:text-xs sm:text-sm font-bold uppercase tracking-wider" data-i18n="hero_badge">
                                 Sétif, Algérie · Livraison Express 58 Wilayas
                             </span>
                         </div>
 
                         <!-- Brand Title -->
                         <h1 class="font-display text-heading text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black leading-[1.02] tracking-tight mb-4 xs:mb-5">
-                            Les Meilleurs <br class="hidden sm:inline">
-                            <span class="gradient-text font-black">Smartphones & Accessoires</span>
+                            <span data-i18n="hero_title_1">Les Meilleurs</span> <br class="hidden sm:inline">
+                            <span class="gradient-text font-black" data-i18n="hero_title_2">Smartphones & Accessoires</span>
                         </h1>
 
                         <!-- Official Slogan with Brush Underline -->
                         <div class="inline-block relative mb-5 sm:mb-6">
                             <p class="font-display text-sm xs:text-base sm:text-lg font-bold text-[#FFBA08] tracking-wide flex items-center justify-center lg:justify-start gap-1.5">
-                                <span>More than a Store , It's a Haven for Phones</span>
+                                <span data-i18n="hero_slogan">More than a Store , It's a Haven for Phones</span>
                             </p>
                             <!-- Subtle Golden Swoosh line -->
                             <div class="w-full h-1 bg-gradient-to-r from-[#FFBA08] via-[#FF8040] to-transparent rounded-full mt-1"></div>
                         </div>
 
-                        <p class="text-body text-xs xs:text-sm sm:text-base md:text-lg mb-6 xs:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        <p class="text-body text-xs xs:text-sm sm:text-base md:text-lg mb-6 xs:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal" data-i18n="hero_desc">
                             Boutique de référence à Sétif pour tous vos smartphones, écouteurs, chargeurs et accessoires certifiés 100% originaux avec garantie et paiement à la livraison.
                         </p>
 
@@ -754,12 +768,12 @@
                         <div class="flex flex-wrap gap-3 xs:gap-4 justify-center lg:justify-start mb-8 xs:mb-10">
                             <a href="#new-arrivals"
                                 class="btn-premium group flex h-12 xs:h-13 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl gradient-bg text-slate-950 font-black shadow-lg shadow-[#FFBA08]/25 hover:shadow-[#FF3366]/40 transition-all">
-                                <span>Découvrir les Produits</span>
+                                <span data-i18n="hero_btn_explore">Découvrir les Produits</span>
                                 <span class="material-symbols-outlined ml-2 text-xl group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
                             </a>
                             <a href="search.html"
                                 class="btn-premium flex h-12 xs:h-13 sm:h-14 px-6 xs:px-8 items-center justify-center rounded-xl xs:rounded-2xl border-2 border-[#FFBA08]/40 hover:border-[#FFBA08] hover:bg-[#FFBA08]/10 text-white font-bold transition-all">
-                                <span>Consulter le Catalogue</span>
+                                <span data-i18n="hero_btn_catalog">Consulter le Catalogue</span>
                             </a>
                         </div>
 
@@ -2108,6 +2122,7 @@
         </div>
     </aside>
     <script type="module" src="algeria-coverage.js"></script>
+    <script type="module" src="client-i18n.js"></script>
 </body>
 
 </html>
