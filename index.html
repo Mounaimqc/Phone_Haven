@@ -804,7 +804,7 @@
                             <div class="relative glass-card rounded-[2.5rem] p-4 sm:p-5 border border-white/15 overflow-hidden shadow-2xl">
                                 <!-- Official Video / Promo Reel -->
                                 <div class="relative aspect-[4/5] sm:aspect-[9/16] max-h-[560px] w-full rounded-2xl overflow-hidden bg-[#101424] shadow-2xl group">
-                                    <video autoplay loop muted playsinline class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                                    <video id="heroPromoVideo" autoplay playsinline class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
                                         <source src="videos/phonehaven-promo.mp4" type="video/mp4">
                                         <source src="images/phonehaven-video.mp4" type="video/mp4">
                                         Votre navigateur ne supporte pas les vidéos HTML5.
@@ -812,10 +812,10 @@
                                     <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19]/80 via-transparent to-transparent pointer-events-none"></div>
                                     
                                     <!-- Sound Toggle Button -->
-                                    <button type="button" onclick="const v = this.parentElement.querySelector('video'); v.muted = !v.muted; this.querySelector('.material-symbols-outlined').textContent = v.muted ? 'volume_off' : 'volume_up';" 
-                                        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#FFBA08] hover:text-black transition-all shadow-lg cursor-pointer"
-                                        title="Activer / Couper le son">
-                                        <span class="material-symbols-outlined text-[18px]">volume_off</span>
+                                    <button type="button" id="heroSoundBtn" onclick="toggleHeroSound()" 
+                                        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/70 backdrop-blur-md border border-[#FFBA08]/50 text-[#FFBA08] flex items-center justify-center hover:bg-[#FFBA08] hover:text-black transition-all shadow-lg cursor-pointer"
+                                        title="Son activé par défaut (cliquer pour couper)">
+                                        <span class="material-symbols-outlined text-[18px]">volume_up</span>
                                     </button>
 
                                     <!-- Overlay Tag -->
@@ -1352,7 +1352,7 @@
                             <!-- Poster Video -->
                             <div class="md:col-span-5 flex justify-center">
                                 <div class="relative w-full max-w-xs sm:max-w-sm rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 border-[#FFBA08]/40 group bg-[#0B0F19]">
-                                    <video autoplay loop muted playsinline controls class="w-full h-auto aspect-[9/16] object-cover rounded-2xl sm:rounded-3xl shadow-2xl">
+                                    <video id="showcasePromoVideo" autoplay playsinline controls class="w-full h-auto aspect-[9/16] object-cover rounded-2xl sm:rounded-3xl shadow-2xl">
                                         <source src="videos/phonehaven-promo.mp4" type="video/mp4">
                                         <source src="images/phonehaven-video.mp4" type="video/mp4">
                                         Votre navigateur ne supporte pas les vidéos HTML5.
@@ -2134,6 +2134,76 @@
     </aside>
     <script type="module" src="algeria-coverage.js"></script>
     <script type="module" src="client-i18n.js"></script>
+
+    <!-- Audio by Default Handler for Promo Videos -->
+    <script>
+        function updateHeroSoundIcon(isMuted) {
+            const btn = document.getElementById('heroSoundBtn');
+            const icon = btn ? btn.querySelector('.material-symbols-outlined') : null;
+            if (icon && btn) {
+                icon.textContent = isMuted ? 'volume_off' : 'volume_up';
+                btn.classList.toggle('text-[#FFBA08]', !isMuted);
+                btn.classList.toggle('border-[#FFBA08]/50', !isMuted);
+                btn.classList.toggle('text-white/70', isMuted);
+                btn.classList.toggle('border-white/20', isMuted);
+            }
+        }
+
+        function toggleHeroSound() {
+            const v = document.getElementById('heroPromoVideo');
+            if (v) {
+                v.muted = !v.muted;
+                updateHeroSoundIcon(v.muted);
+            }
+        }
+
+        // Active voice/sound by default
+        (function activateDefaultAudio() {
+            const heroVid = document.getElementById('heroPromoVideo');
+            if (!heroVid) return;
+
+            // Ensure volume is at 100% and unmuted
+            heroVid.muted = false;
+            heroVid.volume = 1.0;
+
+            const tryPlay = () => {
+                const promise = heroVid.play();
+                if (promise !== undefined) {
+                    promise.then(() => {
+                        // Unmuted autoplay succeeded!
+                        updateHeroSoundIcon(false);
+                    }).catch(() => {
+                        // Browser strict autoplay policy blocked unmuted sound
+                        // Start playing muted temporarily, then immediately unmute on first user interaction
+                        heroVid.muted = true;
+                        heroVid.play().catch(() => {});
+                        updateHeroSoundIcon(true);
+
+                        const unmuteOnInteraction = () => {
+                            heroVid.muted = false;
+                            heroVid.volume = 1.0;
+                            heroVid.play().catch(() => {});
+                            updateHeroSoundIcon(false);
+                            ['click', 'touchstart', 'scroll', 'pointerdown', 'keydown'].forEach(evt => {
+                                window.removeEventListener(evt, unmuteOnInteraction, { capture: true });
+                            });
+                        };
+
+                        ['click', 'touchstart', 'scroll', 'pointerdown', 'keydown'].forEach(evt => {
+                            window.addEventListener(evt, unmuteOnInteraction, { capture: true, once: true });
+                        });
+                    });
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', tryPlay);
+            } else {
+                tryPlay();
+            }
+        })();
+    </script>
+
 </body>
 
 </html>
