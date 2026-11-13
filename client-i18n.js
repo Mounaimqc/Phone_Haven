@@ -5,6 +5,10 @@
 
 export const clientTranslations = {
     fr: {
+        // Brand
+        brand_name: "Phone Haven",
+        brand_sub: "Smartphones & Accessoires",
+
         // Nav
         nav_home: "Accueil",
         nav_catalog: "Catalogue",
@@ -102,6 +106,10 @@ export const clientTranslations = {
         footer_rights: "Tous droits réservés."
     },
     ar: {
+        // Brand
+        brand_name: "فون هافن",
+        brand_sub: "متجر الهواتف والإكسسوارات الأصلية",
+
         // Nav
         nav_home: "الرئيسية",
         nav_catalog: "الكتالوج",
